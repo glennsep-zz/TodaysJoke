@@ -6,17 +6,26 @@
 //  Copyright © 2015 Glenn Seplowitz. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "TJKAppDelegate.h"
+#import "TJKMainViewController.h"
 
-@interface AppDelegate ()
+@interface TJKAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation TJKAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // load the main view
+    NSBundle *appBundle = [NSBundle mainBundle];
+    TJKMainViewController *mvc = [[TJKMainViewController alloc] initWithNibName:@"TJKMainViewController" bundle:appBundle];
+    self.window.rootViewController = mvc;
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
