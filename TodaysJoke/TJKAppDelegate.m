@@ -22,7 +22,13 @@
     // load the main view
     NSBundle *appBundle = [NSBundle mainBundle];
     TJKMainViewController *mvc = [[TJKMainViewController alloc] initWithNibName:@"TJKMainViewController" bundle:appBundle];
-    self.window.rootViewController = mvc;
+    [mvc setupNavBar];
+    
+    // create a UINavigationController
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mvc];
+    
+    // place the navigation controller's view in the window hierachy
+    self.window.rootViewController = navController;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

@@ -47,4 +47,19 @@
     return [self initWithJokeDescr:@"None" jokeCategoryId:JokeCategoryNone jokeTitle:@"None"];
 }
 
+#pragma Methods
+
+// create a Joke Item
++(instancetype)createJoke:(NSString *)jokeDescr
+          JokeCategoryId:(JokeCategory)jokeCategoryId
+               jokeTitle:(NSString *)jokeTitle
+{
+    TJKJokeItem *newItem = [[self alloc] initWithJokeDescr:jokeDescr
+                                             jokeCategoryId:jokeCategoryId
+                                                  jokeTitle:jokeTitle];
+    
+    // return new joke item
+    return newItem;
+}
+
 @end

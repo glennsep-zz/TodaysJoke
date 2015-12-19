@@ -10,4 +10,7 @@
 
 @interface TJKMainViewController : UIViewController
 
+#pragma Methods
+-(void)setupNavBar;
+
 @end
