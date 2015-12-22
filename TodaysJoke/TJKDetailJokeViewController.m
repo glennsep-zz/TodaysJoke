@@ -81,6 +81,7 @@
 
 #pragma Actions
 
+// display or hide the category picker.  Do not allow "None" to be selected
 - (IBAction)selectCategoryPicker:(id)sender
 {
     if (_jokeCategoryPicker.hidden == YES)
@@ -107,6 +108,10 @@
     }
 }
 
-
+// dismis keyboard if background is selected
+- (IBAction)backgroundTapped:(id)sender
+{
+    [self.view endEditing:YES];
+}
 
 @end
