@@ -80,6 +80,9 @@
 
 #pragma Actions
 
+- (IBAction)selectCategoryPicker:(id)sender {
+    _jokeCategoryPicker.hidden = NO;
+}
 
 
 
