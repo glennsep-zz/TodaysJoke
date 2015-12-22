@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *jokeCategoryPicker;
 @property (strong, nonatomic) NSArray *jokeCategories;
 @property (strong, nonatomic) IBOutlet UIView *jokeDetailView;
+@property (weak, nonatomic) IBOutlet UIButton *selectCategoryButton;
 
 @end
 
@@ -80,8 +81,30 @@
 
 #pragma Actions
 
-- (IBAction)selectCategoryPicker:(id)sender {
-    _jokeCategoryPicker.hidden = NO;
+- (IBAction)selectCategoryPicker:(id)sender
+{
+    if (_jokeCategoryPicker.hidden == YES)
+    {
+        _jokeCategoryPicker.hidden = NO;
+        [self.selectCategoryButton setTitle:@"Select Category" forState:UIControlStateNormal];
+    }
+    else if ([_jokeCategory.text  isEqual: @"None"])
+    {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Invalid Category"
+                                                                       message:@"The category \"None\" cannot be used"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else
+    {
+        _jokeCategoryPicker.hidden = YES;
+        [self.selectCategoryButton setTitle:@"Show Categories" forState:UIControlStateNormal];
+    }
 }
 
 
