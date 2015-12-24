@@ -59,11 +59,17 @@
 #pragma Methods
 
 // create a new joke item
--(TJKJokeItem *)createItem:(NSString *)jokeDescr jokeCategoryId:(JokeCategory)jokeCategoryId jokeTitle:(NSString *)jokeTitle
+-(TJKJokeItem *)createItem
 {
-    TJKJokeItem *item = [TJKJokeItem createJoke:jokeDescr JokeCategoryId:jokeCategoryId jokeTitle:jokeTitle];
+    TJKJokeItem *item = [[TJKJokeItem alloc] init];
     [self.privateItems addObject:item];
     return item;
+}
+
+// remove the joke item
+-(void)removeItem:(TJKJokeItem *)jokeItem
+{
+    [self.privateItems removeObjectIdenticalTo:jokeItem];
 }
 
 @end

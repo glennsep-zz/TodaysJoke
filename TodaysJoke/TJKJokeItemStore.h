@@ -13,6 +13,9 @@
 
 #pragma Singleton
 +(instancetype)sharedStore;
--(TJKJokeItem *)createItem:(NSString *)jokeDescr jokeCategoryId:(JokeCategory)jokeCategoryId jokeTitle:(NSString *)jokeTitle;
+
+#pragma Methods
+-(TJKJokeItem *)createItem;
+-(void)removeItem:(TJKJokeItem *)jokeItem;
 
 @end

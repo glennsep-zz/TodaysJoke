@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TJKJokeItem;
 
 @interface TJKDetailJokeViewController : UIViewController
 
+-(instancetype)initForNewItem:(BOOL)isNew;
+@property (nonatomic, strong) TJKJokeItem *jokeItem;
 
 @end

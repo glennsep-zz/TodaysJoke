@@ -8,6 +8,7 @@
 
 #import "TJKDetailJokeViewController.h"
 #import "TJKJokeItem.h"
+#import "TJKJokeItemStore.h"
 
 @interface TJKDetailJokeViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *jokeTitle;
@@ -21,6 +22,47 @@
 @end
 
 @implementation TJKDetailJokeViewController
+
+#pragma Initializers
+
+// check if this is displaying a new joke item or an existing one
+-(instancetype)initForNewItem:(BOOL)isNew
+{
+    self = [super initWithNibName:nil bundle:nil];
+    
+    if (self)
+    {
+        if (isNew)
+        {
+            // create button to submit an e-mail
+            UIBarButtonItem *submitItem = [[UIBarButtonItem alloc]
+                                           initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                           target:self
+                                           action:@selector(submitJoke:)];
+            self.navigationItem.rightBarButtonItem = submitItem;
+            
+            // create button to cancel the item
+            UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc]
+                                           initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                           target:self
+                                           action:@selector(cancelJoke:)];
+            self.navigationItem.leftBarButtonItem = cancelItem;
+            
+        }
+    }
+    
+    return self;
+}
+
+// override the UIViewController's designated initializer to prevent its use, we want to
+// use initForNewItem instead
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    [NSException raise:@"Wrong Initializer"
+                format:@"Use initForNewItem:"];
+    return nil;
+}
+
 
 #pragma Methods
 
@@ -45,6 +87,21 @@
     _jokeCategoryPicker.hidden = YES;
     [_jokeCategoryPicker selectRow:0 inComponent:0 animated:YES];
     _jokeCategory.text = _jokeCategories[0];
+}
+
+// submit the joke via e-mail
+-(void)submitJoke:(id)sender
+{
+    // for now we will not send an e-mail we will just close the modal view
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+}
+
+// cancel the adding of a new joke
+-(void)cancelJoke:(id)sender
+{
+    // since the user cancelled remove the joke from the store
+    [[TJKJokeItemStore sharedStore] removeItem:self.jokeItem];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 // indicate the number of items that can be selected in picker view

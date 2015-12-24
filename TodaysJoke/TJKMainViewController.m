@@ -33,11 +33,18 @@
 // display the screen to add a new joke
 -(IBAction)addNewJoke:(id)sender
 {
+    // create a new joke item
+    TJKJokeItem *newJoke = [[TJKJokeItemStore sharedStore] createItem];
+    
     // create a instance of the joke view controller
-    TJKDetailJokeViewController *detailJokeViewController = [[TJKDetailJokeViewController alloc] init];
+    TJKDetailJokeViewController *detailJokeViewController = [[TJKDetailJokeViewController alloc] initForNewItem:YES];
+    detailJokeViewController.jokeItem = newJoke;
+    
+    UINavigationController *navController = [[UINavigationController alloc]
+                                             initWithRootViewController:detailJokeViewController];
     
     // display joke detail screen
-    [self.navigationController pushViewController:detailJokeViewController animated:YES];
+    [self presentViewController:navController animated:YES completion:NULL];
 }
 
 @end
