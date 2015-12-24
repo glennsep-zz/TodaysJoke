@@ -14,10 +14,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *jokeTitle;
 @property (weak, nonatomic) IBOutlet UITextField *jokeCategory;
 @property (weak, nonatomic) IBOutlet UITextView *joke;
-@property (weak, nonatomic) IBOutlet UIPickerView *jokeCategoryPicker;
+@property (strong, nonatomic) UIPickerView *jokeCategoryPicker;
 @property (strong, nonatomic) NSArray *jokeCategories;
 @property (strong, nonatomic) IBOutlet UIView *jokeDetailView;
-@property (weak, nonatomic) IBOutlet UIButton *selectCategoryButton;
+@property (strong, nonatomic) UIToolbar * jokeCategoryPickerToolbar;
 
 @end
 
@@ -83,10 +83,50 @@
                         @"Clean Jokes"];
     
     // setup picker view
-    _jokeCategoryPicker.showsSelectionIndicator = YES;
-    _jokeCategoryPicker.hidden = YES;
-    [_jokeCategoryPicker selectRow:0 inComponent:0 animated:YES];
-    _jokeCategory.text = _jokeCategories[0];
+    //_jokeCategoryPicker.showsSelectionIndicator = YES;
+    //_jokeCategoryPicker.hidden = YES;
+    //[_jokeCategoryPicker selectRow:0 inComponent:0 animated:YES];
+    //_jokeCategory.text = _jokeCategories[0];
+    
+    self.jokeCategoryPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 43, self.view.frame.size.width,self.view.frame.size.height / 4)];
+    
+    self.jokeCategoryPicker.delegate = self;
+    
+    self.jokeCategoryPicker.dataSource = self;
+    
+    [self.jokeCategoryPicker setShowsSelectionIndicator:YES];
+
+    
+    
+    self.jokeCategory.inputView = _jokeCategoryPicker;
+   
+    
+    // setup done button in picker
+    self.jokeCategoryPickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,320,56)];
+    self.jokeCategoryPickerToolbar.barStyle = UIBarStyleBlackOpaque;
+    [self.jokeCategoryPickerToolbar sizeToFit];
+    NSMutableArray *barItems = [[NSMutableArray alloc] init];
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc]
+                                  initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                       target:self
+                                                       action:nil];
+    [barItems addObject:flexSpace];
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]
+                                initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                target:self
+                                action:@selector(pickerDoneClicked)];
+    [barItems addObject:doneBtn];
+    [self.jokeCategoryPickerToolbar setItems:barItems animated:YES];
+    self.jokeCategory.inputAccessoryView = self.jokeCategoryPickerToolbar;
+    
+}
+
+// action to take when done button is pressed on picker toolbar
+-(void)pickerDoneClicked
+{
+    [self.jokeCategory resignFirstResponder];
+    //self.jokeCategoryPickerToolbar.hidden = YES;
+    //self.jokeCategoryPicker.hidden = YES;
 }
 
 // submit the joke via e-mail
@@ -137,33 +177,6 @@
 }
 
 #pragma Actions
-
-// display or hide the category picker.  Do not allow "None" to be selected
-- (IBAction)selectCategoryPicker:(id)sender
-{
-    if (_jokeCategoryPicker.hidden == YES)
-    {
-        _jokeCategoryPicker.hidden = NO;
-        [self.selectCategoryButton setTitle:@"Select Category" forState:UIControlStateNormal];
-    }
-    else if ([_jokeCategory.text  isEqual: @"None"])
-    {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Invalid Category"
-                                                                       message:@"The category \"None\" cannot be used"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:defaultAction];
-        [self presentViewController:alert animated:YES completion:nil];
-    }
-    else
-    {
-        _jokeCategoryPicker.hidden = YES;
-        [self.selectCategoryButton setTitle:@"Show Categories" forState:UIControlStateNormal];
-    }
-}
 
 // dismis keyboard if background is selected
 - (IBAction)backgroundTapped:(id)sender
