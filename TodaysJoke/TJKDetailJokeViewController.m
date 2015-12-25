@@ -82,22 +82,15 @@
     _jokeCategories = @[@"None", @"Puns", @"Knock Knock Jokes", @"Funny Quotes", @"Ironic Jokes",
                         @"Clean Jokes"];
     
-    // setup picker view
-    //_jokeCategoryPicker.showsSelectionIndicator = YES;
-    //_jokeCategoryPicker.hidden = YES;
-    //[_jokeCategoryPicker selectRow:0 inComponent:0 animated:YES];
-    //_jokeCategory.text = _jokeCategories[0];
+    // set initial value for joke category
+    _jokeCategory.text = _jokeCategories[0];
     
+    // set up the picker for the joke categories
     self.jokeCategoryPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 43, self.view.frame.size.width,self.view.frame.size.height / 4)];
     
     self.jokeCategoryPicker.delegate = self;
-    
     self.jokeCategoryPicker.dataSource = self;
-    
     [self.jokeCategoryPicker setShowsSelectionIndicator:YES];
-
-    
-    
     self.jokeCategory.inputView = _jokeCategoryPicker;
    
     
@@ -118,20 +111,83 @@
     [barItems addObject:doneBtn];
     [self.jokeCategoryPickerToolbar setItems:barItems animated:YES];
     self.jokeCategory.inputAccessoryView = self.jokeCategoryPickerToolbar;
-    
 }
 
 // action to take when done button is pressed on picker toolbar
 -(void)pickerDoneClicked
 {
     [self.jokeCategory resignFirstResponder];
-    //self.jokeCategoryPickerToolbar.hidden = YES;
-    //self.jokeCategoryPicker.hidden = YES;
 }
 
 // submit the joke via e-mail
 -(void)submitJoke:(id)sender
 {
+    // validate the fields
+    NSArray *isValid = [NSArray arrayWithArray:self.validateSubmittedJoke];
+    if ([isValid count] > 0)
+    {
+        // display the issues to the user
+        NSString *errorMessage = [isValid componentsJoinedByString:@"\r\r"];
+        
+        UIAlertController *invalidAlert = [UIAlertController alertControllerWithTitle:@"Invalid Submission"
+                                                                              message:errorMessage
+                                                                       preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction *action)
+                             {
+                                 [invalidAlert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+        
+        [invalidAlert addAction:ok];
+        [self presentViewController:invalidAlert animated:YES completion:nil];
+        return;
+    }
+    
+    // first check if the device can send e-mail
+    if ([MFMailComposeViewController canSendMail])
+    {
+        // setup the string for the message body
+        NSString *jokeTitle = self.jokeTitle.text;
+        NSString *jokeCategory = self.jokeTitle.text;
+        NSString *joke = self.joke.text;
+        NSString *messageBody = [NSString stringWithFormat:@"%@%@\n\n%@%@\n\n%@\n%@",
+                                 @"Joke Title: ", jokeTitle,
+                                 @"Joke Category: ", jokeCategory,
+                                 @"Joke:", joke];
+        
+        // setup recipients
+        NSArray *toRecipents = [NSArray arrayWithObject:@"todaysjoke@glennseplowitz.com"];
+        
+        // prepare the mail message
+        mailComposer = [[MFMailComposeViewController alloc] init];
+        mailComposer.mailComposeDelegate = self;
+        [mailComposer setSubject:@"Joke Submission"];
+        [mailComposer setMessageBody:messageBody isHTML:NO];
+        [mailComposer setToRecipients:toRecipents];
+        
+        // present mail on the screen
+        [self presentViewController:mailComposer animated:YES completion:nil];
+    }
+    else
+    {
+        UIAlertController *invalidAlert = [UIAlertController alertControllerWithTitle:@"Invalid Submission"
+                                                                              message:@"This device cannot send e-mail"
+                                                                       preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction *action)
+                             {
+                                 [invalidAlert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+        
+        [invalidAlert addAction:ok];
+        [self presentViewController:invalidAlert animated:YES completion:nil];
+        return;
+    }
+    
     // for now we will not send an e-mail we will just close the modal view
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -174,6 +230,58 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+-(NSArray *)validateSubmittedJoke
+{
+    // declare an array
+    NSMutableArray *valid = [[NSMutableArray alloc] init];
+    
+    // check if the joke title field is empty
+    if (![self.jokeTitle hasText])
+    {
+        // if empty indicate this in the array
+        [valid addObject:@"Must enter a Joke Title."];
+    }
+    
+    // check if the joke category is not empty as it not set to "NONE"
+    if (![self.jokeCategory hasText] || [self.jokeCategory.text  isEqual: @"None"])
+    {
+        // if empty or none indicae this in the array
+        [valid addObject:@"The Joke Category must contain a value and cannot be \"None\"."];
+    }
+    
+    // check if a joke was entered
+    if (![self.joke hasText])
+    {
+        // if empty indicate there must be a joke present
+        [valid addObject:@"You must enter a Joke!"];
+    }
+    
+    return [valid copy];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result) {
+        case MFMailComposeResultSent:
+            NSLog(@"You sent the email.");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"You saved a draft of this email");
+            break;
+        case MFMailComposeResultCancelled:
+            NSLog(@"You cancelled sending this email.");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail failed:  An error occurred when trying to compose this email");
+            break;
+        default:
+            NSLog(@"An error occurred when trying to compose this email");
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma Actions

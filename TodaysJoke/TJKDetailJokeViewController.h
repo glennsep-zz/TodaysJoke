@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 @class TJKJokeItem;
 
-@interface TJKDetailJokeViewController : UIViewController
+@interface TJKDetailJokeViewController : UIViewController <MFMailComposeViewControllerDelegate>
+{
+    MFMailComposeViewController *mailComposer;
+}
 
 -(instancetype)initForNewItem:(BOOL)isNew;
 @property (nonatomic, strong) TJKJokeItem *jokeItem;

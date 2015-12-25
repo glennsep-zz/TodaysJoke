@@ -11,6 +11,7 @@
 		410A59A91C1FA2F80054E736 /* TJKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 410A59A81C1FA2F80054E736 /* TJKAppDelegate.m */; };
 		410A59B21C1FA2F80054E736 /* TodaysJoke.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 410A59B01C1FA2F80054E736 /* TodaysJoke.xcdatamodeld */; };
 		410A59B41C1FA2F80054E736 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 410A59B31C1FA2F80054E736 /* Assets.xcassets */; };
+		4185C2BD1C2DC163000DDECC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4185C2BC1C2DC163000DDECC /* MessageUI.framework */; };
 		41BC90DF1C25D65200288F16 /* TodaysJoke@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BC90CE1C25D65200288F16 /* TodaysJoke@2.png */; };
 		41BC90E01C25D65200288F16 /* TodaysJoke@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BC90CF1C25D65200288F16 /* TodaysJoke@3.png */; };
 		41BC90E11C25D65200288F16 /* TodaysJoke@29.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BC90D01C25D65200288F16 /* TodaysJoke@29.png */; };
@@ -44,6 +45,7 @@
 		410A59B11C1FA2F80054E736 /* TodaysJoke.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodaysJoke.xcdatamodel; sourceTree = "<group>"; };
 		410A59B31C1FA2F80054E736 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		410A59B81C1FA2F80054E736 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4185C2BC1C2DC163000DDECC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		41BC90CE1C25D65200288F16 /* TodaysJoke@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TodaysJoke@2.png"; sourceTree = "<group>"; };
 		41BC90CF1C25D65200288F16 /* TodaysJoke@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TodaysJoke@3.png"; sourceTree = "<group>"; };
 		41BC90D01C25D65200288F16 /* TodaysJoke@29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TodaysJoke@29.png"; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4185C2BD1C2DC163000DDECC /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +90,7 @@
 		410A59981C1FA2F80054E736 = {
 			isa = PBXGroup;
 			children = (
+				4185C2BC1C2DC163000DDECC /* MessageUI.framework */,
 				410A59A31C1FA2F80054E736 /* TodaysJoke */,
 				410A59A21C1FA2F80054E736 /* Products */,
 				41BC90CD1C25D63600288F16 /* Images */,
