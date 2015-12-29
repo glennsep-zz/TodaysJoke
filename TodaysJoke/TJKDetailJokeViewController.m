@@ -10,6 +10,7 @@
 #import "TJKJokeItem.h"
 #import "TJKJokeItemStore.h"
 #import "GHSNoSwearing.h"
+#import "GHSAlerts.h"
 
 @interface TJKDetailJokeViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *jokeTitle;
@@ -123,10 +124,13 @@
 // submit the joke via e-mail
 -(void)submitJoke:(id)sender
 {
+    // instantiate the alert object
+    GHSAlerts *alerts = [[GHSAlerts alloc] initWithViewController:self];
+    
     // check if the device can send mail
     if (![MFMailComposeViewController canSendMail])
     {
-        [self displayErrorMessage:@"Invalid Submission" errorMessage:@"This device cannot send e-mail."];
+        [alerts displayErrorMessage:@"Invalid Submission" errorMessage:@"This device cannot send e-mail."];
         return;
     }
     
@@ -136,7 +140,7 @@
     {
         // display the issues to the user
         NSString *errorMessage = [isValid componentsJoinedByString:@"\r\r"];
-        [self displayErrorMessage:@"Invalid Submission" errorMessage:errorMessage];
+        [alerts displayErrorMessage:@"Invalid Submission" errorMessage:errorMessage];
         return;
     }
 
@@ -150,11 +154,16 @@
     GHSNoSwearing *foundBadWords = [[GHSNoSwearing alloc] init];
     NSString *badWords = [foundBadWords checkForSwearing:checkBadWords numberOfWordsReturned:10];
     
-    // if bad words are found then display them and warn the user the joke might not be accepted
+    // if bad words are found then display them and warn the user the joke might not be accepted, but e-mail the joke anyway
     if (![badWords isEqual: @"OK"])
     {
         NSString *badWordsMessage = [@"You can submit your joke, but it might not be accepted due to the following word(s) found: " stringByAppendingString:badWords];
-        [self displayErrorMessage:@"Possible Problem" errorMessage:badWordsMessage errorAction:^void (UIAlertAction *action) {[self sendJokeViaEmail];}];
+        errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self sendJokeViaEmail];};
+        [alerts displayErrorMessage:@"Possible Problem" errorMessage:badWordsMessage errorAction:errorBlock];
+    }
+    else
+    {
+        [self sendJokeViaEmail];
     }
 }
 
@@ -182,40 +191,6 @@
     
     // present mail on the screen
     [self presentViewController:mailComposer animated:YES completion:nil];
-}
-
-// display an alert dialog with an error message
--(void)displayErrorMessage:(NSString *)title errorMessage:(NSString *)message
-{
-    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:title
-                                                                           message:message
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action) {[self sendJokeViaEmail];}];
-    
-    [errorAlert addAction:ok];
-    [self presentViewController:errorAlert animated:YES completion:nil];
-    return;
-}
-
-// display an alert dialog with an error message and an action
--(void)displayErrorMessage:(NSString *)title errorMessage:(NSString *)message errorAction:(void (^)(UIAlertAction *action))errorBlock
-{
-    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:title
-                                                                        message:message
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:errorBlock];
-    
-    [errorAlert addAction:ok];
-    [self presentViewController:errorAlert animated:YES completion:nil];
-    return;
 }
 
 // cancel the adding of a new joke
