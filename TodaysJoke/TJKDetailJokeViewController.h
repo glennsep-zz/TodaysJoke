@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
+
 @class TJKJokeItem;
 
-@interface TJKDetailJokeViewController : UIViewController <MFMailComposeViewControllerDelegate>
+@interface TJKDetailJokeViewController : UIViewController <MFMailComposeViewControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 {
     MFMailComposeViewController *mailComposer;
 }

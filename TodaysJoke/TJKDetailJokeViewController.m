@@ -9,6 +9,7 @@
 #import "TJKDetailJokeViewController.h"
 #import "TJKJokeItem.h"
 #import "TJKJokeItemStore.h"
+#import "GHSNoSwearing.h"
 
 @interface TJKDetailJokeViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *jokeTitle;
@@ -122,74 +123,99 @@
 // submit the joke via e-mail
 -(void)submitJoke:(id)sender
 {
+    // check if the device can send mail
+    if (![MFMailComposeViewController canSendMail])
+    {
+        [self displayErrorMessage:@"Invalid Submission" errorMessage:@"This device cannot send e-mail."];
+        return;
+    }
+    
     // validate the fields
     NSArray *isValid = [NSArray arrayWithArray:self.validateSubmittedJoke];
     if ([isValid count] > 0)
     {
         // display the issues to the user
         NSString *errorMessage = [isValid componentsJoinedByString:@"\r\r"];
-        
-        UIAlertController *invalidAlert = [UIAlertController alertControllerWithTitle:@"Invalid Submission"
-                                                                              message:errorMessage
-                                                                       preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *ok = [UIAlertAction
-                             actionWithTitle:@"OK"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction *action)
-                             {
-                                 [invalidAlert dismissViewControllerAnimated:YES completion:nil];
-                             }];
-        
-        [invalidAlert addAction:ok];
-        [self presentViewController:invalidAlert animated:YES completion:nil];
+        [self displayErrorMessage:@"Invalid Submission" errorMessage:errorMessage];
         return;
     }
+
+    // check for swear words
+    NSMutableString *combineBadWords = [[NSMutableString alloc] init];
+    [combineBadWords appendString:self.jokeTitle.text];
+    [combineBadWords appendString:@" "];
+    [combineBadWords appendString:self.joke.text];
+    NSString *checkBadWords = [combineBadWords copy];
+        
+    GHSNoSwearing *foundBadWords = [[GHSNoSwearing alloc] init];
+    NSString *badWords = [foundBadWords checkForSwearing:checkBadWords numberOfWordsReturned:10];
     
-    // first check if the device can send e-mail
-    if ([MFMailComposeViewController canSendMail])
+    // if bad words are found then display them and warn the user the joke might not be accepted
+    if (![badWords isEqual: @"OK"])
     {
-        // setup the string for the message body
-        NSString *jokeTitle = self.jokeTitle.text;
-        NSString *jokeCategory = self.jokeTitle.text;
-        NSString *joke = self.joke.text;
-        NSString *messageBody = [NSString stringWithFormat:@"%@%@\n\n%@%@\n\n%@\n%@",
-                                 @"Joke Title: ", jokeTitle,
-                                 @"Joke Category: ", jokeCategory,
-                                 @"Joke:", joke];
-        
-        // setup recipients
-        NSArray *toRecipents = [NSArray arrayWithObject:@"todaysjoke@glennseplowitz.com"];
-        
-        // prepare the mail message
-        mailComposer = [[MFMailComposeViewController alloc] init];
-        mailComposer.mailComposeDelegate = self;
-        [mailComposer setSubject:@"Joke Submission"];
-        [mailComposer setMessageBody:messageBody isHTML:NO];
-        [mailComposer setToRecipients:toRecipents];
-        
-        // present mail on the screen
-        [self presentViewController:mailComposer animated:YES completion:nil];
+        NSString *badWordsMessage = [@"You can submit your joke, but it might not be accepted due to the following word(s) found: " stringByAppendingString:badWords];
+        [self displayErrorMessage:@"Possible Problem" errorMessage:badWordsMessage errorAction:^void (UIAlertAction *action) {[self sendJokeViaEmail];}];
     }
-    else
-    {
-        UIAlertController *invalidAlert = [UIAlertController alertControllerWithTitle:@"Invalid Submission"
-                                                                              message:@"This device cannot send e-mail"
-                                                                       preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *ok = [UIAlertAction
-                             actionWithTitle:@"OK"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction *action)
-                             {
-                                 [invalidAlert dismissViewControllerAnimated:YES completion:nil];
-                             }];
-        
-        [invalidAlert addAction:ok];
-        [self presentViewController:invalidAlert animated:YES completion:nil];
-        return;
-    }
+}
+
+// send the e-mail
+-(void)sendJokeViaEmail
+{
+    // setup the string for the message body
+    NSString *jokeTitle = self.jokeTitle.text;
+    NSString *jokeCategory = self.jokeTitle.text;
+    NSString *joke = self.joke.text;
+    NSString *messageBody = [NSString stringWithFormat:@"%@%@\n\n%@%@\n\n%@\n%@",
+                             @"Joke Title: ", jokeTitle,
+                             @"Joke Category: ", jokeCategory,
+                             @"Joke:", joke];
     
-    // for now we will not send an e-mail we will just close the modal view
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+    // setup recipients
+    NSArray *toRecipents = [NSArray arrayWithObject:@"todaysjoke@glennseplowitz.com"];
+    
+    // prepare the mail message
+    mailComposer = [[MFMailComposeViewController alloc] init];
+    mailComposer.mailComposeDelegate = self;
+    [mailComposer setSubject:@"Joke Submission"];
+    [mailComposer setMessageBody:messageBody isHTML:NO];
+    [mailComposer setToRecipients:toRecipents];
+    
+    // present mail on the screen
+    [self presentViewController:mailComposer animated:YES completion:nil];
+}
+
+// display an alert dialog with an error message
+-(void)displayErrorMessage:(NSString *)title errorMessage:(NSString *)message
+{
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:title
+                                                                           message:message
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action) {[self sendJokeViaEmail];}];
+    
+    [errorAlert addAction:ok];
+    [self presentViewController:errorAlert animated:YES completion:nil];
+    return;
+}
+
+// display an alert dialog with an error message and an action
+-(void)displayErrorMessage:(NSString *)title errorMessage:(NSString *)message errorAction:(void (^)(UIAlertAction *action))errorBlock
+{
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:title
+                                                                        message:message
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:errorBlock];
+    
+    [errorAlert addAction:ok];
+    [self presentViewController:errorAlert animated:YES completion:nil];
+    return;
 }
 
 // cancel the adding of a new joke

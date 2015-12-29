@@ -11,6 +11,7 @@
 		410A59A91C1FA2F80054E736 /* TJKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 410A59A81C1FA2F80054E736 /* TJKAppDelegate.m */; };
 		410A59B21C1FA2F80054E736 /* TodaysJoke.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 410A59B01C1FA2F80054E736 /* TodaysJoke.xcdatamodeld */; };
 		410A59B41C1FA2F80054E736 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 410A59B31C1FA2F80054E736 /* Assets.xcassets */; };
+		414028291C319F2500622BE4 /* GHSNoSwearing.m in Sources */ = {isa = PBXBuildFile; fileRef = 414028281C319F2500622BE4 /* GHSNoSwearing.m */; };
 		4185C2BD1C2DC163000DDECC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4185C2BC1C2DC163000DDECC /* MessageUI.framework */; };
 		41BA4E4B1C304E90001306CE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BA4E4A1C304E90001306CE /* Launch Screen.storyboard */; };
 		41BA4E4D1C30731B001306CE /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BA4E4C1C30731B001306CE /* menuButton.png */; };
@@ -47,6 +48,8 @@
 		410A59B11C1FA2F80054E736 /* TodaysJoke.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodaysJoke.xcdatamodel; sourceTree = "<group>"; };
 		410A59B31C1FA2F80054E736 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		410A59B81C1FA2F80054E736 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		414028271C319F2500622BE4 /* GHSNoSwearing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHSNoSwearing.h; sourceTree = "<group>"; };
+		414028281C319F2500622BE4 /* GHSNoSwearing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHSNoSwearing.m; sourceTree = "<group>"; };
 		4185C2BC1C2DC163000DDECC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		41BA4E4A1C304E90001306CE /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		41BA4E4C1C30731B001306CE /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 				41D3643A1C224253004A6C1A /* TJKJokeItem.m */,
 				41BC90F01C25DB8600288F16 /* TJKJokeItemStore.h */,
 				41BC90F11C25DB8600288F16 /* TJKJokeItemStore.m */,
+				414028271C319F2500622BE4 /* GHSNoSwearing.h */,
+				414028281C319F2500622BE4 /* GHSNoSwearing.m */,
 				410A59B31C1FA2F80054E736 /* Assets.xcassets */,
 				410A59B81C1FA2F80054E736 /* Info.plist */,
 				410A59B01C1FA2F80054E736 /* TodaysJoke.xcdatamodeld */,
@@ -257,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				410A59B21C1FA2F80054E736 /* TodaysJoke.xcdatamodeld in Sources */,
+				414028291C319F2500622BE4 /* GHSNoSwearing.m in Sources */,
 				41BC90F21C25DB8600288F16 /* TJKJokeItemStore.m in Sources */,
 				41D3643B1C224253004A6C1A /* TJKJokeItem.m in Sources */,
 				410A59A91C1FA2F80054E736 /* TJKAppDelegate.m in Sources */,
