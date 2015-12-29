@@ -152,12 +152,12 @@
     NSString *checkBadWords = [combineBadWords copy];
         
     GHSNoSwearing *foundBadWords = [[GHSNoSwearing alloc] init];
-    NSString *badWords = [foundBadWords checkForSwearing:checkBadWords numberOfWordsReturned:10];
+    NSString *badWords = [foundBadWords checkForSwearing:checkBadWords numberOfWordsReturned:5];
     
     // if bad words are found then display them and warn the user the joke might not be accepted, but e-mail the joke anyway
     if (![badWords isEqual: @"OK"])
     {
-        NSString *badWordsMessage = [@"You can submit your joke, but it might not be accepted due to the following word(s) found: " stringByAppendingString:badWords];
+        NSString *badWordsMessage = [@"You can submit your joke, but it might not be accepted due to the following word(s) found:\r\r" stringByAppendingString:badWords];
         errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self sendJokeViaEmail];};
         [alerts displayErrorMessage:@"Possible Problem" errorMessage:badWordsMessage errorAction:errorBlock];
     }

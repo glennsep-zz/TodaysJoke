@@ -84,18 +84,25 @@
         {
             // check if max number of words found
             numberOfWordsFound++;
-            if (words != 0 && numberOfWordsFound == words)
+            if (words != 0 && numberOfWordsFound > words)
             {
                 maxWords = YES;
             }
             
-            // add the swear word to the return result
+            if (!maxWords)
+            {
             formattedSwearWord = [NSString stringWithFormat:@"\"%@\", ", swearWord];
             [swearWordsFound appendString:formattedSwearWord];
+            }
             
             // break out of loop if max words found
             if (maxWords)
             {
+                if (numberOfWordsFound > words)
+                {
+                formattedSwearWord = [NSString stringWithFormat:@"%@", @"... and others, "];
+                [swearWordsFound appendString:formattedSwearWord];
+                }
                 break;
             }
         }
