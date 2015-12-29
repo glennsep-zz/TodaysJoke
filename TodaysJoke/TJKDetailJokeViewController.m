@@ -12,6 +12,9 @@
 #import "GHSNoSwearing.h"
 #import "GHSAlerts.h"
 
+// define constants
+#define MAX_NUMBER_OF_BAD_WORDS 5
+
 @interface TJKDetailJokeViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *jokeTitle;
 @property (weak, nonatomic) IBOutlet UITextField *jokeCategory;
@@ -81,8 +84,7 @@
     self.joke.layer.cornerRadius = 5.0;
     
     // populate the array with category values
-    _jokeCategories = @[@"None", @"Puns", @"Knock Knock Jokes", @"Funny Quotes", @"Ironic Jokes",
-                        @"Clean Jokes"];
+    _jokeCategories = [[NSArray alloc] initWithArray:_jokeItem.jokeCategories];
     
     // set initial value for joke category
     _jokeCategory.text = _jokeCategories[0];
@@ -152,7 +154,7 @@
     NSString *checkBadWords = [combineBadWords copy];
         
     GHSNoSwearing *foundBadWords = [[GHSNoSwearing alloc] init];
-    NSString *badWords = [foundBadWords checkForSwearing:checkBadWords numberOfWordsReturned:5];
+    NSString *badWords = [foundBadWords checkForSwearing:checkBadWords numberOfWordsReturned:MAX_NUMBER_OF_BAD_WORDS];
     
     // if bad words are found then display them and warn the user the joke might not be accepted, but e-mail the joke anyway
     if (![badWords isEqual: @"OK"])

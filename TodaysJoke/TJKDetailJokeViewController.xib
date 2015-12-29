@@ -29,7 +29,7 @@
                         <constraint firstAttribute="height" constant="21" id="rlI-RM-wfu"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
@@ -72,7 +72,7 @@
                         <constraint firstAttribute="height" constant="21" id="Gm4-pb-3H4"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
@@ -103,27 +103,18 @@
                         <outlet property="delegate" destination="-1" id="P4q-pE-KoF"/>
                     </connections>
                 </textField>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2G-T0-9Vv">
-                    <rect key="frame" x="33" y="247" width="534" height="404"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" spellCheckingType="yes"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="nbD-5T-rLM"/>
-                    </connections>
-                </textView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Title:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I44-hc-KEX">
-                    <rect key="frame" x="33" y="84" width="79" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Title (e.g. first few words in joke):" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I44-hc-KEX">
+                    <rect key="frame" x="33" y="84" width="300" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="EfL-iJ-fkd"/>
-                        <constraint firstAttribute="width" constant="79" id="NOW-FO-s6j"/>
+                        <constraint firstAttribute="width" constant="300" id="NOW-FO-s6j"/>
                         <constraint firstAttribute="width" constant="79" id="aWK-s3-cLk"/>
                         <constraint firstAttribute="width" constant="79" id="i8E-TY-kIL"/>
                         <constraint firstAttribute="height" constant="21" id="odn-A6-4MN"/>
                         <constraint firstAttribute="height" constant="21" id="tBg-3F-HhS"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
@@ -134,6 +125,15 @@
                         </mask>
                     </variation>
                 </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2G-T0-9Vv">
+                    <rect key="frame" x="33" y="247" width="534" height="404"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" spellCheckingType="yes"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="nbD-5T-rLM"/>
+                    </connections>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>

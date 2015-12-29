@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+// define enumerated types
 typedef NS_ENUM(int, JokeCategory)
 {
     JokeCategoryPuns,
@@ -27,6 +28,7 @@ typedef NS_ENUM(int, JokeCategory)
 @property (nonatomic, readonly, strong) NSDate *jokeCreated;
 @property (nonatomic, copy) NSString *jokeTitle;
 @property (nonatomic, copy) NSString *jokeDescr;
+@property (nonatomic, readonly) NSArray *jokeCategories;
 
 #pragma Declare Initializers
 

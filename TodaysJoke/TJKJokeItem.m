@@ -35,6 +35,10 @@
         // get the date the joke is created
         _jokeCreated = [[NSDate alloc] init];
         
+        // define the array for the joke categories
+        _jokeCategories = @[@"None", @"Puns", @"Knock Knock Jokes", @"Funny Quotes", @"Ironic Jokes",
+                              @"Clean Jokes"];
+        
     }
     
     // return the newly initialized object
