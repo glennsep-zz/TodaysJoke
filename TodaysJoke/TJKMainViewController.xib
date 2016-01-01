@@ -14,19 +14,7 @@
         <view contentMode="scaleToFill" id="Mnm-UO-5Ij">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Place Joke Here" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2jY-Jg-jBm">
-                    <rect key="frame" x="37" y="158" width="528" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="2jY-Jg-jBm" firstAttribute="leading" secondItem="Mnm-UO-5Ij" secondAttribute="leading" constant="37" id="50G-8c-qvr"/>
-                <constraint firstAttribute="trailing" secondItem="2jY-Jg-jBm" secondAttribute="trailing" constant="35" id="RtZ-wN-Wx3"/>
-                <constraint firstItem="2jY-Jg-jBm" firstAttribute="top" secondItem="Mnm-UO-5Ij" secondAttribute="top" constant="158" id="hrw-KC-r07"/>
-            </constraints>
             <point key="canvasLocation" x="502" y="410"/>
         </view>
     </objects>

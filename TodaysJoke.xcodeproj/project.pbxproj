@@ -11,8 +11,13 @@
 		410A59A91C1FA2F80054E736 /* TJKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 410A59A81C1FA2F80054E736 /* TJKAppDelegate.m */; };
 		410A59B21C1FA2F80054E736 /* TodaysJoke.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 410A59B01C1FA2F80054E736 /* TodaysJoke.xcdatamodeld */; };
 		410A59B41C1FA2F80054E736 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 410A59B31C1FA2F80054E736 /* Assets.xcassets */; };
+		413E51EA1C35DB4400DC3330 /* TJKLeftPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 413E51E81C35DB4400DC3330 /* TJKLeftPanelViewController.m */; };
+		413E51EB1C35DB4400DC3330 /* TJKLeftPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413E51E91C35DB4400DC3330 /* TJKLeftPanelViewController.xib */; };
 		414028291C319F2500622BE4 /* GHSNoSwearing.m in Sources */ = {isa = PBXBuildFile; fileRef = 414028281C319F2500622BE4 /* GHSNoSwearing.m */; };
+		416410531C35D7E3008BD831 /* TJKCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 416410511C35D7E3008BD831 /* TJKCenterViewController.m */; };
+		416410541C35D7E3008BD831 /* TJKCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 416410521C35D7E3008BD831 /* TJKCenterViewController.xib */; };
 		4185C2BD1C2DC163000DDECC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4185C2BC1C2DC163000DDECC /* MessageUI.framework */; };
+		418CE7151C36E1820065F008 /* TJKMainCellLeft.xib in Resources */ = {isa = PBXBuildFile; fileRef = 418CE7141C36E1820065F008 /* TJKMainCellLeft.xib */; };
 		41BA4E4B1C304E90001306CE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BA4E4A1C304E90001306CE /* Launch Screen.storyboard */; };
 		41BA4E4D1C30731B001306CE /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BA4E4C1C30731B001306CE /* menuButton.png */; };
 		41BC90DF1C25D65200288F16 /* TodaysJoke@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BC90CE1C25D65200288F16 /* TodaysJoke@2.png */; };
@@ -49,9 +54,16 @@
 		410A59B11C1FA2F80054E736 /* TodaysJoke.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodaysJoke.xcdatamodel; sourceTree = "<group>"; };
 		410A59B31C1FA2F80054E736 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		410A59B81C1FA2F80054E736 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		413E51E71C35DB4400DC3330 /* TJKLeftPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKLeftPanelViewController.h; sourceTree = "<group>"; };
+		413E51E81C35DB4400DC3330 /* TJKLeftPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKLeftPanelViewController.m; sourceTree = "<group>"; };
+		413E51E91C35DB4400DC3330 /* TJKLeftPanelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKLeftPanelViewController.xib; sourceTree = "<group>"; };
 		414028271C319F2500622BE4 /* GHSNoSwearing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHSNoSwearing.h; sourceTree = "<group>"; };
 		414028281C319F2500622BE4 /* GHSNoSwearing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHSNoSwearing.m; sourceTree = "<group>"; };
+		416410501C35D7E3008BD831 /* TJKCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKCenterViewController.h; sourceTree = "<group>"; };
+		416410511C35D7E3008BD831 /* TJKCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKCenterViewController.m; sourceTree = "<group>"; };
+		416410521C35D7E3008BD831 /* TJKCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKCenterViewController.xib; sourceTree = "<group>"; };
 		4185C2BC1C2DC163000DDECC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		418CE7141C36E1820065F008 /* TJKMainCellLeft.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKMainCellLeft.xib; sourceTree = "<group>"; };
 		41BA4E4A1C304E90001306CE /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		41BA4E4C1C30731B001306CE /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		41BC90CE1C25D65200288F16 /* TodaysJoke@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TodaysJoke@2.png"; sourceTree = "<group>"; };
@@ -127,6 +139,13 @@
 				41BC90F31C25F23900288F16 /* TJKDetailJokeViewController.h */,
 				41BC90F41C25F23900288F16 /* TJKDetailJokeViewController.m */,
 				41BC90F51C25F23900288F16 /* TJKDetailJokeViewController.xib */,
+				416410501C35D7E3008BD831 /* TJKCenterViewController.h */,
+				416410511C35D7E3008BD831 /* TJKCenterViewController.m */,
+				416410521C35D7E3008BD831 /* TJKCenterViewController.xib */,
+				413E51E71C35DB4400DC3330 /* TJKLeftPanelViewController.h */,
+				413E51E81C35DB4400DC3330 /* TJKLeftPanelViewController.m */,
+				413E51E91C35DB4400DC3330 /* TJKLeftPanelViewController.xib */,
+				418CE7141C36E1820065F008 /* TJKMainCellLeft.xib */,
 				41D364391C224253004A6C1A /* TJKJokeItem.h */,
 				41D3643A1C224253004A6C1A /* TJKJokeItem.m */,
 				41BC90F01C25DB8600288F16 /* TJKJokeItemStore.h */,
@@ -237,8 +256,10 @@
 				41BC90E61C25D65200288F16 /* TodaysJoke@72.png in Resources */,
 				41BA4E4B1C304E90001306CE /* Launch Screen.storyboard in Resources */,
 				41BC90EB1C25D65200288F16 /* TodaysJoke@114.png in Resources */,
+				418CE7151C36E1820065F008 /* TJKMainCellLeft.xib in Resources */,
 				41BC90EA1C25D65200288F16 /* TodaysJoke@100.png in Resources */,
 				41BC90E81C25D65200288F16 /* TodaysJoke@80.png in Resources */,
+				416410541C35D7E3008BD831 /* TJKCenterViewController.xib in Resources */,
 				41BC90DF1C25D65200288F16 /* TodaysJoke@2.png in Resources */,
 				41BC90EC1C25D65200288F16 /* TodaysJoke@120.png in Resources */,
 				41BC90E21C25D65200288F16 /* TodaysJoke@40.png in Resources */,
@@ -251,6 +272,7 @@
 				41BA4E4D1C30731B001306CE /* menuButton.png in Resources */,
 				410A59B41C1FA2F80054E736 /* Assets.xcassets in Resources */,
 				41BC90E41C25D65200288F16 /* TodaysJoke@57.png in Resources */,
+				413E51EB1C35DB4400DC3330 /* TJKLeftPanelViewController.xib in Resources */,
 				41BC90ED1C25D65200288F16 /* TodaysJoke@144.png in Resources */,
 				41BC90E91C25D65200288F16 /* TodaysJoke@87.png in Resources */,
 				41BC90E71C25D65200288F16 /* TodaysJoke@76.png in Resources */,
@@ -266,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				413E51EA1C35DB4400DC3330 /* TJKLeftPanelViewController.m in Sources */,
 				410A59B21C1FA2F80054E736 /* TodaysJoke.xcdatamodeld in Sources */,
 				414028291C319F2500622BE4 /* GHSNoSwearing.m in Sources */,
 				41C25C8B1C321463008FFCC4 /* GHSAlerts.m in Sources */,
@@ -275,6 +298,7 @@
 				410A59A61C1FA2F80054E736 /* main.m in Sources */,
 				41BC90F61C25F23900288F16 /* TJKDetailJokeViewController.m in Sources */,
 				41D364361C223AC7004A6C1A /* TJKMainViewController.m in Sources */,
+				416410531C35D7E3008BD831 /* TJKCenterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
