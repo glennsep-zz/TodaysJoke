@@ -174,7 +174,7 @@
 {
     // setup the string for the message body
     NSString *jokeTitle = self.jokeTitle.text;
-    NSString *jokeCategory = self.jokeTitle.text;
+    NSString *jokeCategory = self.jokeCategory.text;
     NSString *joke = self.joke.text;
     NSString *messageBody = [NSString stringWithFormat:@"%@%@\n\n%@%@\n\n%@\n%@",
                              @"Joke Title: ", jokeTitle,
