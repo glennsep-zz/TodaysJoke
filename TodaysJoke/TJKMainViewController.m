@@ -27,6 +27,7 @@
 @property (nonatomic, assign) BOOL showingLeftPanel;
 @property (nonatomic, assign) BOOL showPanel;
 @property (nonatomic, assign) CGPoint preVelocity;
+@property (nonatomic) float senderViewX;
 
 @end
 
@@ -36,7 +37,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self setupView];
 }
 
@@ -103,6 +103,7 @@
     self.centerViewController = [[TJKCenterViewController alloc] initWithNibName:@"TJKCenterViewController" bundle:nil];
     self.centerViewController.view.tag = CENTER_TAG;
     self.centerViewController.delegate = self;
+    self.senderViewX = 0.0;
     
     [self.view addSubview:self.centerViewController.view];
     [self addChildViewController:_centerViewController];
@@ -218,6 +219,11 @@
 // code that moves the panel based on gestures
 -(void)movePanel:(id)sender
 {
+    if (self.senderViewX == 0.0)
+    {
+        self.senderViewX = _centerViewController.view.center.x;
+    }
+    
     [[[(UITapGestureRecognizer*)sender view] layer] removeAllAnimations];
     
     CGPoint translatedPoint = [(UIPanGestureRecognizer*)sender translationInView:self.view];
@@ -225,31 +231,17 @@
     
     if([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateBegan) {
         UIView *childView = nil;
-        
-        if(velocity.x > 0)
-        {
-            // NSLog(@"gesture went right");
+
+        if (!_showingLeftPanel) {
+            childView = [self getLeftView];
         }
-        else
-        {
-            if (!_showingLeftPanel) {
-                childView = [self getLeftView];
-            }
-            
-        }
+
         // Make sure the view you're working with is front and center.
         [self.view sendSubviewToBack:childView];
         [[sender view] bringSubviewToFront:[(UIPanGestureRecognizer*)sender view]];
     }
     
     if([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateEnded) {
-        
-        if(velocity.x > 0) {
-            // NSLog(@"gesture went right");
-        } else {
-            // NSLog(@"gesture went left");
-        }
-        
         if (!_showPanel)
         {
             [self movePanelToOriginalPosition];
@@ -264,27 +256,24 @@
     }
     
     if([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateChanged) {
-        if(velocity.x > 0) {
-            // NSLog(@"gesture went right");
-        } else {
-            // NSLog(@"gesture went left");
+        // prevent center view from moving past the left bounds
+        if (_centerViewController.view.center.x >= self.senderViewX)
+        {
+            // Are you more than halfway? If so, show the panel when done dragging by setting this value to YES (1).
+            _showPanel = fabs([sender view].center.x - _centerViewController.view.frame.size.width/2) > _centerViewController.view.frame.size.width/2;
+            
+            // Allow dragging only in x-coordinates by only updating the x-coordinate with translation position.
+            [sender view].center = CGPointMake([sender view].center.x + translatedPoint.x, [sender view].center.y);
+            [(UIPanGestureRecognizer*)sender setTranslation:CGPointMake(0,0) inView:self.view];
+            
+            // If you needed to check for a change in direction, you could use this code to do so.
+            if(velocity.x*_preVelocity.x + velocity.y*_preVelocity.y > 0) {
+                // NSLog(@"same direction");
+            } else {
+                // NSLog(@"opposite direction");
+            }
+            _preVelocity = velocity;
         }
-        
-        // Are you more than halfway? If so, show the panel when done dragging by setting this value to YES (1).
-        _showPanel = fabs([sender view].center.x - _centerViewController.view.frame.size.width/2) > _centerViewController.view.frame.size.width/2;
-        
-        // Allow dragging only in x-coordinates by only updating the x-coordinate with translation position.
-        [sender view].center = CGPointMake([sender view].center.x + translatedPoint.x, [sender view].center.y);
-        [(UIPanGestureRecognizer*)sender setTranslation:CGPointMake(0,0) inView:self.view];
-        
-        // If you needed to check for a change in direction, you could use this code to do so.
-        if(velocity.x*_preVelocity.x + velocity.y*_preVelocity.y > 0) {
-            // NSLog(@"same direction");
-        } else {
-            // NSLog(@"opposite direction");
-        }
-        
-        _preVelocity = velocity;
     }
 }
 
