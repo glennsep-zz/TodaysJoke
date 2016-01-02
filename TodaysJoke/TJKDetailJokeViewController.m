@@ -77,6 +77,10 @@
     // call super method
     [super viewDidLoad];
     
+    // setup image for text field
+    _jokeCategory.rightViewMode = UITextFieldViewModeAlways;
+    _jokeCategory.rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"downarrow.png"]];
+    
     // setup border for text view (used to type in joke)
     UIColor *borderColor = [UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1.0];
     self.joke.layer.borderWidth = 1.0f;
