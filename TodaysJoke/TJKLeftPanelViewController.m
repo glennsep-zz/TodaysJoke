@@ -7,8 +7,9 @@
 //
 
 #import "TJKLeftPanelViewController.h"
+#import "TJKCategoriesViewController.h"
 
-@interface TJKLeftPanelViewController () 
+@interface TJKLeftPanelViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *leftTableView;
 @property (nonatomic, weak) IBOutlet UITableViewCell *cellMain;
@@ -61,6 +62,16 @@
     [self.leftTableView reloadData];
 }
 
+// display the list of categories
+-(void)callCategoriesTable
+{
+    // allocate and create instance of categories view controller
+    TJKCategoriesViewController *categoriesViewController = [[TJKCategoriesViewController alloc] init];
+    
+    // push it onto the top of the navigation controller's stack
+    [self.navigationController pushViewController:categoriesViewController animated:YES];
+}
+
 #pragma Table View Methods
 
 // indicate number of sections
@@ -95,6 +106,21 @@
     }
      
     return _cellMain;
+}
+
+// display the list of categories
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    // display the selected option
+    switch (indexPath.row)
+    {
+        // display the categories table
+        case 0:
+            [self callCategoriesTable];
+            break;
+        default:
+            NSLog(@"No options available");
+    }
 }
 
 @end

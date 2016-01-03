@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		410307D71C39855000C20020 /* TJKCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 410307D51C39855000C20020 /* TJKCategoriesViewController.m */; };
+		410307D81C39855000C20020 /* TJKCategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 410307D61C39855000C20020 /* TJKCategoriesViewController.xib */; };
+		410307E01C398F6F00C20020 /* TJKCategoriesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 410307DF1C398F6F00C20020 /* TJKCategoriesCell.xib */; };
 		410A59A61C1FA2F80054E736 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 410A59A51C1FA2F80054E736 /* main.m */; };
 		410A59A91C1FA2F80054E736 /* TJKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 410A59A81C1FA2F80054E736 /* TJKAppDelegate.m */; };
 		410A59B21C1FA2F80054E736 /* TodaysJoke.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 410A59B01C1FA2F80054E736 /* TodaysJoke.xcdatamodeld */; };
@@ -48,6 +51,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		410307D41C39855000C20020 /* TJKCategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKCategoriesViewController.h; sourceTree = "<group>"; };
+		410307D51C39855000C20020 /* TJKCategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKCategoriesViewController.m; sourceTree = "<group>"; };
+		410307D61C39855000C20020 /* TJKCategoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKCategoriesViewController.xib; sourceTree = "<group>"; };
+		410307DF1C398F6F00C20020 /* TJKCategoriesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKCategoriesCell.xib; sourceTree = "<group>"; };
 		410A59A11C1FA2F80054E736 /* TodaysJoke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodaysJoke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		410A59A51C1FA2F80054E736 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		410A59A71C1FA2F80054E736 /* TJKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJKAppDelegate.h; sourceTree = "<group>"; };
@@ -148,6 +155,10 @@
 				413E51E81C35DB4400DC3330 /* TJKLeftPanelViewController.m */,
 				413E51E91C35DB4400DC3330 /* TJKLeftPanelViewController.xib */,
 				418CE7141C36E1820065F008 /* TJKMainCellLeft.xib */,
+				410307D41C39855000C20020 /* TJKCategoriesViewController.h */,
+				410307D51C39855000C20020 /* TJKCategoriesViewController.m */,
+				410307D61C39855000C20020 /* TJKCategoriesViewController.xib */,
+				410307DF1C398F6F00C20020 /* TJKCategoriesCell.xib */,
 				41D364391C224253004A6C1A /* TJKJokeItem.h */,
 				41D3643A1C224253004A6C1A /* TJKJokeItem.m */,
 				41BC90F01C25DB8600288F16 /* TJKJokeItemStore.h */,
@@ -264,6 +275,7 @@
 				41BC90EA1C25D65200288F16 /* TodaysJoke@100.png in Resources */,
 				41BC90E81C25D65200288F16 /* TodaysJoke@80.png in Resources */,
 				416410541C35D7E3008BD831 /* TJKCenterViewController.xib in Resources */,
+				410307D81C39855000C20020 /* TJKCategoriesViewController.xib in Resources */,
 				41BC90DF1C25D65200288F16 /* TodaysJoke@2.png in Resources */,
 				41BC90EC1C25D65200288F16 /* TodaysJoke@120.png in Resources */,
 				41BC90E21C25D65200288F16 /* TodaysJoke@40.png in Resources */,
@@ -280,6 +292,7 @@
 				41BC90ED1C25D65200288F16 /* TodaysJoke@144.png in Resources */,
 				41BC90E91C25D65200288F16 /* TodaysJoke@87.png in Resources */,
 				41BC90E71C25D65200288F16 /* TodaysJoke@76.png in Resources */,
+				410307E01C398F6F00C20020 /* TJKCategoriesCell.xib in Resources */,
 				41D364381C223DE6004A6C1A /* TJKMainViewController.xib in Resources */,
 				41BC90E01C25D65200288F16 /* TodaysJoke@3.png in Resources */,
 			);
@@ -294,6 +307,7 @@
 			files = (
 				413E51EA1C35DB4400DC3330 /* TJKLeftPanelViewController.m in Sources */,
 				410A59B21C1FA2F80054E736 /* TodaysJoke.xcdatamodeld in Sources */,
+				410307D71C39855000C20020 /* TJKCategoriesViewController.m in Sources */,
 				414028291C319F2500622BE4 /* GHSNoSwearing.m in Sources */,
 				41C25C8B1C321463008FFCC4 /* GHSAlerts.m in Sources */,
 				41BC90F21C25DB8600288F16 /* TJKJokeItemStore.m in Sources */,

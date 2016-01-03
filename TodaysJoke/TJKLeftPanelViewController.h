@@ -12,13 +12,11 @@
 
 @optional
 - (void)imageSelected:(UIImage *)image withTitle:(NSString *)imageTitle withCreator:(NSString *)imageCreator;
-
-@required
 - (void)textSelected:(NSString *)text;
 
 @end
 
-@interface TJKLeftPanelViewController : UIViewController 
+@interface TJKLeftPanelViewController : UIViewController
 
 @property (nonatomic, assign) id<LeftPanelViewControllerDelegate> delegate;
 
