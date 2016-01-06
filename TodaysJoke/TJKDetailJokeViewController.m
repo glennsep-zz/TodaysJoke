@@ -232,6 +232,58 @@
     _jokeCategory.text = _jokeCategories[row];
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField.tag > 1)
+    {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:.3];
+        [UIView setAnimationBeginsFromCurrentState:TRUE];
+        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y -200., self.view.frame.size.width, self.view.frame.size.height);
+        
+        [UIView commitAnimations];
+    }
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField.tag > 1)
+    {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:.3];
+        [UIView setAnimationBeginsFromCurrentState:TRUE];
+        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y +200., self.view.frame.size.width, self.view.frame.size.height);
+        
+        [UIView commitAnimations];
+    }
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if (textView.tag == 4)
+    {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.3];
+    [UIView setAnimationBeginsFromCurrentState:TRUE];
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y -200., self.view.frame.size.width, self.view.frame.size.height);
+    
+    [UIView commitAnimations];
+    }
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    if (textView.tag == 4)
+    {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.3];
+    [UIView setAnimationBeginsFromCurrentState:TRUE];
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y +200., self.view.frame.size.width, self.view.frame.size.height);
+    
+    [UIView commitAnimations];
+    }
+}
+
 // remove keyboard when return key is pressed
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

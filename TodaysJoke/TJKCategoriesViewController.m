@@ -14,6 +14,7 @@
 @property (nonatomic, weak) IBOutlet UITableView *categoriesTableView;
 @property (nonatomic, weak) IBOutlet UITableViewCell *cellCategories;
 @property (nonatomic, strong) NSMutableArray *tableContents;
+@property (strong, nonatomic) NSArray *jokeCategories;
 
 @end
 
@@ -45,11 +46,10 @@
 -(void)setupTableContents
 {
     // define the array with the table contents
-    TJKJokeItem *jokeItem = [[TJKJokeItem alloc] init];
-    NSArray *tableContentsArray = [[NSArray alloc] initWithArray:jokeItem.jokeCategories];
+    _jokeCategories = [[NSArray alloc] initWithArray:_jokeItem.jokeCategories];
     
     // store to property and reload the table contents
-    self.tableContents = [NSMutableArray arrayWithArray:tableContentsArray];
+    self.tableContents = [NSMutableArray arrayWithArray:_jokeCategories];
     [self.tableContents removeObjectAtIndex:0];
     [self.categoriesTableView reloadData];
 }

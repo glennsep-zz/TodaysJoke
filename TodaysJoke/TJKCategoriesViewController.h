@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TJKJokeItem;
 
 @interface TJKCategoriesViewController : UIViewController
+
+#pragma Properties
+@property (nonatomic, strong) TJKJokeItem *jokeItem;
 
 @end

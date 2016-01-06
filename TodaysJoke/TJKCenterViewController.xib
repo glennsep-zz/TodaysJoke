@@ -55,7 +55,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="A friend of mine tried to annoy me with bird puns, but I soon realized that toucan play at that game." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qtg-DQ-KOV">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="A friend of mine tried to annoy me with bird puns, but I soon realized that toucan play at that game." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Qtg-DQ-KOV">
                     <rect key="frame" x="24" y="222" width="552" height="354"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>

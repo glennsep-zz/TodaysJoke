@@ -40,6 +40,13 @@
     [self setupView];
 }
 
+// actions to perform before view appears
+-(void)viewWillAppear:(BOOL)animated
+{
+    // get the center of the view to disable moving the view past the left bounds.
+    self.senderViewX = _centerViewController.view.center.x;
+}
+
 #pragma Methods
 
 // this sets up the navigation bar
@@ -103,7 +110,6 @@
     self.centerViewController = [[TJKCenterViewController alloc] initWithNibName:@"TJKCenterViewController" bundle:nil];
     self.centerViewController.view.tag = CENTER_TAG;
     self.centerViewController.delegate = self;
-    self.senderViewX = 0.0;
     
     [self.view addSubview:self.centerViewController.view];
     [self addChildViewController:_centerViewController];
@@ -219,16 +225,14 @@
 // code that moves the panel based on gestures
 -(void)movePanel:(id)sender
 {
-    if (self.senderViewX == 0.0)
-    {
-        self.senderViewX = _centerViewController.view.center.x;
-    }
-    
+    // disable tap
     [[[(UITapGestureRecognizer*)sender view] layer] removeAllAnimations];
     
+    // setup gesture
     CGPoint translatedPoint = [(UIPanGestureRecognizer*)sender translationInView:self.view];
     CGPoint velocity = [(UIPanGestureRecognizer*)sender velocityInView:[sender view]];
     
+    // actions when gesture begins
     if([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateBegan) {
         UIView *childView = nil;
 
@@ -241,6 +245,7 @@
         [[sender view] bringSubviewToFront:[(UIPanGestureRecognizer*)sender view]];
     }
     
+    // actions when gesture ends
     if([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateEnded) {
         if (!_showPanel)
         {
@@ -255,6 +260,7 @@
         }
     }
     
+    // actions when controller is being moved
     if([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateChanged) {
         // prevent center view from moving past the left bounds
         if (_centerViewController.view.center.x >= self.senderViewX)

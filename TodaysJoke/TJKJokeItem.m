@@ -16,6 +16,7 @@
 -(instancetype)initWithJokeDescr:(NSString *)jokeDescr
                   jokeCategoryId:(JokeCategory)jokeCategoryId
                        jokeTitle:(NSString *)jokeTitle
+                   nameSubmitted:(NSString *)nameSubmitted
 {
     // call the superclass initializer
     self = [super init];
@@ -26,6 +27,7 @@
         self.jokeDescr = jokeDescr;
         self.jokeCategoryId = &(jokeCategoryId);
         self.jokeTitle = jokeTitle;
+        self.nameSubmitted = nameSubmitted;
         
         // define the joke id
         NSUUID *jokeUuid = [[NSUUID alloc] init];
@@ -48,7 +50,7 @@
 // override init
 -(instancetype)init
 {
-    return [self initWithJokeDescr:@"None" jokeCategoryId:JokeCategoryNone jokeTitle:@"None"];
+    return [self initWithJokeDescr:@"None" jokeCategoryId:JokeCategoryNone jokeTitle:@"None" nameSubmitted:@""];
 }
 
 #pragma Methods
@@ -57,10 +59,12 @@
 +(instancetype)createJoke:(NSString *)jokeDescr
           JokeCategoryId:(JokeCategory)jokeCategoryId
                jokeTitle:(NSString *)jokeTitle
+            nameSubmitted:(NSString *)nameSubmitted
 {
     TJKJokeItem *newItem = [[self alloc] initWithJokeDescr:jokeDescr
                                              jokeCategoryId:jokeCategoryId
-                                                  jokeTitle:jokeTitle];
+                                                  jokeTitle:jokeTitle
+                                                nameSubmitted:nameSubmitted];
     
     // return new joke item
     return newItem;
