@@ -36,14 +36,12 @@ typedef NS_ENUM(int, JokeCategory)
 // designated initializer
 -(instancetype)initWithJokeDescr:(NSString *)jokeDescr
                   jokeCategoryId:(JokeCategory)jokeCategoryId
-                       jokeTitle:(NSString *)jokeTitle
                    nameSubmitted:(NSString *)nameSubmitted;
 
 
 // create a joke item
 +(instancetype)createJoke:(NSString *)jokeDescr
            JokeCategoryId:(JokeCategory)jokeCategoryId
-                jokeTitle:(NSString *)jokeTitle
             nameSubmitted:(NSString *)nameSubmitted;
 
 

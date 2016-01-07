@@ -7,6 +7,7 @@
 //
 
 #import "TJKJokeItem.h"
+#define TITLE_LENGTH 10
 
 @implementation TJKJokeItem
 
@@ -15,18 +16,34 @@
 // designated initializer
 -(instancetype)initWithJokeDescr:(NSString *)jokeDescr
                   jokeCategoryId:(JokeCategory)jokeCategoryId
-                       jokeTitle:(NSString *)jokeTitle
                    nameSubmitted:(NSString *)nameSubmitted
 {
     // call the superclass initializer
     self = [super init];
+    
+    // get the title from the joke description
+    unsigned long jokeLength = [jokeDescr length];
+    if (jokeLength > 0 && jokeLength <= TITLE_LENGTH)
+    {
+        jokeLength = jokeLength;
+    }
+    else if (jokeLength > 0 && jokeLength > TITLE_LENGTH)
+    {
+        jokeLength = jokeLength - (jokeLength - TITLE_LENGTH);
+    }
+    else
+    {
+        jokeLength = 0;
+    }
+    
+    NSString *jokeTitleTemp = [jokeDescr substringToIndex:jokeLength];
     
     // if the superclass initalizer succeeded then assign values
     if (self)
     {
         self.jokeDescr = jokeDescr;
         self.jokeCategoryId = &(jokeCategoryId);
-        self.jokeTitle = jokeTitle;
+        self.jokeTitle = [jokeTitleTemp stringByAppendingString:@"..."];
         self.nameSubmitted = nameSubmitted;
         
         // define the joke id
@@ -50,7 +67,7 @@
 // override init
 -(instancetype)init
 {
-    return [self initWithJokeDescr:@"None" jokeCategoryId:JokeCategoryNone jokeTitle:@"None" nameSubmitted:@""];
+    return [self initWithJokeDescr:@"" jokeCategoryId:JokeCategoryNone nameSubmitted:@""];
 }
 
 #pragma Methods
@@ -58,12 +75,10 @@
 // create a Joke Item
 +(instancetype)createJoke:(NSString *)jokeDescr
           JokeCategoryId:(JokeCategory)jokeCategoryId
-               jokeTitle:(NSString *)jokeTitle
             nameSubmitted:(NSString *)nameSubmitted
 {
     TJKJokeItem *newItem = [[self alloc] initWithJokeDescr:jokeDescr
                                              jokeCategoryId:jokeCategoryId
-                                                  jokeTitle:jokeTitle
                                                 nameSubmitted:nameSubmitted];
     
     // return new joke item
