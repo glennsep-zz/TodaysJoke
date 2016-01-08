@@ -8,6 +8,7 @@
 
 #import "TJKCategoriesViewController.h"
 #import "TJKJokeItem.h"
+#import "TJKAppDelegate.h"
 
 @interface TJKCategoriesViewController () 
 
@@ -37,6 +38,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // restrict to portrait mode if iphone
+    [self restrictRotation:YES];
+    
+    // setup table
     [self setupTableContents];
 }
 
@@ -52,6 +58,13 @@
     self.tableContents = [NSMutableArray arrayWithArray:_jokeCategories];
     [self.tableContents removeObjectAtIndex:0];
     [self.categoriesTableView reloadData];
+}
+
+// restrict to portrait mode for iphone
+-(void) restrictRotation:(BOOL) restriction
+{
+    TJKAppDelegate* appDelegate = (TJKAppDelegate *)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 #pragma Table View Methods

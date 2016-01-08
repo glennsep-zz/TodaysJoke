@@ -7,7 +7,7 @@
 //
 
 #import "TJKJokeItem.h"
-#define TITLE_LENGTH 10
+#define TITLE_LENGTH 15
 
 @implementation TJKJokeItem
 
@@ -21,15 +21,22 @@
     // call the superclass initializer
     self = [super init];
     
+    // trim leading and trailing spaces from the joke
+    jokeDescr = [jokeDescr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
     // get the title from the joke description
     unsigned long jokeLength = [jokeDescr length];
     if (jokeLength > 0 && jokeLength <= TITLE_LENGTH)
     {
         jokeLength = jokeLength;
     }
-    else if (jokeLength > 0 && jokeLength > TITLE_LENGTH)
+    else if (jokeLength > 0 && jokeLength > TITLE_LENGTH && (jokeLength - TITLE_LENGTH) > TITLE_LENGTH)
     {
         jokeLength = jokeLength - (jokeLength - TITLE_LENGTH);
+    }
+    else if (jokeLength > 0 && jokeLength > TITLE_LENGTH && (jokeLength - TITLE_LENGTH) <= TITLE_LENGTH)
+    {
+        jokeLength = TITLE_LENGTH;
     }
     else
     {

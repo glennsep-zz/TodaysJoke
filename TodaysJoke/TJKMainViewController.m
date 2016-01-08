@@ -44,7 +44,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     // get the center of the view to disable moving the view past the left bounds.
-    self.senderViewX = _centerViewController.view.center.x;
+    if (self.senderViewX == 0)
+    {
+        self.senderViewX = _centerViewController.view.center.x;
+    }
 }
 
 #pragma Methods

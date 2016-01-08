@@ -11,7 +11,7 @@
 
 @class TJKJokeItem;
 
-@interface TJKDetailJokeViewController : UIViewController <MFMailComposeViewControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface TJKDetailJokeViewController : UIViewController <MFMailComposeViewControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 {
     MFMailComposeViewController *mailComposer;
 }

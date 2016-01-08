@@ -7,6 +7,7 @@
 //
 
 #import "TJKCenterViewController.h"
+#import "TJKAppDelegate.h"
 
 @interface TJKCenterViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *jokeTitle;
@@ -21,8 +22,12 @@
 
 #pragma View Controller Methods
 
+// actions to perform once view loads
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // restrict to portrait mode if iphone
+    [self restrictRotation:YES];
     
     // initialize property values
     self.leftButton = 1;
@@ -41,9 +46,11 @@
     self.jokeTitle.textAlignment = NSTextAlignmentCenter;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+// restrict to portrait mode for iphone
+-(void) restrictRotation:(BOOL) restriction
+{
+    TJKAppDelegate* appDelegate = (TJKAppDelegate *)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 #pragma Action Methods

@@ -11,17 +11,20 @@
 #import "TJKJokeItemStore.h"
 #import "GHSNoSwearing.h"
 #import "GHSAlerts.h"
+#import "TJKAppDelegate.h"
 
 // define constants
 #define MAX_NUMBER_OF_BAD_WORDS 5
+#define MOVE_SCREEN_Y_AXIS_TEXT 75
+#define MOVE_SCREEN_Y_AXIS_VIEW 100
 
 @interface TJKDetailJokeViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *jokeTitle;
 @property (weak, nonatomic) IBOutlet UITextField *jokeCategory;
+@property (weak, nonatomic) IBOutlet UITextField *jokeSubmittedBy;
 @property (weak, nonatomic) IBOutlet UITextView *joke;
+@property (strong, nonatomic) IBOutlet UIView *jokeDetailView;
 @property (strong, nonatomic) UIPickerView *jokeCategoryPicker;
 @property (strong, nonatomic) NSArray *jokeCategories;
-@property (strong, nonatomic) IBOutlet UIView *jokeDetailView;
 @property (strong, nonatomic) UIToolbar * jokeCategoryPickerToolbar;
 
 @end
@@ -77,6 +80,12 @@
     // call super method
     [super viewDidLoad];
     
+    // restrict to portrait mode if iphone
+    [self restrictRotation:YES];
+    
+    // assign delegate of uitextfield
+    self.jokeSubmittedBy.delegate = self;
+    
     // setup image for text field
     _jokeCategory.rightViewMode = UITextFieldViewModeAlways;
     _jokeCategory.rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"downarrow.png"]];
@@ -121,6 +130,13 @@
     self.jokeCategory.inputAccessoryView = self.jokeCategoryPickerToolbar;
 }
 
+// restrict to portrait mode for iphone
+-(void) restrictRotation:(BOOL) restriction
+{
+    TJKAppDelegate* appDelegate = (TJKAppDelegate *)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
+}
+
 // action to take when done button is pressed on picker toolbar
 -(void)pickerDoneClicked
 {
@@ -152,7 +168,7 @@
 
     // check for swear words
     NSMutableString *combineBadWords = [[NSMutableString alloc] init];
-    [combineBadWords appendString:self.jokeTitle.text];
+    [combineBadWords appendString:self.jokeSubmittedBy.text];
     [combineBadWords appendString:@" "];
     [combineBadWords appendString:self.joke.text];
     NSString *checkBadWords = [combineBadWords copy];
@@ -177,11 +193,13 @@
 -(void)sendJokeViaEmail
 {
     // setup the string for the message body
-    NSString *jokeTitle = self.jokeTitle.text;
+    NSString *jokeSubmitted = self.jokeSubmittedBy.text;
+    jokeSubmitted = [jokeSubmitted stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    jokeSubmitted = [jokeSubmitted length] == 0 ? jokeSubmitted = @"N/A" : jokeSubmitted;
     NSString *jokeCategory = self.jokeCategory.text;
     NSString *joke = self.joke.text;
     NSString *messageBody = [NSString stringWithFormat:@"%@%@\n\n%@%@\n\n%@\n%@",
-                             @"Joke Title: ", jokeTitle,
+                             @"Joke Submitted By: ", jokeSubmitted,
                              @"Joke Category: ", jokeCategory,
                              @"Joke:", joke];
     
@@ -232,6 +250,7 @@
     _jokeCategory.text = _jokeCategories[row];
 }
 
+// move screen up when editing starts
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField.tag > 1)
@@ -239,12 +258,13 @@
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:.3];
         [UIView setAnimationBeginsFromCurrentState:TRUE];
-        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y -200., self.view.frame.size.width, self.view.frame.size.height);
+        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y -MOVE_SCREEN_Y_AXIS_TEXT, self.view.frame.size.width, self.view.frame.size.height);
         
         [UIView commitAnimations];
     }
 }
 
+// move screen down when editing ends
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField.tag > 1)
@@ -252,35 +272,37 @@
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:.3];
         [UIView setAnimationBeginsFromCurrentState:TRUE];
-        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y +200., self.view.frame.size.width, self.view.frame.size.height);
+        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y +MOVE_SCREEN_Y_AXIS_TEXT, self.view.frame.size.width, self.view.frame.size.height);
         
         [UIView commitAnimations];
     }
 }
 
+// move screen up when editing begins in joke field
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
-    if (textView.tag == 4)
+    if (textView.tag == 3)
     {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.3];
-    [UIView setAnimationBeginsFromCurrentState:TRUE];
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y -200., self.view.frame.size.width, self.view.frame.size.height);
-    
-    [UIView commitAnimations];
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:.3];
+        [UIView setAnimationBeginsFromCurrentState:TRUE];
+        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y -MOVE_SCREEN_Y_AXIS_VIEW, self.view.frame.size.width, self.view.frame.size.height);
+        
+        [UIView commitAnimations];
     }
 }
 
+// move screen down when editing ends in joke field
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
-    if (textView.tag == 4)
+    if (textView.tag == 3)
     {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.3];
-    [UIView setAnimationBeginsFromCurrentState:TRUE];
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y +200., self.view.frame.size.width, self.view.frame.size.height);
-    
-    [UIView commitAnimations];
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:.3];
+        [UIView setAnimationBeginsFromCurrentState:TRUE];
+        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y +MOVE_SCREEN_Y_AXIS_VIEW, self.view.frame.size.width, self.view.frame.size.height);
+        
+        [UIView commitAnimations];
     }
 }
 
@@ -291,17 +313,11 @@
     return YES;
 }
 
+// validate the entered text
 -(NSArray *)validateSubmittedJoke
 {
     // declare an array
     NSMutableArray *valid = [[NSMutableArray alloc] init];
-    
-    // check if the joke title field is empty
-    if (![self.jokeTitle hasText])
-    {
-        // if empty indicate this in the array
-        [valid addObject:@"Must enter a Joke Title."];
-    }
     
     // check if the joke category is not empty as it not set to "NONE"
     if (![self.jokeCategory hasText] || [self.jokeCategory.text  isEqual: @"None"])
@@ -320,6 +336,7 @@
     return [valid copy];
 }
 
+// actions to perform when message sent via e-mail
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     switch (result) {
