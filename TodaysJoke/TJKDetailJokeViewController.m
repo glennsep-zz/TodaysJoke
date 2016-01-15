@@ -6,7 +6,9 @@
 //  Copyright © 2015 Glenn Seplowitz. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "TJKDetailJokeViewController.h"
+#import "TJKJokeSubmissionController.h"
 #import "TJKJokeItem.h"
 #import "TJKJokeItemStore.h"
 #import "GHSNoSwearing.h"
@@ -15,14 +17,19 @@
 
 // define constants
 #define MAX_NUMBER_OF_BAD_WORDS 5
-#define MOVE_SCREEN_Y_AXIS_TEXT 75
-#define MOVE_SCREEN_Y_AXIS_VIEW 100
+#define MOVE_SCREEN_Y_AXIS_TEXT 125
+#define MOVE_SCREEN_Y_AXIS_VIEW 186
 
 @interface TJKDetailJokeViewController ()
+
+#pragma Outlets
 @property (weak, nonatomic) IBOutlet UITextField *jokeCategory;
 @property (weak, nonatomic) IBOutlet UITextField *jokeSubmittedBy;
 @property (weak, nonatomic) IBOutlet UITextView *joke;
 @property (strong, nonatomic) IBOutlet UIView *jokeDetailView;
+@property (weak, nonatomic) IBOutlet UIButton *helpButton;
+
+#pragma Properties
 @property (strong, nonatomic) UIPickerView *jokeCategoryPicker;
 @property (strong, nonatomic) NSArray *jokeCategories;
 @property (strong, nonatomic) UIToolbar * jokeCategoryPickerToolbar;
@@ -83,6 +90,10 @@
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
     
+    // round corners of help button
+    self.helpButton.layer.cornerRadius = 5;
+    self.helpButton.clipsToBounds = YES;
+    
     // assign delegate of uitextfield
     self.jokeSubmittedBy.delegate = self;
     
@@ -95,6 +106,10 @@
     self.joke.layer.borderWidth = 1.0f;
     self.joke.layer.borderColor = borderColor.CGColor;
     self.joke.layer.cornerRadius = 5.0;
+    
+    // set border for help button
+    self.helpButton.layer.borderWidth = 1.0f;
+    self.helpButton.layer.borderColor = borderColor.CGColor;
     
     // populate the array with category values
     _jokeCategories = [[NSArray alloc] initWithArray:_jokeItem.jokeCategories];
@@ -367,5 +382,17 @@
 {
     [self.view endEditing:YES];
 }
+
+// display a screen to help with joke submission
+- (IBAction)displayJokeHelp:(id)sender
+{
+    // create an instance of the joke submission help screen
+    TJKJokeSubmissionController *jokeSubmissionController = [[TJKJokeSubmissionController alloc] initForNewItem:YES];
+    
+    // display the help screen
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:jokeSubmissionController];
+    [self presentViewController:navController animated:YES completion:NULL];
+}
+
 
 @end
