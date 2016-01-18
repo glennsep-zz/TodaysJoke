@@ -245,7 +245,7 @@
     jokeSubmitted = [jokeSubmitted stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     jokeSubmitted = [jokeSubmitted length] == 0 ? jokeSubmitted = @"N/A" : jokeSubmitted;
     NSString *jokeCategory = self.jokeCategory.text;
-    NSString *notifyMe = (self.notifyMeCheckedSelected ? @"Notify Me" : @"Don't Notify Me");
+    NSString *notifyMe = (self.notifyMeCheckedSelected ? @"Yes" : @"No");
     NSString *joke = self.joke.text;
     NSString *messageBody = [NSString stringWithFormat:@"%@%@\n\n%@%@\n\n%@%@\n\n%@\n%@",
                              @"Joke Submitted By: ", jokeSubmitted,
