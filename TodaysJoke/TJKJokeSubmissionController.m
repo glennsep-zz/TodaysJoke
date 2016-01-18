@@ -9,6 +9,7 @@
 #import "TJKJokeSubmissionController.h"
 
 @interface TJKJokeSubmissionController ()
+@property (weak, nonatomic) IBOutlet UITextView *jokeHelp;
 
 @end
 
@@ -27,9 +28,9 @@
         {
             // create done button
             UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
-                                           initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                           target:self
-                                           action:@selector(closeJokeHelp:)];
+                                         initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                         target:self
+                                         action:@selector(closeJokeHelp:)];
             self.navigationItem.leftBarButtonItem = doneItem;
         }
     }
@@ -50,7 +51,21 @@
 #pragma View Controller Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
+    // set the auto adjust scroll bars to NO
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
+    // dislay the help text
+    [self displayJokeHelpText];
+}
+
+// logic to run when view appears
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    // scroll text to the top
+    [self.jokeHelp scrollRangeToVisible:NSMakeRange(0, 0)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,6 +79,20 @@
 {
     // close the screen
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+}
+
+// display the joke submission text
+-(void)displayJokeHelpText
+{
+    // populate the text field
+    self.jokeHelp.text = @"\nThank you for submitting a joke!\n\n";
+    self.jokeHelp.text = [self.jokeHelp.text stringByAppendingString:@"\u2022 All jokes submitted are sent for approval and will not be automatically included in the joke database\n\n"];
+    self.jokeHelp.text = [self.jokeHelp.text stringByAppendingString:@"\u2022 Your e-mail address will never be stored or given out.\n\n"];
+    self.jokeHelp.text = [self.jokeHelp.text stringByAppendingString:@"\u2022 Please select a joke category. Select \"Other\" if your joke doesn't fit into an existing category\n\n"];
+    self.jokeHelp.text = [self.jokeHelp.text stringByAppendingString:@"\u2022 In the “Submitted by” field you can enter your name if you want recognition.  It is suggested you just enter your first name.  You can even create your own user name.  This field is optional.  Your name will never be stored or given out.\n\n"];
+    self.jokeHelp.text = [self.jokeHelp.text stringByAppendingString:@"\u2022 In the field called \"Joke\" try and avoid profanity and hate jokes.\n\n"];
+    self.jokeHelp.text = [self.jokeHelp.text stringByAppendingString:@"\u2022 When submitting a joke, the system may warn you if you add profanity, but this will not automatically have your joke rejected.\n\n"];
+    self.jokeHelp.text = [self.jokeHelp.text stringByAppendingString:@"\u2022 If your joke is approved and you clicked on \"Contact Me\" we will let you know what day your joke will appear.\n\n"];
 }
 
 @end
