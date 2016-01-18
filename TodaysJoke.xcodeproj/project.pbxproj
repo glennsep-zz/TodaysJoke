@@ -25,6 +25,8 @@
 		4185C2BD1C2DC163000DDECC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4185C2BC1C2DC163000DDECC /* MessageUI.framework */; };
 		418CE7151C36E1820065F008 /* TJKMainCellLeft.xib in Resources */ = {isa = PBXBuildFile; fileRef = 418CE7141C36E1820065F008 /* TJKMainCellLeft.xib */; };
 		41A49D6D1C382A2500F6D8D8 /* downarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A49D6C1C382A2500F6D8D8 /* downarrow.png */; };
+		41A4FE3B1C4D667200373D6C /* Checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A4FE391C4D667200373D6C /* Checkbox-checked.png */; };
+		41A4FE3C1C4D667200373D6C /* Checkbox-unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A4FE3A1C4D667200373D6C /* Checkbox-unchecked.png */; };
 		41BA4E4B1C304E90001306CE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BA4E4A1C304E90001306CE /* Launch Screen.storyboard */; };
 		41BA4E4D1C30731B001306CE /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BA4E4C1C30731B001306CE /* menuButton.png */; };
 		41BC90DF1C25D65200288F16 /* TodaysJoke@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BC90CE1C25D65200288F16 /* TodaysJoke@2.png */; };
@@ -81,6 +83,8 @@
 		4185C2BC1C2DC163000DDECC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		418CE7141C36E1820065F008 /* TJKMainCellLeft.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKMainCellLeft.xib; sourceTree = "<group>"; };
 		41A49D6C1C382A2500F6D8D8 /* downarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downarrow.png; sourceTree = "<group>"; };
+		41A4FE391C4D667200373D6C /* Checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkbox-checked.png"; sourceTree = "<group>"; };
+		41A4FE3A1C4D667200373D6C /* Checkbox-unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkbox-unchecked.png"; sourceTree = "<group>"; };
 		41BA4E4A1C304E90001306CE /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		41BA4E4C1C30731B001306CE /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		41BC90CE1C25D65200288F16 /* TodaysJoke@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TodaysJoke@2.png"; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 		41BC90CD1C25D63600288F16 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				41A4FE391C4D667200373D6C /* Checkbox-checked.png */,
+				41A4FE3A1C4D667200373D6C /* Checkbox-unchecked.png */,
 				41A49D6C1C382A2500F6D8D8 /* downarrow.png */,
 				41BA4E4C1C30731B001306CE /* menuButton.png */,
 				41BC90CE1C25D65200288F16 /* TodaysJoke@2.png */,
@@ -288,6 +294,8 @@
 			files = (
 				41BC90E61C25D65200288F16 /* TodaysJoke@72.png in Resources */,
 				41BA4E4B1C304E90001306CE /* Launch Screen.storyboard in Resources */,
+				41A4FE3B1C4D667200373D6C /* Checkbox-checked.png in Resources */,
+				41A4FE3C1C4D667200373D6C /* Checkbox-unchecked.png in Resources */,
 				41BC90EB1C25D65200288F16 /* TodaysJoke@114.png in Resources */,
 				41A49D6D1C382A2500F6D8D8 /* downarrow.png in Resources */,
 				418CE7151C36E1820065F008 /* TJKMainCellLeft.xib in Resources */,

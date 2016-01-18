@@ -28,11 +28,13 @@
 @property (weak, nonatomic) IBOutlet UITextView *joke;
 @property (strong, nonatomic) IBOutlet UIView *jokeDetailView;
 @property (weak, nonatomic) IBOutlet UIButton *helpButton;
+@property (weak, nonatomic) IBOutlet UIButton *notifyMe;
 
 #pragma Properties
 @property (strong, nonatomic) UIPickerView *jokeCategoryPicker;
 @property (strong, nonatomic) NSArray *jokeCategories;
 @property (strong, nonatomic) UIToolbar * jokeCategoryPickerToolbar;
+@property (nonatomic) BOOL notifyMeCheckedSelected;
 
 @end
 
@@ -78,8 +80,7 @@
     return nil;
 }
 
-
-#pragma Methods
+#pragma View Controller Methods
 
 // implement actions when the view is loaded
 -(void)viewDidLoad
@@ -90,9 +91,11 @@
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
     
-    // round corners of help button
-    self.helpButton.layer.cornerRadius = 5;
-    self.helpButton.clipsToBounds = YES;
+    // initialize notify me check box to unselected
+    self.notifyMeCheckedSelected = NO;
+    
+    // setup notify me check box
+    [self setupNotifyMeCheckBox];
     
     // assign delegate of uitextfield
     self.jokeSubmittedBy.delegate = self;
@@ -110,6 +113,10 @@
     // set border for help button
     self.helpButton.layer.borderWidth = 1.0f;
     self.helpButton.layer.borderColor = borderColor.CGColor;
+    
+    // round corners of help button
+    self.helpButton.layer.cornerRadius = 5;
+    self.helpButton.clipsToBounds = YES;
     
     // populate the array with category values
     _jokeCategories = [[NSArray alloc] initWithArray:_jokeItem.jokeCategories];
@@ -143,6 +150,32 @@
     [barItems addObject:doneBtn];
     [self.jokeCategoryPickerToolbar setItems:barItems animated:YES];
     self.jokeCategory.inputAccessoryView = self.jokeCategoryPickerToolbar;
+}
+
+#pragma Methods
+
+// setup notify me check box
+-(void)setupNotifyMeCheckBox
+{
+    // setup check box images
+    [self.notifyMe setBackgroundImage:[UIImage imageNamed:@"Checkbox-unchecked.png"]
+                        forState:UIControlStateNormal];
+    [self.notifyMe setBackgroundImage:[UIImage imageNamed:@"Checkbox-checked.png"]
+                        forState:UIControlStateSelected];
+    [self.notifyMe setBackgroundImage:[UIImage imageNamed:@"Checkbox-checked.png"]
+                        forState:UIControlStateHighlighted];
+    
+    // setup check box to respond when clicked
+    [self.notifyMe addTarget:self action:@selector(notifyMeChecked:) forControlEvents:UIControlEventTouchUpInside];
+    self.notifyMe.adjustsImageWhenHighlighted=YES;
+}
+
+// check or uncheck notify me box
+-(void)notifyMeChecked:(id)sender
+{
+    // toggle check box
+    self.notifyMeCheckedSelected = !self.notifyMeCheckedSelected;
+    [self.notifyMe setSelected:self.notifyMeCheckedSelected];
 }
 
 // restrict to portrait mode for iphone
@@ -212,9 +245,11 @@
     jokeSubmitted = [jokeSubmitted stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     jokeSubmitted = [jokeSubmitted length] == 0 ? jokeSubmitted = @"N/A" : jokeSubmitted;
     NSString *jokeCategory = self.jokeCategory.text;
+    NSString *notifyMe = (self.notifyMeCheckedSelected ? @"Notify Me" : @"Don't Notify Me");
     NSString *joke = self.joke.text;
-    NSString *messageBody = [NSString stringWithFormat:@"%@%@\n\n%@%@\n\n%@\n%@",
+    NSString *messageBody = [NSString stringWithFormat:@"%@%@\n\n%@%@\n\n%@%@\n\n%@\n%@",
                              @"Joke Submitted By: ", jokeSubmitted,
+                             @"Notify Me: ", notifyMe,
                              @"Joke Category: ", jokeCategory,
                              @"Joke:", joke];
     
