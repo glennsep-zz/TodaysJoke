@@ -10,7 +10,6 @@
 		410307D71C39855000C20020 /* TJKCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 410307D51C39855000C20020 /* TJKCategoriesViewController.m */; };
 		410307D81C39855000C20020 /* TJKCategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 410307D61C39855000C20020 /* TJKCategoriesViewController.xib */; };
 		410307E01C398F6F00C20020 /* TJKCategoriesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 410307DF1C398F6F00C20020 /* TJKCategoriesCell.xib */; };
-		410378331C417BE1003DB0EB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410378321C417BE1003DB0EB /* CloudKit.framework */; };
 		410A59A61C1FA2F80054E736 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 410A59A51C1FA2F80054E736 /* main.m */; };
 		410A59A91C1FA2F80054E736 /* TJKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 410A59A81C1FA2F80054E736 /* TJKAppDelegate.m */; };
 		410A59B21C1FA2F80054E736 /* TodaysJoke.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 410A59B01C1FA2F80054E736 /* TodaysJoke.xcdatamodeld */; };
@@ -61,7 +60,6 @@
 		410307D61C39855000C20020 /* TJKCategoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKCategoriesViewController.xib; sourceTree = "<group>"; };
 		410307DF1C398F6F00C20020 /* TJKCategoriesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKCategoriesCell.xib; sourceTree = "<group>"; };
 		410378311C417BC6003DB0EB /* TodaysJoke.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TodaysJoke.entitlements; sourceTree = "<group>"; };
-		410378321C417BE1003DB0EB /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		410A59A11C1FA2F80054E736 /* TodaysJoke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodaysJoke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		410A59A51C1FA2F80054E736 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		410A59A71C1FA2F80054E736 /* TJKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJKAppDelegate.h; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4185C2BD1C2DC163000DDECC /* MessageUI.framework in Frameworks */,
-				410378331C417BE1003DB0EB /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,7 +131,6 @@
 		410A59981C1FA2F80054E736 = {
 			isa = PBXGroup;
 			children = (
-				410378321C417BE1003DB0EB /* CloudKit.framework */,
 				41BA4E4A1C304E90001306CE /* Launch Screen.storyboard */,
 				4185C2BC1C2DC163000DDECC /* MessageUI.framework */,
 				410A59A31C1FA2F80054E736 /* TodaysJoke */,
@@ -263,7 +259,7 @@
 						DevelopmentTeam = 3ZRMHQ2B8H;
 						SystemCapabilities = {
 							com.apple.iCloud = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -436,7 +432,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = TodaysJoke/TodaysJoke.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TodaysJoke/Info.plist;
@@ -452,7 +447,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = TodaysJoke/TodaysJoke.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TodaysJoke/Info.plist;
