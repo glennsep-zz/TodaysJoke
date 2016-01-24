@@ -6,8 +6,8 @@
 //  Copyright © 2016 Glenn Seplowitz. All rights reserved.
 //
 
+#import <Parse/Parse.h>
 #import "TJKCategoriesViewController.h"
-#import "TJKJokeItem.h"
 #import "TJKAppDelegate.h"
 
 @interface TJKCategoriesViewController () 
@@ -42,18 +42,26 @@
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
     
-    // setup table
-    [self setupTableContents];
+    // get all the categories
+    PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
+    [query orderByAscending:@"CategoryName"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error)
+        {
+            // populate the joke category property
+            _jokeCategories = [objects valueForKey:@"CategoryName"];
+            
+            // setup table
+            [self setupTableContents];
+        }
+    }];
 }
 
 #pragma Methods
 
 // setup the array that will hold the table's contents
 -(void)setupTableContents
-{
-    // define the array with the table contents
-    _jokeCategories = [[NSArray alloc] initWithArray:_jokeItem.jokeCategories];
-    
+{   
     // store to property and reload the table contents
     self.tableContents = [NSMutableArray arrayWithArray:_jokeCategories];
     [self.tableContents removeObjectAtIndex:0];

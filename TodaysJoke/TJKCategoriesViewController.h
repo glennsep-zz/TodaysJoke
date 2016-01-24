@@ -11,7 +11,5 @@
 
 @interface TJKCategoriesViewController : UIViewController
 
-#pragma Properties
-@property (nonatomic, strong) TJKJokeItem *jokeItem;
 
 @end

@@ -8,15 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
+#import <Parse/Parse.h>
+#import "TJKConstants.h"
 
-@class TJKJokeItem;
 
 @interface TJKDetailJokeViewController : UIViewController <MFMailComposeViewControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 {
+    #pragma Setup Mail view Controller
     MFMailComposeViewController *mailComposer;
 }
-
--(instancetype)initForNewItem:(BOOL)isNew;
-@property (nonatomic, strong) TJKJokeItem *jokeItem;
 
 @end

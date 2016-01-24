@@ -6,6 +6,7 @@
 //  Copyright © 2015 Glenn Seplowitz. All rights reserved.
 //
 
+#import "TJKAppDelegate.h"
 #import "TJKJokeItem.h"
 #define TITLE_LENGTH 15
 
@@ -15,7 +16,7 @@
 
 // designated initializer
 -(instancetype)initWithJokeDescr:(NSString *)jokeDescr
-                  jokeCategoryId:(JokeCategory)jokeCategoryId
+                  jokeCategory:(NSString *)jokeCategory
                    nameSubmitted:(NSString *)nameSubmitted
 {
     // call the superclass initializer
@@ -49,7 +50,7 @@
     if (self)
     {
         self.jokeDescr = jokeDescr;
-        self.jokeCategoryId = &(jokeCategoryId);
+        self.jokeCategory = jokeCategory;
         self.jokeTitle = [jokeTitleTemp stringByAppendingString:@"..."];
         self.nameSubmitted = nameSubmitted;
         
@@ -60,12 +61,7 @@
         
         // get the date the joke is created
         _jokeCreated = [[NSDate alloc] init];
-        
-        // define the array for the joke categories
-        _jokeCategories = @[@"None", @"Puns", @"Knock Knock Jokes", @"Funny Quotes", @"Ironic Jokes",
-                              @"Clean Jokes"];
-        
-    }
+     }
     
     // return the newly initialized object
     return self;
@@ -74,18 +70,18 @@
 // override init
 -(instancetype)init
 {
-    return [self initWithJokeDescr:@"" jokeCategoryId:JokeCategoryNone nameSubmitted:@""];
+    return [self initWithJokeDescr:@"" jokeCategory:@"" nameSubmitted:@""];
 }
 
 #pragma Methods
 
 // create a Joke Item
 +(instancetype)createJoke:(NSString *)jokeDescr
-          JokeCategoryId:(JokeCategory)jokeCategoryId
+          JokeCategory:(NSString *)jokeCategory
             nameSubmitted:(NSString *)nameSubmitted
 {
     TJKJokeItem *newItem = [[self alloc] initWithJokeDescr:jokeDescr
-                                             jokeCategoryId:jokeCategoryId
+                                             jokeCategory:jokeCategory
                                                 nameSubmitted:nameSubmitted];
     
     // return new joke item

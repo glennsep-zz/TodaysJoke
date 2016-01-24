@@ -8,8 +8,6 @@
 
 #import "TJKLeftPanelViewController.h"
 #import "TJKCategoriesViewController.h"
-#import "TJKJokeItem.h"
-#import "TJKJokeItemStore.h"
 
 @interface TJKLeftPanelViewController ()
 
@@ -67,12 +65,9 @@
 // display the list of categories
 -(void)callCategoriesTable
 {
-    // create a new joke item
-    TJKJokeItem *newJoke = [[TJKJokeItemStore sharedStore] createItem];
   
     // allocate and create instance of categories view controller
     TJKCategoriesViewController *categoriesViewController = [[TJKCategoriesViewController alloc] init];
-    categoriesViewController.jokeItem = newJoke;
     
     // push it onto the top of the navigation controller's stack
     [self.navigationController pushViewController:categoriesViewController animated:YES];

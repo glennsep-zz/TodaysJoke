@@ -7,12 +7,11 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import <Parse/Parse.h>
 #import "TJKMainViewController.h"
 #import "TJKDetailJokeViewController.h"
 #import "TJKCenterViewController.h"
 #import "TJKLeftPanelViewController.h"
-#import "TJKJokeItemStore.h"
-#import "TJKJokeItem.h"
 
 #define CENTER_TAG 1
 #define LEFT_PANEL_TAG 2
@@ -86,13 +85,10 @@
 // display the screen to add a new joke
 -(IBAction)addNewJoke:(id)sender
 {
-    // create a new joke item
-    TJKJokeItem *newJoke = [[TJKJokeItemStore sharedStore] createItem];
-    
     // create a instance of the joke view controller
-    TJKDetailJokeViewController *detailJokeViewController = [[TJKDetailJokeViewController alloc] initForNewItem:YES];
-    detailJokeViewController.jokeItem = newJoke;
-    
+    TJKDetailJokeViewController *detailJokeViewController = [[TJKDetailJokeViewController alloc] initWithNibName:nil bundle:nil];
+
+    // create a navigation controller
     UINavigationController *navController = [[UINavigationController alloc]
                                              initWithRootViewController:detailJokeViewController];
     

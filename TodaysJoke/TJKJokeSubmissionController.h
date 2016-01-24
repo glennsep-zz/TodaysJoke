@@ -10,7 +10,4 @@
 
 @interface TJKJokeSubmissionController : UIViewController
 
-#pragma Inializers
--(instancetype)initForNewItem:(BOOL)isNew;
-
 @end

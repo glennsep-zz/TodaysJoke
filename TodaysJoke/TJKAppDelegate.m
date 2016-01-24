@@ -6,6 +6,7 @@
 //  Copyright © 2015 Glenn Seplowitz. All rights reserved.
 //
 
+#import <Parse/Parse.h>
 #import "TJKAppDelegate.h"
 #import "TJKMainViewController.h"
 
@@ -17,6 +18,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // connect to parse
+    [Parse enableLocalDatastore];
+    
+    // Initialize Parse.
+    [Parse setApplicationId:@"HIj4nk0VrBbeyEUvvZlfW6IjpSj7Yns4OD4LAXc9"
+                  clientKey:@"BtTHCxo8mTfoNFn1O36zydnKcdICAgq3Z05qkcgB"];
+    
+    // [Optional] Track statistics around application opens.
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // load the main view

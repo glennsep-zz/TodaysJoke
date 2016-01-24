@@ -8,40 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
-// define enumerated types
-typedef NS_ENUM(int, JokeCategory)
-{
-    JokeCategoryPuns,
-    JokeCategoryKnockKnock,
-    JokeCategoryFunnyQuotes,
-    JokeCategoryIronic,
-    JokeCategoryCleanJokes,
-    JokeCategoryNone
-};
-
 @interface TJKJokeItem : NSObject
 
 #pragma Declare Properties
 
 @property (nonatomic, copy) NSString *jokeId;
-@property (nonatomic) JokeCategory *jokeCategoryId;
 @property (nonatomic, readonly, strong) NSDate *jokeCreated;
 @property (nonatomic, copy) NSString *jokeTitle;
 @property (nonatomic, copy) NSString *jokeDescr;
 @property (nonatomic, copy) NSString *nameSubmitted;
-@property (nonatomic, readonly) NSArray *jokeCategories;
+@property (nonatomic, copy) NSString *jokeCategory;
 
 #pragma Declare Initializers
 
 // designated initializer
 -(instancetype)initWithJokeDescr:(NSString *)jokeDescr
-                  jokeCategoryId:(JokeCategory)jokeCategoryId
+                  jokeCategory:(NSString *)jokeCategory
                    nameSubmitted:(NSString *)nameSubmitted;
 
 
 // create a joke item
 +(instancetype)createJoke:(NSString *)jokeDescr
-           JokeCategoryId:(JokeCategory)jokeCategoryId
+           JokeCategory:(NSString *)jokeCategory
             nameSubmitted:(NSString *)nameSubmitted;
 
 

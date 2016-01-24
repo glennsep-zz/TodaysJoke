@@ -9,8 +9,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TJKDetailJokeViewController.h"
 #import "TJKJokeSubmissionController.h"
-#import "TJKJokeItem.h"
-#import "TJKJokeItemStore.h"
 #import "GHSNoSwearing.h"
 #import "GHSAlerts.h"
 #import "TJKAppDelegate.h"
@@ -32,8 +30,8 @@
 
 #pragma Properties
 @property (strong, nonatomic) UIPickerView *jokeCategoryPicker;
-@property (strong, nonatomic) NSArray *jokeCategories;
 @property (strong, nonatomic) UIToolbar * jokeCategoryPickerToolbar;
+@property (nonatomic, strong) NSArray *jokeCategories;
 @property (nonatomic) BOOL notifyMeCheckedSelected;
 
 @end
@@ -42,42 +40,30 @@
 
 #pragma Initializers
 
-// check if this is displaying a new joke item or an existing one
--(instancetype)initForNewItem:(BOOL)isNew
+// create buttons in the navgigation bar
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nil bundle:nil];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
+    // if initiated then create button items
     if (self)
     {
-        if (isNew)
-        {
-            // create button to submit an e-mail
-            UIBarButtonItem *submitItem = [[UIBarButtonItem alloc]
-                                           initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                           target:self
-                                           action:@selector(submitJoke:)];
-            self.navigationItem.rightBarButtonItem = submitItem;
-            
-            // create button to cancel the item
-            UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc]
-                                           initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                           target:self
-                                           action:@selector(cancelJoke:)];
-            self.navigationItem.leftBarButtonItem = cancelItem;
-            
-        }
+        // create button to submit an e-mail
+        UIBarButtonItem *submitItem = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                       target:self
+                                       action:@selector(submitJoke:)];
+        self.navigationItem.rightBarButtonItem = submitItem;
+        
+        // create button to cancel the item
+        UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                       target:self
+                                       action:@selector(cancelJoke:)];
+        self.navigationItem.leftBarButtonItem = cancelItem;
     }
     
     return self;
-}
-
-// override the UIViewController's designated initializer to prevent its use, we want to
-// use initForNewItem instead
--(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    [NSException raise:@"Wrong Initializer"
-                format:@"Use initForNewItem:"];
-    return nil;
 }
 
 #pragma View Controller Methods
@@ -86,8 +72,8 @@
 -(void)viewDidLoad
 {
     // call super method
-    [super viewDidLoad];
-    
+    [super viewDidLoad];   
+   
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
     
@@ -118,11 +104,18 @@
     self.helpButton.layer.cornerRadius = 5;
     self.helpButton.clipsToBounds = YES;
     
-    // populate the array with category values
-    _jokeCategories = [[NSArray alloc] initWithArray:_jokeItem.jokeCategories];
+    // get all the categories
+    PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
+    [query orderByAscending:@"CategoryName"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error)
+        {
+            _jokeCategories = [objects valueForKey:@"CategoryName"];
+        }
+    }];
     
     // set initial value for joke category
-    _jokeCategory.text = _jokeCategories[0];
+    _jokeCategory.text = DEFAULT_CATEGORY;
     
     // set up the picker for the joke categories
     self.jokeCategoryPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 43, self.view.frame.size.width,self.view.frame.size.height / 4)];
@@ -131,7 +124,6 @@
     self.jokeCategoryPicker.dataSource = self;
     [self.jokeCategoryPicker setShowsSelectionIndicator:YES];
     self.jokeCategory.inputView = _jokeCategoryPicker;
-   
     
     // setup done button in picker
     self.jokeCategoryPickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,320,56)];
@@ -140,8 +132,10 @@
     NSMutableArray *barItems = [[NSMutableArray alloc] init];
     UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc]
                                   initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                       target:self
-                                                       action:nil];
+                                  target:self
+                                  action:nil];
+
+
     [barItems addObject:flexSpace];
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]
                                 initWithBarButtonSystemItem:UIBarButtonSystemItemDone
@@ -271,7 +265,6 @@
 -(void)cancelJoke:(id)sender
 {
     // since the user cancelled remove the joke from the store
-    [[TJKJokeItemStore sharedStore] removeItem:self.jokeItem];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -422,7 +415,7 @@
 - (IBAction)displayJokeHelp:(id)sender
 {
     // create an instance of the joke submission help screen
-    TJKJokeSubmissionController *jokeSubmissionController = [[TJKJokeSubmissionController alloc] initForNewItem:YES];
+    TJKJokeSubmissionController *jokeSubmissionController = [[TJKJokeSubmissionController alloc] initWithNibName:nil bundle:nil];
     
     // display the help screen
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:jokeSubmissionController];

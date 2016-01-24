@@ -7,6 +7,7 @@
 //
 
 #import "TJKJokeSubmissionController.h"
+#import "TJKAppDelegate.h"
 
 @interface TJKJokeSubmissionController ()
 @property (weak, nonatomic) IBOutlet UITextView *jokeHelp;
@@ -17,41 +18,33 @@
 
 #pragma Initializers
 
-// setup the navigation bar for the joke submission help screen
--(instancetype)initForNewItem:(BOOL)isNew
-{
-    self = [super initWithNibName:nil bundle:nil];
-    
-    if (self)
-    {
-        if (isNew)
-        {
-            // create done button
-            UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
-                                         initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                         target:self
-                                         action:@selector(closeJokeHelp:)];
-            self.navigationItem.leftBarButtonItem = doneItem;
-        }
-    }
-    
-    return self;
-}
-
 // override the UIViewController's designated initializer to prevent its use, we want to
 // use initForNewItem instead
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    [NSException raise:@"Wrong Initializer"
-                format:@"Use initForNewItem:"];
-    return nil;
-}
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    if (self)
+    {
+        // create done button
+        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
+                                     initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                     target:self
+                                     action:@selector(closeJokeHelp:)];
+        self.navigationItem.leftBarButtonItem = doneItem;
+    }
+    
+    return self;
 
+}
 
 #pragma View Controller Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    // restrict to portrait mode if iphone
+    [self restrictRotation:YES];
+    
     // set the auto adjust scroll bars to NO
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -74,6 +67,14 @@
 }
 
 #pragma Methods
+
+// restrict to portrait mode for iphone
+-(void) restrictRotation:(BOOL) restriction
+{
+    TJKAppDelegate* appDelegate = (TJKAppDelegate *)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
+}
+
 // close the help screen
 -(void)closeJokeHelp:(id)sender
 {
