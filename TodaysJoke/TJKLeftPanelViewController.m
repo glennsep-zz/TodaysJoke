@@ -64,8 +64,7 @@
 
 // display the list of categories
 -(void)callCategoriesTable
-{
-  
+{  
     // allocate and create instance of categories view controller
     TJKCategoriesViewController *categoriesViewController = [[TJKCategoriesViewController alloc] init];
     

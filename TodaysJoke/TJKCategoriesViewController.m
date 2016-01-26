@@ -9,6 +9,7 @@
 #import <Parse/Parse.h>
 #import "TJKCategoriesViewController.h"
 #import "TJKAppDelegate.h"
+#import "GHSAlerts.h"
 
 @interface TJKCategoriesViewController () 
 
@@ -54,6 +55,13 @@
             // setup table
             [self setupTableContents];
         }
+        else
+        {
+            // display alert message and pop the view controller from the stack
+            GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
+            errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self closeCategories:self];};
+            [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke categories failed to load. This screen will close. Just try again!" errorAction:errorBlock];
+        }
     }];
 }
 
@@ -66,6 +74,13 @@
     self.tableContents = [NSMutableArray arrayWithArray:_jokeCategories];
     [self.tableContents removeObjectAtIndex:0];
     [self.categoriesTableView reloadData];
+}
+
+// close the category screen
+-(void)closeCategories:(id)sender
+{
+    // pop the view controller from the stack
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 // restrict to portrait mode for iphone

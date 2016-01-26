@@ -110,7 +110,15 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error)
         {
+            // load the array with joke categories
             _jokeCategories = [objects valueForKey:@"CategoryName"];
+        }
+        else
+        {
+            // display error message
+            GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
+            errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self cancelJoke:self];};
+            [alert displayErrorMessage:@"Oops!" errorMessage:@"We had trouble reading in the joke categories. This screen will close. Just try again!" errorAction:errorBlock];
         }
     }];
     
