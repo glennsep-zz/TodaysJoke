@@ -8,7 +8,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TJKDetailJokeViewController">
             <connections>
-                <outlet property="JokeSubmittedBy" destination="nbP-Ub-vdk" id="zh0-uq-baR"/>
                 <outlet property="helpButton" destination="j80-dy-OQm" id="qgC-JW-h1i"/>
                 <outlet property="joke" destination="o2G-T0-9Vv" id="1lp-B3-Yme"/>
                 <outlet property="jokeCategory" destination="mmq-Fl-zpZ" id="Xb2-rA-boM"/>

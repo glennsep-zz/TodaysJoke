@@ -8,6 +8,7 @@
 
 #import "TJKLeftPanelViewController.h"
 #import "TJKCategoriesViewController.h"
+#import "TJKContactUsViewController.h"
 
 @interface TJKLeftPanelViewController ()
 
@@ -38,11 +39,6 @@
     [self setupTableContents];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 // called each time view appears
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -70,6 +66,20 @@
     
     // push it onto the top of the navigation controller's stack
     [self.navigationController pushViewController:categoriesViewController animated:YES];
+}
+
+// display the contact us screen
+-(void)displayContactUs
+{
+    // create instance of contact us view controller
+    TJKContactUsViewController *contactUs = [[TJKContactUsViewController alloc] initWithNibName:nil bundle:nil];
+    
+    // create the navigation controller to be used with contact us view controller
+    UINavigationController *navController = [[UINavigationController alloc]
+                                             initWithRootViewController:contactUs];
+    
+    // display the contact us screen
+    [self presentViewController:navController animated:YES completion:NULL];
 }
 
 #pragma Table View Methods
@@ -117,6 +127,9 @@
         // display the categories table
         case 0:
             [self callCategoriesTable];
+            break;
+        case 1:
+            [self displayContactUs];
             break;
         default:
             NSLog(@"No options available");

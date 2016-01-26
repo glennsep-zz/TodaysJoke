@@ -33,6 +33,8 @@
 		417C00D61C44800400B86E52 /* TJKJokeSubmissionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 417C00D41C44800400B86E52 /* TJKJokeSubmissionController.xib */; };
 		4185C2BD1C2DC163000DDECC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4185C2BC1C2DC163000DDECC /* MessageUI.framework */; };
 		418CE7151C36E1820065F008 /* TJKMainCellLeft.xib in Resources */ = {isa = PBXBuildFile; fileRef = 418CE7141C36E1820065F008 /* TJKMainCellLeft.xib */; };
+		4196C9D71C57062300D8D5E8 /* TJKContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4196C9D51C57062300D8D5E8 /* TJKContactUsViewController.m */; };
+		4196C9D81C57062300D8D5E8 /* TJKContactUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4196C9D61C57062300D8D5E8 /* TJKContactUsViewController.xib */; };
 		41A49D6D1C382A2500F6D8D8 /* downarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A49D6C1C382A2500F6D8D8 /* downarrow.png */; };
 		41A4FE3B1C4D667200373D6C /* Checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A4FE391C4D667200373D6C /* Checkbox-checked.png */; };
 		41A4FE3C1C4D667200373D6C /* Checkbox-unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A4FE3A1C4D667200373D6C /* Checkbox-unchecked.png */; };
@@ -101,6 +103,9 @@
 		417C00D41C44800400B86E52 /* TJKJokeSubmissionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKJokeSubmissionController.xib; sourceTree = "<group>"; };
 		4185C2BC1C2DC163000DDECC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		418CE7141C36E1820065F008 /* TJKMainCellLeft.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKMainCellLeft.xib; sourceTree = "<group>"; };
+		4196C9D41C57062300D8D5E8 /* TJKContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJKContactUsViewController.h; path = ../TJKContactUsViewController.h; sourceTree = "<group>"; };
+		4196C9D51C57062300D8D5E8 /* TJKContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJKContactUsViewController.m; path = ../TJKContactUsViewController.m; sourceTree = "<group>"; };
+		4196C9D61C57062300D8D5E8 /* TJKContactUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TJKContactUsViewController.xib; path = ../TJKContactUsViewController.xib; sourceTree = "<group>"; };
 		41A49D6C1C382A2500F6D8D8 /* downarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downarrow.png; sourceTree = "<group>"; };
 		41A4FE391C4D667200373D6C /* Checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkbox-checked.png"; sourceTree = "<group>"; };
 		41A4FE3A1C4D667200373D6C /* Checkbox-unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkbox-unchecked.png"; sourceTree = "<group>"; };
@@ -206,6 +211,9 @@
 				417C00D21C44800400B86E52 /* TJKJokeSubmissionController.h */,
 				417C00D31C44800400B86E52 /* TJKJokeSubmissionController.m */,
 				417C00D41C44800400B86E52 /* TJKJokeSubmissionController.xib */,
+				4196C9D41C57062300D8D5E8 /* TJKContactUsViewController.h */,
+				4196C9D51C57062300D8D5E8 /* TJKContactUsViewController.m */,
+				4196C9D61C57062300D8D5E8 /* TJKContactUsViewController.xib */,
 				41D364391C224253004A6C1A /* TJKJokeItem.h */,
 				41D3643A1C224253004A6C1A /* TJKJokeItem.m */,
 				41BC90F01C25DB8600288F16 /* TJKJokeItemStore.h */,
@@ -352,6 +360,7 @@
 				41BC90EA1C25D65200288F16 /* TodaysJoke@100.png in Resources */,
 				41BC90E81C25D65200288F16 /* TodaysJoke@80.png in Resources */,
 				416410541C35D7E3008BD831 /* TJKCenterViewController.xib in Resources */,
+				4196C9D81C57062300D8D5E8 /* TJKContactUsViewController.xib in Resources */,
 				410307D81C39855000C20020 /* TJKCategoriesViewController.xib in Resources */,
 				41BC90DF1C25D65200288F16 /* TodaysJoke@2.png in Resources */,
 				41BC90EC1C25D65200288F16 /* TodaysJoke@120.png in Resources */,
@@ -391,6 +400,7 @@
 				41D3643B1C224253004A6C1A /* TJKJokeItem.m in Sources */,
 				410A59A91C1FA2F80054E736 /* TJKAppDelegate.m in Sources */,
 				410A59A61C1FA2F80054E736 /* main.m in Sources */,
+				4196C9D71C57062300D8D5E8 /* TJKContactUsViewController.m in Sources */,
 				41BC90F61C25F23900288F16 /* TJKDetailJokeViewController.m in Sources */,
 				41D364361C223AC7004A6C1A /* TJKMainViewController.m in Sources */,
 				416410531C35D7E3008BD831 /* TJKCenterViewController.m in Sources */,
