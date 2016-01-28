@@ -160,7 +160,7 @@
                         <constraint firstAttribute="height" constant="30" id="Fjd-1r-Zfm"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="3Xu-WV-t6R"/>

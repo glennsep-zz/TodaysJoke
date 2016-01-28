@@ -267,6 +267,13 @@
     
     // present mail on the screen
     [self presentViewController:mailComposer animated:YES completion:nil];
+    
+    // if the mail was sent susscessfully then close the screen
+    /*NSError *error;
+    MFMailComposeViewController *mailView;
+    MFMailComposeResult mailResult;
+    [self mailComposeController:mailView didFinishWithResult:mailResult error:error]; */
+    
 }
 
 // cancel the adding of a new joke

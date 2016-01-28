@@ -9,7 +9,8 @@
             <connections>
                 <outlet property="contactUsMessage" destination="pH5-X9-t3g" id="j5U-EH-WhE"/>
                 <outlet property="contactUsSubject" destination="54S-C2-LMj" id="lrk-S3-feb"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="lHP-SA-5TS"/>
+                <outlet property="contactUsView" destination="i5M-Pr-FkT" id="Mg9-KF-3I8"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="qHP-bO-ShX"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -23,13 +24,13 @@
                     <color key="textColor" red="0.35294117650000001" green="0.73333333329999995" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="54S-C2-LMj">
+                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="54S-C2-LMj">
                     <rect key="frame" x="8" y="101" width="584" height="32"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="7vR-7J-qOe"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZb-C6-AHv">
                     <rect key="frame" x="8" y="141" width="69" height="20.5"/>
@@ -37,7 +38,7 @@
                     <color key="textColor" red="0.35294117650000001" green="0.73333333329999995" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pH5-X9-t3g">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pH5-X9-t3g">
                     <rect key="frame" x="8" y="169" width="584" height="372"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -63,7 +64,11 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-            <point key="canvasLocation" x="748" y="478"/>
+            <connections>
+                <action selector="backgroundTapped:" destination="-1" eventType="touchUpInside" id="0C5-I6-oYL"/>
+                <action selector="backgroundTapped:" destination="-1" eventType="valueChanged" id="tn2-Uy-Er8"/>
+            </connections>
+            <point key="canvasLocation" x="-88" y="278"/>
         </view>
     </objects>
 </document>

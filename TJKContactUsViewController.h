@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 
-@interface TJKContactUsViewController : UIViewController <MFMailComposeViewControllerDelegate>
+@interface TJKContactUsViewController : UIViewController <MFMailComposeViewControllerDelegate,UITextFieldDelegate, UITextViewDelegate>
 {
 
     #pragma Setup Mail view Controller
