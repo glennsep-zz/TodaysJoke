@@ -7,7 +7,6 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-#import <Parse/Parse.h>
 #import "TJKMainViewController.h"
 #import "TJKDetailJokeViewController.h"
 #import "TJKCenterViewController.h"

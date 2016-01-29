@@ -6,7 +6,6 @@
 //  Copyright © 2016 Glenn Seplowitz. All rights reserved.
 //
 
-#import <Parse/Parse.h>
 #import "TJKCategoriesViewController.h"
 #import "TJKAppDelegate.h"
 #import "GHSAlerts.h"
@@ -43,26 +42,30 @@
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
     
-    // get all the categories
-    PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
-    [query orderByAscending:@"CategoryName"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (!error)
-        {
-            // populate the joke category property
-            _jokeCategories = [objects valueForKey:@"CategoryName"];
-            
-            // setup table
-            [self setupTableContents];
-        }
-        else
-        {
-            // display alert message and pop the view controller from the stack
-            GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
-            errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self closeCategories:self];};
-            [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke categories failed to load. This screen will close. Just try again!" errorAction:errorBlock];
-        }
-    }];
+    // get all categories
+    CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
+    NSPredicate *predicateCategory = [NSPredicate predicateWithValue:YES];
+    CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:@"Categories" predicate:predicateCategory];
+    NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:@"CategoryName" ascending:YES];
+    queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];
+    [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray* results, NSError * error)
+     {
+         if (!error)
+         {
+             // populate the joke category property
+             _jokeCategories = [results valueForKey:@"CategoryName"];
+             
+             // setup table
+             [self setupTableContents];
+         }
+         else
+         {
+             // display alert message and pop the view controller from the stack
+             GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
+             errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self closeCategories:self];};
+             [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke categories failed to load. This screen will close. Just try again!" errorAction:errorBlock];
+         }
+     }];
 }
 
 #pragma Methods
@@ -72,8 +75,9 @@
 {   
     // store to property and reload the table contents
     self.tableContents = [NSMutableArray arrayWithArray:_jokeCategories];
-    [self.tableContents removeObjectAtIndex:0];
-    [self.categoriesTableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.categoriesTableView reloadData];
+    });
 }
 
 // close the category screen

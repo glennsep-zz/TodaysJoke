@@ -12,6 +12,7 @@
 #import "GHSNoSwearing.h"
 #import "GHSAlerts.h"
 #import "TJKAppDelegate.h"
+#import "TJKConstants.h"
 
 // define constants
 #define MAX_NUMBER_OF_BAD_WORDS 5
@@ -103,15 +104,19 @@
     // round corners of help button
     self.helpButton.layer.cornerRadius = 5;
     self.helpButton.clipsToBounds = YES;
-    
-    // get all the categories
-    PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
-    [query orderByAscending:@"CategoryName"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        
+    // get all categories
+    CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
+    NSPredicate *predicateCategory = [NSPredicate predicateWithValue:YES];
+    CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:@"Categories" predicate:predicateCategory];
+    NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:@"CategoryName" ascending:YES];
+    queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];
+    [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray* results, NSError * error)
+    {
         if (!error)
         {
             // load the array with joke categories
-            _jokeCategories = [objects valueForKey:@"CategoryName"];
+            _jokeCategories = [results valueForKey:@"CategoryName"];
         }
         else
         {

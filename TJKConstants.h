@@ -6,5 +6,8 @@
 //  Copyright © 2016 Glenn Seplowitz. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 // declare constants
-#define DEFAULT_CATEGORY @"None";
+extern NSString *const DEFAULT_CATEGORY;
+extern NSString *const JOKE_CONTAINER;

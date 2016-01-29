@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-@class TJKJokeItem;
+#import <CloudKit/CloudKit.h>
+#import "TJKConstants.h"
 
 @interface TJKCategoriesViewController : UIViewController
 
