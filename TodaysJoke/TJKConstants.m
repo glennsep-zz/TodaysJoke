@@ -11,3 +11,6 @@
 // assign values to constants
 NSString *const DEFAULT_CATEGORY = @"None";
 NSString *const JOKE_CONTAINER = @"iCloud.com.glennseplowitz.Jokes";
+NSString *const CATEGORY_RECORD_TYPE = @"Categories";
+NSString *const CATEGORY_FIELD_NAME = @"CategoryName";
+NSString *const CATEGORY_TO_REMOVE = @"Other";

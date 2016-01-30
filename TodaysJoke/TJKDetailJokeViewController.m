@@ -108,15 +108,15 @@
     // get all categories
     CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
     NSPredicate *predicateCategory = [NSPredicate predicateWithValue:YES];
-    CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:@"Categories" predicate:predicateCategory];
-    NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:@"CategoryName" ascending:YES];
+    CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategory];
+    NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:CATEGORY_FIELD_NAME ascending:YES];
     queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];
     [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray* results, NSError * error)
     {
         if (!error)
         {
             // load the array with joke categories
-            _jokeCategories = [results valueForKey:@"CategoryName"];
+            _jokeCategories = [results valueForKey:CATEGORY_FIELD_NAME];
         }
         else
         {

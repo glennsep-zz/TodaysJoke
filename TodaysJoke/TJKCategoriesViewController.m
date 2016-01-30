@@ -38,22 +38,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+       
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
-    
+       
     // get all categories
+    NSMutableArray *jokeCategoriesHolder = [[NSMutableArray alloc] init];
     CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
     NSPredicate *predicateCategory = [NSPredicate predicateWithValue:YES];
-    CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:@"Categories" predicate:predicateCategory];
-    NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:@"CategoryName" ascending:YES];
+    CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategory];
+    NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:CATEGORY_FIELD_NAME ascending:YES];
     queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];
     [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray* results, NSError * error)
      {
          if (!error)
          {
-             // populate the joke category property
-             _jokeCategories = [results valueForKey:@"CategoryName"];
+             // populate the joke category property and remove uneeded category type(s)
+             [jokeCategoriesHolder addObjectsFromArray:[results valueForKey:CATEGORY_FIELD_NAME]];
+             [jokeCategoriesHolder removeObject:CATEGORY_TO_REMOVE];
+             _jokeCategories = [jokeCategoriesHolder copy];
              
              // setup table
              [self setupTableContents];

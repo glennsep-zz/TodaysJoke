@@ -90,6 +90,7 @@
     // create a navigation controller
     UINavigationController *navController = [[UINavigationController alloc]
                                              initWithRootViewController:detailJokeViewController];
+    [navController.navigationBar.topItem setTitle:@"Submit Joke"];
     
     // display joke detail screen
     [self presentViewController:navController animated:YES completion:NULL];
@@ -115,7 +116,7 @@
     [self setupGestures];
 }
 
-// setp the left panel view controller
+// setup the left panel view controller
 - (UIView *)getLeftView
 {
     // init view if it doesn't already exist

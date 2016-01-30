@@ -16,24 +16,30 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CS7-LL-mB9">
-                    <rect key="frame" x="0.0" y="65" width="513" height="535"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="Lvm-hz-BC9"/>
-                        <outlet property="delegate" destination="-1" id="0Vd-8Y-cmi"/>
-                    </connections>
-                </tableView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aSt-vD-c49">
+                    <rect key="frame" x="0.0" y="65" width="520" height="485"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CS7-LL-mB9">
+                            <rect key="frame" x="0.0" y="0.0" width="520" height="485"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="Lvm-hz-BC9"/>
+                                <outlet property="delegate" destination="-1" id="0Vd-8Y-cmi"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="CS7-LL-mB9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GBS-wb-qJi"/>
-                <constraint firstItem="CS7-LL-mB9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="H8U-W3-kCS"/>
-                <constraint firstAttribute="bottom" secondItem="CS7-LL-mB9" secondAttribute="bottom" id="nhc-E5-Mhv"/>
-                <constraint firstAttribute="trailing" secondItem="CS7-LL-mB9" secondAttribute="trailing" constant="87" id="y9H-K6-c4Y"/>
+                <constraint firstItem="aSt-vD-c49" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="LtA-Ta-szw"/>
+                <constraint firstItem="aSt-vD-c49" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SAx-Ra-PCd"/>
+                <constraint firstAttribute="bottom" secondItem="aSt-vD-c49" secondAttribute="bottom" constant="50" id="Xe6-o0-3kJ"/>
+                <constraint firstAttribute="trailing" secondItem="aSt-vD-c49" secondAttribute="trailing" constant="80" id="fhi-7h-zuF"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="226" y="131"/>
+            <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+            <point key="canvasLocation" x="80" y="70"/>
         </view>
     </objects>
 </document>

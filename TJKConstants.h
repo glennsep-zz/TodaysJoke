@@ -11,3 +11,6 @@
 // declare constants
 extern NSString *const DEFAULT_CATEGORY;
 extern NSString *const JOKE_CONTAINER;
+extern NSString *const CATEGORY_RECORD_TYPE;
+extern NSString *const CATEGORY_FIELD_NAME;
+extern NSString *const CATEGORY_TO_REMOVE;

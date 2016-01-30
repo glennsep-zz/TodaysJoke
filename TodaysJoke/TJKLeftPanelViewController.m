@@ -28,6 +28,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
+
     }
     return self;
 }
@@ -40,10 +41,10 @@
 }
 
 // called each time view appears
--(void)viewWillAppear:(BOOL)animated
+/*-(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-}
+}*/
 
 #pragma Methods
 
@@ -77,6 +78,7 @@
     // create the navigation controller to be used with contact us view controller
     UINavigationController *navController = [[UINavigationController alloc]
                                              initWithRootViewController:contactUs];
+    [navController.navigationBar.topItem setTitle:@"Contact Us"];
     
     // display the contact us screen
     [self presentViewController:navController animated:YES completion:NULL];

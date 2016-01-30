@@ -33,7 +33,7 @@
                 <constraint firstAttribute="trailing" secondItem="i7X-Wx-dqz" secondAttribute="trailing" id="w45-9F-a4e"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
-            <point key="canvasLocation" x="741" y="407"/>
+            <point key="canvasLocation" x="152" y="340"/>
         </view>
     </objects>
 </document>
