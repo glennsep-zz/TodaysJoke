@@ -41,7 +41,10 @@
        
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
-       
+    
+    // set the title
+    self.title = @"Categories";
+    
     // get all categories
     NSMutableArray *jokeCategoriesHolder = [[NSMutableArray alloc] init];
     CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];

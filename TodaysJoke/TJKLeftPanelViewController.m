@@ -9,6 +9,7 @@
 #import "TJKLeftPanelViewController.h"
 #import "TJKCategoriesViewController.h"
 #import "TJKContactUsViewController.h"
+#import "TJKCommonRoutines.h"
 
 @interface TJKLeftPanelViewController ()
 
@@ -78,7 +79,8 @@
     // create the navigation controller to be used with contact us view controller
     UINavigationController *navController = [[UINavigationController alloc]
                                              initWithRootViewController:contactUs];
-    [navController.navigationBar.topItem setTitle:@"Contact Us"];
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    [common setupNavigationBarTitle:navController setTitle:@"Contact Us"];
     
     // display the contact us screen
     [self presentViewController:navController animated:YES completion:NULL];

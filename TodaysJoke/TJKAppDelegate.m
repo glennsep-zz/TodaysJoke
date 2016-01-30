@@ -8,6 +8,7 @@
 
 #import "TJKAppDelegate.h"
 #import "TJKMainViewController.h"
+#import "TJKCommonRoutines.h"
 
 @interface TJKAppDelegate ()
 
@@ -26,7 +27,9 @@
     
     // create a UINavigationController
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mvc];
-    
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    [common setupNavigationBarTitle:navController setTitle:@"Today's Joke"];
+        
     // place the navigation controller's view in the window hierachy
     self.window.rootViewController = navController;
     

@@ -14,6 +14,7 @@
 		410A59A91C1FA2F80054E736 /* TJKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 410A59A81C1FA2F80054E736 /* TJKAppDelegate.m */; };
 		410A59B21C1FA2F80054E736 /* TodaysJoke.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 410A59B01C1FA2F80054E736 /* TodaysJoke.xcdatamodeld */; };
 		410A59B41C1FA2F80054E736 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 410A59B31C1FA2F80054E736 /* Assets.xcassets */; };
+		41117B921C5D512D006705BC /* TJKCommonRoutines.m in Sources */ = {isa = PBXBuildFile; fileRef = 41117B911C5D512D006705BC /* TJKCommonRoutines.m */; };
 		412616121C5AFAAB003A9AF6 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 412616111C5AFAAB003A9AF6 /* CloudKit.framework */; };
 		413E51EA1C35DB4400DC3330 /* TJKLeftPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 413E51E81C35DB4400DC3330 /* TJKLeftPanelViewController.m */; };
 		413E51EB1C35DB4400DC3330 /* TJKLeftPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413E51E91C35DB4400DC3330 /* TJKLeftPanelViewController.xib */; };
@@ -72,6 +73,8 @@
 		410A59B11C1FA2F80054E736 /* TodaysJoke.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodaysJoke.xcdatamodel; sourceTree = "<group>"; };
 		410A59B31C1FA2F80054E736 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		410A59B81C1FA2F80054E736 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41117B901C5D512D006705BC /* TJKCommonRoutines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKCommonRoutines.h; sourceTree = "<group>"; };
+		41117B911C5D512D006705BC /* TJKCommonRoutines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKCommonRoutines.m; sourceTree = "<group>"; };
 		412616111C5AFAAB003A9AF6 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		412A3D8F1C555EA400707EE3 /* TJKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJKConstants.h; path = ../TJKConstants.h; sourceTree = "<group>"; };
 		413E51E71C35DB4400DC3330 /* TJKLeftPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKLeftPanelViewController.h; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 				41D3643A1C224253004A6C1A /* TJKJokeItem.m */,
 				41BC90F01C25DB8600288F16 /* TJKJokeItemStore.h */,
 				41BC90F11C25DB8600288F16 /* TJKJokeItemStore.m */,
+				41117B901C5D512D006705BC /* TJKCommonRoutines.h */,
+				41117B911C5D512D006705BC /* TJKCommonRoutines.m */,
 				414028271C319F2500622BE4 /* GHSNoSwearing.h */,
 				414028281C319F2500622BE4 /* GHSNoSwearing.m */,
 				41C25C891C321463008FFCC4 /* GHSAlerts.h */,
@@ -371,6 +376,7 @@
 				41BC90F21C25DB8600288F16 /* TJKJokeItemStore.m in Sources */,
 				41D3643B1C224253004A6C1A /* TJKJokeItem.m in Sources */,
 				410A59A91C1FA2F80054E736 /* TJKAppDelegate.m in Sources */,
+				41117B921C5D512D006705BC /* TJKCommonRoutines.m in Sources */,
 				410A59A61C1FA2F80054E736 /* main.m in Sources */,
 				4196C9D71C57062300D8D5E8 /* TJKContactUsViewController.m in Sources */,
 				41BC90F61C25F23900288F16 /* TJKDetailJokeViewController.m in Sources */,

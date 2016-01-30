@@ -11,6 +11,7 @@
 #import "TJKDetailJokeViewController.h"
 #import "TJKCenterViewController.h"
 #import "TJKLeftPanelViewController.h"
+#import "TJKCommonRoutines.h"
 
 #define CENTER_TAG 1
 #define LEFT_PANEL_TAG 2
@@ -55,7 +56,6 @@
 {
     // setup title of navigation bar
     UINavigationItem *navItem = self.navigationItem;
-    navItem.title = @"Today's Joke";
     
     // create a custom button for the left menu
     UIButton *leftMenuButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -90,7 +90,8 @@
     // create a navigation controller
     UINavigationController *navController = [[UINavigationController alloc]
                                              initWithRootViewController:detailJokeViewController];
-    [navController.navigationBar.topItem setTitle:@"Submit Joke"];
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    [common setupNavigationBarTitle:navController setTitle:@"Submit Joke"];
     
     // display joke detail screen
     [self presentViewController:navController animated:YES completion:NULL];
