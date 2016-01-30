@@ -41,12 +41,6 @@
     [self setupTableContents];
 }
 
-// called each time view appears
-/*-(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}*/
-
 #pragma Methods
 
 // setup the array that will hold the table's contents
