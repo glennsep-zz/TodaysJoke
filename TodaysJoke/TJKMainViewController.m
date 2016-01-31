@@ -36,6 +36,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // prevent the view table from shifting down due to translucent navigation bar
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
+    // setup the slide out menus
     [self setupView];
 }
 
