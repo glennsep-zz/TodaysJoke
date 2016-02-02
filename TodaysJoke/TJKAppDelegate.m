@@ -9,6 +9,8 @@
 #import "TJKAppDelegate.h"
 #import "TJKMainViewController.h"
 #import "TJKCommonRoutines.h"
+#import "TJKConstants.h"
+#import <Cloudkit/Cloudkit.h>
 
 @interface TJKAppDelegate ()
 
@@ -19,6 +21,45 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {   
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
+    NSPredicate *predicateCategories = [NSPredicate predicateWithFormat:@"CategoryName == %@", @"Puns"];
+    CKQuery *queryCategories = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategories];
+    [jokePublicDatabase performQuery:queryCategories inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * _Nullable results, NSError * _Nullable error)
+    {
+        if (!error)
+        {
+            
+            CKRecord *categoryRecord = [results firstObject];
+            NSString  *categoryName = [categoryRecord valueForKey:CATEGORY_FIELD_NAME];
+
+            if (categoryRecord)
+            {
+                NSPredicate *predicateJokes = [NSPredicate predicateWithFormat:@"CategoryName == %@",categoryRecord];
+                CKQuery *jokeQuery = [[CKQuery alloc] initWithRecordType:JOKE_RECORD_TYPE predicate:predicateJokes];
+                [jokePublicDatabase performQuery:jokeQuery inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * results, NSError * error)
+                {
+                    if (!error)
+                    {
+                        NSUInteger numberJokes = [results count];
+                        NSLog(@"Number Jokes = %lu", (unsigned long)numberJokes);
+                        NSLog(@"\n\n");
+                        
+                        
+                        for (CKRecord *jokeRecord in results)
+                        {
+                            NSLog(@"CategoryName = %@", categoryName);
+                            NSLog(@"Joke Title = %@", [jokeRecord objectForKey:JOKE_TITLE]);
+                            NSLog(@"Joke Submitted By = %@", [jokeRecord objectForKey:JOKE_SUBMITTED_BY]);
+                            NSLog(@"Joke = %@", [jokeRecord objectForKey:JOKE_DESCR]);
+                            NSLog(@"\n");
+                        }
+                    }
+                }];
+            }
+        }
+    }];
+    
     
     // load the main view
     NSBundle *appBundle = [NSBundle mainBundle];
