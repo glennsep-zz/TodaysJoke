@@ -46,9 +46,8 @@
     self.title = @"Categories";
        
     // get all categories
-    NSMutableArray *jokeCategoriesHolder = [[NSMutableArray alloc] init];
     CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
-    NSPredicate *predicateCategory = [NSPredicate predicateWithValue:YES];
+    NSPredicate *predicateCategory = [NSPredicate predicateWithFormat:@"CategoryName != %@", CATEGORY_TO_REMOVE_OTHER];
     CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategory];
     NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:CATEGORY_FIELD_NAME ascending:YES];
     queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];
@@ -56,10 +55,8 @@
      {
          if (!error)
          {
-             // populate the joke category property and remove uneeded category type(s)
-             [jokeCategoriesHolder addObjectsFromArray:[results valueForKey:CATEGORY_FIELD_NAME]];
-             [jokeCategoriesHolder removeObject:CATEGORY_TO_REMOVE];
-             _jokeCategories = [jokeCategoriesHolder copy];
+             NSArray *jokeCategoriesArray = [NSArray arrayWithArray:[results valueForKey:CATEGORY_FIELD_NAME]];
+             _jokeCategories = jokeCategoriesArray;
              
              // setup table
              [self setupTableContents];
