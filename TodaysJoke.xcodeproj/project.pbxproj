@@ -23,6 +23,7 @@
 		416410531C35D7E3008BD831 /* TJKCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 416410511C35D7E3008BD831 /* TJKCenterViewController.m */; };
 		416410541C35D7E3008BD831 /* TJKCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 416410521C35D7E3008BD831 /* TJKCenterViewController.xib */; };
 		416445271C53F1E20090C7EA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4164451E1C53F1E20090C7EA /* QuartzCore.framework */; };
+		417A42761C6671CE0097E28B /* TJKCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 417A42751C6671CE0097E28B /* TJKCategories.m */; };
 		417C00D51C44800400B86E52 /* TJKJokeSubmissionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 417C00D31C44800400B86E52 /* TJKJokeSubmissionController.m */; };
 		417C00D61C44800400B86E52 /* TJKJokeSubmissionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 417C00D41C44800400B86E52 /* TJKJokeSubmissionController.xib */; };
 		4185C2BD1C2DC163000DDECC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4185C2BC1C2DC163000DDECC /* MessageUI.framework */; };
@@ -87,6 +88,8 @@
 		416410511C35D7E3008BD831 /* TJKCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKCenterViewController.m; sourceTree = "<group>"; };
 		416410521C35D7E3008BD831 /* TJKCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKCenterViewController.xib; sourceTree = "<group>"; };
 		4164451E1C53F1E20090C7EA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		417A42741C6671CE0097E28B /* TJKCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKCategories.h; sourceTree = "<group>"; };
+		417A42751C6671CE0097E28B /* TJKCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKCategories.m; sourceTree = "<group>"; };
 		417C00D21C44800400B86E52 /* TJKJokeSubmissionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKJokeSubmissionController.h; sourceTree = "<group>"; };
 		417C00D31C44800400B86E52 /* TJKJokeSubmissionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKJokeSubmissionController.m; sourceTree = "<group>"; };
 		417C00D41C44800400B86E52 /* TJKJokeSubmissionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKJokeSubmissionController.xib; sourceTree = "<group>"; };
@@ -195,6 +198,8 @@
 				4196C9D41C57062300D8D5E8 /* TJKContactUsViewController.h */,
 				4196C9D51C57062300D8D5E8 /* TJKContactUsViewController.m */,
 				4196C9D61C57062300D8D5E8 /* TJKContactUsViewController.xib */,
+				417A42741C6671CE0097E28B /* TJKCategories.h */,
+				417A42751C6671CE0097E28B /* TJKCategories.m */,
 				41D364391C224253004A6C1A /* TJKJokeItem.h */,
 				41D3643A1C224253004A6C1A /* TJKJokeItem.m */,
 				41BC90F01C25DB8600288F16 /* TJKJokeItemStore.h */,
@@ -381,6 +386,7 @@
 				4196C9D71C57062300D8D5E8 /* TJKContactUsViewController.m in Sources */,
 				41BC90F61C25F23900288F16 /* TJKDetailJokeViewController.m in Sources */,
 				41D364361C223AC7004A6C1A /* TJKMainViewController.m in Sources */,
+				417A42761C6671CE0097E28B /* TJKCategories.m in Sources */,
 				416410531C35D7E3008BD831 /* TJKCenterViewController.m in Sources */,
 				417C00D51C44800400B86E52 /* TJKJokeSubmissionController.m in Sources */,
 			);

@@ -8,14 +8,14 @@
 
 #import "TJKCategoriesViewController.h"
 #import "TJKAppDelegate.h"
+#import "TJKCategories.h"
 #import "GHSAlerts.h"
 
 @interface TJKCategoriesViewController () 
 
 @property (nonatomic, weak) IBOutlet UITableView *categoriesTableView;
 @property (nonatomic, weak) IBOutlet UITableViewCell *cellCategories;
-@property (nonatomic, strong) NSMutableArray *tableContents;
-@property (strong, nonatomic) NSArray *jokeCategories;
+@property (strong, nonatomic) NSMutableArray *jokeCategories;
 
 @end
 
@@ -46,18 +46,27 @@
     self.title = @"Categories";
        
     // get all categories
+    _jokeCategories = [[NSMutableArray alloc] init];
     CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
     NSPredicate *predicateCategory = [NSPredicate predicateWithFormat:@"CategoryName != %@", CATEGORY_TO_REMOVE_OTHER];
     CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategory];
     NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:CATEGORY_FIELD_NAME ascending:YES];
     queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];
-    [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray* results, NSError * error)
+    [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray<CKRecord*>* results, NSError * error)
      {
          if (!error)
-         {
-             NSArray *jokeCategoriesArray = [NSArray arrayWithArray:[results valueForKey:CATEGORY_FIELD_NAME]];
-             _jokeCategories = jokeCategoriesArray;
+         { 
+             // add all categories to array
+             for (CKRecord* jokeCategory in results)
+             {
+                 
+                 TJKCategories *categories = [TJKCategories initWithCategory:[jokeCategory valueForKey:CATEGORY_FIELD_NAME] categoryImage:[jokeCategory valueForKey:@"CategoryImage"]];
+                 [_jokeCategories addObject:categories];
+             }
              
+
+             NSLog(@"Categories = %@",_jokeCategories);
+
              // setup table
              [self setupTableContents];
          }
@@ -77,7 +86,6 @@
 -(void)setupTableContents
 {   
     // store to property and reload the table contents
-    self.tableContents = [NSMutableArray arrayWithArray:_jokeCategories];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.categoriesTableView reloadData];
     });
@@ -108,7 +116,13 @@
 // indicate the number of rows in section
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_tableContents count];
+    return [_jokeCategories count];
+}
+
+// set the row height to fit the images
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 54;
 }
 
 // display the contents of the table
@@ -121,13 +135,17 @@
     {
         [[NSBundle mainBundle] loadNibNamed:@"TJKCategoriesCell" owner:self options:nil];
     }
-
-    UILabel *creator = (UILabel *)[_cellCategories viewWithTag:3];
     
-    if ([_tableContents count] > 0)
+    // create the objects to populate the cell
+    UIImageView *categoryImage = (UIImageView *)[_cellCategories viewWithTag:1];
+    UILabel *categoryName = (UILabel *)[_cellCategories viewWithTag:2];
+    
+    if ([_jokeCategories count] > 0)
     {
-        NSString *currentRecord = [self.tableContents objectAtIndex:indexPath.row];
-        creator.text =  [NSString stringWithFormat:@"%@", currentRecord];
+        TJKCategories *currentRecord = [self.jokeCategories objectAtIndex:indexPath.row];
+        
+        categoryName.text =  [NSString stringWithFormat:@"%@", currentRecord.categoryName];
+        categoryImage.image = currentRecord.categoryImage;
     }
     
     return _cellCategories;
