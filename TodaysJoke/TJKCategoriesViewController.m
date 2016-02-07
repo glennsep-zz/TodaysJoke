@@ -59,14 +59,10 @@
              // add all categories to array
              for (CKRecord* jokeCategory in results)
              {
-                 
                  TJKCategories *categories = [TJKCategories initWithCategory:[jokeCategory valueForKey:CATEGORY_FIELD_NAME] categoryImage:[jokeCategory valueForKey:@"CategoryImage"]];
                  [_jokeCategories addObject:categories];
              }
              
-
-             NSLog(@"Categories = %@",_jokeCategories);
-
              // setup table
              [self setupTableContents];
          }
