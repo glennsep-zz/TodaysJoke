@@ -59,7 +59,7 @@
              // add all categories to array
              for (CKRecord* jokeCategory in results)
              {
-                 TJKCategories *categories = [TJKCategories initWithCategory:[jokeCategory valueForKey:CATEGORY_FIELD_NAME] categoryImage:[jokeCategory valueForKey:@"CategoryImage"]];
+                 TJKCategories *categories = [TJKCategories initWithCategory:[jokeCategory valueForKey:CATEGORY_FIELD_NAME] categoryImage:[jokeCategory valueForKey:CATEGORY_FIELD_IMAGE]];
                  [_jokeCategories addObject:categories];
              }
              

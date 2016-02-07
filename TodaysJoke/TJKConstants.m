@@ -13,6 +13,7 @@ NSString *const DEFAULT_CATEGORY = @"None";
 NSString *const JOKE_CONTAINER = @"iCloud.com.glennseplowitz.Jokes";
 NSString *const CATEGORY_RECORD_TYPE = @"Categories";
 NSString *const CATEGORY_FIELD_NAME = @"CategoryName";
+NSString *const CATEGORY_FIELD_IMAGE = @"CategoryImage";
 NSString *const CATEGORY_TO_REMOVE_OTHER = @"Other";
 NSString *const CATEGORY_TO_REMOVE_RANDOM = @"Random";
 NSString *const JOKE_RECORD_TYPE = @"Jokes";
