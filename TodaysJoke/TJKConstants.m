@@ -20,3 +20,6 @@ NSString *const JOKE_RECORD_TYPE = @"Jokes";
 NSString *const JOKE_DESCR = @"jokeDescr";
 NSString *const JOKE_SUBMITTED_BY = @"jokeSubmittedBy";
 NSString *const JOKE_TITLE = @"jokeTitle";
+NSString *const PARAMETERS_RECORD_TYPE = @"Parameters";
+NSString *const PARAMETERS_JOKE_SUBMITTED_EMAIL = @"todaysjoke@glennseplowitz.com";
+NSString *const PARAMETERS_CONTACT_US_EMAIL = @"todaysjoke@glennseplowitz.com";

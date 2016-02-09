@@ -10,6 +10,7 @@
 #import "TJKAppDelegate.h"
 #import "GHSAlerts.h"
 #import "GHSNoSwearing.h"
+#import "TJKConstants.h"
 
 // define constants
 #define MAX_NUMBER_OF_BAD_WORDS 5
@@ -140,7 +141,7 @@
                              @"Message: ", message];
     
     // setup recipients
-    NSArray *toRecipents = [NSArray arrayWithObject:@"todaysjoke@glennseplowitz.com"];
+    NSArray *toRecipents = [NSArray arrayWithObject:PARAMETERS_CONTACT_US_EMAIL];
     
     // prepare the mail message
     mailComposer = [[MFMailComposeViewController alloc] init];
@@ -151,12 +152,6 @@
     
     // present mail on the screen
     [self presentViewController:mailComposer animated:YES completion:nil];
-    
-    // if the mail was sent susscessfully then close the screen
-    /*NSError *error;
-    MFMailComposeViewController *mailView;
-    MFMailComposeResult mailResult;
-    [self mailComposeController:mailView didFinishWithResult:mailResult error:error]; */
 }
 
 // validate the entered text

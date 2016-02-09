@@ -111,7 +111,7 @@
     CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategory];
     NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:CATEGORY_FIELD_NAME ascending:YES];
     queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];
-    [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray* results, NSError * error)
+    [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray *results, NSError * error)
     {
         if (!error)
         {
@@ -247,38 +247,31 @@
 // send the e-mail
 -(void)sendJokeViaEmail
 {
-    // setup the string for the message body
-    NSString *jokeSubmitted = self.jokeSubmittedBy.text;
-    jokeSubmitted = [jokeSubmitted stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    jokeSubmitted = [jokeSubmitted length] == 0 ? jokeSubmitted = @"N/A" : jokeSubmitted;
-    NSString *jokeCategory = self.jokeCategory.text;
-    NSString *notifyMe = (self.notifyMeCheckedSelected ? @"Yes" : @"No");
-    NSString *joke = self.joke.text;
-    NSString *messageBody = [NSString stringWithFormat:@"%@%@\n\n%@%@\n\n%@%@\n\n%@\n%@",
-                             @"Joke Submitted By: ", jokeSubmitted,
-                             @"Notify Me: ", notifyMe,
-                             @"Joke Category: ", jokeCategory,
-                             @"Joke:", joke];
-    
-    // setup recipients
-    NSArray *toRecipents = [NSArray arrayWithObject:@"todaysjoke@glennseplowitz.com"];
-    
-    // prepare the mail message
-    mailComposer = [[MFMailComposeViewController alloc] init];
-    mailComposer.mailComposeDelegate = self;
-    [mailComposer setSubject:@"Joke Submission"];
-    [mailComposer setMessageBody:messageBody isHTML:NO];
-    [mailComposer setToRecipients:toRecipents];
-    
-    // present mail on the screen
-    [self presentViewController:mailComposer animated:YES completion:nil];
-    
-    // if the mail was sent susscessfully then close the screen
-    /*NSError *error;
-    MFMailComposeViewController *mailView;
-    MFMailComposeResult mailResult;
-    [self mailComposeController:mailView didFinishWithResult:mailResult error:error]; */
-    
+     // setup the string for the message body
+     NSString *jokeSubmitted = self.jokeSubmittedBy.text;
+     jokeSubmitted = [jokeSubmitted stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+     jokeSubmitted = [jokeSubmitted length] == 0 ? jokeSubmitted = @"N/A" : jokeSubmitted;
+     NSString *jokeCategory = self.jokeCategory.text;
+     NSString *notifyMe = (self.notifyMeCheckedSelected ? @"Yes" : @"No");
+     NSString *joke = self.joke.text;
+     NSString *messageBody = [NSString stringWithFormat:@"%@%@\n\n%@%@\n\n%@%@\n\n%@\n%@",
+                              @"Joke Submitted By: ", jokeSubmitted,
+                              @"Notify Me: ", notifyMe,
+                              @"Joke Category: ", jokeCategory,
+                              @"Joke:", joke];
+     
+     // setup recipients
+     NSArray *toRecipents = [NSArray arrayWithObject:PARAMETERS_JOKE_SUBMITTED_EMAIL];
+     
+     // prepare the mail message
+     mailComposer = [[MFMailComposeViewController alloc] init];
+     mailComposer.mailComposeDelegate = self;
+     [mailComposer setSubject:@"Joke Submission"];
+     [mailComposer setMessageBody:messageBody isHTML:NO];
+     [mailComposer setToRecipients:toRecipents];
+     
+     // present mail on the screen
+     [self presentViewController:mailComposer animated:YES completion:nil];
 }
 
 // cancel the adding of a new joke

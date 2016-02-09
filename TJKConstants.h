@@ -20,3 +20,6 @@ extern NSString *const JOKE_RECORD_TYPE;
 extern NSString *const JOKE_DESCR;
 extern NSString *const JOKE_SUBMITTED_BY;
 extern NSString *const JOKE_TITLE;
+extern NSString *const PARAMETERS_RECORD_TYPE;
+extern NSString *const PARAMETERS_JOKE_SUBMITTED_EMAIL;
+extern NSString *const PARAMETERS_CONTACT_US_EMAIL;

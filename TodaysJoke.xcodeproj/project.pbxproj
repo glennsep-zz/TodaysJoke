@@ -33,6 +33,7 @@
 		41A49D6D1C382A2500F6D8D8 /* downarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A49D6C1C382A2500F6D8D8 /* downarrow.png */; };
 		41A4FE3B1C4D667200373D6C /* Checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A4FE391C4D667200373D6C /* Checkbox-checked.png */; };
 		41A4FE3C1C4D667200373D6C /* Checkbox-unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A4FE3A1C4D667200373D6C /* Checkbox-unchecked.png */; };
+		41A8B6E51C698C7A00EDA805 /* TJKParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A8B6E41C698C7A00EDA805 /* TJKParameters.m */; };
 		41BA4E4B1C304E90001306CE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BA4E4A1C304E90001306CE /* Launch Screen.storyboard */; };
 		41BA4E4D1C30731B001306CE /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BA4E4C1C30731B001306CE /* menuButton.png */; };
 		41BC90DF1C25D65200288F16 /* TodaysJoke@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BC90CE1C25D65200288F16 /* TodaysJoke@2.png */; };
@@ -101,6 +102,8 @@
 		41A49D6C1C382A2500F6D8D8 /* downarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downarrow.png; sourceTree = "<group>"; };
 		41A4FE391C4D667200373D6C /* Checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkbox-checked.png"; sourceTree = "<group>"; };
 		41A4FE3A1C4D667200373D6C /* Checkbox-unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkbox-unchecked.png"; sourceTree = "<group>"; };
+		41A8B6E31C698C7A00EDA805 /* TJKParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKParameters.h; sourceTree = "<group>"; };
+		41A8B6E41C698C7A00EDA805 /* TJKParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKParameters.m; sourceTree = "<group>"; };
 		41BA4E4A1C304E90001306CE /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		41BA4E4C1C30731B001306CE /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		41BC90CE1C25D65200288F16 /* TodaysJoke@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TodaysJoke@2.png"; sourceTree = "<group>"; };
@@ -200,6 +203,8 @@
 				4196C9D61C57062300D8D5E8 /* TJKContactUsViewController.xib */,
 				417A42741C6671CE0097E28B /* TJKCategories.h */,
 				417A42751C6671CE0097E28B /* TJKCategories.m */,
+				41A8B6E31C698C7A00EDA805 /* TJKParameters.h */,
+				41A8B6E41C698C7A00EDA805 /* TJKParameters.m */,
 				41D364391C224253004A6C1A /* TJKJokeItem.h */,
 				41D3643A1C224253004A6C1A /* TJKJokeItem.m */,
 				41BC90F01C25DB8600288F16 /* TJKJokeItemStore.h */,
@@ -387,6 +392,7 @@
 				41BC90F61C25F23900288F16 /* TJKDetailJokeViewController.m in Sources */,
 				41D364361C223AC7004A6C1A /* TJKMainViewController.m in Sources */,
 				417A42761C6671CE0097E28B /* TJKCategories.m in Sources */,
+				41A8B6E51C698C7A00EDA805 /* TJKParameters.m in Sources */,
 				416410531C35D7E3008BD831 /* TJKCenterViewController.m in Sources */,
 				417C00D51C44800400B86E52 /* TJKJokeSubmissionController.m in Sources */,
 			);
