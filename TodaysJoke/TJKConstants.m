@@ -10,6 +10,7 @@
 
 // assign values to constants
 NSString *const DEFAULT_CATEGORY = @"None";
+NSString *const LOADING_CATEGORY = @"Loading Categories...";
 NSString *const JOKE_CONTAINER = @"iCloud.com.glennseplowitz.Jokes";
 NSString *const CATEGORY_RECORD_TYPE = @"Categories";
 NSString *const CATEGORY_FIELD_NAME = @"CategoryName";
@@ -21,5 +22,6 @@ NSString *const JOKE_DESCR = @"jokeDescr";
 NSString *const JOKE_SUBMITTED_BY = @"jokeSubmittedBy";
 NSString *const JOKE_TITLE = @"jokeTitle";
 NSString *const PARAMETERS_RECORD_TYPE = @"Parameters";
-NSString *const PARAMETERS_JOKE_SUBMITTED_EMAIL = @"todaysjoke@glennseplowitz.com";
-NSString *const PARAMETERS_CONTACT_US_EMAIL = @"todaysjoke@glennseplowitz.com";
+NSString *const PARAMETERS_RECORD_NAME = @"7862f17b-a3de-4f3c-83ad-19e997bdf7f4";
+NSString *const PARAMETERS_JOKE_SUBMITTED_EMAIL = @"jokeSubmittedEMail";
+NSString *const PARAMETERS_CONTACT_US_EMAIL = @"contactUsEmail";

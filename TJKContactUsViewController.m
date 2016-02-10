@@ -132,26 +132,44 @@
 // send the e-mail
 -(void)sendMessage
 {
-    // setup the string for the message body
-    NSString *subject = self.contactUsSubject.text;
-    subject = [subject stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString *message = self.contactUsMessage.text;
-    NSString *messageBody = [NSString stringWithFormat:@"%@%@\n\n%@%@\n\n",
-                             @"Subject: ", subject,
-                             @"Message: ", message];
-    
-    // setup recipients
-    NSArray *toRecipents = [NSArray arrayWithObject:PARAMETERS_CONTACT_US_EMAIL];
-    
-    // prepare the mail message
-    mailComposer = [[MFMailComposeViewController alloc] init];
-    mailComposer.mailComposeDelegate = self;
-    [mailComposer setSubject:@"Contact Us"];
-    [mailComposer setMessageBody:messageBody isHTML:NO];
-    [mailComposer setToRecipients:toRecipents];
-    
-    // present mail on the screen
-    [self presentViewController:mailComposer animated:YES completion:nil];
+    // get the e-mail address from the data source
+    CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
+    CKRecordID *parameterRecordID = [[CKRecordID alloc] initWithRecordName:PARAMETERS_RECORD_NAME];
+    [jokePublicDatabase fetchRecordWithID:parameterRecordID completionHandler:^(CKRecord *parameterRecord, NSError *error)
+    {
+        if (!error)
+        {
+            // setup the string for the message body
+            NSString *subject = self.contactUsSubject.text;
+            subject = [subject stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            NSString *message = self.contactUsMessage.text;
+            NSString *messageBody = [NSString stringWithFormat:@"%@%@\n\n%@%@\n\n",
+                                     @"Subject: ", subject,
+                                     @"Message: ", message];
+            
+            // setup recipients
+            NSString *jokeSubmittedBy = [parameterRecord objectForKey:PARAMETERS_CONTACT_US_EMAIL];
+            NSArray *toRecipents = [NSArray arrayWithObject:jokeSubmittedBy];
+            
+            // prepare the mail message
+            mailComposer = [[MFMailComposeViewController alloc] init];
+            mailComposer.mailComposeDelegate = self;
+            [mailComposer setSubject:@"Contact Us"];
+            [mailComposer setMessageBody:messageBody isHTML:NO];
+            [mailComposer setToRecipients:toRecipents];
+            
+            // present mail on the screen
+            [self presentViewController:mailComposer animated:YES completion:nil];
+        }
+        else
+        {
+            // display error message
+            dispatch_async(dispatch_get_main_queue(), ^{
+                GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
+                [alert displayErrorMessage:@"Problem" errorMessage:@"Could not obtain recipient e-mail address. Please try again later."];
+            });
+        }
+    }];
 }
 
 // validate the entered text

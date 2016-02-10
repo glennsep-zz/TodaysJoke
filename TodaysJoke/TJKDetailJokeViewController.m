@@ -87,6 +87,12 @@
     // assign delegate of uitextfield
     self.jokeSubmittedBy.delegate = self;
     
+    // disable joke category selector
+    _jokeCategory.enabled = NO;
+    
+    // indicate categories are loading
+    _jokeCategory.text = LOADING_CATEGORY;
+    
     // setup image for text field
     _jokeCategory.rightViewMode = UITextFieldViewModeAlways;
     _jokeCategory.rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"downarrow.png"]];
@@ -117,6 +123,13 @@
         {
             // load the array with joke categories
             _jokeCategories = [results valueForKey:CATEGORY_FIELD_NAME];
+
+            // set initial value for joke category
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _jokeCategory.text = DEFAULT_CATEGORY;
+                _jokeCategory.enabled = YES;
+            });
+
         }
         else
         {
@@ -126,9 +139,6 @@
             [alert displayErrorMessage:@"Oops!" errorMessage:@"We had trouble reading in the joke categories. This screen will close. Just try again!" errorAction:errorBlock];
         }
     }];
-    
-    // set initial value for joke category
-    _jokeCategory.text = DEFAULT_CATEGORY;
     
     // set up the picker for the joke categories
     self.jokeCategoryPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 43, self.view.frame.size.width,self.view.frame.size.height / 4)];
@@ -247,31 +257,49 @@
 // send the e-mail
 -(void)sendJokeViaEmail
 {
-     // setup the string for the message body
-     NSString *jokeSubmitted = self.jokeSubmittedBy.text;
-     jokeSubmitted = [jokeSubmitted stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-     jokeSubmitted = [jokeSubmitted length] == 0 ? jokeSubmitted = @"N/A" : jokeSubmitted;
-     NSString *jokeCategory = self.jokeCategory.text;
-     NSString *notifyMe = (self.notifyMeCheckedSelected ? @"Yes" : @"No");
-     NSString *joke = self.joke.text;
-     NSString *messageBody = [NSString stringWithFormat:@"%@%@\n\n%@%@\n\n%@%@\n\n%@\n%@",
-                              @"Joke Submitted By: ", jokeSubmitted,
-                              @"Notify Me: ", notifyMe,
-                              @"Joke Category: ", jokeCategory,
-                              @"Joke:", joke];
-     
-     // setup recipients
-     NSArray *toRecipents = [NSArray arrayWithObject:PARAMETERS_JOKE_SUBMITTED_EMAIL];
-     
-     // prepare the mail message
-     mailComposer = [[MFMailComposeViewController alloc] init];
-     mailComposer.mailComposeDelegate = self;
-     [mailComposer setSubject:@"Joke Submission"];
-     [mailComposer setMessageBody:messageBody isHTML:NO];
-     [mailComposer setToRecipients:toRecipents];
-     
-     // present mail on the screen
-     [self presentViewController:mailComposer animated:YES completion:nil];
+    // get the e-mail address from the data source
+    CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
+    CKRecordID *parameterRecordID = [[CKRecordID alloc] initWithRecordName:PARAMETERS_RECORD_NAME];
+    [jokePublicDatabase fetchRecordWithID:parameterRecordID completionHandler:^(CKRecord *parameterRecord, NSError *error)
+    {
+        if (!error)
+        {
+            // setup the string for the message body
+            NSString *jokeSubmitted = self.jokeSubmittedBy.text;
+            jokeSubmitted = [jokeSubmitted stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            jokeSubmitted = [jokeSubmitted length] == 0 ? jokeSubmitted = @"N/A" : jokeSubmitted;
+            NSString *jokeCategory = self.jokeCategory.text;
+            NSString *notifyMe = (self.notifyMeCheckedSelected ? @"Yes" : @"No");
+            NSString *joke = self.joke.text;
+            NSString *messageBody = [NSString stringWithFormat:@"%@%@\n\n%@%@\n\n%@%@\n\n%@\n%@",
+                                     @"Joke Submitted By: ", jokeSubmitted,
+                                     @"Notify Me: ", notifyMe,
+                                     @"Joke Category: ", jokeCategory,
+                                     @"Joke:", joke];
+
+            // setup recipients
+            NSString *jokeSubmittedBy = [parameterRecord objectForKey:PARAMETERS_JOKE_SUBMITTED_EMAIL];
+            NSArray *toRecipents = [NSArray arrayWithObject:jokeSubmittedBy];
+
+            // prepare the mail message
+            mailComposer = [[MFMailComposeViewController alloc] init];
+            mailComposer.mailComposeDelegate = self;
+            [mailComposer setSubject:@"Joke Submission"];
+            [mailComposer setMessageBody:messageBody isHTML:NO];
+            [mailComposer setToRecipients:toRecipents];
+
+            // present mail on the screen
+            [self presentViewController:mailComposer animated:YES completion:nil];
+        }
+        else
+        {
+            // display error message
+            dispatch_async(dispatch_get_main_queue(), ^{
+                GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
+                [alert displayErrorMessage:@"Problem" errorMessage:@"Could not obtain recipient e-mail address. Please try again later."];
+            });
+        }
+    }];
 }
 
 // cancel the adding of a new joke
