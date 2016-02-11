@@ -9,7 +9,7 @@
 #import "TJKConstants.h"
 
 // assign values to constants
-NSString *const DEFAULT_CATEGORY = @"None";
+NSString *const DEFAULT_CATEGORY = @"Select a Category...";
 NSString *const LOADING_CATEGORY = @"Loading Categories...";
 NSString *const JOKE_CONTAINER = @"iCloud.com.glennseplowitz.Jokes";
 NSString *const CATEGORY_RECORD_TYPE = @"Categories";

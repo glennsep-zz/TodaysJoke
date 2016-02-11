@@ -404,10 +404,12 @@
     NSMutableArray *valid = [[NSMutableArray alloc] init];
     
     // check if the joke category is not empty as it not set to "NONE"
-    if (![self.jokeCategory hasText] || [self.jokeCategory.text  isEqual: @"None"])
+    if (![self.jokeCategory hasText] || [self.jokeCategory.text  isEqual: DEFAULT_CATEGORY])
     {
         // if empty or none indicae this in the array
-        [valid addObject:@"The Joke Category must contain a value and cannot be \"None\"."];
+        NSString *defaultCategory = [DEFAULT_CATEGORY stringByAppendingString:@"\""];
+        NSString *invalidCategory = [@"The Joke Category must contain a value and cannot be \"" stringByAppendingString:defaultCategory];
+        [valid addObject:invalidCategory];
     }
     
     // check if a joke was entered
