@@ -7,6 +7,7 @@
 //
 
 #import "TJKCategoriesViewController.h"
+#import "TJKListJokesViewController.h"
 #import "TJKAppDelegate.h"
 #import "TJKCategories.h"
 #import "GHSAlerts.h"
@@ -142,6 +143,13 @@
         
         categoryName.text =  [NSString stringWithFormat:@"%@", currentRecord.categoryName];
         categoryImage.image = currentRecord.categoryImage;
+        
+        // setup call to list jokes table
+        TJKListJokesViewController *listJokesController = [[TJKListJokesViewController alloc] init];
+        listJokesController.categoryName = categoryName.text;
+        
+        // push it onto the top of the navigation controller's stack
+        [self.navigationController pushViewController:listJokesController animated:YES];
     }
     
     return _cellCategories;
