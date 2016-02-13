@@ -7,15 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TJKJokeItem.h"
+@class TJKJokeItem;
 
 @interface TJKJokeItemStore : NSObject
+
+#pragma Properties
+@property(nonatomic, readonly, copy) NSArray *allItems;
 
 #pragma Singleton
 +(instancetype)sharedStore;
 
 #pragma Methods
--(TJKJokeItem *)createItem;
+-(TJKJokeItem *)createItem:(NSString *)jokeDescr
+              jokeCategory:(NSString*)jokeCategory
+             nameSubmitted:(NSString *)nameSubmitted
+                 jokeTitle:(NSString *)jokeTitle
+        categoryRecordName:(NSString *)categoryRecordName
+               jokeCreated:(NSDate *)jokeCreated;
+
 -(void)removeItem:(TJKJokeItem *)jokeItem;
 
 @end

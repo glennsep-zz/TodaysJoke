@@ -59,11 +59,27 @@
 #pragma Methods
 
 // create a new joke item
--(TJKJokeItem *)createItem
+-(TJKJokeItem *)createItem:(NSString *)jokeDescr
+              jokeCategory:(NSString*)jokeCategory
+             nameSubmitted:(NSString *)nameSubmitted
+                 jokeTitle:(NSString *)jokeTitle
+        categoryRecordName:(NSString *)categoryRecordName
+               jokeCreated:(NSDate *)jokeCreated;
 {
-    TJKJokeItem *item = [[TJKJokeItem alloc] init];
+    TJKJokeItem *item = [[TJKJokeItem alloc] initWithJokeDescr:(NSString *)jokeDescr
+                                                  jokeCategory:(NSString *)jokeCategory
+                                                 nameSubmitted:(NSString *)nameSubmitted
+                                                     jokeTitle:(NSString*)jokeTitle
+                                            categoryRecordName:(NSString *)categoryRecordName
+                                                   jokeCreated:(NSDate*)jokeCreated];
     [self.privateItems addObject:item];
     return item;
+}
+
+// return all of the jokes stored
+-(NSArray *)allItems
+{
+    return [self.privateItems copy];
 }
 
 // remove the joke item

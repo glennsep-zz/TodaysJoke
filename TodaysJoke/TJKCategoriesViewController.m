@@ -17,7 +17,7 @@
 @property (nonatomic, weak) IBOutlet UITableView *categoriesTableView;
 @property (nonatomic, weak) IBOutlet UITableViewCell *cellCategories;
 @property (strong, nonatomic) NSMutableArray *jokeCategories;
-
+@property (strong, nonatomic) NSString * selectedCategoryName;
 @end
 
 @implementation TJKCategoriesViewController
@@ -143,16 +143,21 @@
         
         categoryName.text =  [NSString stringWithFormat:@"%@", currentRecord.categoryName];
         categoryImage.image = currentRecord.categoryImage;
-        
-        // setup call to list jokes table
-        TJKListJokesViewController *listJokesController = [[TJKListJokesViewController alloc] init];
-        listJokesController.categoryName = categoryName.text;
-        
-        // push it onto the top of the navigation controller's stack
-        [self.navigationController pushViewController:listJokesController animated:YES];
+        self.selectedCategoryName = categoryName.text;
     }
     
     return _cellCategories;
+}
+
+// display the list of categories
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    // setup call to list jokes table
+    TJKListJokesViewController *listJokesController = [[TJKListJokesViewController alloc] init];
+    listJokesController.categoryName = [_jokeCategories[indexPath.row] valueForKey:CATEGORY_FIELD_NAME];
+    
+    // push it onto the top of the navigation controller's stack
+    [self.navigationController pushViewController:listJokesController animated:YES];
 }
 
 @end

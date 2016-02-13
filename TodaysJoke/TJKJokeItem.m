@@ -18,49 +18,25 @@
 -(instancetype)initWithJokeDescr:(NSString *)jokeDescr
                   jokeCategory:(NSString *)jokeCategory
                    nameSubmitted:(NSString *)nameSubmitted
+                       jokeTitle:(NSString *)jokeTitle
+              categoryRecordName:(NSString *)categoryRecordName
+                     jokeCreated:(NSDate *)jokeCreated
 {
     // call the superclass initializer
     self = [super init];
     
-    // trim leading and trailing spaces from the joke
-    jokeDescr = [jokeDescr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    // get the title from the joke description
-    unsigned long jokeLength = [jokeDescr length];
-    if (jokeLength > 0 && jokeLength <= TITLE_LENGTH)
-    {
-        jokeLength = jokeLength;
-    }
-    else if (jokeLength > 0 && jokeLength > TITLE_LENGTH && (jokeLength - TITLE_LENGTH) > TITLE_LENGTH)
-    {
-        jokeLength = jokeLength - (jokeLength - TITLE_LENGTH);
-    }
-    else if (jokeLength > 0 && jokeLength > TITLE_LENGTH && (jokeLength - TITLE_LENGTH) <= TITLE_LENGTH)
-    {
-        jokeLength = TITLE_LENGTH;
-    }
-    else
-    {
-        jokeLength = 0;
-    }
-    
-    NSString *jokeTitleTemp = [jokeDescr substringToIndex:jokeLength];
-    
     // if the superclass initalizer succeeded then assign values
     if (self)
     {
+        // trim leading and trailing spaces from the joke
+        jokeDescr = [jokeDescr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
         self.jokeDescr = jokeDescr;
         self.jokeCategory = jokeCategory;
-        self.jokeTitle = [jokeTitleTemp stringByAppendingString:@"..."];
         self.nameSubmitted = nameSubmitted;
-        
-        // define the joke id
-        NSUUID *jokeUuid = [[NSUUID alloc] init];
-        NSString *jokeId = [jokeUuid UUIDString];
-        _jokeId = jokeId;
-        
-        // get the date the joke is created
-        _jokeCreated = [[NSDate alloc] init];
+        self.jokeTitle = jokeTitle;
+        self.categoryRecordName = categoryRecordName;
+        _jokeCreated = jokeCreated;
      }
     
     // return the newly initialized object
@@ -70,7 +46,7 @@
 // override init
 -(instancetype)init
 {
-    return [self initWithJokeDescr:@"" jokeCategory:@"" nameSubmitted:@""];
+    return [self initWithJokeDescr:@"" jokeCategory:@"" nameSubmitted:@"" jokeTitle:@"" categoryRecordName:@"" jokeCreated:[NSDate date]];
 }
 
 #pragma Methods
@@ -79,10 +55,16 @@
 +(instancetype)createJoke:(NSString *)jokeDescr
           JokeCategory:(NSString *)jokeCategory
             nameSubmitted:(NSString *)nameSubmitted
+                jokeTitle:(NSString *)jokeTitle
+    categoryRecordName:(NSString *)categoryRecordName
+              jokeCreated:(NSDate *)jokeCreated
 {
     TJKJokeItem *newItem = [[self alloc] initWithJokeDescr:jokeDescr
                                              jokeCategory:jokeCategory
-                                                nameSubmitted:nameSubmitted];
+                                                nameSubmitted:nameSubmitted
+                                                 jokeTitle:jokeTitle
+                                        categoryRecordName:categoryRecordName
+                                               jokeCreated:jokeCreated];
     
     // return new joke item
     return newItem;

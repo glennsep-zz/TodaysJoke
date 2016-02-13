@@ -259,7 +259,7 @@
 {
     // get the e-mail address from the data source
     CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
-    CKRecordID *parameterRecordID = [[CKRecordID alloc] initWithRecordName:PARAMETERS_RECORD_NAME];
+    CKRecordID *parameterRecordID = [[CKRecordID alloc] initWithRecordName:PARAMETERS_CATEGORY_RECORD_NAME];
     [jokePublicDatabase fetchRecordWithID:parameterRecordID completionHandler:^(CKRecord *parameterRecord, NSError *error)
     {
         if (!error)

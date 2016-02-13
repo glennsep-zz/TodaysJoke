@@ -12,25 +12,30 @@
 
 #pragma Declare Properties
 
-@property (nonatomic, copy) NSString *jokeId;
 @property (nonatomic, readonly, strong) NSDate *jokeCreated;
 @property (nonatomic, copy) NSString *jokeTitle;
 @property (nonatomic, copy) NSString *jokeDescr;
 @property (nonatomic, copy) NSString *nameSubmitted;
 @property (nonatomic, copy) NSString *jokeCategory;
+@property (nonatomic, copy) NSString *categoryRecordName;
 
 #pragma Declare Initializers
 
 // designated initializer
 -(instancetype)initWithJokeDescr:(NSString *)jokeDescr
                   jokeCategory:(NSString *)jokeCategory
-                   nameSubmitted:(NSString *)nameSubmitted;
+                   nameSubmitted:(NSString *)nameSubmitted
+                       jokeTitle:(NSString*)jokeTitle
+              categoryRecordName:(NSString *)categoryRecordName
+                     jokeCreated:(NSDate*)jokeCreated;
 
 
 // create a joke item
 +(instancetype)createJoke:(NSString *)jokeDescr
            JokeCategory:(NSString *)jokeCategory
-            nameSubmitted:(NSString *)nameSubmitted;
-
+            nameSubmitted:(NSString *)nameSubmitted
+                jokeTitle:(NSString *)jokeTitle
+       categoryRecordName:(NSString *)categoryRecordName
+              jokeCreated:(NSDate *)jokeCreated;
 
 @end
