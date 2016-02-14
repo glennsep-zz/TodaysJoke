@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TJKDisplayJokesController">
+            <connections>
+                <outlet property="displayJokesView" destination="w25-UF-yio" id="Kmj-9q-jqE"/>
+                <outlet property="favoriteButton" destination="f75-71-DZZ" id="XF6-zz-XPE"/>
+                <outlet property="leftArrowButton" destination="4ho-1f-O3K" id="2m5-Hm-CDo"/>
+                <outlet property="rightArrowButton" destination="EjR-sl-ZK0" id="Gbh-zh-dDK"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ho-1f-O3K">
+                    <rect key="frame" x="29" y="473" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="cOd-FY-HK1"/>
+                        <constraint firstAttribute="width" constant="30" id="nAt-hH-fcK"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="leftArrow.png"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EjR-sl-ZK0">
+                    <rect key="frame" x="542" y="473" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="kxr-Ri-Jxj"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="rightArrow.png"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f75-71-DZZ">
+                    <rect key="frame" x="285" y="473" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="lQo-jU-9lI"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="favoriteUnSelected.png"/>
+                </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w25-UF-yio">
+                    <rect key="frame" x="29" y="91" width="543" height="325"/>
+                </scrollView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHC-3X-Qwz">
+                    <rect key="frame" x="285" y="424" width="287" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="4ho-1f-O3K" firstAttribute="firstBaseline" secondItem="f75-71-DZZ" secondAttribute="firstBaseline" id="0gQ-rZ-FHq"/>
+                <constraint firstItem="4ho-1f-O3K" firstAttribute="baseline" secondItem="f75-71-DZZ" secondAttribute="baseline" id="2UU-8L-GDC"/>
+                <constraint firstItem="hHC-3X-Qwz" firstAttribute="top" secondItem="w25-UF-yio" secondAttribute="bottom" constant="8" id="3TQ-eD-Ozq"/>
+                <constraint firstItem="EjR-sl-ZK0" firstAttribute="top" secondItem="f75-71-DZZ" secondAttribute="top" id="3tk-FY-o6r"/>
+                <constraint firstItem="4ho-1f-O3K" firstAttribute="top" secondItem="w25-UF-yio" secondAttribute="bottom" constant="57" id="66V-e3-xPO"/>
+                <constraint firstItem="w25-UF-yio" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="91" id="Dk7-3g-GgG"/>
+                <constraint firstAttribute="trailing" secondItem="w25-UF-yio" secondAttribute="trailing" constant="28" id="IiB-UB-gzk"/>
+                <constraint firstItem="f75-71-DZZ" firstAttribute="top" secondItem="hHC-3X-Qwz" secondAttribute="bottom" constant="28" id="LNu-Bb-Gyw"/>
+                <constraint firstAttribute="trailing" secondItem="hHC-3X-Qwz" secondAttribute="trailing" constant="28" id="Q8b-AB-pLB"/>
+                <constraint firstItem="EjR-sl-ZK0" firstAttribute="baseline" secondItem="f75-71-DZZ" secondAttribute="baseline" id="TY8-JN-btm"/>
+                <constraint firstItem="f75-71-DZZ" firstAttribute="leading" secondItem="hHC-3X-Qwz" secondAttribute="leading" id="Tcd-CD-Ubj"/>
+                <constraint firstItem="EjR-sl-ZK0" firstAttribute="firstBaseline" secondItem="f75-71-DZZ" secondAttribute="firstBaseline" id="WLO-AV-urn"/>
+                <constraint firstItem="EjR-sl-ZK0" firstAttribute="trailing" secondItem="hHC-3X-Qwz" secondAttribute="trailing" id="heD-kp-oH1"/>
+                <constraint firstItem="w25-UF-yio" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="29" id="iip-52-5We"/>
+                <constraint firstAttribute="bottom" secondItem="f75-71-DZZ" secondAttribute="bottom" constant="97" id="jcG-h1-3sC"/>
+                <constraint firstItem="4ho-1f-O3K" firstAttribute="leading" secondItem="w25-UF-yio" secondAttribute="leading" id="sBa-2H-cbY"/>
+                <constraint firstItem="f75-71-DZZ" firstAttribute="centerX" secondItem="w25-UF-yio" secondAttribute="centerX" id="z4n-dv-qDb"/>
+                <constraint firstItem="4ho-1f-O3K" firstAttribute="top" secondItem="f75-71-DZZ" secondAttribute="top" id="zmW-lB-xFV"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+            <point key="canvasLocation" x="785" y="504"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="favoriteUnSelected.png" width="300" height="267"/>
+        <image name="leftArrow.png" width="302" height="300"/>
+        <image name="rightArrow.png" width="302" height="300"/>
+    </resources>
+</document>

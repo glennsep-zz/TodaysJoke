@@ -21,6 +21,7 @@
                        jokeTitle:(NSString *)jokeTitle
               categoryRecordName:(NSString *)categoryRecordName
                      jokeCreated:(NSDate *)jokeCreated
+                  jokeRecordName:(NSString *)jokeId
 {
     // call the superclass initializer
     self = [super init];
@@ -37,6 +38,7 @@
         self.jokeTitle = jokeTitle;
         self.categoryRecordName = categoryRecordName;
         _jokeCreated = jokeCreated;
+        _jokeId = jokeId;
      }
     
     // return the newly initialized object
@@ -46,7 +48,7 @@
 // override init
 -(instancetype)init
 {
-    return [self initWithJokeDescr:@"" jokeCategory:@"" nameSubmitted:@"" jokeTitle:@"" categoryRecordName:@"" jokeCreated:[NSDate date]];
+    return [self initWithJokeDescr:@"" jokeCategory:@"" nameSubmitted:@"" jokeTitle:@"" categoryRecordName:@"" jokeCreated:[NSDate date] jokeRecordName:@""];
 }
 
 #pragma Methods
@@ -58,13 +60,15 @@
                 jokeTitle:(NSString *)jokeTitle
     categoryRecordName:(NSString *)categoryRecordName
               jokeCreated:(NSDate *)jokeCreated
+           jokeRecordName:(NSString *)jokeId
 {
     TJKJokeItem *newItem = [[self alloc] initWithJokeDescr:jokeDescr
                                              jokeCategory:jokeCategory
                                                 nameSubmitted:nameSubmitted
                                                  jokeTitle:jokeTitle
                                         categoryRecordName:categoryRecordName
-                                               jokeCreated:jokeCreated];
+                                               jokeCreated:jokeCreated
+                                             jokeRecordName:jokeId];
     
     // return new joke item
     return newItem;

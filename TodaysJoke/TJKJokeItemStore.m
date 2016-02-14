@@ -64,14 +64,16 @@
              nameSubmitted:(NSString *)nameSubmitted
                  jokeTitle:(NSString *)jokeTitle
         categoryRecordName:(NSString *)categoryRecordName
-               jokeCreated:(NSDate *)jokeCreated;
+               jokeCreated:(NSDate *)jokeCreated
+            jokeRecordName:(NSString *)jokeId;
 {
     TJKJokeItem *item = [[TJKJokeItem alloc] initWithJokeDescr:(NSString *)jokeDescr
                                                   jokeCategory:(NSString *)jokeCategory
                                                  nameSubmitted:(NSString *)nameSubmitted
                                                      jokeTitle:(NSString*)jokeTitle
                                             categoryRecordName:(NSString *)categoryRecordName
-                                                   jokeCreated:(NSDate*)jokeCreated];
+                                                   jokeCreated:(NSDate*)jokeCreated
+                                                 jokeRecordName:(NSString *)jokeId];
     [self.privateItems addObject:item];
     return item;
 }

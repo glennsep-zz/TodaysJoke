@@ -24,7 +24,8 @@
              nameSubmitted:(NSString *)nameSubmitted
                  jokeTitle:(NSString *)jokeTitle
         categoryRecordName:(NSString *)categoryRecordName
-               jokeCreated:(NSDate *)jokeCreated;
+               jokeCreated:(NSDate *)jokeCreated
+            jokeRecordName:(NSString *)jokeId;
 
 -(void)removeItem:(TJKJokeItem *)jokeItem;
 

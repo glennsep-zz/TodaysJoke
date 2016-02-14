@@ -18,6 +18,7 @@
 @property (nonatomic, copy) NSString *nameSubmitted;
 @property (nonatomic, copy) NSString *jokeCategory;
 @property (nonatomic, copy) NSString *categoryRecordName;
+@property (nonatomic, readonly, strong) NSString *jokeId;
 
 #pragma Declare Initializers
 
@@ -27,7 +28,8 @@
                    nameSubmitted:(NSString *)nameSubmitted
                        jokeTitle:(NSString*)jokeTitle
               categoryRecordName:(NSString *)categoryRecordName
-                     jokeCreated:(NSDate*)jokeCreated;
+                     jokeCreated:(NSDate*)jokeCreated
+                  jokeRecordName:(NSString *)jokeId;
 
 
 // create a joke item
@@ -36,6 +38,7 @@
             nameSubmitted:(NSString *)nameSubmitted
                 jokeTitle:(NSString *)jokeTitle
        categoryRecordName:(NSString *)categoryRecordName
-              jokeCreated:(NSDate *)jokeCreated;
+              jokeCreated:(NSDate *)jokeCreated
+           jokeRecordName:(NSString *)jokeId;
 
 @end

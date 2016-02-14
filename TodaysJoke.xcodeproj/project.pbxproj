@@ -55,6 +55,12 @@
 		419FA3EB1C70F332004805A4 /* TodaysJoke@144.png in Resources */ = {isa = PBXBuildFile; fileRef = 419FA3DA1C70F332004805A4 /* TodaysJoke@144.png */; };
 		419FA3EC1C70F332004805A4 /* TodaysJoke@152.png in Resources */ = {isa = PBXBuildFile; fileRef = 419FA3DB1C70F332004805A4 /* TodaysJoke@152.png */; };
 		419FA3ED1C70F332004805A4 /* TodaysJoke@167.png in Resources */ = {isa = PBXBuildFile; fileRef = 419FA3DC1C70F332004805A4 /* TodaysJoke@167.png */; };
+		419FA3F11C70F83F004805A4 /* TJKDisplayJokesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 419FA3EF1C70F83F004805A4 /* TJKDisplayJokesController.m */; };
+		419FA3F21C70F83F004805A4 /* TJKDisplayJokesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 419FA3F01C70F83F004805A4 /* TJKDisplayJokesController.xib */; };
+		419FA3F51C710965004805A4 /* leftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 419FA3F31C710965004805A4 /* leftArrow.png */; };
+		419FA3F61C710965004805A4 /* rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 419FA3F41C710965004805A4 /* rightArrow.png */; };
+		419FA3F91C710B75004805A4 /* favoriteSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 419FA3F71C710B75004805A4 /* favoriteSelected.png */; };
+		419FA3FA1C710B75004805A4 /* favoriteUnSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 419FA3F81C710B75004805A4 /* favoriteUnSelected.png */; };
 		41BC90F21C25DB8600288F16 /* TJKJokeItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BC90F11C25DB8600288F16 /* TJKJokeItemStore.m */; };
 		41BC90F61C25F23900288F16 /* TJKDetailJokeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BC90F41C25F23900288F16 /* TJKDetailJokeViewController.m */; };
 		41BC90F71C25F23900288F16 /* TJKDetailJokeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41BC90F51C25F23900288F16 /* TJKDetailJokeViewController.xib */; };
@@ -128,6 +134,13 @@
 		419FA3DA1C70F332004805A4 /* TodaysJoke@144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TodaysJoke@144.png"; path = "TodaysJoke/Images/TodaysJoke@144.png"; sourceTree = "<group>"; };
 		419FA3DB1C70F332004805A4 /* TodaysJoke@152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TodaysJoke@152.png"; path = "TodaysJoke/Images/TodaysJoke@152.png"; sourceTree = "<group>"; };
 		419FA3DC1C70F332004805A4 /* TodaysJoke@167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TodaysJoke@167.png"; path = "TodaysJoke/Images/TodaysJoke@167.png"; sourceTree = "<group>"; };
+		419FA3EE1C70F83F004805A4 /* TJKDisplayJokesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKDisplayJokesController.h; sourceTree = "<group>"; };
+		419FA3EF1C70F83F004805A4 /* TJKDisplayJokesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKDisplayJokesController.m; sourceTree = "<group>"; };
+		419FA3F01C70F83F004805A4 /* TJKDisplayJokesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKDisplayJokesController.xib; sourceTree = "<group>"; };
+		419FA3F31C710965004805A4 /* leftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftArrow.png; path = TodaysJoke/Images/leftArrow.png; sourceTree = "<group>"; };
+		419FA3F41C710965004805A4 /* rightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rightArrow.png; path = TodaysJoke/Images/rightArrow.png; sourceTree = "<group>"; };
+		419FA3F71C710B75004805A4 /* favoriteSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favoriteSelected.png; path = TodaysJoke/Images/favoriteSelected.png; sourceTree = "<group>"; };
+		419FA3F81C710B75004805A4 /* favoriteUnSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favoriteUnSelected.png; path = TodaysJoke/Images/favoriteUnSelected.png; sourceTree = "<group>"; };
 		41BC90F01C25DB8600288F16 /* TJKJokeItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKJokeItemStore.h; sourceTree = "<group>"; };
 		41BC90F11C25DB8600288F16 /* TJKJokeItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKJokeItemStore.m; sourceTree = "<group>"; };
 		41BC90F31C25F23900288F16 /* TJKDetailJokeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKDetailJokeViewController.h; sourceTree = "<group>"; };
@@ -211,6 +224,9 @@
 				4166DEE21C6D5E84003A4764 /* TJKListJokesViewController.m */,
 				4166DEE31C6D5E84003A4764 /* TJKListJokesViewController.xib */,
 				4166DEE61C6D5F49003A4764 /* TJKListJokesCell.xib */,
+				419FA3EE1C70F83F004805A4 /* TJKDisplayJokesController.h */,
+				419FA3EF1C70F83F004805A4 /* TJKDisplayJokesController.m */,
+				419FA3F01C70F83F004805A4 /* TJKDisplayJokesController.xib */,
 				417A42741C6671CE0097E28B /* TJKCategories.h */,
 				417A42751C6671CE0097E28B /* TJKCategories.m */,
 				41D364391C224253004A6C1A /* TJKJokeItem.h */,
@@ -252,6 +268,10 @@
 		41BC90CD1C25D63600288F16 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				419FA3F71C710B75004805A4 /* favoriteSelected.png */,
+				419FA3F81C710B75004805A4 /* favoriteUnSelected.png */,
+				419FA3F31C710965004805A4 /* leftArrow.png */,
+				419FA3F41C710965004805A4 /* rightArrow.png */,
 				419FA3CC1C70F332004805A4 /* TodaysJoke@2.png */,
 				419FA3CD1C70F332004805A4 /* TodaysJoke@3.png */,
 				419FA3CE1C70F332004805A4 /* TodaysJoke@29.png */,
@@ -343,6 +363,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				419FA3F91C710B75004805A4 /* favoriteSelected.png in Resources */,
 				419FA3A51C70EB7D004805A4 /* Checkbox-unchecked.png in Resources */,
 				419FA3E81C70F332004805A4 /* TodaysJoke@100.png in Resources */,
 				419FA3E51C70F332004805A4 /* TodaysJoke@76.png in Resources */,
@@ -361,20 +382,24 @@
 				41BC90F71C25F23900288F16 /* TJKDetailJokeViewController.xib in Resources */,
 				419FA3ED1C70F332004805A4 /* TodaysJoke@167.png in Resources */,
 				419FA3E61C70F332004805A4 /* TodaysJoke@80.png in Resources */,
+				419FA3F61C710965004805A4 /* rightArrow.png in Resources */,
 				419FA3E41C70F332004805A4 /* TodaysJoke@72.png in Resources */,
 				410A59B41C1FA2F80054E736 /* Assets.xcassets in Resources */,
+				419FA3FA1C710B75004805A4 /* favoriteUnSelected.png in Resources */,
 				413E51EB1C35DB4400DC3330 /* TJKLeftPanelViewController.xib in Resources */,
 				419FA3E21C70F332004805A4 /* TodaysJoke@57.png in Resources */,
 				419FA3E11C70F332004805A4 /* TodaysJoke@50.png in Resources */,
 				419FA3EA1C70F332004805A4 /* TodaysJoke@120.png in Resources */,
 				419FA3A41C70EB7D004805A4 /* Checkbox-checked.png in Resources */,
 				419FA3A71C70EB7D004805A4 /* menuButton.png in Resources */,
+				419FA3F51C710965004805A4 /* leftArrow.png in Resources */,
 				419FA3E01C70F332004805A4 /* TodaysJoke@40.png in Resources */,
 				419FA39C1C70E9A6004805A4 /* Launch Screen.storyboard in Resources */,
 				419FA3DE1C70F332004805A4 /* TodaysJoke@3.png in Resources */,
 				419FA3DD1C70F332004805A4 /* TodaysJoke@2.png in Resources */,
 				410307E01C398F6F00C20020 /* TJKCategoriesCell.xib in Resources */,
 				41D364381C223DE6004A6C1A /* TJKMainViewController.xib in Resources */,
+				419FA3F21C70F83F004805A4 /* TJKDisplayJokesController.xib in Resources */,
 				419FA3EB1C70F332004805A4 /* TodaysJoke@144.png in Resources */,
 				419FA3E91C70F332004805A4 /* TodaysJoke@114.png in Resources */,
 			);
@@ -394,6 +419,7 @@
 				415442ED1C5B016300401DAF /* TJKConstants.m in Sources */,
 				414028291C319F2500622BE4 /* GHSNoSwearing.m in Sources */,
 				41C25C8B1C321463008FFCC4 /* GHSAlerts.m in Sources */,
+				419FA3F11C70F83F004805A4 /* TJKDisplayJokesController.m in Sources */,
 				41BC90F21C25DB8600288F16 /* TJKJokeItemStore.m in Sources */,
 				4166DEE41C6D5E84003A4764 /* TJKListJokesViewController.m in Sources */,
 				41D3643B1C224253004A6C1A /* TJKJokeItem.m in Sources */,
