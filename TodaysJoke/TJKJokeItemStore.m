@@ -82,10 +82,36 @@
     return [self.privateItems copy];
 }
 
+// get the last item added to the array
+-(TJKJokeItem*)lastItem
+{
+    if ([self.privateItems count] > 0)
+    {
+        return [self.privateItems objectAtIndex:[self.privateItems count]-1];
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 // remove the joke item
 -(void)removeItem:(TJKJokeItem *)jokeItem
 {
     [self.privateItems removeObjectIdenticalTo:jokeItem];
+}
+
+// retrieve the last item in the array
+-(TJKJokeItem *)retrieveItem:(TJKJokeItem *)jokeItem;
+{
+    if ([_privateItems count] > 0)
+    {
+        return [_privateItems objectAtIndex:[_privateItems indexOfObjectIdenticalTo:jokeItem]];
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 @end

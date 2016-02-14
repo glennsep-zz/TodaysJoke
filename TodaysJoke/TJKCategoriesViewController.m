@@ -154,7 +154,8 @@
 {
     // setup call to list jokes table
     TJKListJokesViewController *listJokesController = [[TJKListJokesViewController alloc] init];
-    listJokesController.categoryName = [_jokeCategories[indexPath.row] valueForKey:CATEGORY_FIELD_NAME];
+    TJKCategories *currentCell = [self.jokeCategories objectAtIndex:indexPath.row];
+    listJokesController.categoryName = currentCell.categoryName;
     
     // push it onto the top of the navigation controller's stack
     [self.navigationController pushViewController:listJokesController animated:YES];

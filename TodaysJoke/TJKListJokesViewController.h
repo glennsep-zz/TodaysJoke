@@ -10,7 +10,7 @@
 #import <CloudKit/CloudKit.h>
 #import "TJKConstants.h"
 
-@interface TJKListJokesViewController : UIViewController
+@interface TJKListJokesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 #pragma Properties
 @property (strong, nonatomic) NSString *categoryName;

@@ -17,7 +17,6 @@
 #pragma Properties
 @property (weak, nonatomic) IBOutlet UITableView *listJokesTableView;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cellJokeList;
-@property (strong, nonatomic) NSMutableArray *jokeList;
 
 @end
 
@@ -49,9 +48,6 @@
     
     // get all the jokes for the category
     [self fetchJokesForCategory];
-    
-    // setup the table
-    [self setupTableContents];
 }
 
 #pragma Methods
@@ -84,6 +80,9 @@
         {
             // get the first record as there should only be one record per category
             CKRecord *categoryRecord = [results firstObject];
+            
+            // setup the table
+            [self setupTableContents];
 
             if (categoryRecord)
             {
@@ -99,6 +98,9 @@
                           // add the joke to the joke item store (array)
                           [[TJKJokeItemStore sharedStore] createItem:[jokeRecord objectForKey:JOKE_DESCR] jokeCategory:self.categoryName nameSubmitted:[jokeRecord objectForKey:JOKE_SUBMITTED_BY] jokeTitle:[jokeRecord objectForKey:JOKE_TITLE] categoryRecordName:[jokeRecord valueForKey:CATEGORY_FIELD_NAME] jokeCreated:[jokeRecord valueForKey:JOKE_CREATED]];
                       }
+                      
+                      // setup the table
+                      [self setupTableContents];
                   }
                   else
                   {
@@ -123,7 +125,7 @@
 #pragma Table View Methods
 
 // indicate the number of sections in the table
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 1;
 }

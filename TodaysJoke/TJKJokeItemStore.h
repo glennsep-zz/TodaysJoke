@@ -13,6 +13,7 @@
 
 #pragma Properties
 @property(nonatomic, readonly, copy) NSArray *allItems;
+@property(nonatomic,readonly,copy) TJKJokeItem *lastItem;
 
 #pragma Singleton
 +(instancetype)sharedStore;
@@ -26,5 +27,7 @@
                jokeCreated:(NSDate *)jokeCreated;
 
 -(void)removeItem:(TJKJokeItem *)jokeItem;
+
+-(TJKJokeItem *)retrieveItem:(TJKJokeItem *)jokeItem;
 
 @end
