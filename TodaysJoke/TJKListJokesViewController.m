@@ -37,6 +37,7 @@
 
 #pragma View controller methods
 
+// routines to run when view loads
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -48,6 +49,13 @@
     
     // get all the jokes for the category
     [self fetchJokesForCategory];
+}
+
+// routines to run when view disappears
+-(void)viewDidDisappear:(BOOL)animated
+{
+    // remove all items from joke store
+    [[TJKJokeItemStore sharedStore] RemoveAllItems];
 }
 
 #pragma Methods

@@ -101,6 +101,12 @@
     [self.privateItems removeObjectIdenticalTo:jokeItem];
 }
 
+// remove all items in the array
+-(void)RemoveAllItems
+{
+    [self.privateItems removeAllObjects];
+}
+
 // retrieve the last item in the array
 -(TJKJokeItem *)retrieveItem:(TJKJokeItem *)jokeItem;
 {

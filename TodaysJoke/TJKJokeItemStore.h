@@ -28,6 +28,8 @@
 
 -(void)removeItem:(TJKJokeItem *)jokeItem;
 
+-(void)RemoveAllItems;
+
 -(TJKJokeItem *)retrieveItem:(TJKJokeItem *)jokeItem;
 
 @end
