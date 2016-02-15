@@ -11,6 +11,7 @@
 #import "GHSAlerts.h"
 #import "GHSNoSwearing.h"
 #import "TJKConstants.h"
+#import "TJKCommonRoutines.h"
 
 // define constants
 #define MAX_NUMBER_OF_BAD_WORDS 5
@@ -48,6 +49,11 @@
                                        target:self
                                        action:@selector(cancelContactUs:)];
         self.navigationItem.leftBarButtonItem = cancelItem;
+
+        // change to standard color for right and left buttons
+        TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+        self.navigationItem.leftBarButtonItem.tintColor = [common StandardSystemColor];
+        self.navigationItem.rightBarButtonItem.tintColor = [common StandardSystemColor];
     }
     
     
@@ -60,6 +66,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // setup scren title
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    [common setupNavigationBarTitle:self.navigationItem setImage:@"ContactUs.png"];
+    
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
 

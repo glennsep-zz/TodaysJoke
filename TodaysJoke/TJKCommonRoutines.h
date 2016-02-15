@@ -12,5 +12,6 @@
 
 #pragma Methods
 -(void)setupNavigationBarTitle:(UINavigationController *)navController setTitle:(NSString *)title;
-
+-(void)setupNavigationBarTitle:(UINavigationItem *)navItem setImage:(NSString *)image;
+-(UIColor *)StandardSystemColor;
 @end

@@ -11,6 +11,7 @@
 #import "TJKAppDelegate.h"
 #import "TJKCategories.h"
 #import "GHSAlerts.h"
+#import "TJKCommonRoutines.h"
 
 @interface TJKCategoriesViewController () 
 
@@ -43,9 +44,11 @@
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
     
-    // set the title
+    // set the title and color
     self.title = @"Categories";
-       
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    self.navigationController.navigationBar.tintColor = [common StandardSystemColor];
+    
     // get all categories
     _jokeCategories = [[NSMutableArray alloc] init];
     CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];

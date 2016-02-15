@@ -39,6 +39,10 @@
     
     // prevent the view table from shifting down due to translucent navigation bar
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    // setup the navigation image
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    [common setupNavigationBarTitle:self.navigationItem setImage:@"TodaysJoke.png"];
 
     // setup the slide out menus
     [self setupView];
@@ -82,6 +86,10 @@
     
     // setup bar buttom as right item in navigation bar
     navItem.rightBarButtonItem = addJoke;
+    
+    // setup button colors
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    navItem.rightBarButtonItem.tintColor = [common StandardSystemColor];
 }
 
 #pragma Actions
@@ -95,8 +103,6 @@
     // create a navigation controller
     UINavigationController *navController = [[UINavigationController alloc]
                                              initWithRootViewController:detailJokeViewController];
-    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    [common setupNavigationBarTitle:navController setTitle:@"Submit Joke"];
     
     // display joke detail screen
     [self presentViewController:navController animated:YES completion:NULL];

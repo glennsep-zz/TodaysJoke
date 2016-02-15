@@ -11,6 +11,7 @@
 #import "TJKJokeItemStore.h"
 #import "TJKJokeItem.h"
 #import "GHSAlerts.h"
+#import "TJKCommonRoutines.h"
 
 @interface TJKListJokesViewController ()
 
@@ -46,6 +47,8 @@
     
     // set the title
     self.title = self.categoryName;
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    self.navigationController.navigationBar.tintColor = [common StandardSystemColor];
     
     // get all the jokes for the category
     [self fetchJokesForCategory];
