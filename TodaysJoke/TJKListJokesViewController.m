@@ -7,6 +7,7 @@
 //
 
 #import "TJKListJokesViewController.h"
+#import "TJKDisplayJokesController.h"
 #import "TJKAppDelegate.h"
 #import "TJKJokeItemStore.h"
 #import "TJKJokeItem.h"
@@ -175,5 +176,20 @@
 
     return _cellJokeList;
 }
+
+// show screen to list jokes when one is selected
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    // create instance of contact us view controller
+    TJKDisplayJokesController *jokeView = [[TJKDisplayJokesController alloc] initWithNibName:nil bundle:nil];
+    
+    // create the navigation controller to be used with contact us view controller
+    UINavigationController *navController = [[UINavigationController alloc]
+                                             initWithRootViewController:jokeView];
+    
+    // display the contact us screen
+    [self presentViewController:navController animated:YES completion:NULL];
+}
+
 
 @end

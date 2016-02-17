@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TJKJokeItem.h"
+#import "TJKJokeItemStore.h"
 
 @interface TJKDisplayJokesController : UIViewController
+
+#pragma Properties
+@property (nonatomic, strong) NSArray<TJKJokeItem *> *jokeList;
+@property (nonatomic, strong) TJKJokeItemStore *jokeStore;
 
 @end
