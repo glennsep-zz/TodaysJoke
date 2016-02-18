@@ -46,13 +46,18 @@
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
     
+    // get all the jokes for the category
+    [self fetchJokesForCategory];
+}
+
+// routines to run when view appears
+-(void)viewWillAppear:(BOOL)animated
+{
     // set the title
     self.title = self.categoryName;
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     self.navigationController.navigationBar.tintColor = [common StandardSystemColor];
-    
-    // get all the jokes for the category
-    [self fetchJokesForCategory];
+    [common setupNavigationBarTitle:self.navigationController fontName:@"HelveticaNeue-Bold" fontSize:17.0f];
 }
 
 // routines to run when view disappears
@@ -186,6 +191,10 @@
     // create the navigation controller to be used with contact us view controller
     UINavigationController *navController = [[UINavigationController alloc]
                                              initWithRootViewController:jokeView];
+    
+    // pass the array with the jokes to the display joke controller
+    jokeView.jokeList = [[TJKJokeItemStore sharedStore] allItems];
+    jokeView.jokeIndex = indexPath.row;
     
     // display the contact us screen
     [self presentViewController:navController animated:YES completion:NULL];

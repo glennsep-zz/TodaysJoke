@@ -13,5 +13,6 @@
 #pragma Methods
 -(void)setupNavigationBarTitle:(UINavigationController *)navController setTitle:(NSString *)title;
 -(void)setupNavigationBarTitle:(UINavigationItem *)navItem setImage:(NSString *)image;
+-(void)setupNavigationBarTitle:(UINavigationController *)navController fontName:(NSString *)fontName fontSize:(CGFloat)fontSize;
 -(UIColor *)StandardSystemColor;
 @end

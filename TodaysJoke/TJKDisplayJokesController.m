@@ -47,11 +47,11 @@
     {
         // create navigation bar buttons
         // done button
-        UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc]
+        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
                                        initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                        target:self
                                        action:@selector(closeListJokes:)];
-        self.navigationItem.leftBarButtonItem = cancelItem;
+        self.navigationItem.leftBarButtonItem = doneItem;
         
         // change to standard color for right and left buttons
         TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
@@ -77,16 +77,22 @@
     UIView *pageView = [self.pageViews objectAtIndex:page];
     if ((NSNull*) pageView == [NSNull null])
     {
+        // instantiate common routine
+        TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+        
         // if the view doesn't exist then create a page
         CGRect frame = self.displayJokesView.bounds;
-        frame.origin.x = frame.size.width * page;
+        frame.origin.x = frame.size.width * page / 2;
         frame.origin.y = 0.0f;
     
         // create the new text view and add it to the scroll view
-        CGRect textViewRect = CGRectMake(0.0, 0.0, 100.0, 30.0);
-        UITextView *textView = [[UITextView alloc] initWithFrame:textViewRect];
+        UITextView *textView = [[UITextView alloc] initWithFrame:frame];
         textView.text = self.jokeList[page].jokeDescr;
         textView.contentMode = UIViewContentModeTop;
+        UIColor *borderColor = [common StandardSystemColor];
+        textView.layer.borderWidth = 1.0f;
+        textView.layer.borderColor = borderColor.CGColor;
+        textView.layer.cornerRadius = 5.0;
         textView.frame = frame;
         [self.displayJokesView addSubview:textView];
         
@@ -117,7 +123,7 @@
 -(void)loadVisiblePages
 {
     // First, determine which page is currently visible
-    CGFloat pageWidth = self.displayJokesView.frame.size.width;
+    CGFloat pageWidth = self.displayJokesView.frame.size.width / 2;
     NSInteger page = (NSInteger)floor((self.displayJokesView.contentOffset.x * 2.0f + pageWidth) / (pageWidth * 2.0f));
     
     // Update the page control
@@ -155,10 +161,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // setup scren title
-    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    [common setupNavigationBarTitle:self.navigationItem setImage:@"ListJokes.png"];
-
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
     
@@ -166,7 +168,7 @@
     NSInteger pageCount = self.jokeList.count;
     
     // set the page control to the number of jokes
-    self.pageControl.currentPage = 0;
+    self.pageControl.currentPage = self.jokeIndex;
     self.pageControl.numberOfPages = pageCount;
     
     // setup placeholders for the pages
@@ -180,6 +182,12 @@
 // routines to implement when view appears
 -(void)viewWillAppear:(BOOL)animated
 {
+    // setup scren title
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    [common setupNavigationBarTitle:self.navigationItem setImage:@"ListJokes.png"];
+    self.navigationController.navigationBar.tintColor = [common StandardSystemColor];
+
+    
     // determine content size for horizontal scroll view
     CGSize pagesScrollViewSize = self.displayJokesView.frame.size;
     self.displayJokesView.contentSize = CGSizeMake(pagesScrollViewSize.width * self.jokeList.count, pagesScrollViewSize.height);

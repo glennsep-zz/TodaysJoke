@@ -14,6 +14,6 @@
 
 #pragma Properties
 @property (nonatomic, strong) NSArray<TJKJokeItem *> *jokeList;
-@property (nonatomic, strong) TJKJokeItemStore *jokeStore;
+@property (nonatomic) NSInteger jokeIndex;
 
 @end

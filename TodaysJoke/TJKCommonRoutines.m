@@ -29,6 +29,14 @@
     navItem.titleView = imageView;
 }
 
+// setup the navigation title and color when a view controller is pushed to the stack
+-(void)setupNavigationBarTitle:(UINavigationController *)navController fontName:(NSString *)fontName fontSize:(CGFloat)fontSize
+{
+    NSArray *keys = [NSArray arrayWithObjects: NSForegroundColorAttributeName, NSFontAttributeName, nil];
+    NSArray *objs = [NSArray arrayWithObjects: [self StandardSystemColor], [UIFont fontWithName:fontName size:fontSize], nil];
+    navController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjects:objs forKeys:keys];
+}
+
 // return the stanard color used in the application
 -(UIColor *)StandardSystemColor
 {
@@ -37,3 +45,10 @@
 }
 
 @end
+
+// possibly another solution to changing navigation title and color and font size
+//UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.view.bounds.size.width - 100, 44)];
+//titleLabel.text = self.categoryName;
+//titleLabel.font = [UIFont systemFontOfSize:16];
+//titleLabel.textColor = [UIColor redColor];
+//self.navigationItem.titleView = titleLabel;

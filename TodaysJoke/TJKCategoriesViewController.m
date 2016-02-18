@@ -38,16 +38,12 @@
 
 #pragma View Controller Methods
 
+// routines to run when view loads
 - (void)viewDidLoad {
     [super viewDidLoad];
        
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
-    
-    // set the title and color
-    self.title = @"Categories";
-    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    self.navigationController.navigationBar.tintColor = [common StandardSystemColor];
     
     // get all categories
     _jokeCategories = [[NSMutableArray alloc] init];
@@ -78,6 +74,16 @@
              [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke categories failed to load. This screen will close. Just try again!" errorAction:errorBlock];
          }
      }];
+}
+
+// routines to run when view appears
+-(void)viewWillAppear:(BOOL)animated
+{
+    // set the title and color
+    self.title = @"Categories";
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    self.navigationController.navigationBar.tintColor = [common StandardSystemColor];
+    [common setupNavigationBarTitle:self.navigationController fontName:@"HelveticaNeue-Bold" fontSize:17.0f];
 }
 
 #pragma Methods
