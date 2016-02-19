@@ -19,6 +19,7 @@
 #pragma Properties
 @property (weak, nonatomic) IBOutlet UITableView *listJokesTableView;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cellJokeList;
+@property (nonatomic, strong) NSArray<TJKJokeItem*> *jokeList;
 
 @end
 
@@ -80,6 +81,7 @@
 {
     // store to property and reload the table contents
     dispatch_async(dispatch_get_main_queue(), ^{
+        self.jokeList = [[TJKJokeItemStore sharedStore] allItems];
         [self.listJokesTableView reloadData];
     });
 }
@@ -193,7 +195,7 @@
                                              initWithRootViewController:jokeView];
     
     // pass the array with the jokes to the display joke controller
-    jokeView.jokeList = [[TJKJokeItemStore sharedStore] allItems];
+    jokeView.pageJokes = self.jokeList;
     jokeView.jokeIndex = indexPath.row;
     
     // display the contact us screen

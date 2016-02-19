@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TJKJokeSubmissionController : UIViewController
+@interface TJKJokeSubmissionController : UIViewController <UITextViewDelegate>
 
 @end

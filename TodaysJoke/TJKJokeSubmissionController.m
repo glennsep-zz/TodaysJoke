@@ -42,6 +42,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    // set the ui text view delegate
+    self.jokeHelp.delegate = self;
+    
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
     
@@ -64,6 +67,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma UITextView Methods
+
+// prevents editing and keyboard from showing
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    return NO;
 }
 
 #pragma Methods

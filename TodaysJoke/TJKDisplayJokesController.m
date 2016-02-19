@@ -17,8 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *leftArrowButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightArrowButton;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
-@property (weak, nonatomic) IBOutlet UIScrollView *displayJokesView;
-@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, strong) NSMutableArray *pageViews;
 
 #pragma Methods
@@ -31,9 +29,9 @@
 @implementation TJKDisplayJokesController
 
 // synthesize properties
-@synthesize displayJokesView = _displayJokesView;
+@synthesize scrollView = _scrollView;
 @synthesize pageControl = _pageControl;
-@synthesize jokeList = _jokeList;
+@synthesize pageJokes = _pageJokes;
 @synthesize pageViews = _pageViews;
 
 
@@ -62,69 +60,81 @@
     return self;
 }
 
+#pragma UITextView Methods
+
+// prevents editing and keyboard from showing
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    return NO;
+}
+
+
 #pragma Methods
 
 // load the page
--(void)loadPage:(NSInteger)page
-{
-    // if we are outside the range then do nothing
-    if (page < 0 || page >= self.jokeList.count)
-    {
+- (void)loadPage:(NSInteger)page {
+    if (page < 0 || page >= self.pageJokes.count) {
+        // If it's outside the range of what we have to display, then do nothing
         return;
     }
     
-    // check if view is already loaded
+    // Load an individual page, first checking if you've already loaded it
     UIView *pageView = [self.pageViews objectAtIndex:page];
-    if ((NSNull*) pageView == [NSNull null])
-    {
-        // instantiate common routine
-        TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    if ((NSNull*)pageView == [NSNull null]) {
         
-        // if the view doesn't exist then create a page
-        CGRect frame = self.displayJokesView.bounds;
-        frame.origin.x = frame.size.width * page / 2;
+        // create frame
+        CGRect frame = self.scrollView.bounds;
+        frame.origin.x = frame.size.width * page;
         frame.origin.y = 0.0f;
-    
-        // create the new text view and add it to the scroll view
-        UITextView *textView = [[UITextView alloc] initWithFrame:frame];
-        textView.text = self.jokeList[page].jokeDescr;
-        textView.contentMode = UIViewContentModeTop;
-        UIColor *borderColor = [common StandardSystemColor];
-        textView.layer.borderWidth = 1.0f;
-        textView.layer.borderColor = borderColor.CGColor;
-        textView.layer.cornerRadius = 5.0;
-        textView.frame = frame;
-        [self.displayJokesView addSubview:textView];
+        frame = CGRectInset(frame, 10.0f, 0.0f);
         
-        // replace NSNull in pageViews array so as not to repeat the above code of creating a new page
-        [self.pageViews replaceObjectAtIndex:page withObject:textView];
+        // create text view
+        UITextView *newPageView = [[UITextView alloc] init];
+        
+        // set the ui text view delegate
+        newPageView.delegate = self;
+        
+        // populate with joke text
+        TJKJokeItem *jokeItem = [self.pageJokes objectAtIndex:page];
+        newPageView.text = jokeItem.jokeDescr;
+        newPageView.contentMode = UIViewContentModeScaleAspectFit;
+        newPageView.frame = frame;
+        
+        // setup border for text view used to display a joke
+        TJKCommonRoutines * common = [[TJKCommonRoutines alloc] init];
+        UIColor *borderColor = [common StandardSystemColor];
+        newPageView.layer.borderWidth = 1.0f;
+        newPageView.layer.borderColor = borderColor.CGColor;
+        newPageView.layer.cornerRadius = 5.0;
+        
+        // scroll text to the top
+        [newPageView scrollRangeToVisible:NSMakeRange(0, 0)];
+        
+        [self.scrollView addSubview:newPageView];
+        [self.pageViews replaceObjectAtIndex:page withObject:newPageView];
     }
 }
 
 // remove a page to preserve memory.  We don't want hundreds of items loaded into pages.
--(void)purgePage:(NSInteger)page
-{
-    // if out of bounds then do nothing
-    if (page < 0 || page >= self.jokeList.count)
-    {
+- (void)purgePage:(NSInteger)page {
+    if (page < 0 || page >= self.pageJokes.count) {
+        // If it's outside the range of what you have to display, then do nothing
         return;
     }
     
-    // remove a page from the scroll view and reset the container array
+    // Remove a page from the scroll view and reset the container array
     UIView *pageView = [self.pageViews objectAtIndex:page];
-    if ((NSNull*)pageView != [NSNull null])
-    {
+    if ((NSNull*)pageView != [NSNull null]) {
         [pageView removeFromSuperview];
         [self.pageViews replaceObjectAtIndex:page withObject:[NSNull null]];
     }
 }
 
-// determine what page the scroll view is currently on, updat eht page control and then load or purge relevant pages
--(void)loadVisiblePages
-{
+// determine what page the scroll view is currently on, update the page control and then load or purge relevant pages
+- (void)loadVisiblePages {
     // First, determine which page is currently visible
-    CGFloat pageWidth = self.displayJokesView.frame.size.width / 2;
-    NSInteger page = (NSInteger)floor((self.displayJokesView.contentOffset.x * 2.0f + pageWidth) / (pageWidth * 2.0f));
+    CGFloat pageWidth = self.scrollView.frame.size.width;
+    NSInteger page = (NSInteger)floor((self.scrollView.contentOffset.x * 2.0f + pageWidth) / (pageWidth * 2.0f));
     
     // Update the page control
     self.pageControl.currentPage = page;
@@ -137,14 +147,10 @@
     for (NSInteger i=0; i<firstPage; i++) {
         [self purgePage:i];
     }
-    
-    // Load pages in our range
     for (NSInteger i=firstPage; i<=lastPage; i++) {
         [self loadPage:i];
     }
-    
-    // Purge anything after the last page
-    for (NSInteger i=lastPage+1; i<self.jokeList.count; i++) {
+    for (NSInteger i=lastPage+1; i<self.pageJokes.count; i++) {
         [self purgePage:i];
     }
 }
@@ -165,13 +171,13 @@
     [self restrictRotation:YES];
     
     // get the number of jokes
-    NSInteger pageCount = self.jokeList.count;
+    NSInteger pageCount = self.pageJokes.count;
     
     // set the page control to the number of jokes
     self.pageControl.currentPage = self.jokeIndex;
     self.pageControl.numberOfPages = pageCount;
     
-    // setup placeholders for the pages
+    // setup the array to hold the view for each page
     self.pageViews = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < pageCount; i++)
     {
@@ -188,12 +194,22 @@
     self.navigationController.navigationBar.tintColor = [common StandardSystemColor];
 
     
-    // determine content size for horizontal scroll view
-    CGSize pagesScrollViewSize = self.displayJokesView.frame.size;
-    self.displayJokesView.contentSize = CGSizeMake(pagesScrollViewSize.width * self.jokeList.count, pagesScrollViewSize.height);
+    // Set up the content size of the scroll view
+    CGSize pagesScrollViewSize = self.scrollView.frame.size;
+    self.scrollView.contentSize = CGSizeMake(pagesScrollViewSize.width * self.pageJokes.count, pagesScrollViewSize.height);
     
-    // load the page
+    // Load the initial set of pages that are on screen
     [self loadVisiblePages];
+}
+
+// clear everything when view unloads
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    
+    self.scrollView = nil;
+    self.pageControl = nil;
+    self.pageJokes = nil;
+    self.pageViews = nil;
 }
 
 #pragma Methods

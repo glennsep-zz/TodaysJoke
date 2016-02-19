@@ -10,10 +10,12 @@
 #import "TJKJokeItem.h"
 #import "TJKJokeItemStore.h"
 
-@interface TJKDisplayJokesController : UIViewController
+@interface TJKDisplayJokesController : UIViewController <UIScrollViewDelegate, UITextViewDelegate>
 
 #pragma Properties
-@property (nonatomic, strong) NSArray<TJKJokeItem *> *jokeList;
+@property (nonatomic, strong) NSArray<TJKJokeItem *> *pageJokes;
 @property (nonatomic) NSInteger jokeIndex;
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
 
 @end
