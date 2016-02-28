@@ -73,7 +73,7 @@
              errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self closeCategories:self];};
              [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke categories failed to load. This screen will close. Just try again!" errorAction:errorBlock];
          }
-     }];
+     }]; 
 }
 
 // routines to run when view appears
