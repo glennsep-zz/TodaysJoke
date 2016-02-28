@@ -15,4 +15,5 @@
 -(void)setupNavigationBarTitle:(UINavigationItem *)navItem setImage:(NSString *)image;
 -(void)setupNavigationBarTitle:(UINavigationController *)navController fontName:(NSString *)fontName fontSize:(CGFloat)fontSize;
 -(UIColor *)StandardSystemColor;
+-(UIColor *)standardNavigationBarColor;
 @end

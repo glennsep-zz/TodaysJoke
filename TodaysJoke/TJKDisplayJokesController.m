@@ -40,7 +40,7 @@
         
         // change to standard color for right and left buttons
         TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-        self.navigationItem.rightBarButtonItem.tintColor = [common StandardSystemColor];
+        self.navigationItem.leftBarButtonItem.tintColor = [common StandardSystemColor];
     }
     
     // return view controller
@@ -68,7 +68,7 @@
     // setup scren title
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"ListJokes.png"];
-    self.navigationController.navigationBar.tintColor = [common StandardSystemColor];
+    self.navigationController.navigationBar.barTintColor = [common standardNavigationBarColor];
 }
 
 

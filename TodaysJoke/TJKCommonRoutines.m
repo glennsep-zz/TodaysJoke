@@ -44,6 +44,13 @@
     return standardColor;
 }
 
+// set the stanard color for the navigation bar
+-(UIColor *)standardNavigationBarColor
+{
+    UIColor *standardColor = [[UIColor alloc] initWithRed:248 green:248 blue:248 alpha:1];
+    return standardColor;
+}
+
 @end
 
 // possibly another solution to changing navigation title and color and font size
