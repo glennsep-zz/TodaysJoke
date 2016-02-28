@@ -2,7 +2,7 @@
 //  TJKDisplayJokesController.h
 //  TodaysJoke
 //
-//  Created by Glenn Seplowitz on 2/14/16.
+//  Created by Glenn Seplowitz on 2/25/16.
 //  Copyright © 2016 Glenn Seplowitz. All rights reserved.
 //
 
@@ -10,12 +10,11 @@
 #import "TJKJokeItem.h"
 #import "TJKJokeItemStore.h"
 
-@interface TJKDisplayJokesController : UIViewController <UIScrollViewDelegate, UITextViewDelegate>
+@interface TJKDisplayJokesController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
-#pragma Properties
-@property (nonatomic, strong) NSArray<TJKJokeItem *> *pageJokes;
+#pragma properties
+@property (nonatomic, strong) NSArray<TJKJokeItem*> *pageJokes;
 @property (nonatomic) NSInteger jokeIndex;
-@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
+
 
 @end
