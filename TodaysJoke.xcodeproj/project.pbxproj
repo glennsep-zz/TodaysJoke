@@ -82,7 +82,7 @@
 		410307D51C39855000C20020 /* TJKCategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKCategoriesViewController.m; sourceTree = "<group>"; };
 		410307D61C39855000C20020 /* TJKCategoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKCategoriesViewController.xib; sourceTree = "<group>"; };
 		410307DF1C398F6F00C20020 /* TJKCategoriesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKCategoriesCell.xib; sourceTree = "<group>"; };
-		410378311C417BC6003DB0EB /* TodaysJoke.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TodaysJoke.entitlements; sourceTree = "<group>"; };
+		410378311C417BC6003DB0EB /* TodaysJoke.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = TodaysJoke.entitlements; path = TodaysJoke/TodaysJoke.entitlements; sourceTree = "<group>"; };
 		410A59A11C1FA2F80054E736 /* TodaysJoke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodaysJoke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		410A59A51C1FA2F80054E736 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		410A59A71C1FA2F80054E736 /* TJKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJKAppDelegate.h; sourceTree = "<group>"; };
@@ -187,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				419FA43F1C718F45004805A4 /* Launch Screen.storyboard */,
+				410378311C417BC6003DB0EB /* TodaysJoke.entitlements */,
 				410A59A31C1FA2F80054E736 /* TodaysJoke */,
 				410A59A21C1FA2F80054E736 /* Products */,
 				4164450D1C53EFA70090C7EA /* Frameworks */,
@@ -205,56 +206,11 @@
 		410A59A31C1FA2F80054E736 /* TodaysJoke */ = {
 			isa = PBXGroup;
 			children = (
-				410378311C417BC6003DB0EB /* TodaysJoke.entitlements */,
-				419FA3961C70E933004805A4 /* TJKConstants.h */,
-				415442EC1C5B016300401DAF /* TJKConstants.m */,
-				410A59A71C1FA2F80054E736 /* TJKAppDelegate.h */,
-				410A59A81C1FA2F80054E736 /* TJKAppDelegate.m */,
-				41D364341C223AC7004A6C1A /* TJKMainViewController.h */,
-				41D364351C223AC7004A6C1A /* TJKMainViewController.m */,
-				41D364371C223DE6004A6C1A /* TJKMainViewController.xib */,
-				41BC90F31C25F23900288F16 /* TJKDetailJokeViewController.h */,
-				41BC90F41C25F23900288F16 /* TJKDetailJokeViewController.m */,
-				41BC90F51C25F23900288F16 /* TJKDetailJokeViewController.xib */,
-				416410501C35D7E3008BD831 /* TJKCenterViewController.h */,
-				416410511C35D7E3008BD831 /* TJKCenterViewController.m */,
-				416410521C35D7E3008BD831 /* TJKCenterViewController.xib */,
-				413E51E71C35DB4400DC3330 /* TJKLeftPanelViewController.h */,
-				413E51E81C35DB4400DC3330 /* TJKLeftPanelViewController.m */,
-				413E51E91C35DB4400DC3330 /* TJKLeftPanelViewController.xib */,
-				418CE7141C36E1820065F008 /* TJKMainCellLeft.xib */,
-				410307D41C39855000C20020 /* TJKCategoriesViewController.h */,
-				410307D51C39855000C20020 /* TJKCategoriesViewController.m */,
-				410307D61C39855000C20020 /* TJKCategoriesViewController.xib */,
-				410307DF1C398F6F00C20020 /* TJKCategoriesCell.xib */,
-				417C00D21C44800400B86E52 /* TJKJokeSubmissionController.h */,
-				417C00D31C44800400B86E52 /* TJKJokeSubmissionController.m */,
-				417C00D41C44800400B86E52 /* TJKJokeSubmissionController.xib */,
-				419FA39D1C70EA32004805A4 /* TJKContactUsViewController.h */,
-				419FA39E1C70EA32004805A4 /* TJKContactUsViewController.m */,
-				419FA3991C70E96D004805A4 /* TJKContactUsViewController.xib */,
-				4166DEE11C6D5E84003A4764 /* TJKListJokesViewController.h */,
-				4166DEE21C6D5E84003A4764 /* TJKListJokesViewController.m */,
-				4166DEE31C6D5E84003A4764 /* TJKListJokesViewController.xib */,
-				4166DEE61C6D5F49003A4764 /* TJKListJokesCell.xib */,
-				412A2DCE1C7FCEBC0028528F /* TJKDisplayJokesController.h */,
-				412A2DCF1C7FCEBC0028528F /* TJKDisplayJokesController.m */,
-				412A2DD01C7FCEBC0028528F /* TJKDisplayJokesController.xib */,
-				412A2DD31C7FD1E90028528F /* TJKJokeGallery.h */,
-				412A2DD41C7FD1E90028528F /* TJKJokeGallery.m */,
-				412A2DD51C7FD1E90028528F /* TJKJokeGallery.xib */,
-				417A42741C6671CE0097E28B /* TJKCategories.h */,
-				417A42751C6671CE0097E28B /* TJKCategories.m */,
-				41D364391C224253004A6C1A /* TJKJokeItem.h */,
-				41D3643A1C224253004A6C1A /* TJKJokeItem.m */,
-				41BC90F01C25DB8600288F16 /* TJKJokeItemStore.h */,
-				41BC90F11C25DB8600288F16 /* TJKJokeItemStore.m */,
-				41117B901C5D512D006705BC /* TJKCommonRoutines.h */,
-				41117B911C5D512D006705BC /* TJKCommonRoutines.m */,
-				414028271C319F2500622BE4 /* GHSNoSwearing.h */,
-				414028281C319F2500622BE4 /* GHSNoSwearing.m */,
-				41C25C891C321463008FFCC4 /* GHSAlerts.h */,
-				41C25C8A1C321463008FFCC4 /* GHSAlerts.m */,
+				41C15D3C1C8675C10004BCFA /* User Actions */,
+				41C15D3B1C86755C0004BCFA /* Model */,
+				41C15D3A1C8675300004BCFA /* Show Jokes */,
+				41C15D391C8674F90004BCFA /* Utilities */,
+				41C15D381C8674AC0004BCFA /* Main Controllers */,
 				410A59B31C1FA2F80054E736 /* Assets.xcassets */,
 				410A59B81C1FA2F80054E736 /* Info.plist */,
 				410A59B01C1FA2F80054E736 /* TodaysJoke.xcdatamodeld */,
@@ -316,6 +272,90 @@
 				419FA3A31C70EB7D004805A4 /* menuButton.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		41C15D381C8674AC0004BCFA /* Main Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				410A59A71C1FA2F80054E736 /* TJKAppDelegate.h */,
+				410A59A81C1FA2F80054E736 /* TJKAppDelegate.m */,
+				41D364341C223AC7004A6C1A /* TJKMainViewController.h */,
+				41D364351C223AC7004A6C1A /* TJKMainViewController.m */,
+				41D364371C223DE6004A6C1A /* TJKMainViewController.xib */,
+				416410501C35D7E3008BD831 /* TJKCenterViewController.h */,
+				416410511C35D7E3008BD831 /* TJKCenterViewController.m */,
+				416410521C35D7E3008BD831 /* TJKCenterViewController.xib */,
+				413E51E71C35DB4400DC3330 /* TJKLeftPanelViewController.h */,
+				413E51E81C35DB4400DC3330 /* TJKLeftPanelViewController.m */,
+				413E51E91C35DB4400DC3330 /* TJKLeftPanelViewController.xib */,
+				418CE7141C36E1820065F008 /* TJKMainCellLeft.xib */,
+			);
+			name = "Main Controllers";
+			sourceTree = "<group>";
+		};
+		41C15D391C8674F90004BCFA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				419FA3961C70E933004805A4 /* TJKConstants.h */,
+				415442EC1C5B016300401DAF /* TJKConstants.m */,
+				41117B901C5D512D006705BC /* TJKCommonRoutines.h */,
+				41117B911C5D512D006705BC /* TJKCommonRoutines.m */,
+				414028271C319F2500622BE4 /* GHSNoSwearing.h */,
+				414028281C319F2500622BE4 /* GHSNoSwearing.m */,
+				41C25C891C321463008FFCC4 /* GHSAlerts.h */,
+				41C25C8A1C321463008FFCC4 /* GHSAlerts.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		41C15D3A1C8675300004BCFA /* Show Jokes */ = {
+			isa = PBXGroup;
+			children = (
+				410307D41C39855000C20020 /* TJKCategoriesViewController.h */,
+				410307D51C39855000C20020 /* TJKCategoriesViewController.m */,
+				410307D61C39855000C20020 /* TJKCategoriesViewController.xib */,
+				410307DF1C398F6F00C20020 /* TJKCategoriesCell.xib */,
+				4166DEE11C6D5E84003A4764 /* TJKListJokesViewController.h */,
+				4166DEE21C6D5E84003A4764 /* TJKListJokesViewController.m */,
+				4166DEE31C6D5E84003A4764 /* TJKListJokesViewController.xib */,
+				4166DEE61C6D5F49003A4764 /* TJKListJokesCell.xib */,
+				412A2DCE1C7FCEBC0028528F /* TJKDisplayJokesController.h */,
+				412A2DCF1C7FCEBC0028528F /* TJKDisplayJokesController.m */,
+				412A2DD01C7FCEBC0028528F /* TJKDisplayJokesController.xib */,
+				412A2DD31C7FD1E90028528F /* TJKJokeGallery.h */,
+				412A2DD41C7FD1E90028528F /* TJKJokeGallery.m */,
+				412A2DD51C7FD1E90028528F /* TJKJokeGallery.xib */,
+			);
+			name = "Show Jokes";
+			sourceTree = "<group>";
+		};
+		41C15D3B1C86755C0004BCFA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				417A42741C6671CE0097E28B /* TJKCategories.h */,
+				417A42751C6671CE0097E28B /* TJKCategories.m */,
+				41D364391C224253004A6C1A /* TJKJokeItem.h */,
+				41D3643A1C224253004A6C1A /* TJKJokeItem.m */,
+				41BC90F01C25DB8600288F16 /* TJKJokeItemStore.h */,
+				41BC90F11C25DB8600288F16 /* TJKJokeItemStore.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		41C15D3C1C8675C10004BCFA /* User Actions */ = {
+			isa = PBXGroup;
+			children = (
+				41BC90F31C25F23900288F16 /* TJKDetailJokeViewController.h */,
+				41BC90F41C25F23900288F16 /* TJKDetailJokeViewController.m */,
+				41BC90F51C25F23900288F16 /* TJKDetailJokeViewController.xib */,
+				417C00D21C44800400B86E52 /* TJKJokeSubmissionController.h */,
+				417C00D31C44800400B86E52 /* TJKJokeSubmissionController.m */,
+				417C00D41C44800400B86E52 /* TJKJokeSubmissionController.xib */,
+				419FA39D1C70EA32004805A4 /* TJKContactUsViewController.h */,
+				419FA39E1C70EA32004805A4 /* TJKContactUsViewController.m */,
+				419FA3991C70E96D004805A4 /* TJKContactUsViewController.xib */,
+			);
+			name = "User Actions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

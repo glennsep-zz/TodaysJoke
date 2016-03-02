@@ -14,25 +14,25 @@
                 <rect key="frame" x="0.0" y="0.0" width="393" height="571"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AVA-Ad-RO5">
-                        <rect key="frame" x="76" y="107" width="240" height="229"/>
+                        <rect key="frame" x="48" y="96" width="294" height="240"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFx-82-mIu">
-                        <rect key="frame" x="228" y="354" width="87" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFx-82-mIu">
+                        <rect key="frame" x="228" y="354" width="114" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="c5z-S8-gMT"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jqa-fo-pcL">
                         <rect key="frame" x="184" y="353" width="25" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="E2a-uf-iXc"/>
-                            <constraint firstAttribute="width" constant="25" id="NhL-Ro-1Su"/>
+                            <constraint firstAttribute="width" constant="25" id="E5W-po-hg4"/>
+                            <constraint firstAttribute="height" constant="25" id="Etu-aK-1OA"/>
                         </constraints>
                         <state key="normal" title="Button" image="favoriteUnSelected.png"/>
                     </button>
@@ -42,23 +42,29 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="OFx-82-mIu" firstAttribute="trailing" secondItem="AVA-Ad-RO5" secondAttribute="trailing" id="2Mj-R8-Yra"/>
-                <constraint firstAttribute="bottom" secondItem="Jqa-fo-pcL" secondAttribute="bottom" constant="193" id="2Rh-GL-sKC"/>
-                <constraint firstItem="AVA-Ad-RO5" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="6ap-yc-bii"/>
+                <constraint firstItem="Jqa-fo-pcL" firstAttribute="top" secondItem="AVA-Ad-RO5" secondAttribute="bottom" constant="17" id="9yR-9g-0rs"/>
+                <constraint firstItem="Jqa-fo-pcL" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Btz-vQ-H5c"/>
+                <constraint firstItem="AVA-Ad-RO5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="48" id="Cei-An-wPW"/>
                 <constraint firstAttribute="trailing" secondItem="OFx-82-mIu" secondAttribute="trailing" constant="78" id="F4u-fn-jip"/>
-                <constraint firstItem="OFx-82-mIu" firstAttribute="leading" secondItem="Jqa-fo-pcL" secondAttribute="trailing" constant="19" id="Hke-xF-KUB"/>
                 <constraint firstAttribute="trailing" secondItem="OFx-82-mIu" secondAttribute="trailing" constant="78" id="MtX-ev-pjU"/>
-                <constraint firstItem="AVA-Ad-RO5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="107" id="SRV-wp-ycf"/>
-                <constraint firstItem="AVA-Ad-RO5" firstAttribute="centerX" secondItem="Jqa-fo-pcL" secondAttribute="centerX" id="amn-RF-qGu"/>
-                <constraint firstItem="OFx-82-mIu" firstAttribute="top" secondItem="AVA-Ad-RO5" secondAttribute="bottom" constant="18" id="m5J-mX-XS7"/>
-                <constraint firstItem="AVA-Ad-RO5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="76" id="qTi-nM-uMi"/>
+                <constraint firstItem="OFx-82-mIu" firstAttribute="leading" secondItem="Jqa-fo-pcL" secondAttribute="trailing" constant="19" id="QFC-A9-8j2"/>
+                <constraint firstAttribute="bottom" secondItem="Jqa-fo-pcL" secondAttribute="bottom" constant="193" id="REY-72-izR"/>
+                <constraint firstAttribute="trailing" secondItem="AVA-Ad-RO5" secondAttribute="trailing" constant="51" id="UGv-U6-TqF"/>
+                <constraint firstItem="AVA-Ad-RO5" firstAttribute="trailing" secondItem="OFx-82-mIu" secondAttribute="trailing" id="XRl-ak-ZdV"/>
+                <constraint firstItem="AVA-Ad-RO5" firstAttribute="trailing" secondItem="OFx-82-mIu" secondAttribute="trailing" id="fQX-d6-gQ7"/>
+                <constraint firstAttribute="trailing" secondItem="AVA-Ad-RO5" secondAttribute="trailing" constant="51" id="lGz-Hv-EJS"/>
+                <constraint firstItem="OFx-82-mIu" firstAttribute="top" secondItem="AVA-Ad-RO5" secondAttribute="bottom" constant="18" id="r3r-cd-6R3"/>
+                <constraint firstItem="AVA-Ad-RO5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="96" id="rFm-xs-5eo"/>
                 <constraint firstAttribute="trailing" secondItem="AVA-Ad-RO5" secondAttribute="trailing" constant="77" id="w0E-f3-wYQ"/>
-                <constraint firstItem="Jqa-fo-pcL" firstAttribute="top" secondItem="AVA-Ad-RO5" secondAttribute="bottom" constant="17" id="y89-aj-rdN"/>
             </constraints>
             <size key="customSize" width="393" height="571"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="fQX-d6-gQ7"/>
+                    <exclude reference="lGz-Hv-EJS"/>
                     <exclude reference="w0E-f3-wYQ"/>
                     <exclude reference="2Mj-R8-Yra"/>
+                    <exclude reference="F4u-fn-jip"/>
                     <exclude reference="MtX-ev-pjU"/>
                 </mask>
             </variation>
