@@ -30,17 +30,7 @@
     
     if (self)
     {
-        // create navigation bar buttons
-        // done button
-        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
-                                     initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                     target:self
-                                     action:@selector(closeListJokes:)];
-        self.navigationItem.leftBarButtonItem = doneItem;
-        
-        // change to standard color for right and left buttons
-        TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-        self.navigationItem.leftBarButtonItem.tintColor = [common StandardSystemColor];
+
     }
     
     // return view controller
@@ -49,28 +39,35 @@
 
 #pragma View Controller Methods
 
+// routine to run when view loads
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // setup screen title
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    [common setupNavigationBarTitle:self.navigationItem setImage:@"ListJokes.png"];
+    self.navigationController.navigationBar.barTintColor = [common standardNavigationBarColor];
     
     // setup first display switch
     self.firstDisplay = YES;
     
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
-  
+    
     // setup the collection view by setting up how it responds and displays
     [self setupCollectionView];
 }
 
 // routines to implement when view appears
--(void)viewWillAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
-    // setup scren title
-    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    [common setupNavigationBarTitle:self.navigationItem setImage:@"ListJokes.png"];
-    self.navigationController.navigationBar.barTintColor = [common standardNavigationBarColor];
+    [super viewDidAppear:animated];
+    
+    NSIndexPath *path = [NSIndexPath indexPathForRow:_jokeIndex inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:path
+                                atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                        animated:NO];
 }
-
 
 #pragma Methods
 
@@ -84,13 +81,6 @@
     [flowLayout setMinimumLineSpacing:0.0f];
     [self.collectionView setPagingEnabled:YES];
     [self.collectionView setCollectionViewLayout:flowLayout];
-}
-
-// close list jokes
--(void)closeListJokes:(id)sender
-{
-    // remove the contact us screen
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 // restrict to portrait mode for iphone
@@ -109,17 +99,6 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [self.pageJokes count];
 }
-
-// load the joke from what was selected in joke list
-/*-(void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    NSIndexPath *indexPath = [NSIndexPath indexPathWithIndex:self.jokeIndex];
-    
-    [self.collectionView scrollToItemAtIndexPath:indexPath
-                                atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
-                                        animated:YES];
-}*/
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     

@@ -191,16 +191,12 @@
     // create instance of contact us view controller
     TJKDisplayJokesController *jokeView = [[TJKDisplayJokesController alloc] initWithNibName:nil bundle:nil];
     
-    // create the navigation controller to be used with contact us view controller
-    UINavigationController *navController = [[UINavigationController alloc]
-                                             initWithRootViewController:jokeView];
-    
     // pass the array with the jokes to the display joke controller
     jokeView.pageJokes = self.jokeList;
     jokeView.jokeIndex = indexPath.row;
     
     // display the contact us screen
-    [self presentViewController:navController animated:YES completion:NULL];
+    [self.navigationController pushViewController:jokeView animated:YES];
 }
 
 
