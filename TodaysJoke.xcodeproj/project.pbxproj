@@ -70,6 +70,7 @@
 		41BC90F21C25DB8600288F16 /* TJKJokeItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BC90F11C25DB8600288F16 /* TJKJokeItemStore.m */; };
 		41BC90F61C25F23900288F16 /* TJKDetailJokeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BC90F41C25F23900288F16 /* TJKDetailJokeViewController.m */; };
 		41BC90F71C25F23900288F16 /* TJKDetailJokeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41BC90F51C25F23900288F16 /* TJKDetailJokeViewController.xib */; };
+		41C15D371C8672340004BCFA /* Categories.png in Resources */ = {isa = PBXBuildFile; fileRef = 41C15D361C8672340004BCFA /* Categories.png */; };
 		41C25C8B1C321463008FFCC4 /* GHSAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C25C8A1C321463008FFCC4 /* GHSAlerts.m */; };
 		41D364361C223AC7004A6C1A /* TJKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D364351C223AC7004A6C1A /* TJKMainViewController.m */; };
 		41D364381C223DE6004A6C1A /* TJKMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41D364371C223DE6004A6C1A /* TJKMainViewController.xib */; };
@@ -158,6 +159,7 @@
 		41BC90F31C25F23900288F16 /* TJKDetailJokeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKDetailJokeViewController.h; sourceTree = "<group>"; };
 		41BC90F41C25F23900288F16 /* TJKDetailJokeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKDetailJokeViewController.m; sourceTree = "<group>"; };
 		41BC90F51C25F23900288F16 /* TJKDetailJokeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKDetailJokeViewController.xib; sourceTree = "<group>"; };
+		41C15D361C8672340004BCFA /* Categories.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Categories.png; path = TodaysJoke/Images/Categories.png; sourceTree = "<group>"; };
 		41C25C891C321463008FFCC4 /* GHSAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHSAlerts.h; sourceTree = "<group>"; };
 		41C25C8A1C321463008FFCC4 /* GHSAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHSAlerts.m; sourceTree = "<group>"; };
 		41D364341C223AC7004A6C1A /* TJKMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKMainViewController.h; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				419C6F931C728D7B006FF4EE /* SubmitJoke.png */,
 				419C6F8F1C727AFB006FF4EE /* TodaysJoke.png */,
 				4113E4DD1C83AB6D006FC6DE /* ListJokes.png */,
+				41C15D361C8672340004BCFA /* Categories.png */,
 				419FA41D1C718CED004805A4 /* MainApp.png */,
 				419FA41E1C718CED004805A4 /* MainApp@29.png */,
 				419FA41F1C718CED004805A4 /* MainApp@40.png */,
@@ -412,6 +415,7 @@
 				419FA4401C718F45004805A4 /* Launch Screen.storyboard in Resources */,
 				419FA4321C718CED004805A4 /* MainApp@57.png in Resources */,
 				419FA4371C718CED004805A4 /* MainApp@87.png in Resources */,
+				41C15D371C8672340004BCFA /* Categories.png in Resources */,
 				419FA4361C718CED004805A4 /* MainApp@80.png in Resources */,
 				419FA43B1C718CED004805A4 /* MainApp@144.png in Resources */,
 				419FA3A41C70EB7D004805A4 /* Checkbox-checked.png in Resources */,

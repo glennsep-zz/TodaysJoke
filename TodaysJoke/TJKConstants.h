@@ -35,3 +35,7 @@ extern NSString *const PARAMETERS_RECORD_TYPE;
 extern NSString *const PARAMETERS_CATEGORY_RECORD_NAME;
 extern NSString *const PARAMETERS_JOKE_SUBMITTED_EMAIL;
 extern NSString *const PARAMETERS_CONTACT_US_EMAIL;
+
+// fonts
+extern NSString *const FONT_NAME;
+extern CGFloat   const FONT_SIZE;

@@ -35,3 +35,7 @@ NSString *const PARAMETERS_RECORD_TYPE = @"Parameters";
 NSString *const PARAMETERS_CATEGORY_RECORD_NAME = @"7862f17b-a3de-4f3c-83ad-19e997bdf7f4";
 NSString *const PARAMETERS_JOKE_SUBMITTED_EMAIL = @"jokeSubmittedEMail";
 NSString *const PARAMETERS_CONTACT_US_EMAIL = @"contactUsEmail";
+
+// fonts
+NSString *const FONT_NAME = @"HelveticaNeue-Bold";
+CGFloat  const FONT_SIZE = 17.0f;

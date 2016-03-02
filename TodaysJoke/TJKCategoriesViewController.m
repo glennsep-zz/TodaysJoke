@@ -46,6 +46,25 @@
     [self restrictRotation:YES];
     
     // get all categories
+    [self retrieveCategories];
+}
+
+// routines to run when view appears
+-(void)viewWillAppear:(BOOL)animated
+{
+    // set the title and color
+    // setup scren title
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    self.navigationController.navigationBar.tintColor = [common StandardSystemColor];
+    [common setupNavigationBarTitle:self.navigationItem setImage:@"Categories.png"];
+}
+
+#pragma Methods
+
+// retrieve categories
+-(void)retrieveCategories
+{
+    // get all categories
     _jokeCategories = [[NSMutableArray alloc] init];
     CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
     NSPredicate *predicateCategory = [NSPredicate predicateWithFormat:@"CategoryName != %@", CATEGORY_TO_REMOVE_OTHER];
@@ -55,7 +74,7 @@
     [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray<CKRecord*>* results, NSError * error)
      {
          if (!error)
-         { 
+         {
              // add all categories to array
              for (CKRecord* jokeCategory in results)
              {
@@ -73,20 +92,8 @@
              errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self closeCategories:self];};
              [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke categories failed to load. This screen will close. Just try again!" errorAction:errorBlock];
          }
-     }]; 
+     }];
 }
-
-// routines to run when view appears
--(void)viewWillAppear:(BOOL)animated
-{
-    // set the title and color
-    self.title = @"Categories";
-    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    self.navigationController.navigationBar.tintColor = [common StandardSystemColor];
-    [common setupNavigationBarTitle:self.navigationController fontName:@"HelveticaNeue-Bold" fontSize:17.0f];
-}
-
-#pragma Methods
 
 // setup the array that will hold the table's contents
 -(void)setupTableContents

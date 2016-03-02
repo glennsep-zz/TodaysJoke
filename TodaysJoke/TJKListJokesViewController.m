@@ -12,6 +12,7 @@
 #import "TJKJokeItemStore.h"
 #import "TJKJokeItem.h"
 #import "GHSAlerts.h"
+#import "TJKConstants.h"
 #import "TJKCommonRoutines.h"
 
 @interface TJKListJokesViewController ()
@@ -58,7 +59,7 @@
     self.title = self.categoryName;
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     self.navigationController.navigationBar.tintColor = [common StandardSystemColor];
-    [common setupNavigationBarTitle:self.navigationController fontName:@"HelveticaNeue-Bold" fontSize:17.0f];
+    [common setupNavigationBarTitle:self.navigationController fontName:FONT_NAME fontSize:FONT_SIZE];
 }
 
 // routines to run when view disappears
