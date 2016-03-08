@@ -16,6 +16,10 @@
 {
     #pragma Setup Mail view Controller
     MFMailComposeViewController *mailComposer;
+    
 }
+
+#pragma Properties
+@property (nonatomic, strong) NSCache *cacheLists;
 
 @end

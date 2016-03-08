@@ -64,35 +64,47 @@
 // retrieve categories
 -(void)retrieveCategories
 {
-    // get all categories
-    _jokeCategories = [[NSMutableArray alloc] init];
-    CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
-    NSPredicate *predicateCategory = [NSPredicate predicateWithFormat:@"CategoryName != %@", CATEGORY_TO_REMOVE_OTHER];
-    CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategory];
-    NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:CATEGORY_FIELD_NAME ascending:YES];
-    queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];
-    [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray<CKRecord*>* results, NSError * error)
-     {
-         if (!error)
+    if ([self.cacheLists objectForKey:CACHE_CATEGORY_LIST])
+    {
+        // retrieve categories from cache and setup table
+        _jokeCategories = [self.cacheLists objectForKey:CACHE_CATEGORY_LIST];
+        [self setupTableContents];
+    }
+    else
+    {
+        // get all categories
+        _jokeCategories = [[NSMutableArray alloc] init];
+        CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
+        NSPredicate *predicateCategory = [NSPredicate predicateWithFormat:@"CategoryName != %@", CATEGORY_TO_REMOVE_OTHER];
+        CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategory];
+        NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:CATEGORY_FIELD_NAME ascending:YES];
+        queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];
+        [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray<CKRecord*>* results, NSError * error)
          {
-             // add all categories to array
-             for (CKRecord* jokeCategory in results)
+             if (!error)
              {
-                 TJKCategories *categories = [TJKCategories initWithCategory:[jokeCategory valueForKey:CATEGORY_FIELD_NAME] categoryImage:[jokeCategory valueForKey:CATEGORY_FIELD_IMAGE]];
-                 [_jokeCategories addObject:categories];
+                 // add all categories to array
+                 for (CKRecord* jokeCategory in results)
+                 {
+                     TJKCategories *categories = [TJKCategories initWithCategory:[jokeCategory valueForKey:CATEGORY_FIELD_NAME] categoryImage:[jokeCategory valueForKey:CATEGORY_FIELD_IMAGE]];
+                     [_jokeCategories addObject:categories];
+                 }
+                 
+                 // store categories to cache
+                 [self.cacheLists setObject:_jokeCategories forKey:CACHE_CATEGORY_LIST];
+                 
+                 // setup table
+                 [self setupTableContents];
              }
-             
-             // setup table
-             [self setupTableContents];
-         }
-         else
-         {
-             // display alert message and pop the view controller from the stack
-             GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
-             errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self closeCategories:self];};
-             [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke categories failed to load. This screen will close. Just try again!" errorAction:errorBlock];
-         }
-     }];
+             else
+             {
+                 // display alert message and pop the view controller from the stack
+                 GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
+                 errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self closeCategories:self];};
+                 [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke categories failed to load. This screen will close. Just try again!" errorAction:errorBlock];
+             }
+         }];
+    }
 }
 
 // setup the array that will hold the table's contents

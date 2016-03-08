@@ -120,35 +120,49 @@
     // round corners of help button
     self.helpButton.layer.cornerRadius = 5;
     self.helpButton.clipsToBounds = YES;
-        
-    // get all categories
-    CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
-    NSPredicate *predicateCategory = [NSPredicate predicateWithFormat:@"CategoryName != %@", CATEGORY_TO_REMOVE_RANDOM];
-    CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategory];
-    NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:CATEGORY_FIELD_NAME ascending:YES];
-    queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];
-    [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray *results, NSError * error)
+    
+    // check if categories are cached
+    if ([self.cacheLists objectForKey:CACHE_CATEGORY_PICKER])
     {
-        if (!error)
+        // retrieve categories from cache and set initial joke category
+        _jokeCategories = [self.cacheLists objectForKey:CACHE_CATEGORY_PICKER];
+        _jokeCategory.text = DEFAULT_CATEGORY;
+        _jokeCategory.enabled = YES;
+    }
+    else
+    {
+        // get all categories
+        CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
+        NSPredicate *predicateCategory = [NSPredicate predicateWithFormat:@"CategoryName != %@", CATEGORY_TO_REMOVE_RANDOM];
+        CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategory];
+        NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:CATEGORY_FIELD_NAME ascending:YES];
+        queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];
+        [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray *results, NSError * error)
         {
-            // load the array with joke categories
-            _jokeCategories = [results valueForKey:CATEGORY_FIELD_NAME];
+            if (!error)
+            {
+                // load the array with joke categories
+                _jokeCategories = [results valueForKey:CATEGORY_FIELD_NAME];
 
-            // set initial value for joke category
-            dispatch_async(dispatch_get_main_queue(), ^{
-                _jokeCategory.text = DEFAULT_CATEGORY;
-                _jokeCategory.enabled = YES;
-            });
+                // store categories to cache
+                [self.cacheLists setObject:_jokeCategories forKey:CACHE_CATEGORY_PICKER];
+                
+                // set initial value for joke category
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    _jokeCategory.text = DEFAULT_CATEGORY;
+                    _jokeCategory.enabled = YES;
+                });
 
-        }
-        else
-        {
-            // display error message
-            GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
-            errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self cancelJoke:self];};
-            [alert displayErrorMessage:@"Oops!" errorMessage:@"We had trouble reading in the joke categories. This screen will close. Just try again!" errorAction:errorBlock];
-        }
-    }];
+            }
+            else
+            {
+                // display error message
+                GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
+                errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self cancelJoke:self];};
+                [alert displayErrorMessage:@"Oops!" errorMessage:@"We had trouble reading in the joke categories. This screen will close. Just try again!" errorAction:errorBlock];
+            }
+        }];
+    }
     
     // set up the picker for the joke categories
     self.jokeCategoryPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 43, self.view.frame.size.width,self.view.frame.size.height / 4)];

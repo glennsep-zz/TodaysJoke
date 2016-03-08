@@ -18,6 +18,8 @@
 
 @interface TJKLeftPanelViewController : UIViewController
 
+#pragma Properties
 @property (nonatomic, assign) id<LeftPanelViewControllerDelegate> delegate;
+@property (nonatomic, strong) NSCache *cacheLists;
 
 @end

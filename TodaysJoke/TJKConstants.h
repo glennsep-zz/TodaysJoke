@@ -39,3 +39,7 @@ extern NSString *const PARAMETERS_CONTACT_US_EMAIL;
 // fonts
 extern NSString *const FONT_NAME;
 extern CGFloat   const FONT_SIZE;
+
+// cache list names
+extern NSString *const CACHE_CATEGORY_LIST;
+extern NSString *const CACHE_CATEGORY_PICKER;

@@ -60,6 +60,9 @@
     // allocate and create instance of categories view controller
     TJKCategoriesViewController *categoriesViewController = [[TJKCategoriesViewController alloc] init];
     
+    // pass cache to categories view controller
+    categoriesViewController.cacheLists = self.cacheLists;
+    
     // push it onto the top of the navigation controller's stack
     [self.navigationController pushViewController:categoriesViewController animated:YES];
 }

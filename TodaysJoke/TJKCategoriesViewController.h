@@ -12,5 +12,7 @@
 
 @interface TJKCategoriesViewController : UIViewController
 
+#pragma Properties
+@property (nonatomic, strong) NSCache *cacheLists;
 
 @end

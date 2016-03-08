@@ -40,6 +40,9 @@
     // prevent the view table from shifting down due to translucent navigation bar
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    // instantiate the cache
+    self.cacheLists = [[NSCache alloc] init];
+    
     // setup the navigation image
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"TodaysJoke.png"];
@@ -99,6 +102,9 @@
 {
     // create a instance of the joke view controller
     TJKDetailJokeViewController *detailJokeViewController = [[TJKDetailJokeViewController alloc] initWithNibName:nil bundle:nil];
+    
+    // pass in cache
+    detailJokeViewController.cacheLists = self.cacheLists;
 
     // create a navigation controller
     UINavigationController *navController = [[UINavigationController alloc]
@@ -142,6 +148,9 @@
         [self addChildViewController:_leftPanelViewController];
         [_leftPanelViewController didMoveToParentViewController:self];
         _leftPanelViewController.view.frame = CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.height);
+        
+        // pass cache to left panel view controller
+        _leftPanelViewController.cacheLists = self.cacheLists;
     }
     
     self.showingLeftPanel = YES;

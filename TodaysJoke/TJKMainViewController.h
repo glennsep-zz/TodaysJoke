@@ -10,6 +10,9 @@
 
 @interface TJKMainViewController : UIViewController
 
+#pragma Properties
+@property (nonatomic, strong) NSCache *cacheLists;
+
 #pragma Methods
 -(void)setupNavBar;
 

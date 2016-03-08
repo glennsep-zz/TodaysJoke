@@ -39,3 +39,7 @@ NSString *const PARAMETERS_CONTACT_US_EMAIL = @"contactUsEmail";
 // fonts
 NSString *const FONT_NAME = @"HelveticaNeue-Bold";
 CGFloat  const FONT_SIZE = 17.0f;
+
+// cache list names
+NSString *const CACHE_CATEGORY_LIST = @"ListCategories";
+NSString *const CACHE_CATEGORY_PICKER = @"ListCategoryPicker";
