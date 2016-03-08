@@ -20,7 +20,7 @@
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFx-82-mIu">
-                        <rect key="frame" x="228" y="354" width="114" height="21"/>
+                        <rect key="frame" x="48" y="354" width="294" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="c5z-S8-gMT"/>
                         </constraints>
@@ -28,55 +28,25 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jqa-fo-pcL">
-                        <rect key="frame" x="184" y="353" width="25" height="25"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="25" id="E5W-po-hg4"/>
-                            <constraint firstAttribute="height" constant="25" id="Etu-aK-1OA"/>
-                        </constraints>
-                        <state key="normal" title="Button" image="favoriteUnSelected.png"/>
-                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="OFx-82-mIu" firstAttribute="trailing" secondItem="AVA-Ad-RO5" secondAttribute="trailing" id="2Mj-R8-Yra"/>
-                <constraint firstItem="Jqa-fo-pcL" firstAttribute="top" secondItem="AVA-Ad-RO5" secondAttribute="bottom" constant="17" id="9yR-9g-0rs"/>
-                <constraint firstItem="Jqa-fo-pcL" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Btz-vQ-H5c"/>
-                <constraint firstItem="AVA-Ad-RO5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="48" id="Cei-An-wPW"/>
-                <constraint firstAttribute="trailing" secondItem="OFx-82-mIu" secondAttribute="trailing" constant="78" id="F4u-fn-jip"/>
-                <constraint firstAttribute="trailing" secondItem="OFx-82-mIu" secondAttribute="trailing" constant="78" id="MtX-ev-pjU"/>
-                <constraint firstItem="OFx-82-mIu" firstAttribute="leading" secondItem="Jqa-fo-pcL" secondAttribute="trailing" constant="19" id="QFC-A9-8j2"/>
-                <constraint firstAttribute="bottom" secondItem="Jqa-fo-pcL" secondAttribute="bottom" constant="193" id="REY-72-izR"/>
-                <constraint firstAttribute="trailing" secondItem="AVA-Ad-RO5" secondAttribute="trailing" constant="51" id="UGv-U6-TqF"/>
-                <constraint firstItem="AVA-Ad-RO5" firstAttribute="trailing" secondItem="OFx-82-mIu" secondAttribute="trailing" id="XRl-ak-ZdV"/>
-                <constraint firstItem="AVA-Ad-RO5" firstAttribute="trailing" secondItem="OFx-82-mIu" secondAttribute="trailing" id="fQX-d6-gQ7"/>
-                <constraint firstAttribute="trailing" secondItem="AVA-Ad-RO5" secondAttribute="trailing" constant="51" id="lGz-Hv-EJS"/>
-                <constraint firstItem="OFx-82-mIu" firstAttribute="top" secondItem="AVA-Ad-RO5" secondAttribute="bottom" constant="18" id="r3r-cd-6R3"/>
-                <constraint firstItem="AVA-Ad-RO5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="96" id="rFm-xs-5eo"/>
-                <constraint firstAttribute="trailing" secondItem="AVA-Ad-RO5" secondAttribute="trailing" constant="77" id="w0E-f3-wYQ"/>
+                <constraint firstItem="AVA-Ad-RO5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="96" id="8wH-y9-lep"/>
+                <constraint firstAttribute="bottom" secondItem="OFx-82-mIu" secondAttribute="bottom" constant="196" id="MYG-aB-NbH"/>
+                <constraint firstItem="OFx-82-mIu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="48" id="iE0-Tm-fme"/>
+                <constraint firstItem="OFx-82-mIu" firstAttribute="top" secondItem="AVA-Ad-RO5" secondAttribute="bottom" constant="18" id="oEI-5L-Apz"/>
+                <constraint firstAttribute="trailing" secondItem="AVA-Ad-RO5" secondAttribute="trailing" constant="51" id="sOf-CA-6XK"/>
+                <constraint firstAttribute="trailing" secondItem="OFx-82-mIu" secondAttribute="trailing" constant="51" id="y2F-s0-5E6"/>
+                <constraint firstItem="AVA-Ad-RO5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="48" id="z3i-og-rvZ"/>
             </constraints>
             <size key="customSize" width="393" height="571"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="fQX-d6-gQ7"/>
-                    <exclude reference="lGz-Hv-EJS"/>
-                    <exclude reference="w0E-f3-wYQ"/>
-                    <exclude reference="2Mj-R8-Yra"/>
-                    <exclude reference="F4u-fn-jip"/>
-                    <exclude reference="MtX-ev-pjU"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="jokeCateogry" destination="OFx-82-mIu" id="T5H-uJ-5cd"/>
-                <outlet property="jokeFavorite" destination="Jqa-fo-pcL" id="KOG-EE-vKR"/>
                 <outlet property="jokeText" destination="AVA-Ad-RO5" id="NcE-KE-OMV"/>
             </connections>
             <point key="canvasLocation" x="138.5" y="432.5"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="favoriteUnSelected.png" width="300" height="267"/>
-    </resources>
 </document>

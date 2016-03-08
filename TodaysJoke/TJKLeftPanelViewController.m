@@ -47,7 +47,7 @@
 -(void)setupTableContents
 {
     // define array with table contents
-    NSArray *tableContentsArray = @[@"Categories", @"Favorites", @"Settings", @"Contact Us"];
+    NSArray *tableContentsArray = @[@"Categories", @"Favorites", @"Contact Us"];
     
     // store to propery and reload table contents
     self.tableContents = [NSMutableArray arrayWithArray:tableContentsArray];

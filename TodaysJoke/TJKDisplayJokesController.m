@@ -15,6 +15,10 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) int currentIndex;
 @property (nonatomic) BOOL firstDisplay;
+@property (nonatomic) UIImage *favoriteImage;
+@property (nonatomic) CGRect favoriteFrameImg;
+@property (nonatomic) UIButton *favoriteButton;
+@property (nonatomic) BOOL favoriteSelected;
 
 @end
 
@@ -30,7 +34,8 @@
     
     if (self)
     {
-
+        // set the navigation bar to indicate if favorite is selected or not
+        [self setFavoriteButton];
     }
     
     // return view controller
@@ -42,6 +47,12 @@
 // routine to run when view loads
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // set the automatically adjust scroll view inserts to no
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    // indicate that the favorite is not selected
+    self.favoriteSelected = NO;
     
     // setup screen title
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
@@ -71,6 +82,45 @@
 
 #pragma Methods
 
+// set navigation bar to indicate if favorite is selected
+-(void)setFavoriteButton
+{
+    // create button to indicate favorite
+    // first create the image
+    if (self.favoriteSelected == NO)
+    {
+        self.favoriteImage = [UIImage imageNamed:@"favoriteUnSelected.png"];
+    }
+    else
+    {
+        self.favoriteImage = [UIImage imageNamed:@"favoriteSelected.png"];
+    }
+    self.favoriteFrameImg = CGRectMake(0,0,25,25);
+    self.favoriteButton = [[UIButton alloc] initWithFrame:self.favoriteFrameImg];
+    [self.favoriteButton setBackgroundImage:self.favoriteImage forState:UIControlStateNormal];
+    [self.favoriteButton addTarget:self action:@selector(makeFavorite:) forControlEvents:UIControlEventTouchUpInside];
+    [self.favoriteButton setShowsTouchWhenHighlighted:YES];
+    
+    
+    UIBarButtonItem *favoriteItem = [[UIBarButtonItem alloc] initWithCustomView:self.favoriteButton];
+    self.navigationItem.rightBarButtonItem = favoriteItem;
+}
+
+// setup joke as favorite
+-(void)makeFavorite:(id)sender
+{
+    if (self.favoriteSelected == NO)
+    {
+        self.favoriteSelected = YES;
+    }
+    else
+    {
+        self.favoriteSelected = NO;
+    }
+    
+    [self setFavoriteButton];
+}
+
 // setup the collection by setting up how it responds and displays
 -(void)setupCollectionView {
     [self.collectionView registerClass:[TJKJokeGallery class] forCellWithReuseIdentifier:@"cellIdentifier"];
@@ -81,6 +131,8 @@
     [flowLayout setMinimumLineSpacing:0.0f];
     [self.collectionView setPagingEnabled:YES];
     [self.collectionView setCollectionViewLayout:flowLayout];
+    [self.collectionView setShowsHorizontalScrollIndicator:NO];
+    [self.collectionView setShowsVerticalScrollIndicator:NO];
 }
 
 // restrict to portrait mode for iphone
@@ -128,38 +180,6 @@
         return CGSizeMake(self.collectionView.frame.size.height, self.collectionView.frame.size.width);
     }
     return CGSizeMake(self.collectionView.frame.size.width, self.collectionView.frame.size.height);
-}
-
-#pragma mark Rotation handling methods
-
-// format the cell when device is rotated
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:
-(NSTimeInterval)duration {
-    
-    // Fade the collectionView out
-    [self.collectionView setAlpha:0.0f];
-    
-    // Suppress the layout errors by invalidating the layout
-    [self.collectionView.collectionViewLayout invalidateLayout];
-    
-    // Calculate the index of the item that the collectionView is currently displaying
-    CGPoint currentOffset = [self.collectionView contentOffset];
-    self.currentIndex = currentOffset.x / self.collectionView.frame.size.width;
-}
-
-// format the cell when device is rotated
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    
-    
-    // Force realignment of cell being displayed
-    CGSize currentSize = self.collectionView.bounds.size;
-    float offset = self.currentIndex * currentSize.width;
-    [self.collectionView setContentOffset:CGPointMake(offset, 0)];
-    
-    // Fade the collectionView back in
-    [UIView animateWithDuration:0.125f animations:^{
-        [self.collectionView setAlpha:1.0f];
-    }];
 }
 
 @end

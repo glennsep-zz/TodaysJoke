@@ -26,7 +26,7 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self) {       
         // Initialization code
         NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:@"TJKJokeGallery" owner:self options:nil];
         
@@ -44,6 +44,8 @@
     
     return self;
 }
+
+#pragma Collection Cell Methods
 
 #pragma Methods
 
