@@ -55,7 +55,7 @@
     // set the title and color
     // setup scren title
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    self.navigationController.navigationBar.tintColor = [common StandardSystemColor];
+    self.navigationController.navigationBar.tintColor = [common standardSystemColor];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"Categories.png"];
 }
 

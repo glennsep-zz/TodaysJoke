@@ -37,8 +37,8 @@ NSString *const PARAMETERS_JOKE_SUBMITTED_EMAIL = @"jokeSubmittedEMail";
 NSString *const PARAMETERS_CONTACT_US_EMAIL = @"contactUsEmail";
 
 // fonts
-NSString *const FONT_NAME = @"HelveticaNeue-Bold";
-CGFloat  const FONT_SIZE = 17.0f;
+NSString *const FONT_NAME = @"Marker Felt";
+CGFloat  const FONT_SIZE = 22.0f;
 
 // cache list names
 NSString *const CACHE_CATEGORY_LIST = @"ListCategories";

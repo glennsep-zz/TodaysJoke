@@ -52,7 +52,7 @@
 {
     // setup color
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    UIColor *borderColor = [common StandardSystemColor];
+    UIColor *borderColor = [common standardSystemColor];
     
     // setup border
     self.jokeText.layer.borderWidth = 1.0f;

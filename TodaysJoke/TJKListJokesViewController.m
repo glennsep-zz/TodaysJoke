@@ -58,7 +58,7 @@
     // set the title
     self.title = self.categoryName;
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    self.navigationController.navigationBar.tintColor = [common StandardSystemColor];
+    self.navigationController.navigationBar.tintColor = [common standardSystemColor];
     [common setupNavigationBarTitle:self.navigationController fontName:FONT_NAME fontSize:FONT_SIZE];
 }
 

@@ -52,8 +52,8 @@
 
         // change to standard color for right and left buttons
         TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-        self.navigationItem.leftBarButtonItem.tintColor = [common StandardSystemColor];
-        self.navigationItem.rightBarButtonItem.tintColor = [common StandardSystemColor];
+        self.navigationItem.leftBarButtonItem.tintColor = [common standardSystemColor];
+        self.navigationItem.rightBarButtonItem.tintColor = [common standardSystemColor];
     }
     
     

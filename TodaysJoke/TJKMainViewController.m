@@ -92,7 +92,7 @@
     
     // setup button colors
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    navItem.rightBarButtonItem.tintColor = [common StandardSystemColor];
+    navItem.rightBarButtonItem.tintColor = [common standardSystemColor];
 }
 
 #pragma Actions
