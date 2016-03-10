@@ -18,7 +18,6 @@
 @property (nonatomic) UIImage *favoriteImage;
 @property (nonatomic) CGRect favoriteFrameImg;
 @property (nonatomic) UIButton *favoriteButton;
-//@property (nonatomic) BOOL favoriteSelected;
 
 @end
 
@@ -51,9 +50,6 @@
     // set the automatically adjust scroll view inserts to no
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    
-    //self.favoriteSelected = NO;
-    
     // setup screen title
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"ListJokes.png"];
@@ -74,6 +70,7 @@
 {
     [super viewDidAppear:animated];
     
+    // set joke to start at joke selected from table.
     NSIndexPath *path = [NSIndexPath indexPathForRow:_jokeIndex inSection:0];
     self.currentIndex = (int)_jokeIndex;
     [self.collectionView scrollToItemAtIndexPath:path
