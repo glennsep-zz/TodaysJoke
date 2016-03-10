@@ -18,7 +18,7 @@
 @property (nonatomic) UIImage *favoriteImage;
 @property (nonatomic) CGRect favoriteFrameImg;
 @property (nonatomic) UIButton *favoriteButton;
-@property (nonatomic) BOOL favoriteSelected;
+//@property (nonatomic) BOOL favoriteSelected;
 
 @end
 
@@ -51,8 +51,8 @@
     // set the automatically adjust scroll view inserts to no
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    // indicate that the favorite is not selected
-    self.favoriteSelected = NO;
+    
+    //self.favoriteSelected = NO;
     
     // setup screen title
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
@@ -75,9 +75,11 @@
     [super viewDidAppear:animated];
     
     NSIndexPath *path = [NSIndexPath indexPathForRow:_jokeIndex inSection:0];
+    self.currentIndex = (int)_jokeIndex;
     [self.collectionView scrollToItemAtIndexPath:path
                                 atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
                                         animated:NO];
+    [self setFavoriteButton];
 }
 
 #pragma Methods
@@ -87,7 +89,8 @@
 {
     // create button to indicate favorite
     // first create the image
-    if (self.favoriteSelected == NO)
+    TJKJokeItem *joke = [self.pageJokes objectAtIndex:self.currentIndex];
+    if (joke.isFavorite == NO)
     {
         self.favoriteImage = [UIImage imageNamed:@"favoriteUnSelected.png"];
     }
@@ -109,13 +112,14 @@
 // setup joke as favorite
 -(void)makeFavorite:(id)sender
 {
-    if (self.favoriteSelected == NO)
+    TJKJokeItem *joke = [self.pageJokes objectAtIndex:self.currentIndex];
+    if (joke.isFavorite == NO)
     {
-        self.favoriteSelected = YES;
+        joke.isFavorite = YES;
     }
     else
     {
-        self.favoriteSelected = NO;
+        joke.isFavorite = NO;
     }
     
     [self setFavoriteButton];
@@ -162,10 +166,17 @@
     
     NSString *jokeDescr = jokeItem.jokeDescr;
     NSString *jokeCategory = jokeItem.jokeCategory;
+    BOOL jokeFavorite = jokeItem.isFavorite;
     
     cell.jokeDescr = jokeDescr;
     cell.jokeCategoryText = [@"~" stringByAppendingString:jokeCategory];
+    cell.isFavorite = jokeFavorite;
     [cell updateCell];
+    
+    // update the current index with the joke item
+    self.currentIndex = (int)indexPath.row;
+    
+    [self setFavoriteButton];
     
     return cell;
 }

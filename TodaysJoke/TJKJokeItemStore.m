@@ -65,7 +65,8 @@
                  jokeTitle:(NSString *)jokeTitle
         categoryRecordName:(NSString *)categoryRecordName
                jokeCreated:(NSDate *)jokeCreated
-            jokeRecordName:(NSString *)jokeId;
+            jokeRecordName:(NSString *)jokeId
+              jokeFavorite:(BOOL)isFavorite;
 {
     TJKJokeItem *item = [[TJKJokeItem alloc] initWithJokeDescr:(NSString *)jokeDescr
                                                   jokeCategory:(NSString *)jokeCategory
@@ -73,7 +74,8 @@
                                                      jokeTitle:(NSString*)jokeTitle
                                             categoryRecordName:(NSString *)categoryRecordName
                                                    jokeCreated:(NSDate*)jokeCreated
-                                                 jokeRecordName:(NSString *)jokeId];
+                                                 jokeRecordName:(NSString *)jokeId
+                                                  jokeFavorite: isFavorite];
     [self.privateItems addObject:item];
     return item;
 }

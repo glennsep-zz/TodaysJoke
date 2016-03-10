@@ -13,6 +13,7 @@
 #pragma properties
 @property (nonatomic,strong) NSString *jokeDescr;
 @property (nonatomic,strong) NSString *jokeCategoryText;
+@property (nonatomic) BOOL isFavorite;
 
 #pragma Methods
 -(void)updateCell;

@@ -13,8 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *jokeText;
 @property (weak, nonatomic) IBOutlet UILabel *jokeCateogry;
-@property (weak, nonatomic) IBOutlet UIButton *jokeFavorite;
-
 
 @end
 

@@ -127,7 +127,7 @@
         case 0:
             [self callCategoriesTable];
             break;
-        case 3:
+        case 2:
             [self displayContactUs];
             break;
         default:

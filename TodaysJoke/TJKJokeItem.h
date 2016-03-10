@@ -19,6 +19,7 @@
 @property (nonatomic, copy) NSString *jokeCategory;
 @property (nonatomic, copy) NSString *categoryRecordName;
 @property (nonatomic, readonly, strong) NSString *jokeId;
+@property (nonatomic) BOOL isFavorite;
 
 #pragma Declare Initializers
 
@@ -29,7 +30,8 @@
                        jokeTitle:(NSString*)jokeTitle
               categoryRecordName:(NSString *)categoryRecordName
                      jokeCreated:(NSDate*)jokeCreated
-                  jokeRecordName:(NSString *)jokeId;
+                  jokeRecordName:(NSString *)jokeIdTJKJokeItem
+                     jokeFavorite:(BOOL) isFavorite;
 
 
 // create a joke item
@@ -39,6 +41,7 @@
                 jokeTitle:(NSString *)jokeTitle
        categoryRecordName:(NSString *)categoryRecordName
               jokeCreated:(NSDate *)jokeCreated
-           jokeRecordName:(NSString *)jokeId;
+           jokeRecordName:(NSString *)jokeId
+             jokeFavorite:(BOOL) isFavorite;
 
 @end

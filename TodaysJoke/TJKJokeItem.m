@@ -22,6 +22,7 @@
               categoryRecordName:(NSString *)categoryRecordName
                      jokeCreated:(NSDate *)jokeCreated
                   jokeRecordName:(NSString *)jokeId
+                  jokeFavorite:(BOOL)isFavorite
 {
     // call the superclass initializer
     self = [super init];
@@ -48,7 +49,7 @@
 // override init
 -(instancetype)init
 {
-    return [self initWithJokeDescr:@"" jokeCategory:@"" nameSubmitted:@"" jokeTitle:@"" categoryRecordName:@"" jokeCreated:[NSDate date] jokeRecordName:@""];
+    return [self initWithJokeDescr:@"" jokeCategory:@"" nameSubmitted:@"" jokeTitle:@"" categoryRecordName:@"" jokeCreated:[NSDate date] jokeRecordName:@"" jokeFavorite:NO];
 }
 
 #pragma Methods
@@ -61,6 +62,7 @@
     categoryRecordName:(NSString *)categoryRecordName
               jokeCreated:(NSDate *)jokeCreated
            jokeRecordName:(NSString *)jokeId
+            jokeFavorite:(BOOL) isFavorite
 {
     TJKJokeItem *newItem = [[self alloc] initWithJokeDescr:jokeDescr
                                              jokeCategory:jokeCategory
@@ -68,7 +70,8 @@
                                                  jokeTitle:jokeTitle
                                         categoryRecordName:categoryRecordName
                                                jokeCreated:jokeCreated
-                                             jokeRecordName:jokeId];
+                                             jokeRecordName:jokeId
+                                               jokeFavorite:isFavorite];
     
     // return new joke item
     return newItem;
