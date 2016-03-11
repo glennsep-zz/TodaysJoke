@@ -27,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *jokeSubmittedBy;
 @property (weak, nonatomic) IBOutlet UITextView *joke;
 @property (strong, nonatomic) IBOutlet UIView *jokeDetailView;
-@property (strong, nonatomic) IBOutlet UIButton *helpButton;
+@property (weak, nonatomic) IBOutlet UIButton *helpButton;
 @property (weak, nonatomic) IBOutlet UIButton *notifyMe;
 
 #pragma Properties
@@ -106,9 +106,6 @@
     UIImage *questionButton = [UIImage imageNamed:@"helpButton.png"];
     [self.helpButton setBackgroundImage:questionButton forState:UIControlStateNormal];
     [self.helpButton setShowsTouchWhenHighlighted:NO];
-    
-//    self.helpButton.layer.borderWidth = 1.0f;
-//    self.helpButton.layer.borderColor = borderColor.CGColor;
     
     // round corners of help button
     self.helpButton.layer.cornerRadius = 5;
