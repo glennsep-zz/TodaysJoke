@@ -25,7 +25,6 @@
     // load the main view
     NSBundle *appBundle = [NSBundle mainBundle];
     TJKMainViewController *mvc = [[TJKMainViewController alloc] initWithNibName:@"TJKMainViewController" bundle:appBundle];
-    [mvc setupNavBar];
     
     // create a UINavigationController
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mvc];

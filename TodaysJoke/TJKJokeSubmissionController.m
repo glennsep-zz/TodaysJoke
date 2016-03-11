@@ -7,6 +7,7 @@
 //
 
 #import "TJKJokeSubmissionController.h"
+#import "TJKCommonRoutines.h"
 #import "TJKAppDelegate.h"
 
 @interface TJKJokeSubmissionController ()
@@ -26,12 +27,12 @@
     
     if (self)
     {
-        // create done button
-        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
-                                     initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                     target:self
-                                     action:@selector(closeJokeHelp:)];
-        self.navigationItem.leftBarButtonItem = doneItem;
+//        // create done button
+//        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
+//                                     initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+//                                     target:self
+//                                     action:@selector(closeJokeHelp:)];
+//        self.navigationItem.leftBarButtonItem = doneItem;
     }
     
     return self;
@@ -42,6 +43,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    // setup navigation bar
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    self.navigationController.navigationBar.tintColor = [common standardSystemColor];
+    
     // set the ui text view delegate
     self.jokeHelp.delegate = self;
     
@@ -86,12 +91,12 @@
     appDelegate.restrictRotation = restriction;
 }
 
-// close the help screen
--(void)closeJokeHelp:(id)sender
-{
-    // close the screen
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
-}
+//// close the help screen
+//-(void)closeJokeHelp:(id)sender
+//{
+//    // close the screen
+//    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+//}
 
 // display the joke submission text
 -(void)displayJokeHelpText

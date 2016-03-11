@@ -42,11 +42,14 @@
     
     // instantiate the cache
     self.cacheLists = [[NSCache alloc] init];
+
+    // setup the navigation bar
+    [self setupNavBar];
     
     // setup the navigation image
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"TodaysJoke.png"];
-
+    
     // setup the slide out menus
     [self setupView];
 }
@@ -107,11 +110,12 @@
     detailJokeViewController.cacheLists = self.cacheLists;
 
     // create a navigation controller
-    UINavigationController *navController = [[UINavigationController alloc]
-                                             initWithRootViewController:detailJokeViewController];
+    //UINavigationController *navController = [[UINavigationController alloc]
+    //                                         initWithRootViewController:detailJokeViewController];
     
     // display joke detail screen
-    [self presentViewController:navController animated:YES completion:NULL];
+    [self.navigationController pushViewController:detailJokeViewController animated:YES];
+    //[self presentViewController:navController animated:YES completion:NULL];
 }
 
 // to show or hide left panel

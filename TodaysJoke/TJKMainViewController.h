@@ -14,6 +14,5 @@
 @property (nonatomic, strong) NSCache *cacheLists;
 
 #pragma Methods
--(void)setupNavBar;
 
 @end

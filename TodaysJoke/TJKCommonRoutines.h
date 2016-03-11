@@ -10,6 +10,9 @@
 
 @interface TJKCommonRoutines : NSObject
 
+#pragma Properties
+@property (nonatomic, strong) NSCache *cacheLists;
+
 #pragma Methods
 -(void)setupNavigationBarTitle:(UINavigationController *)navController setTitle:(NSString *)title;
 -(void)setupNavigationBarTitle:(UINavigationItem *)navItem setImage:(NSString *)image;

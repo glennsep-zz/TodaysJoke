@@ -42,20 +42,7 @@
                                        target:self
                                        action:@selector(contactUs:)];
         self.navigationItem.rightBarButtonItem = submitItem;
-        
-        // cancel button
-        UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc]
-                                       initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                       target:self
-                                       action:@selector(cancelContactUs:)];
-        self.navigationItem.leftBarButtonItem = cancelItem;
-
-        // change to standard color for right and left buttons
-        TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-        self.navigationItem.leftBarButtonItem.tintColor = [common standardSystemColor];
-        self.navigationItem.rightBarButtonItem.tintColor = [common standardSystemColor];
     }
-    
     
     // return view controller
     return self;
@@ -68,6 +55,7 @@
 
     // setup scren title
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    self.navigationController.navigationBar.tintColor = [common standardSystemColor];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"ContactUs.png"];
     
     // restrict to portrait mode if iphone
@@ -203,13 +191,6 @@
     }
     
     return [valid copy];
-}
-
-// cancel contact us
--(void)cancelContactUs:(id)sender
-{
-    // remove the contact us screen
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 // actions to perform when message sent via e-mail
