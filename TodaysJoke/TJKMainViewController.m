@@ -50,6 +50,10 @@
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"TodaysJoke.png"];
     
+    // setup categories for table view and picker view (when submitting a joke)
+    [common retrieveCategories:self.cacheLists];
+    [common retrieveCategoriesForPicker:self.cacheLists];
+    
     // setup the slide out menus
     [self setupView];
 }

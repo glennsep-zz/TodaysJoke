@@ -10,9 +10,6 @@
 
 @interface TJKCommonRoutines : NSObject
 
-#pragma Properties
-@property (nonatomic, strong) NSCache *cacheLists;
-
 #pragma Methods
 -(void)setupNavigationBarTitle:(UINavigationController *)navController setTitle:(NSString *)title;
 -(void)setupNavigationBarTitle:(UINavigationItem *)navItem setImage:(NSString *)image;
@@ -20,4 +17,6 @@
 -(UIColor *)standardSystemColor;
 -(UIColor *)standardNavigationBarColor;
 -(UIColor *)standardNavigationBarTitleColor;
+-(void)retrieveCategories:(NSCache *) cacheLists;
+-(void)retrieveCategoriesForPicker:(NSCache *) cacheLists;
 @end

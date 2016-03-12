@@ -6,7 +6,17 @@
 //  Copyright © 2016 Glenn Seplowitz. All rights reserved.
 //
 
+#import <CloudKit/Cloudkit.h>
 #import "TJKCommonRoutines.h"
+#import "TJKConstants.h"
+#import "TJKCategories.h"
+
+@interface TJKCommonRoutines()
+
+#pragma Properties
+@property (nonatomic, strong) NSArray *jokeCategories;
+
+@end
 
 @implementation TJKCommonRoutines
 
@@ -56,6 +66,56 @@
 {
     UIColor *titleColor = [[UIColor alloc] initWithRed:52/256.0 green:75/256.0 blue:105/256.0 alpha:1];
     return titleColor;
+}
+
+// retrieve categories to list in table
+-(void)retrieveCategories:(NSCache *)cacheLists
+{
+    // get all categories
+    NSMutableArray *jokeCategories = [[NSMutableArray alloc] init];
+    CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
+    NSPredicate *predicateCategory = [NSPredicate predicateWithFormat:@"CategoryName != %@", CATEGORY_TO_REMOVE_OTHER];
+    CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategory];
+    NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:CATEGORY_FIELD_NAME ascending:YES];
+    queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];
+    [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray<CKRecord*>* results, NSError * error)
+     {
+         if (!error)
+         {
+             // add all categories to array
+             for (CKRecord* jokeCategory in results)
+             {
+                 TJKCategories *categories = [TJKCategories initWithCategory:[jokeCategory valueForKey:CATEGORY_FIELD_NAME] categoryImage:[jokeCategory valueForKey:CATEGORY_FIELD_IMAGE]];
+                 [jokeCategories addObject:categories];
+             }
+             
+             // store categories to cache
+             [cacheLists setObject:jokeCategories forKey:CACHE_CATEGORY_LIST];
+         }
+     }];
+}
+
+// retrieve categories to list in picker when submitting a joke
+-(void)retrieveCategoriesForPicker:(NSCache *)cacheLists
+{
+    // get all categories
+    CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
+    NSPredicate *predicateCategory = [NSPredicate predicateWithFormat:@"CategoryName != %@", CATEGORY_TO_REMOVE_RANDOM];
+    CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategory];
+    NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:CATEGORY_FIELD_NAME ascending:YES];
+    queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];
+    [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray *results, NSError * error)
+     {
+         if (!error)
+         {
+             // load the array with joke categories
+             _jokeCategories = [results valueForKey:CATEGORY_FIELD_NAME];
+             
+             // store categories to cache
+             [cacheLists setObject:_jokeCategories forKey:CACHE_CATEGORY_PICKER];
+             
+         }
+     }];
 }
 
 @end
