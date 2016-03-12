@@ -27,6 +27,9 @@
 @property (nonatomic, assign) BOOL showPanel;
 @property (nonatomic, assign) CGPoint preVelocity;
 @property (nonatomic) float senderViewX;
+@property (nonatomic) UIImage *addJokeImage;
+@property (nonatomic) CGRect addJokeFrameImg;
+@property (nonatomic) UIButton *addJokeButton;
 
 @end
 
@@ -86,10 +89,14 @@
     UIBarButtonItem *leftMenu = [[UIBarButtonItem alloc] initWithCustomView:leftMenuButton];
     
     // create a new bar button item to add a new joke
-    UIBarButtonItem *addJoke = [[UIBarButtonItem alloc]
-                                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                target:self
-                                action:@selector(addNewJoke:)];
+    self.addJokeImage = [UIImage imageNamed:@"AddJoke.png"];
+    self.addJokeFrameImg = CGRectMake(0,0,25,25);
+    self.addJokeButton = [[UIButton alloc] initWithFrame:self.addJokeFrameImg];
+    [self.addJokeButton setBackgroundImage:self.addJokeImage forState:UIControlStateNormal];
+    [self.addJokeButton addTarget:self action:@selector(addNewJoke:) forControlEvents:UIControlEventTouchUpInside];
+    [self.addJokeButton setShowsTouchWhenHighlighted:NO];
+    UIBarButtonItem *addJoke = [[UIBarButtonItem alloc] initWithCustomView:self.addJokeButton];
+
     
     // setup the left bar button in the navigation bar
     navItem.leftBarButtonItem = leftMenu;

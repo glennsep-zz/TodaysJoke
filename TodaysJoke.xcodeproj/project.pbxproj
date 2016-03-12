@@ -32,6 +32,7 @@
 		4166DEE41C6D5E84003A4764 /* TJKListJokesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4166DEE21C6D5E84003A4764 /* TJKListJokesViewController.m */; };
 		4166DEE51C6D5E84003A4764 /* TJKListJokesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4166DEE31C6D5E84003A4764 /* TJKListJokesViewController.xib */; };
 		4166DEE71C6D5F49003A4764 /* TJKListJokesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4166DEE61C6D5F49003A4764 /* TJKListJokesCell.xib */; };
+		41683E101C94B0DC004ED1BA /* AddJoke.png in Resources */ = {isa = PBXBuildFile; fileRef = 41683E0F1C94B0DC004ED1BA /* AddJoke.png */; };
 		417A42761C6671CE0097E28B /* TJKCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 417A42751C6671CE0097E28B /* TJKCategories.m */; };
 		417C00D51C44800400B86E52 /* TJKJokeSubmissionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 417C00D31C44800400B86E52 /* TJKJokeSubmissionController.m */; };
 		417C00D61C44800400B86E52 /* TJKJokeSubmissionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 417C00D41C44800400B86E52 /* TJKJokeSubmissionController.xib */; };
@@ -116,6 +117,7 @@
 		4166DEE21C6D5E84003A4764 /* TJKListJokesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKListJokesViewController.m; sourceTree = "<group>"; };
 		4166DEE31C6D5E84003A4764 /* TJKListJokesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKListJokesViewController.xib; sourceTree = "<group>"; };
 		4166DEE61C6D5F49003A4764 /* TJKListJokesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKListJokesCell.xib; sourceTree = "<group>"; };
+		41683E0F1C94B0DC004ED1BA /* AddJoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AddJoke.png; path = TodaysJoke/Images/AddJoke.png; sourceTree = "<group>"; };
 		417A42741C6671CE0097E28B /* TJKCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKCategories.h; sourceTree = "<group>"; };
 		417A42751C6671CE0097E28B /* TJKCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKCategories.m; sourceTree = "<group>"; };
 		417C00D21C44800400B86E52 /* TJKJokeSubmissionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKJokeSubmissionController.h; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				419C6F8F1C727AFB006FF4EE /* TodaysJoke.png */,
 				4113E4DD1C83AB6D006FC6DE /* ListJokes.png */,
 				4128E6D61C9256ED00E0CDC7 /* helpButton.png */,
+				41683E0F1C94B0DC004ED1BA /* AddJoke.png */,
 				41C15D361C8672340004BCFA /* Categories.png */,
 				419FA41D1C718CED004805A4 /* MainApp.png */,
 				419FA41E1C718CED004805A4 /* MainApp@29.png */,
@@ -429,6 +432,7 @@
 			files = (
 				4113E4DE1C83AB6D006FC6DE /* ListJokes.png in Resources */,
 				419FA3F91C710B75004805A4 /* favoriteSelected.png in Resources */,
+				41683E101C94B0DC004ED1BA /* AddJoke.png in Resources */,
 				419FA43E1C718CED004805A4 /* MainApp@180.png in Resources */,
 				419FA3A51C70EB7D004805A4 /* Checkbox-unchecked.png in Resources */,
 				4166DEE51C6D5E84003A4764 /* TJKListJokesViewController.xib in Resources */,
