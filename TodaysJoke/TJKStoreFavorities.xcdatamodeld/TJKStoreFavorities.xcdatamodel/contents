@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
+    <entity name="Entity" syncable="YES">
+        <attribute name="categoryRecordName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="jokeCategory" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jokeCreated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="jokeDescr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jokeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jokeTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameSubmitted" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Entity" positionX="-63" positionY="-18" width="128" height="165"/>
+    </elements>
+</model>
