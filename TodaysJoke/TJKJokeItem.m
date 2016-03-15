@@ -40,6 +40,7 @@
         self.categoryRecordName = categoryRecordName;
         _jokeCreated = jokeCreated;
         _jokeId = jokeId;
+        self.isFavorite = isFavorite;
      }
     
     // return the newly initialized object
