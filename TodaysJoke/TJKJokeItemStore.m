@@ -102,7 +102,15 @@
 // remove the joke item
 -(void)removeItem:(TJKJokeItem *)jokeItem
 {
-    [self.privateItems removeObjectIdenticalTo:jokeItem];
+    for (int i = 0; i < [_privateItems count]; i++)
+    {
+        TJKJokeItem *privateJoke = [_privateItems objectAtIndex:i];
+        if ([privateJoke.jokeId isEqualToString:jokeItem.jokeId])
+        {
+            [_privateItems removeObjectAtIndex:i];
+            break;
+        }
+    }
 }
 
 // remove all items in the array
@@ -140,8 +148,15 @@
 // remove a joke from the favorites collection
 -(void)removeFavoriteJoke:(TJKJokeItem *)jokeItem
 {
-    // remove the joke from the favorites array
-    [self.favoriteItems removeObjectIdenticalTo:jokeItem];
+    for (int i = 0; i < [_favoriteItems count]; i++)
+    {
+        TJKJokeItem *favoriteJoke = [_favoriteItems objectAtIndex:i];
+        if ([favoriteJoke.jokeId isEqualToString:jokeItem.jokeId])
+        {
+            [_favoriteItems removeObjectAtIndex:i];
+            break;
+        }
+    }
 }
 
 // save the favorite jokes
@@ -152,8 +167,6 @@
     
     // save all favorties
     [NSKeyedArchiver archiveRootObject:self.favoriteItems toFile:path];
-    
-    //[_favoriteItems writeToFile:path atomically:YES];
 }
 
 // retrieve all favorite jokes
@@ -170,9 +183,7 @@
     {
         _favoriteItems = [[NSMutableArray alloc] init];
     }
-    
-    //_favoriteItems = [NSMutableArray arrayWithContentsOfFile:path];
-}
+ }
 
 // check if joke is in favorite collection
 -(int)checkIfFavorite:(TJKJokeItem *)jokeItem

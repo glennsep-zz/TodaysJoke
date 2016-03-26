@@ -100,7 +100,7 @@
 {
     // get all categories
     CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
-    NSPredicate *predicateCategory = [NSPredicate predicateWithFormat:@"CategoryName != %@", CATEGORY_TO_REMOVE_RANDOM];
+    NSPredicate *predicateCategory = [NSPredicate predicateWithFormat:@"CategoryName != %@ && CategoryName != %@", CATEGORY_TO_REMOVE_RANDOM, CATEGORY_TO_REMOVE_FAVORITE];
     CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategory];
     NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:CATEGORY_FIELD_NAME ascending:YES];
     queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];

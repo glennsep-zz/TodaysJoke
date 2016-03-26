@@ -20,8 +20,10 @@ NSString *const LOADING_CATEGORY = @"Loading Categories...";
 NSString *const CATEGORY_RECORD_TYPE = @"Categories";
 NSString *const CATEGORY_FIELD_NAME = @"CategoryName";
 NSString *const CATEGORY_FIELD_IMAGE = @"CategoryImage";
+NSString *const CATEGORY_FIELD_FAVORITE = @"Favorites";
 NSString *const CATEGORY_TO_REMOVE_OTHER = @"Other";
 NSString *const CATEGORY_TO_REMOVE_RANDOM = @"Random";
+NSString *const CATEGORY_TO_REMOVE_FAVORITE = @"Favorites";
 
 // joke record types and fields
 NSString *const JOKE_RECORD_TYPE = @"Jokes";

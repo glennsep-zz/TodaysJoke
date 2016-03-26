@@ -101,51 +101,51 @@
     NSPredicate *predicateCategories = [NSPredicate predicateWithFormat:@"CategoryName == %@", self.categoryName];
     CKQuery *queryCategories = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategories];
     [jokePublicDatabase performQuery:queryCategories inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * _Nullable results, NSError * _Nullable error)
-    {
-        if (!error)
-        {
-            // get the first record as there should only be one record per category
-            CKRecord *categoryRecord = [results firstObject];
-            
-            // setup the table
-            [self setupTableContents];
-
-            if (categoryRecord)
-            {
-             // now that we have the record id for the joke category get the jokes
-             NSPredicate *predicateJokes = [NSPredicate predicateWithFormat:@"CategoryName == %@",categoryRecord];
-             CKQuery *jokeQuery = [[CKQuery alloc] initWithRecordType:JOKE_RECORD_TYPE predicate:predicateJokes];
-             [jokePublicDatabase performQuery:jokeQuery inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * results, NSError * error)
-              {
-                  if (!error)
+     {
+         if (!error)
+         {
+             // get the first record as there should only be one record per category
+             CKRecord *categoryRecord = [results firstObject];
+             
+             // setup the table
+             [self setupTableContents];
+             
+             if (categoryRecord)
+             {
+                 // now that we have the record id for the joke category get the jokes
+                 NSPredicate *predicateJokes = [NSPredicate predicateWithFormat:@"CategoryName == %@",categoryRecord];
+                 CKQuery *jokeQuery = [[CKQuery alloc] initWithRecordType:JOKE_RECORD_TYPE predicate:predicateJokes];
+                 [jokePublicDatabase performQuery:jokeQuery inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * results, NSError * error)
                   {
-                      for (CKRecord *jokeRecord in results)
+                      if (!error)
                       {
-                          // add the joke to the joke item store (array)
-                          [[TJKJokeItemStore sharedStore] createItem:[jokeRecord objectForKey:JOKE_DESCR] jokeCategory:self.categoryName nameSubmitted:[jokeRecord objectForKey:JOKE_SUBMITTED_BY] jokeTitle:[jokeRecord objectForKey:JOKE_TITLE] categoryRecordName:[jokeRecord valueForKey:CATEGORY_FIELD_NAME] jokeCreated:[jokeRecord valueForKey:JOKE_CREATED] jokeRecordName:jokeRecord.recordID.recordName];
+                          for (CKRecord *jokeRecord in results)
+                          {
+                              // add the joke to the joke item store (array)
+                              [[TJKJokeItemStore sharedStore] createItem:[jokeRecord objectForKey:JOKE_DESCR] jokeCategory:self.categoryName nameSubmitted:[jokeRecord objectForKey:JOKE_SUBMITTED_BY] jokeTitle:[jokeRecord objectForKey:JOKE_TITLE] categoryRecordName:[jokeRecord valueForKey:CATEGORY_FIELD_NAME] jokeCreated:[jokeRecord valueForKey:JOKE_CREATED] jokeRecordName:jokeRecord.recordID.recordName];
+                          }
+                          
+                          // setup the table
+                          [self setupTableContents];
                       }
-                      
-                      // setup the table
-                      [self setupTableContents];
-                  }
-                  else
-                  {
-                      // instantiate the alert object
-                      GHSAlerts *alerts = [[GHSAlerts alloc] initWithViewController:self];
-                      [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the category."];
-                      return;
-                  }
-              }];
-           }
-        }
-        else
-        {
+                      else
+                      {
+                          // instantiate the alert object
+                          GHSAlerts *alerts = [[GHSAlerts alloc] initWithViewController:self];
+                          [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the category."];
+                          return;
+                      }
+                  }];
+             }
+         }
+         else
+         {
              // instantiate the alert object
              GHSAlerts *alerts = [[GHSAlerts alloc] initWithViewController:self];
              [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the category."];
              return;
-        }
-    }];
+         }
+     }];
 }
 
 #pragma Table View Methods

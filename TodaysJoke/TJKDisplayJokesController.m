@@ -14,7 +14,6 @@
 @interface TJKDisplayJokesController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) int currentIndex;
-@property (nonatomic) BOOL firstTime;
 @property (nonatomic) UIImage *favoriteImage;
 @property (nonatomic) CGRect favoriteFrameImg;
 @property (nonatomic) UIButton *favoriteButton;
@@ -34,7 +33,7 @@
     if (self)
     {
         // set the navigation bar to indicate if favorite is selected or not
-        [self setFavoriteButton];
+        [self setupFavoriteButton:YES];
     }
     
     // return view controller
@@ -46,9 +45,6 @@
 // routine to run when view loads
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // indicate this is the first time
-    self.firstTime = YES;
     
     // set the automatically adjust scroll view inserts to no
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -76,13 +72,13 @@
     [self.collectionView scrollToItemAtIndexPath:path
                                 atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
                                         animated:NO];
-    [self setFavoriteButton];
+    [self setupFavoriteButton:YES];
 }
 
 #pragma Methods
 
 // set navigation bar to indicate if favorite is selected
--(void)setFavoriteButton
+-(void)setupFavoriteButton:(BOOL)change
 {
     // create button to indicate favorite
     // first create the image
@@ -124,7 +120,7 @@
     // save the favorite jokes
     [[TJKJokeItemStore sharedStore] saveFavorites];
     
-    [self setFavoriteButton];
+    [self setupFavoriteButton:YES];
 }
 
 // setup the collection by setting up how it responds and displays
@@ -163,26 +159,19 @@
     // initialize the joke gallery that contains the cell
     TJKJokeGallery *cell = (TJKJokeGallery *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     
-    // only invoke this method if the indexPath.row is different from the current cell index
-    if (self.firstTime || indexPath.row != self.currentIndex)
-    {
-        // set first time switch to false
-        self.firstTime = NO;
-        
-        // retrieve the joke description and category and update the cell
-        TJKJokeItem *jokeItem = [self.pageJokes objectAtIndex:indexPath.row];
-        
-        NSString *jokeDescr = jokeItem.jokeDescr;
-        NSString *jokeCategory = jokeItem.jokeCategory;
-        
-        cell.jokeDescr = jokeDescr;
-        cell.jokeCategoryText = [@"~" stringByAppendingString:jokeCategory];
-        [cell updateCell];
-        
-        // update the current index with the joke item
-        self.currentIndex = (int)indexPath.row;
-        [self setFavoriteButton];
-    }
+    // retrieve the joke description and category and update the cell
+    TJKJokeItem *jokeItem = [self.pageJokes objectAtIndex:indexPath.row];
+    
+    NSString *jokeDescr = jokeItem.jokeDescr;
+    NSString *jokeCategory = jokeItem.jokeCategory;
+    
+    cell.jokeDescr = jokeDescr;
+    cell.jokeCategoryText = [@"~" stringByAppendingString:jokeCategory];
+    [cell updateCell];
+    
+    // update the current index with the joke item
+    self.currentIndex = (int)indexPath.row;
+    [self setupFavoriteButton:YES];
     
     return cell;
 }

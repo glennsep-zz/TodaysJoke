@@ -20,8 +20,10 @@ extern NSString *const LOADING_CATEGORY;
 extern NSString *const CATEGORY_RECORD_TYPE;
 extern NSString *const CATEGORY_FIELD_NAME;
 extern NSString *const CATEGORY_FIELD_IMAGE;
+extern NSString *const CATEGORY_FIELD_FAVORITE;
 extern NSString *const CATEGORY_TO_REMOVE_OTHER;
 extern NSString *const CATEGORY_TO_REMOVE_RANDOM;
+extern NSString *const CATEGORY_TO_REMOVE_FAVORITE;
 
 // joke record types and fields
 extern NSString *const JOKE_RECORD_TYPE;

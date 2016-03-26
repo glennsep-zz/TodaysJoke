@@ -12,6 +12,7 @@
 #import "TJKCategories.h"
 #import "GHSAlerts.h"
 #import "TJKCommonRoutines.h"
+#import "TJKConstants.h"
 
 @interface TJKCategoriesViewController () 
 
