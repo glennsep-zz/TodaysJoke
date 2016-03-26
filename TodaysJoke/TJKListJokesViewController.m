@@ -45,6 +45,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // retrieve all of the jokes
+    [[TJKJokeItemStore sharedStore] retrieveFavorites];
+    
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
     
@@ -55,6 +58,9 @@
 // routines to run when view appears
 -(void)viewWillAppear:(BOOL)animated
 {
+    // retrieve all of the jokes
+    [[TJKJokeItemStore sharedStore] retrieveFavorites];
+    
     // set the title
     self.title = self.categoryName;
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
@@ -66,7 +72,7 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     // remove all items from joke store
-    [[TJKJokeItemStore sharedStore] RemoveAllItems];
+    [[TJKJokeItemStore sharedStore] removeAllItems];
 }
 
 #pragma Methods
@@ -116,7 +122,7 @@
                       for (CKRecord *jokeRecord in results)
                       {
                           // add the joke to the joke item store (array)
-                          [[TJKJokeItemStore sharedStore] createItem:[jokeRecord objectForKey:JOKE_DESCR] jokeCategory:self.categoryName nameSubmitted:[jokeRecord objectForKey:JOKE_SUBMITTED_BY] jokeTitle:[jokeRecord objectForKey:JOKE_TITLE] categoryRecordName:[jokeRecord valueForKey:CATEGORY_FIELD_NAME] jokeCreated:[jokeRecord valueForKey:JOKE_CREATED] jokeRecordName:jokeRecord.recordID.recordName jokeFavorite:NO];
+                          [[TJKJokeItemStore sharedStore] createItem:[jokeRecord objectForKey:JOKE_DESCR] jokeCategory:self.categoryName nameSubmitted:[jokeRecord objectForKey:JOKE_SUBMITTED_BY] jokeTitle:[jokeRecord objectForKey:JOKE_TITLE] categoryRecordName:[jokeRecord valueForKey:CATEGORY_FIELD_NAME] jokeCreated:[jokeRecord valueForKey:JOKE_CREATED] jokeRecordName:jokeRecord.recordID.recordName];
                       }
                       
                       // setup the table

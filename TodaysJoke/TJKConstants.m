@@ -43,3 +43,6 @@ CGFloat  const FONT_SIZE = 22.0f;
 // cache list names
 NSString *const CACHE_CATEGORY_LIST = @"ListCategories";
 NSString *const CACHE_CATEGORY_PICKER = @"ListCategoryPicker";
+
+// file name to store favorite jokes
+NSString *const FILE_NAME_FAVORITES = @"favorites.archive";

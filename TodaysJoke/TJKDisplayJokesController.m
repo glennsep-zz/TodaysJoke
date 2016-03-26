@@ -14,7 +14,7 @@
 @interface TJKDisplayJokesController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) int currentIndex;
-@property (nonatomic) BOOL firstDisplay;
+@property (nonatomic) BOOL firstTime;
 @property (nonatomic) UIImage *favoriteImage;
 @property (nonatomic) CGRect favoriteFrameImg;
 @property (nonatomic) UIButton *favoriteButton;
@@ -47,6 +47,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // indicate this is the first time
+    self.firstTime = YES;
+    
     // set the automatically adjust scroll view inserts to no
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -54,9 +57,6 @@
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"ListJokes.png"];
     self.navigationController.navigationBar.barTintColor = [common standardNavigationBarColor];
-    
-    // setup first display switch
-    self.firstDisplay = YES;
     
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
@@ -87,7 +87,7 @@
     // create button to indicate favorite
     // first create the image
     TJKJokeItem *joke = [self.pageJokes objectAtIndex:self.currentIndex];
-    if (joke.isFavorite == NO)
+    if ([[TJKJokeItemStore sharedStore] checkIfFavorite:joke] == -1)
     {
         self.favoriteImage = [UIImage imageNamed:@"favoriteUnSelected.png"];
     }
@@ -99,7 +99,7 @@
     self.favoriteButton = [[UIButton alloc] initWithFrame:self.favoriteFrameImg];
     [self.favoriteButton setBackgroundImage:self.favoriteImage forState:UIControlStateNormal];
     [self.favoriteButton addTarget:self action:@selector(makeFavorite:) forControlEvents:UIControlEventTouchUpInside];
-    [self.favoriteButton setShowsTouchWhenHighlighted:YES];
+    [self.favoriteButton setShowsTouchWhenHighlighted:NO];
     
     
     UIBarButtonItem *favoriteItem = [[UIBarButtonItem alloc] initWithCustomView:self.favoriteButton];
@@ -108,16 +108,21 @@
 
 // setup joke as favorite
 -(void)makeFavorite:(id)sender
-{
+{   
     TJKJokeItem *joke = [self.pageJokes objectAtIndex:self.currentIndex];
-    if (joke.isFavorite == NO)
+    if ([[TJKJokeItemStore sharedStore] checkIfFavorite:joke] == -1)
     {
-        joke.isFavorite = YES;
+        // insert into favorite jokes collection
+        [[TJKJokeItemStore sharedStore] insertFavoriteJoke:joke];
     }
     else
     {
-        joke.isFavorite = NO;
-    }
+        // remove from favorite jokes collection
+        [[TJKJokeItemStore sharedStore] removeFavoriteJoke:joke];
+    }  
+    
+    // save the favorite jokes
+    [[TJKJokeItemStore sharedStore] saveFavorites];
     
     [self setFavoriteButton];
 }
@@ -158,22 +163,26 @@
     // initialize the joke gallery that contains the cell
     TJKJokeGallery *cell = (TJKJokeGallery *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     
-    // retrieve the joke description and category and update the cell
-    TJKJokeItem *jokeItem = [self.pageJokes objectAtIndex:indexPath.row];
-    
-    NSString *jokeDescr = jokeItem.jokeDescr;
-    NSString *jokeCategory = jokeItem.jokeCategory;
-    BOOL jokeFavorite = jokeItem.isFavorite;
-    
-    cell.jokeDescr = jokeDescr;
-    cell.jokeCategoryText = [@"~" stringByAppendingString:jokeCategory];
-    cell.isFavorite = jokeFavorite;
-    [cell updateCell];
-    
-    // update the current index with the joke item
-    self.currentIndex = (int)indexPath.row;
-    
-    [self setFavoriteButton];
+    // only invoke this method if the indexPath.row is different from the current cell index
+    if (self.firstTime || indexPath.row != self.currentIndex)
+    {
+        // set first time switch to false
+        self.firstTime = NO;
+        
+        // retrieve the joke description and category and update the cell
+        TJKJokeItem *jokeItem = [self.pageJokes objectAtIndex:indexPath.row];
+        
+        NSString *jokeDescr = jokeItem.jokeDescr;
+        NSString *jokeCategory = jokeItem.jokeCategory;
+        
+        cell.jokeDescr = jokeDescr;
+        cell.jokeCategoryText = [@"~" stringByAppendingString:jokeCategory];
+        [cell updateCell];
+        
+        // update the current index with the joke item
+        self.currentIndex = (int)indexPath.row;
+        [self setFavoriteButton];
+    }
     
     return cell;
 }

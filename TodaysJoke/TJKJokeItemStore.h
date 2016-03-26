@@ -19,19 +19,35 @@
 +(instancetype)sharedStore;
 
 #pragma Methods
+
+// create a new joke item
 -(TJKJokeItem *)createItem:(NSString *)jokeDescr
               jokeCategory:(NSString*)jokeCategory
              nameSubmitted:(NSString *)nameSubmitted
                  jokeTitle:(NSString *)jokeTitle
         categoryRecordName:(NSString *)categoryRecordName
                jokeCreated:(NSDate *)jokeCreated
-            jokeRecordName:(NSString *)jokeId
-              jokeFavorite:(BOOL) isFavorite;
+            jokeRecordName:(NSString *)jokeId;
 
+// remove a joke item from the array
 -(void)removeItem:(TJKJokeItem *)jokeItem;
 
--(void)RemoveAllItems;
+// remove all joke items
+-(void)removeAllItems;
 
--(TJKJokeItem *)retrieveItem:(TJKJokeItem *)jokeItem;
+// insert a joke into the favorites collection
+-(void)insertFavoriteJoke:(TJKJokeItem *)jokeItem;
+
+// remove a joke from the favorites collection
+-(void)removeFavoriteJoke:(TJKJokeItem *)jokeItem;
+
+// save the favorite jokes
+-(void)saveFavorites;
+
+// retrieve all favorite jokes
+-(void)retrieveFavorites;
+
+// check if joke is in favorite collection
+-(int)checkIfFavorite:(TJKJokeItem *)jokeItem;
 
 @end

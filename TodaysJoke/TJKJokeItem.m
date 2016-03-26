@@ -22,7 +22,6 @@
               categoryRecordName:(NSString *)categoryRecordName
                      jokeCreated:(NSDate *)jokeCreated
                   jokeRecordName:(NSString *)jokeId
-                  jokeFavorite:(BOOL)isFavorite
 {
     // call the superclass initializer
     self = [super init];
@@ -40,7 +39,7 @@
         self.categoryRecordName = categoryRecordName;
         _jokeCreated = jokeCreated;
         _jokeId = jokeId;
-        self.isFavorite = isFavorite;
+
      }
     
     // return the newly initialized object
@@ -50,8 +49,26 @@
 // override init
 -(instancetype)init
 {
-    return [self initWithJokeDescr:@"" jokeCategory:@"" nameSubmitted:@"" jokeTitle:@"" categoryRecordName:@"" jokeCreated:[NSDate date] jokeRecordName:@"" jokeFavorite:NO];
+    return [self initWithJokeDescr:@"" jokeCategory:@"" nameSubmitted:@"" jokeTitle:@"" categoryRecordName:@"" jokeCreated:[NSDate date] jokeRecordName:@""];
 }
+
+// encoder initializer
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self)
+    {
+        _jokeCreated = [aDecoder decodeObjectForKey:@"jokeCreated"];
+        _jokeTitle = [aDecoder decodeObjectForKey:@"jokeTitle"];
+        _jokeDescr = [aDecoder decodeObjectForKey:@"jokeDescr"];
+        _nameSubmitted = [aDecoder decodeObjectForKey:@"nameSubmitted"];
+        _jokeCategory = [aDecoder decodeObjectForKey:@"jokeCategory"];
+        _categoryRecordName = [aDecoder decodeObjectForKey:@"categoryRecordName"];
+        _jokeId = [aDecoder decodeObjectForKey:@"jokeId"];
+    }
+    return self;
+}
+
 
 #pragma Methods
 
@@ -63,7 +80,6 @@
     categoryRecordName:(NSString *)categoryRecordName
               jokeCreated:(NSDate *)jokeCreated
            jokeRecordName:(NSString *)jokeId
-            jokeFavorite:(BOOL) isFavorite
 {
     TJKJokeItem *newItem = [[self alloc] initWithJokeDescr:jokeDescr
                                              jokeCategory:jokeCategory
@@ -71,11 +87,22 @@
                                                  jokeTitle:jokeTitle
                                         categoryRecordName:categoryRecordName
                                                jokeCreated:jokeCreated
-                                             jokeRecordName:jokeId
-                                               jokeFavorite:isFavorite];
+                                             jokeRecordName:jokeId];
     
     // return new joke item
     return newItem;
+}
+
+// implement encoding
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.jokeCreated forKey:@"jokeCreated"];
+    [aCoder encodeObject:self.jokeTitle forKey:@"jokeTitle"];
+    [aCoder encodeObject:self.jokeDescr forKey:@"jokeDescr"];
+    [aCoder encodeObject:self.nameSubmitted forKey:@"nameSubmitted"];
+    [aCoder encodeObject:self.jokeCategory forKey:@"jokeCategory"];
+    [aCoder encodeObject:self.categoryRecordName forKey:@"categoryRecordName"];
+    [aCoder encodeObject:self.jokeId forKey:@"jokeId"];
 }
 
 @end
