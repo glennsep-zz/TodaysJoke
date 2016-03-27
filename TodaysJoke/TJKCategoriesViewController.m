@@ -13,6 +13,8 @@
 #import "GHSAlerts.h"
 #import "TJKCommonRoutines.h"
 #import "TJKConstants.h"
+#import "TJKJokeItem.h"
+#import "TJKJokeItemStore.h"
 
 @interface TJKCategoriesViewController () 
 
@@ -58,6 +60,9 @@
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     self.navigationController.navigationBar.tintColor = [common standardSystemColor];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"Categories.png"];
+    
+    // remove any joke items
+    [[TJKJokeItemStore sharedStore] removeAllItems];
 }
 
 #pragma Methods

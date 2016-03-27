@@ -90,7 +90,7 @@
     
     // create a new bar button item to add a new joke
     self.addJokeImage = [UIImage imageNamed:@"sendJoke.png"];
-    self.addJokeFrameImg = CGRectMake(0,0,30,30);
+    self.addJokeFrameImg = CGRectMake(0,0,35,35);
     self.addJokeButton = [[UIButton alloc] initWithFrame:self.addJokeFrameImg];
     [self.addJokeButton setBackgroundImage:self.addJokeImage forState:UIControlStateNormal];
     [self.addJokeButton addTarget:self action:@selector(addNewJoke:) forControlEvents:UIControlEventTouchUpInside];
