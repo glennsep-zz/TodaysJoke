@@ -35,6 +35,9 @@
 // remove all joke items
 -(void)removeAllItems;
 
+// re-arrange items in random order
+-(void)randomizeItems;
+
 // insert a joke into the favorites collection
 -(void)insertFavoriteJoke:(TJKJokeItem *)jokeItem;
 

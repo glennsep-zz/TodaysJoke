@@ -113,11 +113,26 @@
     }
 }
 
+// re-arrange items in random order
+-(void)randomizeItems
+{
+    NSUInteger count = [_privateItems count];
+    for (NSUInteger i = 0; i < count; i++)
+    {
+        // select a random element between i and end of array to swap with
+        NSUInteger nElements = count - i;
+        NSUInteger n = (arc4random() % nElements) + i;
+        [_privateItems exchangeObjectAtIndex:i withObjectAtIndex:n];
+    }
+}
+
 // remove all items in the array
 -(void)removeAllItems
 {
     [self.privateItems removeAllObjects];
 }
+
+
 
 // get a file path to save the favorite jokes
 -(NSString *)itemArchivePath

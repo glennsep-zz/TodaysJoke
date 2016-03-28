@@ -168,9 +168,7 @@
          {
              // get the first record as there should only be one record per category
              for (CKRecord *categoryRecord in results)
-             {
-                 NSLog(@"%@", categoryRecord);
-                 
+             {                
                  // setup the table
                  [self setupTableContents];
                  
@@ -188,6 +186,9 @@
                                   // add the joke to the joke item store (array)
                                   [[TJKJokeItemStore sharedStore] createItem:[jokeRecord objectForKey:JOKE_DESCR] jokeCategory:[categoryRecord objectForKey:CATEGORY_FIELD_NAME] nameSubmitted:[jokeRecord objectForKey:JOKE_SUBMITTED_BY] jokeTitle:[jokeRecord objectForKey:JOKE_TITLE] categoryRecordName:[jokeRecord valueForKey:CATEGORY_FIELD_NAME] jokeCreated:[jokeRecord valueForKey:JOKE_CREATED] jokeRecordName:jokeRecord.recordID.recordName];
                               }
+                              
+                              // randomize the jokes
+                              [[TJKJokeItemStore sharedStore] randomizeItems];
                               
                               // setup the table
                               [self setupTableContents];
