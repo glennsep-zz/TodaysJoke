@@ -62,11 +62,11 @@
 
 // create a new joke item
 -(TJKJokeItem *)createItem:(NSString *)jokeDescr
-              jokeCategory:(NSString*)jokeCategory
+              jokeCategory:(NSString *)jokeCategory
              nameSubmitted:(NSString *)nameSubmitted
                  jokeTitle:(NSString *)jokeTitle
         categoryRecordName:(NSString *)categoryRecordName
-               jokeCreated:(NSDate *)jokeCreated
+               jokeCreated:(NSDate   *)jokeCreated
             jokeRecordName:(NSString *)jokeId;
 {
     TJKJokeItem *item = [[TJKJokeItem alloc] initWithJokeDescr:(NSString *)jokeDescr
@@ -132,8 +132,6 @@
     [self.privateItems removeAllObjects];
 }
 
-
-
 // get a file path to save the favorite jokes
 -(NSString *)itemArchivePath
 {
@@ -175,7 +173,7 @@
 }
 
 // save the favorite jokes
--(void)saveFavorites
+-(void)saveFavoritesToArchive
 {
     // get the path to save
     NSString *path = [self itemArchivePath];
@@ -185,7 +183,7 @@
 }
 
 // retrieve all favorite jokes
--(void)retrieveFavorites
+-(void)retrieveFavoritesFromArchive
 {
     // get the path to save
     NSString *path = [self itemArchivePath];
@@ -199,6 +197,19 @@
         _favoriteItems = [[NSMutableArray alloc] init];
     }
  }
+
+-(NSArray *)retrieveFavoritesFromStore
+{
+    if (_favoriteItems)
+    {
+        return [_favoriteItems copy];
+    }
+    else
+    {
+        _favoriteItems = [[NSMutableArray alloc] init];
+        return [_favoriteItems copy];
+    }
+}
 
 // check if joke is in favorite collection
 -(int)checkIfFavorite:(TJKJokeItem *)jokeItem

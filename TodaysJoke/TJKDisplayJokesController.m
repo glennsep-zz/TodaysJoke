@@ -118,7 +118,7 @@
     }  
     
     // save the favorite jokes
-    [[TJKJokeItemStore sharedStore] saveFavorites];
+    [[TJKJokeItemStore sharedStore] saveFavoritesToArchive];
     
     [self setupFavoriteButton:YES];
 }

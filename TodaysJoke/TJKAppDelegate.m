@@ -53,7 +53,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // save all favorite jokes when application enters the background
-    [[TJKJokeItemStore sharedStore] saveFavorites];
+    [[TJKJokeItemStore sharedStore] saveFavoritesToArchive];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -66,7 +66,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // save all favorite jokes when application enters the background
-    [[TJKJokeItemStore sharedStore] saveFavorites];
+    [[TJKJokeItemStore sharedStore] saveFavoritesToArchive];
 }
 
 #pragma mark - Core Data stack

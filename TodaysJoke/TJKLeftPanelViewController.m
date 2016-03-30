@@ -73,13 +73,9 @@
     // create instance of contact us view controller
     TJKContactUsViewController *contactUs = [[TJKContactUsViewController alloc] initWithNibName:nil bundle:nil];
     
-//    // create the navigation controller to be used with contact us view controller
-//    UINavigationController *navController = [[UINavigationController alloc]
-//                                             initWithRootViewController:contactUs];
     
     // display the contact us screen
     [self.navigationController pushViewController:contactUs animated:YES];
-   // [self presentViewController:navController animated:YES completion:NULL];
 }
 
 #pragma Table View Methods

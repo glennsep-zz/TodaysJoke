@@ -24,6 +24,7 @@ extern NSString *const CATEGORY_FIELD_FAVORITE;
 extern NSString *const CATEGORY_TO_REMOVE_OTHER;
 extern NSString *const CATEGORY_TO_REMOVE_RANDOM;
 extern NSString *const CATEGORY_TO_REMOVE_FAVORITE;
+extern NSString *const CATEGORY_RECORD_NAME;
 extern NSString *const CATEGORY_ALL;
 
 // joke record types and fields
@@ -32,6 +33,10 @@ extern NSString *const JOKE_DESCR;
 extern NSString *const JOKE_SUBMITTED_BY;
 extern NSString *const JOKE_TITLE;
 extern NSString *const JOKE_CREATED;
+extern NSString *const JOKE_CATEGORY;
+extern NSString *const JOKE_ID;
+extern NSString *const JOKE_NAME_SUBMITTED;
+extern NSString *const JOKE_DATE;
 
 // generic parameters
 extern NSString *const PARAMETERS_RECORD_TYPE;

@@ -22,7 +22,7 @@
 
 // create a new joke item
 -(TJKJokeItem *)createItem:(NSString *)jokeDescr
-              jokeCategory:(NSString*)jokeCategory
+              jokeCategory:(NSString *)jokeCategory
              nameSubmitted:(NSString *)nameSubmitted
                  jokeTitle:(NSString *)jokeTitle
         categoryRecordName:(NSString *)categoryRecordName
@@ -44,11 +44,14 @@
 // remove a joke from the favorites collection
 -(void)removeFavoriteJoke:(TJKJokeItem *)jokeItem;
 
-// save the favorite jokes
--(void)saveFavorites;
+// save the favorite jokes to archive
+-(void)saveFavoritesToArchive;
 
-// retrieve all favorite jokes
--(void)retrieveFavorites;
+// retrieve all favorite jokes from archive
+-(void)retrieveFavoritesFromArchive;
+
+// retrieve favorite jokes from array
+-(NSArray *) retrieveFavoritesFromStore;
 
 // check if joke is in favorite collection
 -(int)checkIfFavorite:(TJKJokeItem *)jokeItem;

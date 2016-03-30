@@ -46,7 +46,7 @@
     [super viewDidLoad];
     
     // retrieve all of the jokes
-    [[TJKJokeItemStore sharedStore] retrieveFavorites];
+    [[TJKJokeItemStore sharedStore] retrieveFavoritesFromArchive];
     
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
@@ -59,7 +59,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     // retrieve all of the jokes
-    [[TJKJokeItemStore sharedStore] retrieveFavorites];
+    [[TJKJokeItemStore sharedStore] retrieveFavoritesFromArchive];
     
     // set the title
     self.title = self.categoryName;
@@ -93,6 +93,10 @@
     if ([self.categoryName isEqualToString:CATEGORY_TO_REMOVE_RANDOM])
     {
         [self fetchJokesForAllCategories];
+    }
+    else if ([self.categoryName isEqualToString:CATEGORY_FIELD_FAVORITE])
+    {
+        [self fetchFavoriteJokes];
     }
     else
     {
@@ -153,6 +157,26 @@
              return;
          }
      }];
+}
+
+// get favorite jokes
+-(void)fetchFavoriteJokes
+{
+    // get all the favorite jokes
+    NSArray *favorites = [[TJKJokeItemStore sharedStore] retrieveFavoritesFromStore];
+    
+    // loop through favorites and add jokes to the joke item store
+    for (id jokeRecord in favorites)
+    {
+        // add the joke to the joke item store (array)
+        [[TJKJokeItemStore sharedStore] createItem:[jokeRecord valueForKey:JOKE_DESCR] jokeCategory:[jokeRecord valueForKey:JOKE_CATEGORY] nameSubmitted:[jokeRecord valueForKey:JOKE_NAME_SUBMITTED] jokeTitle:[jokeRecord valueForKey:JOKE_TITLE] categoryRecordName:[jokeRecord valueForKey:CATEGORY_RECORD_NAME] jokeCreated:[jokeRecord valueForKey:JOKE_DATE] jokeRecordName:[jokeRecord valueForKey:JOKE_ID]];
+    }
+    
+    // randomize the jokes
+    [[TJKJokeItemStore sharedStore] randomizeItems];
+    
+    // setup the table
+    [self setupTableContents];
 }
 
 // get jokes for all categories
