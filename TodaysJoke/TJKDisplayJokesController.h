@@ -13,8 +13,8 @@
 @interface TJKDisplayJokesController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 #pragma properties
-@property (nonatomic, strong) NSArray<TJKJokeItem*> *pageJokes;
+@property (nonatomic, strong) NSMutableArray<TJKJokeItem*> *pageJokes;
 @property (nonatomic) NSInteger jokeIndex;
-
+@property (nonatomic) BOOL areFavoriteJokes;
 
 @end

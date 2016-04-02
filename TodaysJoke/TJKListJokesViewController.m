@@ -66,6 +66,10 @@
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     self.navigationController.navigationBar.tintColor = [common standardSystemColor];
     [common setupNavigationBarTitle:self.navigationController fontName:FONT_NAME fontSize:FONT_SIZE];
+    
+    // reload the table data
+    self.jokeList = [[TJKJokeItemStore sharedStore] allItems];
+    [self.listJokesTableView reloadData];
 }
 
 #pragma Methods
@@ -162,6 +166,9 @@
 // get favorite jokes
 -(void)fetchFavoriteJokes
 {
+    // remove any joke items
+    [[TJKJokeItemStore sharedStore] removeAllItems];
+    
     // get all the favorite jokes
     NSArray *favorites = [[TJKJokeItemStore sharedStore] retrieveFavoritesFromStore];
     
@@ -288,8 +295,9 @@
     TJKDisplayJokesController *jokeView = [[TJKDisplayJokesController alloc] initWithNibName:nil bundle:nil];
     
     // pass the array with the jokes to the display joke controller
-    jokeView.pageJokes = self.jokeList;
+    jokeView.pageJokes = [NSMutableArray arrayWithArray:self.jokeList];
     jokeView.jokeIndex = indexPath.row;
+    jokeView.areFavoriteJokes = ([self.categoryName isEqualToString:CATEGORY_FIELD_FAVORITE]) ? YES : NO;
     
     // display the contact us screen
     [self.navigationController pushViewController:jokeView animated:YES];

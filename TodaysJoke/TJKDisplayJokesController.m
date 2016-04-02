@@ -7,6 +7,7 @@
 //
 
 #import "TJKDisplayJokesController.h"
+#import "TJKListJokesViewController.h"
 #import "TJKJokeGallery.h"
 #import "TJKCommonRoutines.h"
 #import "TJKAppDelegate.h"
@@ -33,7 +34,7 @@
     if (self)
     {
         // set the navigation bar to indicate if favorite is selected or not
-        [self setupFavoriteButton:YES];
+        [self setupFavoriteButton];
     }
     
     // return view controller
@@ -72,16 +73,23 @@
     [self.collectionView scrollToItemAtIndexPath:path
                                 atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
                                         animated:NO];
-    [self setupFavoriteButton:YES];
+    [self setupFavoriteButton];
 }
 
 #pragma Methods
 
 // set navigation bar to indicate if favorite is selected
--(void)setupFavoriteButton:(BOOL)change
+-(void)setupFavoriteButton
 {
     // create button to indicate favorite
     // first create the image
+    
+    // make sure the current index doesn't exceed the number of items in the array
+    if (self.currentIndex > [self.pageJokes count]-1)
+    {
+        self.currentIndex = (int)[self.pageJokes count] -1;
+    }
+    
     TJKJokeItem *joke = [self.pageJokes objectAtIndex:self.currentIndex];
     if ([[TJKJokeItemStore sharedStore] checkIfFavorite:joke] == -1)
     {
@@ -115,12 +123,44 @@
     {
         // remove from favorite jokes collection
         [[TJKJokeItemStore sharedStore] removeFavoriteJoke:joke];
-    }  
+        
+        // remove the cell if we are displaying favorites
+        if (self.areFavoriteJokes)
+        {
+            [[TJKJokeItemStore sharedStore] removeItem:joke];
+            [self removeFavoriteCell:self.currentIndex];
+        }
+     }
     
     // save the favorite jokes
     [[TJKJokeItemStore sharedStore] saveFavoritesToArchive];
     
-    [self setupFavoriteButton:YES];
+    // only setup if there are jokes
+    if ([self.pageJokes count] > 0)
+    {
+        [self setupFavoriteButton];
+    }
+    
+    // check if there are no jokes left.  If not go back to the prior table view
+    if (self.areFavoriteJokes)
+    {
+        if ([self.pageJokes count] == 0)
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
+}
+
+// remove the cell if we are display favorite jokes and the favorite button was unselected
+-(void)removeFavoriteCell:(int)index
+{
+    [self.collectionView performBatchUpdates:^{
+        [self.pageJokes removeObjectAtIndex:index];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [self.collectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 // setup the collection by setting up how it responds and displays
@@ -171,7 +211,7 @@
     
     // update the current index with the joke item
     self.currentIndex = (int)indexPath.row;
-    [self setupFavoriteButton:YES];
+    [self setupFavoriteButton];
     
     return cell;
 }
