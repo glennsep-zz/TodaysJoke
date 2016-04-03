@@ -10,6 +10,7 @@
 #import "TJKCategoriesViewController.h"
 #import "TJKContactUsViewController.h"
 #import "TJKCommonRoutines.h"
+#import "TJKConstants.h"
 
 @interface TJKLeftPanelViewController ()
 
@@ -107,8 +108,8 @@
     if ([_tableContents count] > 0)
     {
         NSString *currentRecord = [self.tableContents objectAtIndex:indexPath.row];
-
         creator.text = [NSString stringWithFormat:@"%@", currentRecord];
+        [creator setFont:[UIFont fontWithName:FONT_NAME_TEXT size:FONT_SIZE_TEXT]];
     }
      
     return _cellMain;

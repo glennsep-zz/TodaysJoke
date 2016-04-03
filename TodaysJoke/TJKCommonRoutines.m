@@ -20,7 +20,7 @@
 
 @implementation TJKCommonRoutines
 
-#pragma Methods
+#pragma Methods for navigation
 
 // set the navigation title and color
 -(void)setupNavigationBarTitle:(UINavigationController *)navController setTitle:(NSString *)title
@@ -47,13 +47,6 @@
     navController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjects:objs forKeys:keys];
 }
 
-// return the stanard color used in the application
--(UIColor *)standardSystemColor
-{
-    UIColor *standardColor = [[UIColor alloc] initWithRed:84/256.0 green:174/256.0 blue:166/256.0 alpha:1];
-    return standardColor;
-}
-
 // set the stanard color for the navigation bar
 -(UIColor *)standardNavigationBarColor
 {
@@ -64,9 +57,44 @@
 // set the color for the title in the navigation bar
 -(UIColor *)standardNavigationBarTitleColor
 {
+//    UIColor *titleColor = [[UIColor alloc] initWithRed:52/256.0 green:75/256.0 blue:105/256.0 alpha:1];
     UIColor *titleColor = [[UIColor alloc] initWithRed:52/256.0 green:75/256.0 blue:105/256.0 alpha:1];
     return titleColor;
 }
+
+#pragma Methods for screen colors, fonts, sizes
+
+// return the stanard color used in the application
+-(UIColor *)standardSystemColor
+{
+    UIColor *standardColor = [[UIColor alloc] initWithRed:84/256.0 green:174/256.0 blue:166/256.0 alpha:1];
+    return standardColor;
+}
+
+// set the color for a label
+-(UIColor *)labelColor
+{
+    UIColor *titleColor = [[UIColor alloc] initWithRed:84/256.0 green:174/256.0 blue:166/256.0 alpha:1];
+    return titleColor;
+}
+
+// set the color for a text box
+-(UIColor *)textColor
+{
+    UIColor *titleColor = [[UIColor alloc] initWithRed:52/256.0 green:75/256.0 blue:105/256.0 alpha:1];
+    return titleColor;
+}
+
+// set the border for a text view
+-(void)setBorderForTextView:(UITextView *)textView
+{
+    UIColor *borderColor = [UIColor colorWithRed:84/256.0 green:174/256.0 blue:166/256.0 alpha:1];
+    textView.layer.borderWidth = 2.0f;
+    textView.layer.borderColor = borderColor.CGColor;
+    textView.layer.cornerRadius = 5.0;
+}
+
+#pragma Cache Methods
 
 // retrieve categories to list in table
 -(void)retrieveCategories:(NSCache *)cacheLists
@@ -119,10 +147,3 @@
 }
 
 @end
-
-// possibly another solution to changing navigation title and color and font size
-//UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.view.bounds.size.width - 100, 44)];
-//titleLabel.text = self.categoryName;
-//titleLabel.font = [UIFont systemFontOfSize:16];
-//titleLabel.textColor = [UIColor redColor];
-//self.navigationItem.titleView = titleLabel;

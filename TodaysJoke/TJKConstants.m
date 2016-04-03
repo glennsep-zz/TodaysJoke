@@ -45,8 +45,12 @@ NSString *const PARAMETERS_JOKE_SUBMITTED_EMAIL = @"jokeSubmittedEMail";
 NSString *const PARAMETERS_CONTACT_US_EMAIL = @"contactUsEmail";
 
 // fonts
-NSString *const FONT_NAME = @"Marker Felt";
-CGFloat  const FONT_SIZE = 22.0f;
+NSString *const FONT_NAME_HEADER = @"Marker Felt";
+CGFloat  const  FONT_SIZE_HEADER = 22.0f;
+NSString *const FONT_NAME_LABEL = @"Marker Felt";
+CGFloat  const  FONT_SIZE_LABEL = 22.0f;
+NSString *const FONT_NAME_TEXT = @"Marker Felt";
+CGFloat  const  FONT_SIZE_TEXT = 22.0f;
 
 // cache list names
 NSString *const CACHE_CATEGORY_LIST = @"ListCategories";

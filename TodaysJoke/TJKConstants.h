@@ -45,8 +45,12 @@ extern NSString *const PARAMETERS_JOKE_SUBMITTED_EMAIL;
 extern NSString *const PARAMETERS_CONTACT_US_EMAIL;
 
 // fonts
-extern NSString *const FONT_NAME;
-extern CGFloat   const FONT_SIZE;
+extern NSString *const FONT_NAME_HEADER;
+extern CGFloat   const FONT_SIZE_HEADER;
+extern NSString *const FONT_NAME_LABEL;
+extern CGFloat   const FONT_SIZE_LABEL;
+extern NSString *const FONT_NAME_TEXT;
+extern CGFloat   const FONT_SIZE_TEXT;
 
 // cache list names
 extern NSString *const CACHE_CATEGORY_LIST;

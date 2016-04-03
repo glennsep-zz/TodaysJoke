@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -11,9 +11,13 @@
                 <outlet property="helpButton" destination="j80-dy-OQm" id="qgC-JW-h1i"/>
                 <outlet property="joke" destination="o2G-T0-9Vv" id="1lp-B3-Yme"/>
                 <outlet property="jokeCategory" destination="mmq-Fl-zpZ" id="Xb2-rA-boM"/>
+                <outlet property="jokeCategoryLabel" destination="0De-w4-GhC" id="OJr-Rr-Yrg"/>
                 <outlet property="jokeDetailView" destination="i5M-Pr-FkT" id="80M-pe-Rwl"/>
+                <outlet property="jokeLabel" destination="aiW-Yc-K58" id="LxG-HW-TpX"/>
                 <outlet property="jokeSubmittedBy" destination="nbP-Ub-vdk" id="wlU-Si-Av8"/>
+                <outlet property="jokeSubmittedByLabel" destination="BXR-gr-ebz" id="F01-FP-kJ3"/>
                 <outlet property="notifyMe" destination="CiS-XB-MoH" id="97x-Pf-k26"/>
+                <outlet property="notifyMeLabel" destination="EbA-Hd-J7W" id="oiZ-ai-ge8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -176,10 +180,6 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CiS-XB-MoH">
                     <rect key="frame" x="490" y="191" width="20" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="G5T-ny-HTI"/>
-                        <constraint firstAttribute="width" constant="20" id="oHC-FQ-T7g"/>
-                    </constraints>
                     <state key="normal" image="Checkbox-unchecked.png"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j80-dy-OQm">
@@ -204,7 +204,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="CiS-XB-MoH" firstAttribute="top" secondItem="mmq-Fl-zpZ" secondAttribute="bottom" constant="8" id="1or-xN-CXc"/>
+                <constraint firstItem="EbA-Hd-J7W" firstAttribute="leading" secondItem="CiS-XB-MoH" secondAttribute="trailing" constant="7" id="6Kj-Ve-bRP"/>
                 <constraint firstAttribute="trailing" secondItem="mmq-Fl-zpZ" secondAttribute="trailing" constant="8" id="6ZS-zC-s0Q"/>
                 <constraint firstItem="mmq-Fl-zpZ" firstAttribute="top" secondItem="0De-w4-GhC" secondAttribute="bottom" constant="8" symbolic="YES" id="7Gm-vq-FpE"/>
                 <constraint firstItem="aiW-Yc-K58" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="258" id="8eS-aH-R0F"/>
@@ -212,13 +212,14 @@
                 <constraint firstAttribute="trailing" secondItem="nbP-Ub-vdk" secondAttribute="trailing" constant="8" id="EDV-DD-rZh"/>
                 <constraint firstItem="0De-w4-GhC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="124" id="FYX-s5-h26"/>
                 <constraint firstAttribute="trailing" secondItem="EbA-Hd-J7W" secondAttribute="trailing" constant="8" id="GMV-m2-kxh"/>
-                <constraint firstItem="EbA-Hd-J7W" firstAttribute="leading" secondItem="CiS-XB-MoH" secondAttribute="trailing" constant="8" id="Hk5-1X-e6j"/>
+                <constraint firstItem="CiS-XB-MoH" firstAttribute="centerY" secondItem="BXR-gr-ebz" secondAttribute="centerY" id="LH6-Tc-pCd"/>
                 <constraint firstItem="mmq-Fl-zpZ" firstAttribute="top" secondItem="j80-dy-OQm" secondAttribute="bottom" constant="34" id="LbS-fA-BZR"/>
                 <constraint firstItem="o2G-T0-9Vv" firstAttribute="top" secondItem="aiW-Yc-K58" secondAttribute="bottom" constant="8" symbolic="YES" id="MTD-Ch-S4h"/>
                 <constraint firstItem="EbA-Hd-J7W" firstAttribute="top" secondItem="mmq-Fl-zpZ" secondAttribute="bottom" constant="7" id="Scq-Zn-H6i"/>
                 <constraint firstItem="o2G-T0-9Vv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Uao-yY-nK5"/>
                 <constraint firstItem="mmq-Fl-zpZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="XS7-6g-zig"/>
                 <constraint firstAttribute="trailing" secondItem="o2G-T0-9Vv" secondAttribute="trailing" constant="8" id="XpF-bF-HJR"/>
+                <constraint firstItem="CiS-XB-MoH" firstAttribute="top" secondItem="BXR-gr-ebz" secondAttribute="top" id="Y9X-aw-kj9"/>
                 <constraint firstItem="aiW-Yc-K58" firstAttribute="top" secondItem="nbP-Ub-vdk" secondAttribute="bottom" constant="8" symbolic="YES" id="ZQ6-yg-Lqv"/>
                 <constraint firstAttribute="bottom" secondItem="o2G-T0-9Vv" secondAttribute="bottom" constant="58" id="bh8-yj-gIs"/>
                 <constraint firstItem="BXR-gr-ebz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="clx-Ng-1MG"/>
@@ -234,7 +235,7 @@
             <connections>
                 <action selector="backgroundTapped:" destination="-1" eventType="touchUpInside" id="ATI-lG-vjn"/>
             </connections>
-            <point key="canvasLocation" x="71" y="-449"/>
+            <point key="canvasLocation" x="391" y="-472"/>
         </view>
     </objects>
     <resources>

@@ -23,8 +23,12 @@
 @interface TJKDetailJokeViewController ()
 
 #pragma Outlets
+@property (weak, nonatomic) IBOutlet UILabel *jokeCategoryLabel;
 @property (weak, nonatomic) IBOutlet UITextField *jokeCategory;
+@property (weak, nonatomic) IBOutlet UILabel *jokeSubmittedByLabel;
 @property (weak, nonatomic) IBOutlet UITextField *jokeSubmittedBy;
+@property (weak, nonatomic) IBOutlet UILabel *notifyMeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *jokeLabel;
 @property (weak, nonatomic) IBOutlet UITextView *joke;
 @property (strong, nonatomic) IBOutlet UIView *jokeDetailView;
 @property (weak, nonatomic) IBOutlet UIButton *helpButton;
@@ -86,6 +90,9 @@
     // assign delegate of uitextfield
     self.jokeSubmittedBy.delegate = self;
     
+    // set screen fonts, sizes, colors
+    [self setupScreenLayout:common];
+    
     // disable joke category selector
     _jokeCategory.enabled = NO;
     
@@ -96,11 +103,6 @@
     _jokeCategory.rightViewMode = UITextFieldViewModeAlways;
     _jokeCategory.rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"downarrow.png"]];
     
-    // setup border for text view (used to type in joke)
-    UIColor *borderColor = [UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1.0];
-    self.joke.layer.borderWidth = 1.0f;
-    self.joke.layer.borderColor = borderColor.CGColor;
-    self.joke.layer.cornerRadius = 5.0;
     
     // set the image for help button
     UIImage *questionButton = [UIImage imageNamed:@"helpButton.png"];
@@ -111,48 +113,8 @@
     self.helpButton.layer.cornerRadius = 5;
     self.helpButton.clipsToBounds = YES;
     
-    // check if categories are cached
-    if ([self.cacheLists objectForKey:CACHE_CATEGORY_PICKER])
-    {
-        // retrieve categories from cache and set initial joke category
-        _jokeCategories = [self.cacheLists objectForKey:CACHE_CATEGORY_PICKER];
-        _jokeCategory.text = DEFAULT_CATEGORY;
-        _jokeCategory.enabled = YES;
-    }
-    else
-    {
-        // get all categories
-        CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
-        NSPredicate *predicateCategory = [NSPredicate predicateWithFormat:@"CategoryName != %@ && CategoryName != %@", CATEGORY_TO_REMOVE_RANDOM, CATEGORY_TO_REMOVE_FAVORITE];
-        CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategory];
-        NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:CATEGORY_FIELD_NAME ascending:YES];
-        queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];
-        [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray *results, NSError * error)
-        {
-            if (!error)
-            {
-                // load the array with joke categories
-                _jokeCategories = [results valueForKey:CATEGORY_FIELD_NAME];
-
-                // store categories to cache
-                [self.cacheLists setObject:_jokeCategories forKey:CACHE_CATEGORY_PICKER];
-                
-                // set initial value for joke category
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    _jokeCategory.text = DEFAULT_CATEGORY;
-                    _jokeCategory.enabled = YES;
-                });
-
-            }
-            else
-            {
-                // display error message
-                GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
-                errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self cancelJoke:self];};
-                [alert displayErrorMessage:@"Oops!" errorMessage:@"We had trouble reading in the joke categories. This screen will close. Just try again!" errorAction:errorBlock];
-            }
-        }];
-    }
+    // retrieve joke categories for picker
+    [self retreiveCategoriesForPicker];
     
     // set up the picker for the joke categories
     self.jokeCategoryPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 43, self.view.frame.size.width,self.view.frame.size.height / 4)];
@@ -184,6 +146,88 @@
 }
 
 #pragma Methods
+
+// setup screen font, sizes, and colors
+-(void)setupScreenLayout:(TJKCommonRoutines *)common
+{
+    // joke category label
+    [self.jokeCategoryLabel setFont:[UIFont fontWithName:FONT_NAME_LABEL size:FONT_SIZE_LABEL]];
+    [self.jokeCategoryLabel setTextColor:[common labelColor]];
+    
+    // joke category text
+    [self.jokeCategory setFont:[UIFont fontWithName:FONT_NAME_TEXT size:FONT_SIZE_TEXT]];
+    [self.jokeCategory setTextColor:[common textColor]];
+    
+    // submitted by label
+    [self.jokeSubmittedByLabel setFont:[UIFont fontWithName:FONT_NAME_LABEL size:FONT_SIZE_LABEL]];
+    [self.jokeSubmittedByLabel setTextColor:[common labelColor]];
+    
+    // submitted by text
+    [self.jokeSubmittedBy setFont:[UIFont fontWithName:FONT_NAME_TEXT size:FONT_SIZE_TEXT]];
+    [self.jokeSubmittedBy setTextColor:[common textColor]];
+    
+    // notify me label
+    [self.notifyMeLabel setFont:[UIFont fontWithName:FONT_NAME_LABEL size:FONT_SIZE_LABEL]];
+    [self.notifyMeLabel setTextColor:[common labelColor]];
+    
+    // joke label
+    [self.jokeLabel setFont:[UIFont fontWithName:FONT_NAME_LABEL size:FONT_SIZE_LABEL]];
+    [self.jokeLabel setTextColor:[common labelColor]];
+    
+    // joke text
+    [self.joke setFont:[UIFont fontWithName:FONT_NAME_TEXT size:FONT_SIZE_TEXT]];
+    [self.joke setTextColor:[common textColor]];    
+    
+    // setup border for text view (used to type in joke)
+    [common setBorderForTextView:self.joke];
+}
+
+// retrieve categories for picker
+-(void)retreiveCategoriesForPicker
+{
+    // check if categories are cached
+    if ([self.cacheLists objectForKey:CACHE_CATEGORY_PICKER])
+    {
+        // retrieve categories from cache and set initial joke category
+        _jokeCategories = [self.cacheLists objectForKey:CACHE_CATEGORY_PICKER];
+        _jokeCategory.text = DEFAULT_CATEGORY;
+        _jokeCategory.enabled = YES;
+    }
+    else
+    {
+        // get all categories
+        CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
+        NSPredicate *predicateCategory = [NSPredicate predicateWithFormat:@"CategoryName != %@ && CategoryName != %@", CATEGORY_TO_REMOVE_RANDOM, CATEGORY_TO_REMOVE_FAVORITE];
+        CKQuery *queryCategory = [[CKQuery alloc] initWithRecordType:CATEGORY_RECORD_TYPE predicate:predicateCategory];
+        NSSortDescriptor *sortCategory = [[NSSortDescriptor alloc] initWithKey:CATEGORY_FIELD_NAME ascending:YES];
+        queryCategory.sortDescriptors = [NSArray arrayWithObjects:sortCategory, nil];
+        [jokePublicDatabase performQuery:queryCategory inZoneWithID:nil completionHandler:^(NSArray *results, NSError * error)
+         {
+             if (!error)
+             {
+                 // load the array with joke categories
+                 _jokeCategories = [results valueForKey:CATEGORY_FIELD_NAME];
+                 
+                 // store categories to cache
+                 [self.cacheLists setObject:_jokeCategories forKey:CACHE_CATEGORY_PICKER];
+                 
+                 // set initial value for joke category
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     _jokeCategory.text = DEFAULT_CATEGORY;
+                     _jokeCategory.enabled = YES;
+                 });
+                 
+             }
+             else
+             {
+                 // display error message
+                 GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
+                 errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self cancelJoke:self];};
+                 [alert displayErrorMessage:@"Oops!" errorMessage:@"We had trouble reading in the joke categories. This screen will close. Just try again!" errorAction:errorBlock];
+             }
+         }];
+    }
+}
 
 // setup notify me check box
 -(void)setupNotifyMeCheckBox

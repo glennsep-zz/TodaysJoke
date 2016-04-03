@@ -10,13 +10,20 @@
 
 @interface TJKCommonRoutines : NSObject
 
-#pragma Methods
+#pragma Methods for Navigation
 -(void)setupNavigationBarTitle:(UINavigationController *)navController setTitle:(NSString *)title;
 -(void)setupNavigationBarTitle:(UINavigationItem *)navItem setImage:(NSString *)image;
 -(void)setupNavigationBarTitle:(UINavigationController *)navController fontName:(NSString *)fontName fontSize:(CGFloat)fontSize;
--(UIColor *)standardSystemColor;
 -(UIColor *)standardNavigationBarColor;
 -(UIColor *)standardNavigationBarTitleColor;
+
+#pragma Methods for screen fonts, sizes, and colors
+-(UIColor *)standardSystemColor;
+-(UIColor *)labelColor;
+-(UIColor *)textColor;
+-(void)setBorderForTextView:(UITextView *)textView;
+
+#pragma Cache Methods
 -(void)retrieveCategories:(NSCache *) cacheLists;
 -(void)retrieveCategoriesForPicker:(NSCache *) cacheLists;
 @end

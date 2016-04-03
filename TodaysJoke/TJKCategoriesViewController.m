@@ -175,7 +175,8 @@
     {
         TJKCategories *currentRecord = [self.jokeCategories objectAtIndex:indexPath.row];
         
-        categoryName.text =  [NSString stringWithFormat:@"%@", currentRecord.categoryName];
+        categoryName.text = [NSString stringWithFormat:@"%@", currentRecord.categoryName];
+        [categoryName setFont:[UIFont fontWithName:FONT_NAME_TEXT size:FONT_SIZE_TEXT]];
         categoryImage.image = currentRecord.categoryImage;
         self.selectedCategoryName = categoryName.text;
     }

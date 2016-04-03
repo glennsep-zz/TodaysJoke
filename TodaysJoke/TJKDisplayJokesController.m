@@ -53,7 +53,6 @@
     // setup screen title
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"ListJokes.png"];
-    self.navigationController.navigationBar.barTintColor = [common standardNavigationBarColor];
     
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
@@ -97,9 +96,23 @@
     }
     else
     {
-        self.favoriteImage = [UIImage imageNamed:@"favoriteSelected.png"];
+        if (self.areFavoriteJokes)
+        {
+            self.favoriteImage = [UIImage imageNamed:@"Remove.png"];
+        }
+        else
+        {
+            self.favoriteImage = [UIImage imageNamed:@"favoriteSelected.png"];
+        }
     }
-    self.favoriteFrameImg = CGRectMake(0,0,25,25);
+    if (self.areFavoriteJokes)
+    {
+        self.favoriteFrameImg = CGRectMake(0,0,65,40);
+    }
+    else
+    {
+        self.favoriteFrameImg = CGRectMake(0,0,25,25);
+    }
     self.favoriteButton = [[UIButton alloc] initWithFrame:self.favoriteFrameImg];
     [self.favoriteButton setBackgroundImage:self.favoriteImage forState:UIControlStateNormal];
     [self.favoriteButton addTarget:self action:@selector(makeFavorite:) forControlEvents:UIControlEventTouchUpInside];
@@ -218,14 +231,25 @@
 
 // size the cell when device is rotated
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    //return self.collectionView.frame.size;
+    CGFloat cellWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat cellHeight = [[UIScreen mainScreen] bounds].size.height;
     
-    // Adjust cell size for orientation
+//    // Adjust cell size for orientation
+//    if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]))
+//    {
+//        return CGSizeMake(self.collectionView.frame.size.height, self.collectionView.frame.size.width);
+//    }
+//    return CGSizeMake(self.collectionView.frame.size.width, self.collectionView.frame.size.height);
+    
+    // adjust cell size for orientation
     if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]))
     {
-        return CGSizeMake(self.collectionView.frame.size.height, self.collectionView.frame.size.width);
+        return CGSizeMake(cellHeight,cellWidth);
     }
-    return CGSizeMake(self.collectionView.frame.size.width, self.collectionView.frame.size.height);
+    else
+    {
+        return CGSizeMake(cellWidth,cellHeight);
+    }
 }
 
 @end

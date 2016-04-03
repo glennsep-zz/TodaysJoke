@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *contactUsSubject;
 @property (weak, nonatomic) IBOutlet UITextView *contactUsMessage;
 @property (strong, nonatomic) IBOutlet UIView *contactUsView;
+@property (weak, nonatomic) IBOutlet UILabel *subjectLabel;
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 
 @end
 
@@ -55,24 +57,38 @@
 
     // setup scren title
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    self.navigationController.navigationBar.tintColor = [common standardSystemColor];
+    self.navigationController.navigationBar.tintColor = [common standardNavigationBarTitleColor];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"ContactUs.png"];
     
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
-
-    // setup border for text view (used to type in joke)
-    UIColor *borderColor = [UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1.0];
-    self.contactUsMessage.layer.borderWidth = 1.0f;
-    self.contactUsMessage.layer.borderColor = borderColor.CGColor;
-    self.contactUsMessage.layer.cornerRadius = 5.0;
-    
+   
     // set the delegate of the text and view fields
     self.contactUsMessage.delegate = self;
     self.contactUsSubject.delegate = self;
+    
+    // setup the screen layout
+    [self setupScreenLayout:common];
 }
 
 #pragma Methods
+
+// setup the screen fonts, size, and layout
+-(void)setupScreenLayout:(TJKCommonRoutines *)common
+{   
+    // setup the font and color for the fields in the screen
+    [self.contactUsSubject setFont:[UIFont fontWithName:FONT_NAME_TEXT size:FONT_SIZE_TEXT]];
+    [self.contactUsSubject setTextColor:[common textColor]];
+    [self.contactUsMessage setFont:[UIFont fontWithName:FONT_NAME_TEXT size:FONT_SIZE_TEXT]];
+    [self.contactUsMessage setTextColor:[common textColor]];
+    [self.subjectLabel setFont:[UIFont fontWithName:FONT_NAME_LABEL size:FONT_SIZE_LABEL]];
+    [self.subjectLabel setTextColor:[common labelColor]];
+    [self.messageLabel setFont:[UIFont fontWithName:FONT_NAME_LABEL size:FONT_SIZE_LABEL]];
+    [self.messageLabel setTextColor:[common labelColor]];
+    
+    // setup border for text view
+    [common setBorderForTextView:self.contactUsMessage];
+}
 
 // restrict to portrait mode for iphone
 -(void) restrictRotation:(BOOL) restriction
@@ -285,7 +301,5 @@
 {
     [self.view endEditing:YES];
 }
-
-
 
 @end

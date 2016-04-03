@@ -9,6 +9,7 @@
 #import "TJKJokeSubmissionController.h"
 #import "TJKCommonRoutines.h"
 #import "TJKAppDelegate.h"
+#import "TJKConstants.h"
 
 @interface TJKJokeSubmissionController ()
 @property (weak, nonatomic) IBOutlet UITextView *jokeHelp;
@@ -27,16 +28,10 @@
     
     if (self)
     {
-//        // create done button
-//        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
-//                                     initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-//                                     target:self
-//                                     action:@selector(closeJokeHelp:)];
-//        self.navigationItem.leftBarButtonItem = doneItem;
+
     }
     
     return self;
-
 }
 
 #pragma View Controller Methods
@@ -57,7 +52,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     // dislay the help text
-    [self displayJokeHelpText];
+    [self displayJokeHelpText:common];
 }
 
 // logic to run when view appears
@@ -91,15 +86,8 @@
     appDelegate.restrictRotation = restriction;
 }
 
-//// close the help screen
-//-(void)closeJokeHelp:(id)sender
-//{
-//    // close the screen
-//    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
-//}
-
 // display the joke submission text
--(void)displayJokeHelpText
+-(void)displayJokeHelpText:(TJKCommonRoutines *)common
 {
     // populate the text field
     self.jokeHelp.text = @"\nThank you for submitting a joke!\n\n";
@@ -110,6 +98,13 @@
     self.jokeHelp.text = [self.jokeHelp.text stringByAppendingString:@"\u2022 In the field called \"Joke\" try and avoid profanity and hate jokes.\n\n"];
     self.jokeHelp.text = [self.jokeHelp.text stringByAppendingString:@"\u2022 When submitting a joke, the system may warn you if you add profanity, but this will not automatically have your joke rejected.\n\n"];
     self.jokeHelp.text = [self.jokeHelp.text stringByAppendingString:@"\u2022 If your joke is approved and you clicked on \"Notify Me\" we will let you know what day your joke will appear.\n\n"];
+    
+    // set the help text font, size, and color
+    [self.jokeHelp setFont:[UIFont fontWithName:FONT_NAME_TEXT size:FONT_SIZE_TEXT]];
+    [self.jokeHelp setTextColor:[common textColor]];
+    
+    // set up the text box border
+    [common setBorderForTextView:self.jokeHelp];
 }
 
 @end

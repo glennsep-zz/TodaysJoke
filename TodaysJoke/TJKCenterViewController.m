@@ -8,9 +8,11 @@
 
 #import "TJKCenterViewController.h"
 #import "TJKAppDelegate.h"
+#import "TJKCommonRoutines.h"
+#import "TJKConstants.h"
 
 @interface TJKCenterViewController ()
-@property (weak, nonatomic) IBOutlet UITextView *jokeTitle;
+@property (weak, nonatomic) IBOutlet UILabel *jokeTitle;
 @property (weak, nonatomic) IBOutlet UILabel *jokeCategory;
 @property (weak, nonatomic) IBOutlet UILabel *jokeSubmitted;
 @property (weak, nonatomic) IBOutlet UITextView *joke;
@@ -26,8 +28,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // setup instance to common routines
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+
     // restrict to portrait mode if iphone
     [self restrictRotation:YES];
+    
+    // setup the screen fonts, sizes, layout
+    [self setupScreenLayout:common];
     
     // initialize property values
     self.leftButton = 1;
@@ -41,9 +49,6 @@
     NSString *theDate = [todaysDate stringFromDate:now];
     NSString *jokeTitleString = [@"Joke of the day for " stringByAppendingString:theDate];
     self.jokeTitle.text = jokeTitleString;
-    [self.jokeTitle setTextColor:[[UIColor alloc] initWithRed:84/256.0 green:174/256.0 blue:166/256.0 alpha:1]];
-    [self.jokeTitle setFont:[UIFont systemFontOfSize:17]];
-    self.jokeTitle.textAlignment = NSTextAlignmentCenter;
 }
 
 // restrict to portrait mode for iphone
@@ -51,6 +56,23 @@
 {
     TJKAppDelegate* appDelegate = (TJKAppDelegate *)[UIApplication sharedApplication].delegate;
     appDelegate.restrictRotation = restriction;
+}
+
+#pragma Methods
+
+// setup fonts, sizes, colors
+-(void)setupScreenLayout:(TJKCommonRoutines *)common
+{
+    [self.jokeTitle setFont:[UIFont fontWithName:FONT_NAME_LABEL size:FONT_SIZE_LABEL]];
+    [self.jokeTitle setTextColor:[common textColor]];
+    self.jokeTitle.textAlignment = NSTextAlignmentCenter;
+    [self.jokeCategory setFont:[UIFont fontWithName:FONT_NAME_LABEL size:FONT_SIZE_LABEL]];
+    [self.jokeCategory setTextColor:[common textColor]];
+    [self.jokeSubmitted setFont:[UIFont fontWithName:FONT_NAME_LABEL size:FONT_SIZE_LABEL]];
+    [self.jokeSubmitted setTextColor:[common textColor]];
+    [self.joke setFont:[UIFont fontWithName:FONT_NAME_LABEL size:FONT_SIZE_LABEL]];
+    [self.joke setTextColor:[common textColor]];
+    [common setBorderForTextView:self.joke];
 }
 
 #pragma Action Methods

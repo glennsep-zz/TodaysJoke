@@ -33,6 +33,7 @@
 		4166DEE41C6D5E84003A4764 /* TJKListJokesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4166DEE21C6D5E84003A4764 /* TJKListJokesViewController.m */; };
 		4166DEE51C6D5E84003A4764 /* TJKListJokesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4166DEE31C6D5E84003A4764 /* TJKListJokesViewController.xib */; };
 		4166DEE71C6D5F49003A4764 /* TJKListJokesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4166DEE61C6D5F49003A4764 /* TJKListJokesCell.xib */; };
+		4167068E1CB176360032EB34 /* Remove.png in Resources */ = {isa = PBXBuildFile; fileRef = 4167068D1CB176360032EB34 /* Remove.png */; };
 		41683E131C94BEE1004ED1BA /* TJKStoreFavorities.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41683E111C94BEE1004ED1BA /* TJKStoreFavorities.xcdatamodeld */; };
 		417A42761C6671CE0097E28B /* TJKCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 417A42751C6671CE0097E28B /* TJKCategories.m */; };
 		417C00D51C44800400B86E52 /* TJKJokeSubmissionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 417C00D31C44800400B86E52 /* TJKJokeSubmissionController.m */; };
@@ -119,6 +120,7 @@
 		4166DEE21C6D5E84003A4764 /* TJKListJokesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKListJokesViewController.m; sourceTree = "<group>"; };
 		4166DEE31C6D5E84003A4764 /* TJKListJokesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKListJokesViewController.xib; sourceTree = "<group>"; };
 		4166DEE61C6D5F49003A4764 /* TJKListJokesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKListJokesCell.xib; sourceTree = "<group>"; };
+		4167068D1CB176360032EB34 /* Remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Remove.png; path = TodaysJoke/Images/Remove.png; sourceTree = "<group>"; };
 		41683E121C94BEE1004ED1BA /* TJKStoreFavorities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TJKStoreFavorities.xcdatamodel; sourceTree = "<group>"; };
 		417A42741C6671CE0097E28B /* TJKCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKCategories.h; sourceTree = "<group>"; };
 		417A42751C6671CE0097E28B /* TJKCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKCategories.m; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				419C6F931C728D7B006FF4EE /* SubmitJoke.png */,
 				419C6F8F1C727AFB006FF4EE /* TodaysJoke.png */,
 				4113E4DD1C83AB6D006FC6DE /* ListJokes.png */,
+				4167068D1CB176360032EB34 /* Remove.png */,
 				4128E6D61C9256ED00E0CDC7 /* helpButton.png */,
 				415E79F11CA7835000887B6F /* sendJoke.png */,
 				41C15D361C8672340004BCFA /* Categories.png */,
@@ -476,6 +479,7 @@
 				419FA4301C718CED004805A4 /* MainApp@40.png in Resources */,
 				419FA4391C718CED004805A4 /* MainApp@114.png in Resources */,
 				419FA4351C718CED004805A4 /* MainApp@76.png in Resources */,
+				4167068E1CB176360032EB34 /* Remove.png in Resources */,
 				410307E01C398F6F00C20020 /* TJKCategoriesCell.xib in Resources */,
 				412A2DD21C7FCEBC0028528F /* TJKDisplayJokesController.xib in Resources */,
 				41D364381C223DE6004A6C1A /* TJKMainViewController.xib in Resources */,

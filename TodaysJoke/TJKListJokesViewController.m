@@ -65,7 +65,7 @@
     self.title = self.categoryName;
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     self.navigationController.navigationBar.tintColor = [common standardSystemColor];
-    [common setupNavigationBarTitle:self.navigationController fontName:FONT_NAME fontSize:FONT_SIZE];
+    [common setupNavigationBarTitle:self.navigationController fontName:FONT_NAME_HEADER fontSize:FONT_SIZE_HEADER];
     
     // reload the table data
     self.jokeList = [[TJKJokeItemStore sharedStore] allItems];
@@ -282,6 +282,7 @@
     {
         TJKJokeItem *jokeItem = items[indexPath.row];
         jokeTitle.text = [NSString stringWithFormat:@"%@", jokeItem.jokeTitle];
+        [jokeTitle setFont:[UIFont fontWithName:FONT_NAME_TEXT size:FONT_SIZE_TEXT]];
         jokeCategory.text = [NSString stringWithFormat:@"%@", jokeItem.jokeCategory];
     }
 

@@ -8,6 +8,7 @@
 
 #import "TJKJokeGallery.h"
 #import "TJKCommonRoutines.h"
+#import "TJKConstants.h"
 
 @interface TJKJokeGallery()
 
@@ -59,6 +60,9 @@
     self.jokeText.layer.borderColor = borderColor.CGColor;
     self.jokeText.layer.cornerRadius = 5.0;
     
+    // setup text color
+    [self.jokeText setTextColor:borderColor];
+    
     // scroll text to the top
     [self.jokeText scrollRangeToVisible:NSMakeRange(0, 0)];
 }
@@ -68,6 +72,7 @@
     
     // populate the joke description
     self.jokeText.text = self.jokeDescr;
+    [self.jokeText setFont:[UIFont fontWithName:FONT_NAME_TEXT size:FONT_SIZE_TEXT]];
 
     // populate the joke category
     self.jokeCateogry.text = self.jokeCategoryText;
