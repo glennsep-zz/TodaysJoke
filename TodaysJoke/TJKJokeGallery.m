@@ -51,17 +51,12 @@
 // format the text view
 -(void)setupTextView
 {
-    // setup color
+    // initialize common routine
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    UIColor *borderColor = [common standardSystemColor];
     
-    // setup border
-    self.jokeText.layer.borderWidth = 1.0f;
-    self.jokeText.layer.borderColor = borderColor.CGColor;
-    self.jokeText.layer.cornerRadius = 5.0;
+    // setup border for text view
+    [common setBorderForTextView:self.jokeText];
     
-    // setup text color
-    [self.jokeText setTextColor:borderColor];
     
     // scroll text to the top
     [self.jokeText scrollRangeToVisible:NSMakeRange(0, 0)];
@@ -69,10 +64,14 @@
 
 // populate the cell values
 -(void)updateCell {
+
+    // initialize common routine
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     
     // populate the joke description
     self.jokeText.text = self.jokeDescr;
     [self.jokeText setFont:[UIFont fontWithName:FONT_NAME_TEXT size:FONT_SIZE_TEXT]];
+    [self.jokeText setTextColor:[common textColor]];
 
     // populate the joke category
     self.jokeCateogry.text = self.jokeCategoryText;
