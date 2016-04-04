@@ -57,6 +57,9 @@
     [common retrieveCategories:self.cacheLists];
     [common retrieveCategoriesForPicker:self.cacheLists];
     
+    // pause execution to display launch screen
+    sleep(3);
+    
     // setup the slide out menus
     [self setupView];
 }
