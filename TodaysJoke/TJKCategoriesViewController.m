@@ -22,6 +22,7 @@
 @property (nonatomic, weak) IBOutlet UITableViewCell *cellCategories;
 @property (strong, nonatomic) NSMutableArray *jokeCategories;
 @property (strong, nonatomic) NSString * selectedCategoryName;
+@property (strong, nonatomic) UIColor *categoryColor;
 @end
 
 @implementation TJKCategoriesViewController
@@ -60,6 +61,9 @@
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     self.navigationController.navigationBar.tintColor = [common standardSystemColor];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"Categories.png"];
+    
+    // set the category names color
+    self.categoryColor = [common textColor];
     
     // remove any joke items
     [[TJKJokeItemStore sharedStore] removeAllItems];
@@ -177,6 +181,7 @@
         
         categoryName.text = [NSString stringWithFormat:@"%@", currentRecord.categoryName];
         [categoryName setFont:[UIFont fontWithName:FONT_NAME_TEXT size:FONT_SIZE_TEXT]];
+        [categoryName setTextColor:self.categoryColor];
         categoryImage.image = currentRecord.categoryImage;
         self.selectedCategoryName = categoryName.text;
     }

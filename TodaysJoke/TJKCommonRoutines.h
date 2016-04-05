@@ -21,6 +21,7 @@
 -(UIColor *)standardSystemColor;
 -(UIColor *)labelColor;
 -(UIColor *)textColor;
+-(UIColor *)categoryColor;
 -(void)setBorderForTextView:(UITextView *)textView;
 
 #pragma Cache Methods

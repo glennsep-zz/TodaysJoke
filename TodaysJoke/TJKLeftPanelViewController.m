@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *leftTableView;
 @property (nonatomic, weak) IBOutlet UITableViewCell *cellMain;
 @property (nonatomic, strong) NSMutableArray *tableContents;
+@property (nonatomic, strong) UIColor *tableTextColor;
 
 @end
 
@@ -39,6 +40,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // setup the text color in the table
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    self.tableTextColor = [common textColor];
+   
+    
     [self setupTableContents];
 }
 
@@ -110,6 +117,7 @@
         NSString *currentRecord = [self.tableContents objectAtIndex:indexPath.row];
         creator.text = [NSString stringWithFormat:@"%@", currentRecord];
         [creator setFont:[UIFont fontWithName:FONT_NAME_TEXT size:FONT_SIZE_TEXT]];
+        [creator setTextColor:self.tableTextColor];
     }
      
     return _cellMain;

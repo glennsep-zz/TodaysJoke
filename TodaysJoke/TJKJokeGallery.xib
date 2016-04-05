@@ -19,10 +19,10 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFx-82-mIu">
-                        <rect key="frame" x="49" y="526" width="294" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFx-82-mIu">
+                        <rect key="frame" x="49" y="526" width="294" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="ehh-Ac-zbd"/>
+                            <constraint firstAttribute="height" constant="30" id="AbR-DS-SSj"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -33,13 +33,13 @@
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="OFx-82-mIu" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="AlA-4N-O2m"/>
-                <constraint firstItem="AVA-Ad-RO5" firstAttribute="leading" secondItem="OFx-82-mIu" secondAttribute="leading" id="Urc-h4-xfY"/>
+                <constraint firstAttribute="bottom" secondItem="OFx-82-mIu" secondAttribute="bottom" constant="26" id="9by-Ur-Kro"/>
+                <constraint firstItem="OFx-82-mIu" firstAttribute="leading" secondItem="AVA-Ad-RO5" secondAttribute="leading" id="MEc-y6-66W"/>
                 <constraint firstItem="AVA-Ad-RO5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="106" id="XqG-1Y-emM"/>
-                <constraint firstItem="OFx-82-mIu" firstAttribute="top" secondItem="AVA-Ad-RO5" secondAttribute="bottom" constant="8" symbolic="YES" id="bxl-Uf-GhV"/>
-                <constraint firstAttribute="bottom" secondItem="OFx-82-mIu" secondAttribute="bottom" constant="35" id="dKO-KO-0pP"/>
-                <constraint firstItem="AVA-Ad-RO5" firstAttribute="trailing" secondItem="OFx-82-mIu" secondAttribute="trailing" id="exV-wx-3qL"/>
-                <constraint firstItem="OFx-82-mIu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="49" id="hAC-gb-iga"/>
+                <constraint firstItem="OFx-82-mIu" firstAttribute="top" secondItem="AVA-Ad-RO5" secondAttribute="bottom" constant="8" symbolic="YES" id="Xs1-kJ-Xwq"/>
+                <constraint firstItem="OFx-82-mIu" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="ZO6-sg-UY9"/>
+                <constraint firstItem="OFx-82-mIu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="49" id="eO7-UH-7uU"/>
+                <constraint firstItem="OFx-82-mIu" firstAttribute="trailing" secondItem="AVA-Ad-RO5" secondAttribute="trailing" id="y7H-zf-Pjp"/>
             </constraints>
             <size key="customSize" width="393" height="582"/>
             <connections>

@@ -21,7 +21,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *listJokesTableView;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cellJokeList;
 @property (nonatomic, strong) NSArray<TJKJokeItem*> *jokeList;
-
+@property (nonatomic, strong) UIColor *jokeTextColor;
+@property (nonatomic, strong) UIColor *jokeCategoryColor;
 @end
 
 @implementation TJKListJokesViewController
@@ -66,6 +67,11 @@
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     self.navigationController.navigationBar.tintColor = [common standardSystemColor];
     [common setupNavigationBarTitle:self.navigationController fontName:FONT_NAME_HEADER fontSize:FONT_SIZE_HEADER];
+
+    
+    // set the joke text color in the table
+    self.jokeTextColor = [common textColor];
+    self.jokeCategoryColor = [common categoryColor];
     
     // reload the table data
     self.jokeList = [[TJKJokeItemStore sharedStore] allItems];
@@ -259,6 +265,12 @@
     return [[[TJKJokeItemStore sharedStore] allItems] count];
 }
 
+// set the row height to fit the images
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}
+
 // display the contents of the table
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
@@ -283,7 +295,10 @@
         TJKJokeItem *jokeItem = items[indexPath.row];
         jokeTitle.text = [NSString stringWithFormat:@"%@", jokeItem.jokeTitle];
         [jokeTitle setFont:[UIFont fontWithName:FONT_NAME_TEXT size:FONT_SIZE_TEXT]];
+        [jokeTitle setTextColor:self.jokeTextColor];
         jokeCategory.text = [NSString stringWithFormat:@"%@", jokeItem.jokeCategory];
+        [jokeCategory setFont:[UIFont fontWithName:FONT_CATEGORY_TEXT size:FONT_CATEGORY_SIZE]];
+        [jokeCategory setTextColor:self.jokeCategoryColor];
     }
 
     return _cellJokeList;

@@ -85,9 +85,17 @@
     return titleColor;
 }
 
+// color for the category name
+-(UIColor *)categoryColor
+{
+    UIColor *titleColor = [[UIColor alloc] initWithRed:0.969 green:0.761 blue:0.545 alpha:1];
+    return titleColor;
+}
+
 // set the border for a text view
 -(void)setBorderForTextView:(UITextView *)textView
 {
+    
     UIColor *borderColor = [UIColor colorWithRed:84/256.0 green:174/256.0 blue:166/256.0 alpha:1];
     textView.layer.borderWidth = 2.0f;
     textView.layer.borderColor = borderColor.CGColor;

@@ -74,7 +74,12 @@
     [self.jokeText setTextColor:[common textColor]];
 
     // populate the joke category
-    self.jokeCateogry.text = self.jokeCategoryText;
+    NSMutableString *categoryName = [[NSMutableString alloc] init];
+    [categoryName appendString:@"~"];
+    [categoryName appendString:self.jokeCategoryText];
+    self.jokeCateogry.text = [categoryName copy];
+    [self.jokeCateogry setFont:[UIFont fontWithName:FONT_CATEGORY_TEXT size:FONT_CATEGORY_SIZE]];
+    [self.jokeCateogry setTextColor:[common categoryColor]];
     
     // scroll text to the top
     [self.jokeText scrollRangeToVisible:NSMakeRange(0, 0)];

@@ -51,6 +51,8 @@ NSString *const FONT_NAME_LABEL = @"Marker Felt";
 CGFloat  const  FONT_SIZE_LABEL = 22.0f;
 NSString *const FONT_NAME_TEXT = @"Marker Felt";
 CGFloat  const  FONT_SIZE_TEXT = 22.0f;
+NSString *const FONT_CATEGORY_TEXT = @"Marker Felt";
+CGFloat  const  FONT_CATEGORY_SIZE = 16.0f;
 
 // cache list names
 NSString *const CACHE_CATEGORY_LIST = @"ListCategories";

@@ -219,7 +219,7 @@
     NSString *jokeCategory = jokeItem.jokeCategory;
     
     cell.jokeDescr = jokeDescr;
-    cell.jokeCategoryText = [@"~" stringByAppendingString:jokeCategory];
+    cell.jokeCategoryText = jokeCategory;
     [cell updateCell];
     
     // update the current index with the joke item
@@ -233,23 +233,8 @@
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat cellWidth = [[UIScreen mainScreen] bounds].size.width;
     CGFloat cellHeight = [[UIScreen mainScreen] bounds].size.height;
-    
-//    // Adjust cell size for orientation
-//    if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]))
-//    {
-//        return CGSizeMake(self.collectionView.frame.size.height, self.collectionView.frame.size.width);
-//    }
-//    return CGSizeMake(self.collectionView.frame.size.width, self.collectionView.frame.size.height);
-    
-    // adjust cell size for orientation
-    if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]))
-    {
-        return CGSizeMake(cellHeight,cellWidth);
-    }
-    else
-    {
-        return CGSizeMake(cellWidth,cellHeight);
-    }
+
+    return CGSizeMake(cellWidth,cellHeight);
 }
 
 @end

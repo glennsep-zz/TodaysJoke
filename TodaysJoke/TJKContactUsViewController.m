@@ -57,7 +57,7 @@
 
     // setup scren title
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    self.navigationController.navigationBar.tintColor = [common standardNavigationBarTitleColor];
+    self.navigationController.navigationBar.tintColor = [common standardSystemColor];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"ContactUs.png"];
     
     // restrict to portrait mode if iphone

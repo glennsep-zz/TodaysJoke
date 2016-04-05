@@ -51,6 +51,8 @@ extern NSString *const FONT_NAME_LABEL;
 extern CGFloat   const FONT_SIZE_LABEL;
 extern NSString *const FONT_NAME_TEXT;
 extern CGFloat   const FONT_SIZE_TEXT;
+extern NSString *const FONT_CATEGORY_TEXT;
+extern CGFloat   const FONT_CATEGORY_SIZE;
 
 // cache list names
 extern NSString *const CACHE_CATEGORY_LIST;
