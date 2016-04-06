@@ -30,9 +30,6 @@
     
     // setup instance to common routines
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-
-    // restrict to portrait mode if iphone
-    [self restrictRotation:YES];
     
     // setup the screen fonts, sizes, layout
     [self setupScreenLayout:common];
@@ -47,15 +44,8 @@
     NSDate *now = [[NSDate alloc] init];
     
     NSString *theDate = [todaysDate stringFromDate:now];
-    NSString *jokeTitleString = [@"Joke of the day for " stringByAppendingString:theDate];
+    NSString *jokeTitleString = [@"Today's Joke for " stringByAppendingString:theDate];
     self.jokeTitle.text = jokeTitleString;
-}
-
-// restrict to portrait mode for iphone
--(void) restrictRotation:(BOOL) restriction
-{
-    TJKAppDelegate* appDelegate = (TJKAppDelegate *)[UIApplication sharedApplication].delegate;
-    appDelegate.restrictRotation = restriction;
 }
 
 #pragma Methods

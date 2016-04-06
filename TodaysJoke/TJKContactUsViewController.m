@@ -59,9 +59,6 @@
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     self.navigationController.navigationBar.tintColor = [common standardSystemColor];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"ContactUs.png"];
-    
-    // restrict to portrait mode if iphone
-    [self restrictRotation:YES];
    
     // set the delegate of the text and view fields
     self.contactUsMessage.delegate = self;
@@ -88,13 +85,6 @@
     
     // setup border for text view
     [common setBorderForTextView:self.contactUsMessage];
-}
-
-// restrict to portrait mode for iphone
--(void) restrictRotation:(BOOL) restriction
-{
-    TJKAppDelegate* appDelegate = (TJKAppDelegate *)[UIApplication sharedApplication].delegate;
-    appDelegate.restrictRotation = restriction;
 }
 
 // send a message

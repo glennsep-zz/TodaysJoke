@@ -54,9 +54,6 @@
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"ListJokes.png"];
     
-    // restrict to portrait mode if iphone
-    [self restrictRotation:YES];
-    
     // setup the collection view by setting up how it responds and displays
     [self setupCollectionView];
 }
@@ -188,13 +185,6 @@
     [self.collectionView setCollectionViewLayout:flowLayout];
     [self.collectionView setShowsHorizontalScrollIndicator:NO];
     [self.collectionView setShowsVerticalScrollIndicator:NO];
-}
-
-// restrict to portrait mode for iphone
--(void) restrictRotation:(BOOL) restriction
-{
-    TJKAppDelegate* appDelegate = (TJKAppDelegate *)[UIApplication sharedApplication].delegate;
-    appDelegate.restrictRotation = restriction;
 }
 
 #pragma Collection View Methods

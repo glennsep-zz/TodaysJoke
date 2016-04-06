@@ -79,6 +79,7 @@
 		41D364361C223AC7004A6C1A /* TJKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D364351C223AC7004A6C1A /* TJKMainViewController.m */; };
 		41D364381C223DE6004A6C1A /* TJKMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41D364371C223DE6004A6C1A /* TJKMainViewController.xib */; };
 		41D3643B1C224253004A6C1A /* TJKJokeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D3643A1C224253004A6C1A /* TJKJokeItem.m */; };
+		41FEB48C1CB4955F0072CEFC /* JokeHelp.png in Resources */ = {isa = PBXBuildFile; fileRef = 41FEB48B1CB4955F0072CEFC /* JokeHelp.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -175,6 +176,7 @@
 		41D364371C223DE6004A6C1A /* TJKMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKMainViewController.xib; sourceTree = "<group>"; };
 		41D364391C224253004A6C1A /* TJKJokeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKJokeItem.h; sourceTree = "<group>"; };
 		41D3643A1C224253004A6C1A /* TJKJokeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKJokeItem.m; sourceTree = "<group>"; };
+		41FEB48B1CB4955F0072CEFC /* JokeHelp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = JokeHelp.png; path = TodaysJoke/Images/JokeHelp.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 				4128E6D61C9256ED00E0CDC7 /* helpButton.png */,
 				415E79F11CA7835000887B6F /* sendJoke.png */,
 				41C15D361C8672340004BCFA /* Categories.png */,
+				41FEB48B1CB4955F0072CEFC /* JokeHelp.png */,
 				419FA41D1C718CED004805A4 /* MainApp.png */,
 				419FA41E1C718CED004805A4 /* MainApp@29.png */,
 				419FA41F1C718CED004805A4 /* MainApp@40.png */,
@@ -470,6 +473,7 @@
 				419FA4371C718CED004805A4 /* MainApp@87.png in Resources */,
 				41C15D371C8672340004BCFA /* Categories.png in Resources */,
 				415E79F21CA7835000887B6F /* sendJoke.png in Resources */,
+				41FEB48C1CB4955F0072CEFC /* JokeHelp.png in Resources */,
 				419FA4361C718CED004805A4 /* MainApp@80.png in Resources */,
 				419FA43B1C718CED004805A4 /* MainApp@144.png in Resources */,
 				419FA3A41C70EB7D004805A4 /* Checkbox-checked.png in Resources */,

@@ -45,10 +45,7 @@
 // routines to run when view loads
 - (void)viewDidLoad {
     [super viewDidLoad];
-       
-    // restrict to portrait mode if iphone
-    [self restrictRotation:YES];
-    
+
     // get all categories
     [self retrieveCategories];
 }
@@ -131,13 +128,6 @@
 {
     // pop the view controller from the stack
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-// restrict to portrait mode for iphone
--(void) restrictRotation:(BOOL) restriction
-{
-    TJKAppDelegate* appDelegate = (TJKAppDelegate *)[UIApplication sharedApplication].delegate;
-    appDelegate.restrictRotation = restriction;
 }
 
 #pragma Table View Methods

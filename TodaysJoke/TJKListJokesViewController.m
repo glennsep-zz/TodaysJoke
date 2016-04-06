@@ -49,9 +49,6 @@
     // retrieve all of the jokes
     [[TJKJokeItemStore sharedStore] retrieveFavoritesFromArchive];
     
-    // restrict to portrait mode if iphone
-    [self restrictRotation:YES];
-    
     // get all the jokes for the category
     [self fetchJokesForCategory];
 }
@@ -79,12 +76,6 @@
 }
 
 #pragma Methods
-// restrict to portrait mode for iphone
--(void) restrictRotation:(BOOL) restriction
-{
-    TJKAppDelegate* appDelegate = (TJKAppDelegate *)[UIApplication sharedApplication].delegate;
-    appDelegate.restrictRotation = restriction;
-}
 
 // set the table contents
 -(void)setupTableContents

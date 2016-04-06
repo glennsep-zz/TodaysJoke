@@ -41,12 +41,10 @@
     // setup navigation bar
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     self.navigationController.navigationBar.tintColor = [common standardSystemColor];
+    [common setupNavigationBarTitle:self.navigationItem setImage:@"JokeHelp.png"];
     
     // set the ui text view delegate
     self.jokeHelp.delegate = self;
-    
-    // restrict to portrait mode if iphone
-    [self restrictRotation:YES];
     
     // set the auto adjust scroll bars to NO
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -78,13 +76,6 @@
 }
 
 #pragma Methods
-
-// restrict to portrait mode for iphone
--(void) restrictRotation:(BOOL) restriction
-{
-    TJKAppDelegate* appDelegate = (TJKAppDelegate *)[UIApplication sharedApplication].delegate;
-    appDelegate.restrictRotation = restriction;
-}
 
 // display the joke submission text
 -(void)displayJokeHelpText:(TJKCommonRoutines *)common

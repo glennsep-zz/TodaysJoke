@@ -77,9 +77,6 @@
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"SubmitJoke.png"];
     self.navigationController.navigationBar.tintColor = [common standardSystemColor];
-   
-    // restrict to portrait mode if iphone
-    [self restrictRotation:YES];
     
     // initialize notify me check box to unselected
     self.notifyMeCheckedSelected = NO;
@@ -251,13 +248,6 @@
     // toggle check box
     self.notifyMeCheckedSelected = !self.notifyMeCheckedSelected;
     [self.notifyMe setSelected:self.notifyMeCheckedSelected];
-}
-
-// restrict to portrait mode for iphone
--(void) restrictRotation:(BOOL) restriction
-{
-    TJKAppDelegate* appDelegate = (TJKAppDelegate *)[UIApplication sharedApplication].delegate;
-    appDelegate.restrictRotation = restriction;
 }
 
 // action to take when done button is pressed on picker toolbar
