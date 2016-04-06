@@ -45,7 +45,7 @@
 // routines to run when view loads
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // get all categories
     [self retrieveCategories];
 }

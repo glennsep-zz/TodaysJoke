@@ -75,8 +75,9 @@
 
     // populate the joke category
     NSMutableString *categoryName = [[NSMutableString alloc] init];
-    [categoryName appendString:@"~"];
+    [categoryName appendString:@"["];
     [categoryName appendString:self.jokeCategoryText];
+    [categoryName appendString:@"]"];
     self.jokeCateogry.text = [categoryName copy];
     [self.jokeCateogry setFont:[UIFont fontWithName:FONT_CATEGORY_TEXT size:FONT_CATEGORY_SIZE]];
     [self.jokeCateogry setTextColor:[common categoryColor]];
