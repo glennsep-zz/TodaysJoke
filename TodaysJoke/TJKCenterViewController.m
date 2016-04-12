@@ -123,31 +123,33 @@
 // display the latest joke
 -(void)displayLatestJoke
 {
-    // display today's date
+    // get the current date
     NSDateFormatter *todaysDate = [[NSDateFormatter alloc] init];
     [todaysDate setDateStyle:NSDateFormatterFullStyle];
     NSDate *now = [[NSDate alloc] init];
     NSString *theDate = [todaysDate stringFromDate:now];
     NSString *jokeTitleString = [@"Today's Joke for " stringByAppendingString:theDate];
-    self.jokeTitle.text = jokeTitleString;
-    
+
     if (self.latestJoke)
     {
-        // display the category
-        self.jokeCategory.text = [@"Category: " stringByAppendingString:self.latestJoke.jokeCategory];
-        
-        // display submitted by
-        if ([self.latestJoke.nameSubmitted isEqualToString:@""])
-        {
-            self.jokeSubmitted.text = @"Submitted by Anonymous";
-        }
-        else
-        {
-            self.jokeSubmitted.text = [@"Submitted by " stringByAppendingString:self.latestJoke.nameSubmitted];
-        }
-
-        // display the joke
         dispatch_sync(dispatch_get_main_queue(), ^{
+            // display the current date
+            self.jokeTitle.text = jokeTitleString;
+        
+            // display the category
+            self.jokeCategory.text = [@"Category: " stringByAppendingString:self.latestJoke.jokeCategory];
+            
+            // display submitted by
+            if ([self.latestJoke.nameSubmitted isEqualToString:@""])
+            {
+                self.jokeSubmitted.text = @"Submitted by Anonymous";
+            }
+            else
+            {
+                self.jokeSubmitted.text = [@"Submitted by " stringByAppendingString:self.latestJoke.nameSubmitted];
+            }
+
+            // display the joke
             self.joke.text = self.latestJoke.jokeDescr;
         });
     }
