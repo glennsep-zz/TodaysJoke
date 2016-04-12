@@ -12,6 +12,7 @@
 #import "TJKCenterViewController.h"
 #import "TJKLeftPanelViewController.h"
 #import "TJKCommonRoutines.h"
+#import "TJKJokeItem.h"
 
 #define CENTER_TAG 1
 #define LEFT_PANEL_TAG 2
@@ -57,11 +58,11 @@
     [common retrieveCategories:self.cacheLists];
     [common retrieveCategoriesForPicker:self.cacheLists];
     
-    // pause execution to display launch screen
-    sleep(3);
-    
     // setup the slide out menus
     [self setupView];
+    
+    // pause execution to display launch screen
+    sleep(3);
 }
 
 // actions to perform before view appears
@@ -122,14 +123,9 @@
     
     // pass in cache
     detailJokeViewController.cacheLists = self.cacheLists;
-
-    // create a navigation controller
-    //UINavigationController *navController = [[UINavigationController alloc]
-    //                                         initWithRootViewController:detailJokeViewController];
-    
+   
     // display joke detail screen
     [self.navigationController pushViewController:detailJokeViewController animated:YES];
-    //[self presentViewController:navController animated:YES completion:NULL];
 }
 
 // to show or hide left panel

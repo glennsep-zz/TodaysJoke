@@ -19,26 +19,29 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category: Pun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryU-gq-iP5">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryU-gq-iP5">
                     <rect key="frame" x="24" y="146" width="552" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Submitted by Glenn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EeC-eT-k4k">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EeC-eT-k4k">
                     <rect key="frame" x="24" y="185" width="552" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="WOA-Sk-aUg"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="A friend of mine tried to annoy me with bird puns, but I soon realized that toucan play at that game." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Qtg-DQ-KOV">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Loading Joke" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Qtg-DQ-KOV">
                     <rect key="frame" x="24" y="222" width="552" height="354"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6D-Pg-Pva">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6D-Pg-Pva">
                     <rect key="frame" x="24" y="78" width="552" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="FQl-oV-HUM"/>
@@ -51,19 +54,19 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Qtg-DQ-KOV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="3Tf-B9-FrJ"/>
-                <constraint firstItem="EeC-eT-k4k" firstAttribute="leading" secondItem="ryU-gq-iP5" secondAttribute="leading" id="3Zo-iU-CxY"/>
+                <constraint firstItem="EeC-eT-k4k" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="185" id="4QI-60-WQQ"/>
+                <constraint firstItem="Qtg-DQ-KOV" firstAttribute="top" secondItem="EeC-eT-k4k" secondAttribute="bottom" constant="16" id="528-I5-dyH"/>
                 <constraint firstItem="w6D-Pg-Pva" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="78" id="6Ee-qL-TNk"/>
-                <constraint firstItem="EeC-eT-k4k" firstAttribute="trailing" secondItem="ryU-gq-iP5" secondAttribute="trailing" id="Bsi-Zy-VB6"/>
-                <constraint firstItem="Qtg-DQ-KOV" firstAttribute="top" secondItem="EeC-eT-k4k" secondAttribute="bottom" constant="16" id="CL5-CE-Vt5"/>
-                <constraint firstItem="EeC-eT-k4k" firstAttribute="top" secondItem="ryU-gq-iP5" secondAttribute="bottom" constant="18" id="PEj-aE-EqG"/>
+                <constraint firstItem="EeC-eT-k4k" firstAttribute="trailing" secondItem="Qtg-DQ-KOV" secondAttribute="trailing" id="CaR-UP-fRS"/>
+                <constraint firstItem="EeC-eT-k4k" firstAttribute="trailing" secondItem="ryU-gq-iP5" secondAttribute="trailing" id="HtY-c5-NV0"/>
+                <constraint firstItem="EeC-eT-k4k" firstAttribute="trailing" secondItem="w6D-Pg-Pva" secondAttribute="trailing" id="NQa-pe-IyB"/>
                 <constraint firstAttribute="bottom" secondItem="Qtg-DQ-KOV" secondAttribute="bottom" constant="24" id="Rqr-uu-jdK"/>
                 <constraint firstItem="ryU-gq-iP5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="e4w-WV-UE9"/>
                 <constraint firstItem="w6D-Pg-Pva" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="edc-eY-sdL"/>
-                <constraint firstItem="EeC-eT-k4k" firstAttribute="trailing" secondItem="w6D-Pg-Pva" secondAttribute="trailing" id="fry-nq-Hbz"/>
                 <constraint firstItem="ryU-gq-iP5" firstAttribute="top" secondItem="w6D-Pg-Pva" secondAttribute="bottom" constant="18" id="fyo-Uw-pon"/>
+                <constraint firstItem="EeC-eT-k4k" firstAttribute="top" secondItem="ryU-gq-iP5" secondAttribute="bottom" constant="18" id="kUa-sj-h2u"/>
+                <constraint firstItem="EeC-eT-k4k" firstAttribute="leading" secondItem="ryU-gq-iP5" secondAttribute="leading" id="lgE-UT-g0Y"/>
                 <constraint firstAttribute="trailing" secondItem="Qtg-DQ-KOV" secondAttribute="trailing" constant="24" id="lxy-2L-cup"/>
-                <constraint firstItem="EeC-eT-k4k" firstAttribute="trailing" secondItem="Qtg-DQ-KOV" secondAttribute="trailing" id="uG9-Rq-fqP"/>
-                <constraint firstItem="EeC-eT-k4k" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="185" id="wal-80-2Wv"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <point key="canvasLocation" x="1016" y="284"/>

@@ -25,6 +25,7 @@
 		413E51EA1C35DB4400DC3330 /* TJKLeftPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 413E51E81C35DB4400DC3330 /* TJKLeftPanelViewController.m */; };
 		413E51EB1C35DB4400DC3330 /* TJKLeftPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413E51E91C35DB4400DC3330 /* TJKLeftPanelViewController.xib */; };
 		414028291C319F2500622BE4 /* GHSNoSwearing.m in Sources */ = {isa = PBXBuildFile; fileRef = 414028281C319F2500622BE4 /* GHSNoSwearing.m */; };
+		414535871CBC6B0E00F7CEC8 /* MainApp.png in Resources */ = {isa = PBXBuildFile; fileRef = 414535861CBC6B0E00F7CEC8 /* MainApp.png */; };
 		415442ED1C5B016300401DAF /* TJKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 415442EC1C5B016300401DAF /* TJKConstants.m */; };
 		415E79F21CA7835000887B6F /* sendJoke.png in Resources */ = {isa = PBXBuildFile; fileRef = 415E79F11CA7835000887B6F /* sendJoke.png */; };
 		416410531C35D7E3008BD831 /* TJKCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 416410511C35D7E3008BD831 /* TJKCenterViewController.m */; };
@@ -52,7 +53,6 @@
 		419FA3F51C710965004805A4 /* leftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 419FA3F31C710965004805A4 /* leftArrow.png */; };
 		419FA3F61C710965004805A4 /* rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 419FA3F41C710965004805A4 /* rightArrow.png */; };
 		419FA3F91C710B75004805A4 /* favoriteSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 419FA3F71C710B75004805A4 /* favoriteSelected.png */; };
-		419FA42E1C718CED004805A4 /* MainApp.png in Resources */ = {isa = PBXBuildFile; fileRef = 419FA41D1C718CED004805A4 /* MainApp.png */; };
 		419FA42F1C718CED004805A4 /* MainApp@29.png in Resources */ = {isa = PBXBuildFile; fileRef = 419FA41E1C718CED004805A4 /* MainApp@29.png */; };
 		419FA4301C718CED004805A4 /* MainApp@40.png in Resources */ = {isa = PBXBuildFile; fileRef = 419FA41F1C718CED004805A4 /* MainApp@40.png */; };
 		419FA4311C718CED004805A4 /* MainApp@50.png in Resources */ = {isa = PBXBuildFile; fileRef = 419FA4201C718CED004805A4 /* MainApp@50.png */; };
@@ -111,6 +111,7 @@
 		413E51E91C35DB4400DC3330 /* TJKLeftPanelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJKLeftPanelViewController.xib; sourceTree = "<group>"; };
 		414028271C319F2500622BE4 /* GHSNoSwearing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHSNoSwearing.h; sourceTree = "<group>"; };
 		414028281C319F2500622BE4 /* GHSNoSwearing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHSNoSwearing.m; sourceTree = "<group>"; };
+		414535861CBC6B0E00F7CEC8 /* MainApp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MainApp.png; path = TodaysJoke/Images/MainApp.png; sourceTree = "<group>"; };
 		415442EC1C5B016300401DAF /* TJKConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJKConstants.m; sourceTree = "<group>"; };
 		415E79F11CA7835000887B6F /* sendJoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sendJoke.png; path = TodaysJoke/Images/sendJoke.png; sourceTree = "<group>"; };
 		416410501C35D7E3008BD831 /* TJKCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJKCenterViewController.h; sourceTree = "<group>"; };
@@ -144,7 +145,6 @@
 		419FA3F31C710965004805A4 /* leftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftArrow.png; path = TodaysJoke/Images/leftArrow.png; sourceTree = "<group>"; };
 		419FA3F41C710965004805A4 /* rightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rightArrow.png; path = TodaysJoke/Images/rightArrow.png; sourceTree = "<group>"; };
 		419FA3F71C710B75004805A4 /* favoriteSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favoriteSelected.png; path = TodaysJoke/Images/favoriteSelected.png; sourceTree = "<group>"; };
-		419FA41D1C718CED004805A4 /* MainApp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MainApp.png; path = TodaysJoke/Images/MainApp.png; sourceTree = "<group>"; };
 		419FA41E1C718CED004805A4 /* MainApp@29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MainApp@29.png"; path = "TodaysJoke/Images/MainApp@29.png"; sourceTree = "<group>"; };
 		419FA41F1C718CED004805A4 /* MainApp@40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MainApp@40.png"; path = "TodaysJoke/Images/MainApp@40.png"; sourceTree = "<group>"; };
 		419FA4201C718CED004805A4 /* MainApp@50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MainApp@50.png"; path = "TodaysJoke/Images/MainApp@50.png"; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 				415E79F11CA7835000887B6F /* sendJoke.png */,
 				41C15D361C8672340004BCFA /* Categories.png */,
 				41FEB48B1CB4955F0072CEFC /* JokeHelp.png */,
-				419FA41D1C718CED004805A4 /* MainApp.png */,
+				414535861CBC6B0E00F7CEC8 /* MainApp.png */,
 				419FA41E1C718CED004805A4 /* MainApp@29.png */,
 				419FA41F1C718CED004805A4 /* MainApp@40.png */,
 				419FA4201C718CED004805A4 /* MainApp@50.png */,
@@ -477,7 +477,6 @@
 				419FA4361C718CED004805A4 /* MainApp@80.png in Resources */,
 				419FA43B1C718CED004805A4 /* MainApp@144.png in Resources */,
 				419FA3A41C70EB7D004805A4 /* Checkbox-checked.png in Resources */,
-				419FA42E1C718CED004805A4 /* MainApp.png in Resources */,
 				419FA3A71C70EB7D004805A4 /* menuButton.png in Resources */,
 				419FA3F51C710965004805A4 /* leftArrow.png in Resources */,
 				419FA4301C718CED004805A4 /* MainApp@40.png in Resources */,
@@ -486,6 +485,7 @@
 				4167068E1CB176360032EB34 /* Remove.png in Resources */,
 				410307E01C398F6F00C20020 /* TJKCategoriesCell.xib in Resources */,
 				412A2DD21C7FCEBC0028528F /* TJKDisplayJokesController.xib in Resources */,
+				414535871CBC6B0E00F7CEC8 /* MainApp.png in Resources */,
 				41D364381C223DE6004A6C1A /* TJKMainViewController.xib in Resources */,
 				419FA4311C718CED004805A4 /* MainApp@50.png in Resources */,
 			);
