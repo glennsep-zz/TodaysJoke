@@ -64,60 +64,64 @@
 {
     // get the most recent joke added to the database
     CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
-    NSPredicate *predicateJokes = [NSPredicate predicateWithFormat:@"creationDate <= %@", [NSDate date]];
+    NSPredicate *predicateJokes = [NSPredicate predicateWithFormat:@"jokeDisplayDate <= %@", [NSDate date]];
     CKQuery *queryJokes = [[CKQuery alloc] initWithRecordType:JOKE_RECORD_TYPE predicate:predicateJokes];
     NSSortDescriptor *sortJokes = [[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:NO];
     queryJokes.sortDescriptors = [NSArray arrayWithObjects:sortJokes, nil];
-    [jokePublicDatabase performQuery:queryJokes inZoneWithID:nil completionHandler:^(NSArray<CKRecord*>* results, NSError * error)
-     {
-         if (!error)
-         {
-             // get the joke record
-             CKRecord *jokeRecord = [results firstObject];
-             
-             // get the category that belongs to the joke
-             if (jokeRecord)
+
+    // return only one result from the jokes record
+    CKQueryOperation *queryJokesOp = [[CKQueryOperation alloc] initWithQuery:queryJokes];
+    queryJokesOp.resultsLimit = 1;
+    queryJokesOp.queryCompletionBlock = ^(CKQueryCursor *cursor, NSError * error)
+    {
+        if (error)
+        {
+            // display alert message and pop the view controller from the stack
+            GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
+            [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke failed to load. Just try again!"];
+        }
+    };
+    [jokePublicDatabase addOperation:queryJokesOp];
+    
+    // now fetch the joke record and its associated category record and display them
+    queryJokesOp.recordFetchedBlock = ^(CKRecord *jokeRecord)
+    {
+        // get the category that belongs to the joke
+        if (jokeRecord)
+        {
+            // get the category associated with the joke
+            CKReference *referenceToCategory = jokeRecord[CATEGORY_FIELD_NAME];
+            CKRecordID *categoryRecordID = referenceToCategory.recordID;
+            [jokePublicDatabase fetchRecordWithID:categoryRecordID completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error)
              {
-                 // get the category associated with the joke
-                 CKReference *referenceToCategory = jokeRecord[CATEGORY_FIELD_NAME];
-                 CKRecordID *categoryRecordID = referenceToCategory.recordID;
-                 [jokePublicDatabase fetchRecordWithID:categoryRecordID completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error)
-                  {
-                      if (!error)
-                      {
-                          // get the latest joke
-                          if (record)
-                          {
-                              self.latestJoke = [[TJKJokeItem alloc] init];
-                              self.latestJoke = [self.latestJoke initWithJokeDescr:[jokeRecord objectForKey:JOKE_DESCR] jokeCategory:[record objectForKey:CATEGORY_FIELD_NAME] nameSubmitted:[jokeRecord objectForKey:JOKE_SUBMITTED_BY] jokeTitle:[jokeRecord objectForKey:JOKE_TITLE] categoryRecordName:nil jokeCreated:[jokeRecord valueForKey:JOKE_CREATED] jokeRecordName:jokeRecord.recordID.recordName];
-                              
-                              // display the latest joke
-                              [self displayLatestJoke];
-                          }
-                          else
-                          {
-                              // display alert message and pop the view controller from the stack
-                              GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
-                              [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke failed to load. Just try again!"];
-                          }
-                      }
-                      else
-                      {
-                          NSLog(@"%@",error);
-                          // display alert message and pop the view controller from the stack
-                          GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
-                          [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke failed to load. Just try again!"];
-                      }
-                  }];
-             }
-             else
-             {
-                 // display alert message and pop the view controller from the stack
-                 GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
-                 [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke failed to load. Just try again!"];
-             }
-         }
-     }];
+                 if (!error)
+                 {
+                     // get the latest joke
+                     if (record)
+                     {
+                         self.latestJoke = [[TJKJokeItem alloc] init];
+                         self.latestJoke = [self.latestJoke initWithJokeDescr:[jokeRecord objectForKey:JOKE_DESCR] jokeCategory:[record objectForKey:CATEGORY_FIELD_NAME] nameSubmitted:[jokeRecord objectForKey:JOKE_SUBMITTED_BY] jokeTitle:[jokeRecord objectForKey:JOKE_TITLE] categoryRecordName:nil jokeCreated:[jokeRecord valueForKey:JOKE_CREATED] jokeRecordName:jokeRecord.recordID.recordName];
+                         
+                         // display the latest joke
+                         [self displayLatestJoke];
+                     }
+                     else
+                     {
+                         // display alert message and pop the view controller from the stack
+                         GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
+                         [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke failed to load. Just try again!"];
+                     }
+                 }
+                 else
+                 {
+                     NSLog(@"%@",error);
+                     // display alert message and pop the view controller from the stack
+                     GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
+                     [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke failed to load. Just try again!"];
+                 }
+             }];
+        }
+    };
 }
 
 // display the latest joke
@@ -133,6 +137,17 @@
     if (self.latestJoke)
     {
         dispatch_sync(dispatch_get_main_queue(), ^{
+            // determine if joke submitted by is empty
+            NSString *submittedBy = @"";
+            BOOL isNameSubmitted = (self.latestJoke.nameSubmitted == nil) ? NO : YES;
+            
+            // if the joke submitted by is YES then check for empty spaces, if empty then set flag to NO
+            if (isNameSubmitted)
+            {
+                submittedBy = [self.latestJoke.nameSubmitted stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                isNameSubmitted = ([submittedBy isEqualToString:@""]) ? NO : YES;
+            }
+            
             // display the current date
             self.jokeTitle.text = jokeTitleString;
         
@@ -140,13 +155,13 @@
             self.jokeCategory.text = [@"Category: " stringByAppendingString:self.latestJoke.jokeCategory];
             
             // display submitted by
-            if ([self.latestJoke.nameSubmitted isEqualToString:@""])
+            if (isNameSubmitted)
             {
-                self.jokeSubmitted.text = @"Submitted by Anonymous";
+                self.jokeSubmitted.text = @"Submitted by: Anonymous";
             }
             else
             {
-                self.jokeSubmitted.text = [@"Submitted by " stringByAppendingString:self.latestJoke.nameSubmitted];
+                self.jokeSubmitted.text = [@"Submitted by: " stringByAppendingString:self.latestJoke.nameSubmitted];
             }
 
             // display the joke
