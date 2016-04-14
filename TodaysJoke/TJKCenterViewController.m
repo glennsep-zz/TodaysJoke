@@ -62,11 +62,20 @@
 
 -(void)retrieveLatestJoke
 {
+    // from todays date get the current date with 0 hours, minutes, and seconds and in the current time zone
+    NSDate *todaysDate = [NSDate date];
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components: NSUIntegerMax fromDate: todaysDate];
+    [components setHour: 23];
+    [components setMinute: 59];
+    [components setSecond: 59];
+    NSDate* searchDate = [[calendar dateFromComponents:components] dateByAddingTimeInterval:[[NSTimeZone localTimeZone]secondsFromGMT]];
+   
     // get the most recent joke added to the database
     CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
-    NSPredicate *predicateJokes = [NSPredicate predicateWithFormat:@"jokeDisplayDate <= %@", [NSDate date]];
+    NSPredicate *predicateJokes = [NSPredicate predicateWithFormat:[JOKE_CREATED stringByAppendingString:@" <= %@"], searchDate];
     CKQuery *queryJokes = [[CKQuery alloc] initWithRecordType:JOKE_RECORD_TYPE predicate:predicateJokes];
-    NSSortDescriptor *sortJokes = [[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:NO];
+    NSSortDescriptor *sortJokes = [[NSSortDescriptor alloc] initWithKey:JOKE_CREATED ascending:NO];
     queryJokes.sortDescriptors = [NSArray arrayWithObjects:sortJokes, nil];
 
     // return only one result from the jokes record
@@ -157,11 +166,11 @@
             // display submitted by
             if (isNameSubmitted)
             {
-                self.jokeSubmitted.text = @"Submitted by: Anonymous";
+                self.jokeSubmitted.text = [@"Submitted by: " stringByAppendingString:submittedBy];
             }
             else
             {
-                self.jokeSubmitted.text = [@"Submitted by: " stringByAppendingString:self.latestJoke.nameSubmitted];
+                self.jokeSubmitted.text = @"Submitted by: Anonymous";
             }
 
             // display the joke
