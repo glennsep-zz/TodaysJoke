@@ -62,7 +62,7 @@
 
 -(void)retrieveLatestJoke
 {
-    // from todays date get the current date with 0 hours, minutes, and seconds and in the current time zone
+    // from todays date get the current date with 23 hours, 59 minutes, and 59 seconds and in the current time zone
     NSDate *todaysDate = [NSDate date];
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components: NSUIntegerMax fromDate: todaysDate];
