@@ -23,6 +23,7 @@
 -(UIColor *)textColor;
 -(UIColor *)categoryColor;
 -(void)setBorderForTextView:(UITextView *)textView;
+-(NSDate *)searchDateForQuery;
 
 #pragma Cache Methods
 -(void)retrieveCategories:(NSCache *) cacheLists;

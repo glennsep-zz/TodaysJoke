@@ -62,14 +62,9 @@
 
 -(void)retrieveLatestJoke
 {
-    // from todays date get the current date with 23 hours, 59 minutes, and 59 seconds and in the current time zone
-    NSDate *todaysDate = [NSDate date];
-    NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components: NSUIntegerMax fromDate: todaysDate];
-    [components setHour: 23];
-    [components setMinute: 59];
-    [components setSecond: 59];
-    NSDate* searchDate = [[calendar dateFromComponents:components] dateByAddingTimeInterval:[[NSTimeZone localTimeZone]secondsFromGMT]];
+    // get the search date
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    NSDate *searchDate = [common searchDateForQuery];
    
     // get the most recent joke added to the database
     CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];

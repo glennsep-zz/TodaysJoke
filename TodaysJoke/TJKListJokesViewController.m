@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSArray<TJKJokeItem*> *jokeList;
 @property (nonatomic, strong) UIColor *jokeTextColor;
 @property (nonatomic, strong) UIColor *jokeCategoryColor;
+@property (nonatomic, strong) NSDate *searchDate;
 @end
 
 @implementation TJKListJokesViewController
@@ -45,6 +46,10 @@
 // routines to run when view loads
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // get the date to search for jokes
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    self.searchDate = [common searchDateForQuery];
     
     // retrieve all of the jokes
     [[TJKJokeItemStore sharedStore] retrieveFavoritesFromArchive];
@@ -125,7 +130,7 @@
              if (categoryRecord)
              {
                  // now that we have the record id for the joke category get the jokes
-                 NSPredicate *predicateJokes = [NSPredicate predicateWithFormat:@"CategoryName == %@",categoryRecord];
+                 NSPredicate *predicateJokes = [NSPredicate predicateWithFormat:@"CategoryName == %@ && jokeDisplayDate <= %@",categoryRecord, self.searchDate];
                  CKQuery *jokeQuery = [[CKQuery alloc] initWithRecordType:JOKE_RECORD_TYPE predicate:predicateJokes];
                  [jokePublicDatabase performQuery:jokeQuery inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * results, NSError * error)
                   {
@@ -203,7 +208,7 @@
                  if (categoryRecord)
                  {
                      // now that we have the record id for the joke category get the jokes
-                     NSPredicate *predicateJokes = [NSPredicate predicateWithFormat:@"CategoryName == %@",categoryRecord];
+                     NSPredicate *predicateJokes = [NSPredicate predicateWithFormat:@"CategoryName == %@ && jokeDisplayDate <= %@",categoryRecord, self.searchDate];
                      CKQuery *jokeQuery = [[CKQuery alloc] initWithRecordType:JOKE_RECORD_TYPE predicate:predicateJokes];
                      [jokePublicDatabase performQuery:jokeQuery inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * results, NSError * error)
                       {

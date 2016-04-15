@@ -102,6 +102,20 @@
     textView.layer.cornerRadius = 5.0;
 }
 
+// returns the current date used when querying for jokes.
+-(NSDate *)searchDateForQuery
+{
+    // from todays date get the current date with 23 hours, 59 minutes, and 59 seconds and in the current time zone
+    NSDate *todaysDate = [NSDate date];
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components: NSUIntegerMax fromDate: todaysDate];
+    [components setHour: 23];
+    [components setMinute: 59];
+    [components setSecond: 59];
+    NSDate* searchDate = [[calendar dateFromComponents:components] dateByAddingTimeInterval:[[NSTimeZone localTimeZone]secondsFromGMT]];
+    return searchDate;
+}
+
 #pragma Cache Methods
 
 // retrieve categories to list in table
