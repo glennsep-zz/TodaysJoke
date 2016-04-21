@@ -78,6 +78,9 @@
     [common setupNavigationBarTitle:self.navigationItem setImage:@"SubmitJoke.png"];
     self.navigationController.navigationBar.tintColor = [common standardSystemColor];
     
+    // set background image
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:MAIN_VIEW_BACKGROUND]];
+    
     // initialize notify me check box to unselected
     self.notifyMeCheckedSelected = NO;
     

@@ -54,6 +54,9 @@
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"ListJokes.png"];
     
+    // setup background image
+    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:MAIN_VIEW_BACKGROUND]];
+    
     // setup the collection view by setting up how it responds and displays
     [self setupCollectionView];
 }
@@ -201,13 +204,16 @@
     
     // initialize the joke gallery that contains the cell
     TJKJokeGallery *cell = (TJKJokeGallery *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
+  
+    // set background image
+    cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:MAIN_VIEW_BACKGROUND]];
     
     // retrieve the joke description and category and update the cell
     TJKJokeItem *jokeItem = [self.pageJokes objectAtIndex:indexPath.row];
     
     NSString *jokeDescr = jokeItem.jokeDescr;
     NSString *jokeCategory = jokeItem.jokeCategory;
-    
+  
     cell.jokeDescr = jokeDescr;
     cell.jokeCategoryText = jokeCategory;
     [cell updateCell];

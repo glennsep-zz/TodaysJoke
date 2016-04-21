@@ -64,6 +64,9 @@
     self.contactUsMessage.delegate = self;
     self.contactUsSubject.delegate = self;
     
+    // set background image
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:MAIN_VIEW_BACKGROUND]];
+    
     // setup the screen layout
     [self setupScreenLayout:common];
 }

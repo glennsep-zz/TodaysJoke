@@ -38,6 +38,9 @@
     
     // initialize property values
     self.leftButton = 1;
+    
+    // set background image
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:MAIN_VIEW_BACKGROUND]];
    
     // retrieve the latest joke
     [self retrieveLatestJoke];

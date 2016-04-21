@@ -53,7 +53,7 @@
     
     // retrieve all of the jokes
     [[TJKJokeItemStore sharedStore] retrieveFavoritesFromArchive];
-    
+      
     // get all the jokes for the category
     [self fetchJokesForCategory];
 }
@@ -280,6 +280,10 @@
         [[NSBundle mainBundle] loadNibNamed:@"TJKListJokesCell" owner:self options:nil];
     }
     
+    // cell background image
+//    _cellJokeList.backgroundView = [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:JOKE_CELL_BACKGROUND] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+//    _cellJokeList.selectedBackgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:JOKE_CELL_BACKGROUND] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+    
     // create objects to populate the cell
     UILabel *jokeTitle = (UILabel *)[_cellJokeList viewWithTag:1];
     UILabel *jokeCategory = (UILabel *)[_cellJokeList viewWithTag:2];
@@ -290,7 +294,7 @@
     {
         TJKJokeItem *jokeItem = items[indexPath.row];
         jokeTitle.text = [NSString stringWithFormat:@"%@", jokeItem.jokeTitle];
-        [jokeTitle setFont:[UIFont fontWithName:FONT_NAME_TEXT size:FONT_SIZE_TEXT]];
+        [jokeTitle setFont:[UIFont fontWithName:FONT_JOKE_LIST_TEXT size:FONT_JOKE_LIST_SIZE]];
         [jokeTitle setTextColor:self.jokeTextColor];
         jokeCategory.text = [NSString stringWithFormat:@"%@", jokeItem.jokeCategory];
         [jokeCategory setFont:[UIFont fontWithName:FONT_CATEGORY_TEXT size:FONT_CATEGORY_SIZE]];

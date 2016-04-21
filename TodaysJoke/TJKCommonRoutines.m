@@ -95,11 +95,12 @@
 // set the border for a text view
 -(void)setBorderForTextView:(UITextView *)textView
 {
-    
     UIColor *borderColor = [UIColor colorWithRed:84/256.0 green:174/256.0 blue:166/256.0 alpha:1];
+    //UIColor *backgroundColor = [UIColor colorWithRed:0.969 green:0.761 blue:0.545 alpha:1];
     textView.layer.borderWidth = 2.0f;
     textView.layer.borderColor = borderColor.CGColor;
     textView.layer.cornerRadius = 5.0;
+    //textView.layer.backgroundColor = backgroundColor.CGColor;
 }
 
 // returns the current date used when querying for jokes.

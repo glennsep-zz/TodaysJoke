@@ -53,6 +53,8 @@ NSString *const FONT_NAME_TEXT = @"Marker Felt";
 CGFloat  const  FONT_SIZE_TEXT = 22.0f;
 NSString *const FONT_CATEGORY_TEXT = @"Marker Felt";
 CGFloat  const  FONT_CATEGORY_SIZE = 16.0f;
+NSString *const FONT_JOKE_LIST_TEXT = @"Marker Felt";
+CGFloat  const  FONT_JOKE_LIST_SIZE = 18.0f;
 
 // cache list names
 NSString *const CACHE_CATEGORY_LIST = @"ListCategories";
@@ -60,3 +62,7 @@ NSString *const CACHE_CATEGORY_PICKER = @"ListCategoryPicker";
 
 // file name to store favorite jokes
 NSString *const FILE_NAME_FAVORITES = @"favorites.archive";
+
+// styles
+NSString *const MAIN_VIEW_BACKGROUND = @"TodaysJokeBackground.png";
+NSString *const JOKE_CELL_BACKGROUND = @"jokeBackground.png";

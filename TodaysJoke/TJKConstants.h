@@ -53,6 +53,8 @@ extern NSString *const FONT_NAME_TEXT;
 extern CGFloat   const FONT_SIZE_TEXT;
 extern NSString *const FONT_CATEGORY_TEXT;
 extern CGFloat   const FONT_CATEGORY_SIZE;
+extern NSString *const FONT_JOKE_LIST_TEXT;
+extern CGFloat   const FONT_JOKE_LIST_SIZE;
 
 // cache list names
 extern NSString *const CACHE_CATEGORY_LIST;
@@ -60,3 +62,7 @@ extern NSString *const CACHE_CATEGORY_PICKER;
 
 // file name to store favorite jokes
 extern NSString *const FILE_NAME_FAVORITES;
+
+// styles
+extern NSString *const MAIN_VIEW_BACKGROUND;
+extern NSString *const JOKE_CELL_BACKGROUND;
