@@ -22,6 +22,7 @@
 -(UIColor *)labelColor;
 -(UIColor *)textColor;
 -(UIColor *)categoryColor;
+-(UIColor *)NavigationBarColor;
 -(void)setBorderForTextView:(UITextView *)textView;
 -(NSDate *)searchDateForQuery;
 

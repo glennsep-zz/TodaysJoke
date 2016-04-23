@@ -66,3 +66,5 @@ extern NSString *const FILE_NAME_FAVORITES;
 // styles
 extern NSString *const MAIN_VIEW_BACKGROUND;
 extern NSString *const JOKE_CELL_BACKGROUND;
+extern NSString *const RIGHT_ARROW;
+extern NSString *const LEFT_ARROW;

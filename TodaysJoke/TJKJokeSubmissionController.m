@@ -40,8 +40,11 @@
    
     // setup navigation bar
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    self.navigationController.navigationBar.tintColor = [common standardSystemColor];
+    self.navigationController.navigationBar.tintColor = [common NavigationBarColor];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"JokeHelp.png"];
+    
+    // set background image
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:MAIN_VIEW_BACKGROUND]];
     
     // set the ui text view delegate
     self.jokeHelp.delegate = self;

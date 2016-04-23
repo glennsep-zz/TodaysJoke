@@ -76,7 +76,7 @@
     // setup scren title
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"SubmitJoke.png"];
-    self.navigationController.navigationBar.tintColor = [common standardSystemColor];
+    self.navigationController.navigationBar.tintColor = [common NavigationBarColor];
     
     // set background image
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:MAIN_VIEW_BACKGROUND]];

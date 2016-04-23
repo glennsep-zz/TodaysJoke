@@ -66,3 +66,5 @@ NSString *const FILE_NAME_FAVORITES = @"favorites.archive";
 // styles
 NSString *const MAIN_VIEW_BACKGROUND = @"TodaysJokeBackground.png";
 NSString *const JOKE_CELL_BACKGROUND = @"jokeBackground.png";
+NSString *const RIGHT_ARROW = @"rightArrow";
+NSString *const LEFT_ARROW = @"leftArrow";

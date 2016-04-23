@@ -53,11 +53,11 @@
 #pragma View Controller Methods
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    [super viewDidLoad];  
 
     // setup scren title
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    self.navigationController.navigationBar.tintColor = [common standardSystemColor];
+    self.navigationController.navigationBar.tintColor = [common NavigationBarColor];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"ContactUs.png"];
    
     // set the delegate of the text and view fields

@@ -56,7 +56,7 @@
     // set the title and color
     // setup scren title
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    self.navigationController.navigationBar.tintColor = [common standardSystemColor];
+    self.navigationController.navigationBar.tintColor = [common NavigationBarColor];
     [common setupNavigationBarTitle:self.navigationItem setImage:@"Categories.png"];
     
     // set the category names color
@@ -160,6 +160,9 @@
     {
         [[NSBundle mainBundle] loadNibNamed:@"TJKCategoriesCell" owner:self options:nil];
     }
+    
+    // place button image in cell's accessory indicator
+    _cellCategories.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:RIGHT_ARROW]];
     
     // create the objects to populate the cell
     UIImageView *categoryImage = (UIImageView *)[_cellCategories viewWithTag:1];

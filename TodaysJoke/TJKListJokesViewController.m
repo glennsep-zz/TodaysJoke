@@ -67,9 +67,8 @@
     // set the title
     self.title = self.categoryName;
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
-    self.navigationController.navigationBar.tintColor = [common standardSystemColor];
+    self.navigationController.navigationBar.tintColor = [common NavigationBarColor];
     [common setupNavigationBarTitle:self.navigationController fontName:FONT_NAME_HEADER fontSize:FONT_SIZE_HEADER];
-
     
     // set the joke text color in the table
     self.jokeTextColor = [common textColor];
@@ -280,9 +279,8 @@
         [[NSBundle mainBundle] loadNibNamed:@"TJKListJokesCell" owner:self options:nil];
     }
     
-    // cell background image
-//    _cellJokeList.backgroundView = [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:JOKE_CELL_BACKGROUND] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
-//    _cellJokeList.selectedBackgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:JOKE_CELL_BACKGROUND] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+    // place button image in cell's accessory indicator
+    _cellJokeList.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:RIGHT_ARROW]];
     
     // create objects to populate the cell
     UILabel *jokeTitle = (UILabel *)[_cellJokeList viewWithTag:1];

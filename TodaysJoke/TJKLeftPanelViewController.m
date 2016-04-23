@@ -110,6 +110,9 @@
         [[NSBundle mainBundle] loadNibNamed:@"TJKMainCellLeft" owner:self options:nil];
     }
 
+    // place button image in cell's accessory indicator
+    _cellMain.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:RIGHT_ARROW]];
+    
     UILabel *creator = (UILabel *)[_cellMain viewWithTag:3];
     
     if ([_tableContents count] > 0)
