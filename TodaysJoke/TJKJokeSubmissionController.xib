@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TJKJokeSubmissionController">
@@ -18,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" editable="NO" text="This is a test" translatesAutoresizingMaskIntoConstraints="NO" id="9Ef-70-m0V">
-                    <rect key="frame" x="8" y="82" width="584" height="497"/>
+                    <rect key="frame" x="59" y="98" width="482" height="446"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="textColor" red="0.35294117650000001" green="0.73333333329999995" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -27,10 +26,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="9Ef-70-m0V" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="62i-mN-5AK"/>
-                <constraint firstItem="9Ef-70-m0V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="7gY-9q-82B"/>
-                <constraint firstAttribute="bottom" secondItem="9Ef-70-m0V" secondAttribute="bottom" constant="21" id="L1y-or-hoG"/>
-                <constraint firstItem="9Ef-70-m0V" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="82" id="r6o-Go-k94"/>
+                <constraint firstItem="9Ef-70-m0V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="59" id="9RI-Jz-tEc"/>
+                <constraint firstAttribute="bottom" secondItem="9Ef-70-m0V" secondAttribute="bottom" constant="56" id="TF1-WF-caf"/>
+                <constraint firstItem="9Ef-70-m0V" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YEX-01-L34"/>
+                <constraint firstItem="9Ef-70-m0V" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="98" id="s9e-o3-BeB"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <point key="canvasLocation" x="43" y="-63"/>
