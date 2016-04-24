@@ -109,6 +109,8 @@
     textView.layer.backgroundColor = backgroundColor.CGColor;
 }
 
+#pragma Date functions
+
 // returns the current date used when querying for jokes.
 -(NSDate *)searchDateForQuery
 {
@@ -121,6 +123,27 @@
     [components setSecond: 59];
     NSDate* searchDate = [[calendar dateFromComponents:components] dateByAddingTimeInterval:[[NSTimeZone localTimeZone]secondsFromGMT]];
     return searchDate;
+}
+
+// returns the current date in the local time zone
+-(NSDate *)getCurrentDate
+{
+    // get the current date
+    NSDate* sourceDate = [NSDate date];
+    
+    // get the GMT time zone and the destination (local) time zone
+    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
+    
+    // compute the offset from the source and destination time zone to get the interval to convert the date to local time
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
+    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+    
+    NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate];
+    
+    // return the date
+    return destinationDate;
 }
 
 #pragma Cache Methods

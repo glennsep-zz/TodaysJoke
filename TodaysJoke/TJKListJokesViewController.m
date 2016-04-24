@@ -263,7 +263,7 @@
 // set the row height to fit the images
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 150;
 }
 
 // display the contents of the table

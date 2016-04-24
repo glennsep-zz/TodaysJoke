@@ -24,7 +24,10 @@
 -(UIColor *)categoryColor;
 -(UIColor *)NavigationBarColor;
 -(void)setBorderForTextView:(UITextView *)textView;
+
+#pragma Date functions
 -(NSDate *)searchDateForQuery;
+-(NSDate *)getCurrentDate;
 
 #pragma Cache Methods
 -(void)retrieveCategories:(NSCache *) cacheLists;

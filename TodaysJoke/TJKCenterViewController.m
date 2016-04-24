@@ -137,7 +137,8 @@
     // get the current date
     NSDateFormatter *todaysDate = [[NSDateFormatter alloc] init];
     [todaysDate setDateStyle:NSDateFormatterFullStyle];
-    NSDate *now = [[NSDate alloc] init];
+    TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
+    NSDate *now = [common getCurrentDate];
     NSString *theDate = [todaysDate stringFromDate:now];
     NSString *jokeTitleString = [@"Today's Joke for " stringByAppendingString:theDate];
 
