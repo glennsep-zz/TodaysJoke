@@ -79,7 +79,7 @@
     [categoryName appendString:self.jokeCategoryText];
     [categoryName appendString:@"]"];
     self.jokeCateogry.text = [categoryName copy];
-    [self.jokeCateogry setFont:[UIFont fontWithName:FONT_CATEGORY_TEXT size:FONT_CATEGORY_SIZE]];
+    [self.jokeCateogry setFont:[UIFont fontWithName:FONT_CATEGORY_TEXT size:FONT_CATEGORY_DISPLAY_SIZE]];
     [self.jokeCateogry setTextColor:[common categoryColor]];
     
     // scroll text to the top

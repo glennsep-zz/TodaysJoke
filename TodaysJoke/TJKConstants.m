@@ -53,6 +53,7 @@ NSString *const FONT_NAME_TEXT = @"Marker Felt";
 CGFloat  const  FONT_SIZE_TEXT = 22.0f;
 NSString *const FONT_CATEGORY_TEXT = @"Marker Felt";
 CGFloat  const  FONT_CATEGORY_SIZE = 16.0f;
+CGFloat  const  FONT_CATEGORY_DISPLAY_SIZE = 26.0f;
 NSString *const FONT_JOKE_LIST_TEXT = @"Marker Felt";
 CGFloat  const  FONT_JOKE_LIST_SIZE = 16.0f;
 

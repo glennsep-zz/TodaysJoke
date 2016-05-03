@@ -53,6 +53,7 @@ extern NSString *const FONT_NAME_TEXT;
 extern CGFloat   const FONT_SIZE_TEXT;
 extern NSString *const FONT_CATEGORY_TEXT;
 extern CGFloat   const FONT_CATEGORY_SIZE;
+extern CGFloat   const FONT_CATEGORY_DISPLAY_SIZE;
 extern NSString *const FONT_JOKE_LIST_TEXT;
 extern CGFloat   const FONT_JOKE_LIST_SIZE;
 

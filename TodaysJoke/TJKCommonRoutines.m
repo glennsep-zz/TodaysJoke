@@ -88,7 +88,7 @@
 // color for the category name
 -(UIColor *)categoryColor
 {
-    UIColor *titleColor = [[UIColor alloc] initWithRed:0.969 green:0.761 blue:0.545 alpha:1];
+    UIColor *titleColor = [[UIColor alloc] initWithRed:255/256.0 green:80/256.0 blue:0/256.0 alpha:1];
     return titleColor;
 }
 
