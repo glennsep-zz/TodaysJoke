@@ -115,20 +115,6 @@
 
 #pragma Actions
 
--(NSString *)handleGesture:(UIPanGestureRecognizer *)gestureRecognizer
-{
-    CGPoint velocity = [gestureRecognizer velocityInView:self.view];
-    
-    if(velocity.x > 0)
-    {
-        return @"right";
-    }
-    else
-    {
-        return @"left";
-    }
-}
-
 // display the screen to add a new joke
 -(IBAction)addNewJoke:(id)sender
 {
@@ -311,8 +297,7 @@
     // actions when controller is being moved
     if([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateChanged) {
         // prevent center view from moving past the left bounds
-        NSString * direction = [self handleGesture:sender];
-        if ([direction isEqualToString:@"right"] || ([direction isEqualToString:@"left"] && _centerViewController.view.center.x > self.senderViewX))
+        if (_centerViewController.view.center.x >= self.senderViewX)
         {
             // Are you more than halfway? If so, show the panel when done dragging by setting this value to YES (1).
             _showPanel = fabs([sender view].center.x - _centerViewController.view.frame.size.width/2) > _centerViewController.view.frame.size.width/2;
