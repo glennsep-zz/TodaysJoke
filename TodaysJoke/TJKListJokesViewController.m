@@ -49,6 +49,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // store current brightness
+    _currentBrightness = [UIScreen mainScreen].brightness;
+    
     // get the date to search for jokes
     TJKCommonRoutines *common = [[TJKCommonRoutines alloc] init];
     self.searchDate = [common searchDateForQuery];
@@ -63,9 +66,6 @@
 // routines to run when view appears
 -(void)viewWillAppear:(BOOL)animated
 {
-    // store current brightness
-    _currentBrightness = [UIScreen mainScreen].brightness;
-    
     // retrieve all of the jokes
     [[TJKJokeItemStore sharedStore] retrieveFavoritesFromArchive];
     
@@ -107,8 +107,8 @@
 // stop activity indicator
 -(void)stopIndicator
 {
-    [self.activityIndicatorView stopAnimating];
     [[UIScreen mainScreen] setBrightness:_currentBrightness];
+    [self.activityIndicatorView stopAnimating];
 }
 
 // retrieve all the jokes that belong to the selected category
