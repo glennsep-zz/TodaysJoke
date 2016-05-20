@@ -20,10 +20,12 @@
 #pragma Properties
 @property (weak, nonatomic) IBOutlet UITableView *listJokesTableView;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cellJokeList;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, strong) NSArray<TJKJokeItem*> *jokeList;
 @property (nonatomic, strong) UIColor *jokeTextColor;
 @property (nonatomic, strong) UIColor *jokeCategoryColor;
 @property (nonatomic, strong) NSDate *searchDate;
+@property (nonatomic) CGFloat currentBrightness;
 @end
 
 @implementation TJKListJokesViewController
@@ -61,6 +63,9 @@
 // routines to run when view appears
 -(void)viewWillAppear:(BOOL)animated
 {
+    // store current brightness
+    _currentBrightness = [UIScreen mainScreen].brightness;
+    
     // retrieve all of the jokes
     [[TJKJokeItemStore sharedStore] retrieveFavoritesFromArchive];
     
@@ -88,7 +93,22 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.jokeList = [[TJKJokeItemStore sharedStore] allItems];
         [self.listJokesTableView reloadData];
+        [self stopIndicator];
     });
+}
+
+// start activity indicator
+-(void)startIndicator
+{
+    [[UIScreen mainScreen] setBrightness:0.2];
+    [self.activityIndicatorView startAnimating];
+}
+
+// stop activity indicator
+-(void)stopIndicator
+{
+    [self.activityIndicatorView stopAnimating];
+    [[UIScreen mainScreen] setBrightness:_currentBrightness];
 }
 
 // retrieve all the jokes that belong to the selected category
@@ -112,6 +132,9 @@
 // get jokes for a single category
 -(void)fetchJokesForSingleCategory
 {
+    // start indicator
+    [self startIndicator];
+    
     // retrieve the record information for the joke category
     CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
     NSPredicate *predicateCategories = [NSPredicate predicateWithFormat:@"CategoryName == %@", self.categoryName];
@@ -124,7 +147,7 @@
              CKRecord *categoryRecord = [results firstObject];
              
              // setup the table
-             [self setupTableContents];
+             //[self setupTableContents];
              
              if (categoryRecord)
              {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TJKListJokesViewController">
             <connections>
+                <outlet property="activityIndicatorView" destination="h2A-e3-my2" id="DKm-HB-Iy1"/>
                 <outlet property="listJokesTableView" destination="0tz-Iq-7E5" id="dZl-Mb-qEa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,15 +25,33 @@
                         <outlet property="delegate" destination="-1" id="Idw-gP-wfB"/>
                     </connections>
                 </tableView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="h2A-e3-my2">
+                    <rect key="frame" x="282" y="281" width="37" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="5eO-rL-ABU"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="GHK-mS-UWv"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="Mce-2S-zdh"/>
+                        <constraint firstAttribute="width" constant="37" id="Pif-UL-VKN"/>
+                    </constraints>
+                    <color key="color" red="1" green="0.31333141930000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="GHK-mS-UWv"/>
+                            <exclude reference="Mce-2S-zdh"/>
+                        </mask>
+                    </variation>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="0tz-Iq-7E5" secondAttribute="trailing" id="7W7-0q-YqG"/>
-                <constraint firstAttribute="bottom" secondItem="0tz-Iq-7E5" secondAttribute="bottom" id="BZt-Ht-9nF"/>
-                <constraint firstItem="0tz-Iq-7E5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IB7-gM-Aer"/>
-                <constraint firstItem="0tz-Iq-7E5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Udg-f3-nO3"/>
+                <constraint firstItem="h2A-e3-my2" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="9Gz-fo-45u"/>
+                <constraint firstItem="h2A-e3-my2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="I7r-UZ-ZM0"/>
+                <constraint firstItem="0tz-Iq-7E5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Kjz-42-0UE"/>
+                <constraint firstItem="h2A-e3-my2" firstAttribute="centerY" secondItem="0tz-Iq-7E5" secondAttribute="centerY" id="Qjw-s9-1Ym"/>
+                <constraint firstItem="0tz-Iq-7E5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aFo-db-yfY"/>
+                <constraint firstItem="h2A-e3-my2" firstAttribute="centerX" secondItem="0tz-Iq-7E5" secondAttribute="centerX" id="zZv-Jn-1xK"/>
             </constraints>
-            <point key="canvasLocation" x="220" y="44"/>
+            <point key="canvasLocation" x="367" y="-169"/>
         </view>
     </objects>
 </document>
