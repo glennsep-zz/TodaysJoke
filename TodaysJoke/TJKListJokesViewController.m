@@ -100,6 +100,7 @@
 // start activity indicator
 -(void)startIndicator
 {
+    self.navigationItem.hidesBackButton = YES;
     [[UIScreen mainScreen] setBrightness:0.2];
     [self.activityIndicatorView startAnimating];
 }
@@ -107,6 +108,7 @@
 // stop activity indicator
 -(void)stopIndicator
 {
+    self.navigationItem.hidesBackButton = NO;
     [[UIScreen mainScreen] setBrightness:_currentBrightness];
     [self.activityIndicatorView stopAnimating];
 }
