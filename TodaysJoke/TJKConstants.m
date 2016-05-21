@@ -72,4 +72,5 @@ NSString *const RIGHT_ARROW = @"rightArrow";
 NSString *const LEFT_ARROW = @"leftArrow";
 
 // display constants
-CGFloat  const SCREEN_DIM = 0.2f;
+CGFloat  const SCREEN_DIM = 0.1f;
+CGFloat  const REDUCE_BRIGHTNESS_FACTOR = 10.0f;

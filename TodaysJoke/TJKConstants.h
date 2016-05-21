@@ -73,3 +73,4 @@ extern NSString *const LEFT_ARROW;
 
 // display constants
 extern CGFloat  const SCREEN_DIM;
+extern CGFloat  const REDUCE_BRIGHTNESS_FACTOR;

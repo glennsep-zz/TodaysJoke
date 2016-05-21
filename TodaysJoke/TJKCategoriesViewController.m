@@ -80,9 +80,9 @@
     CGFloat screenDimmer = SCREEN_DIM;
     
     // check if screenDimmer is greater than the current screen brightness
-    if (screenDimmer < _currentBrightness)
+    if (screenDimmer >= _currentBrightness)
     {
-        screenDimmer = _currentBrightness / 2;
+        screenDimmer = _currentBrightness / REDUCE_BRIGHTNESS_FACTOR;
     }
     
     self.navigationItem.hidesBackButton = YES;
