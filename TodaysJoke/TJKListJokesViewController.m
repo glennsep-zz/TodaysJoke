@@ -163,7 +163,7 @@
                  // now that we have the record id for the joke category get the jokes
                  NSPredicate *predicateJokes = [NSPredicate predicateWithFormat:@"CategoryName == %@ && jokeDisplayDate <= %@",categoryRecord, self.searchDate];
                  CKQuery *jokeQuery = [[CKQuery alloc] initWithRecordType:JOKE_RECORD_TYPE predicate:predicateJokes];
-                 NSSortDescriptor *sortJokes = [[NSSortDescriptor alloc] initWithKey:JOKE_CREATED_SYSTEM ascending:YES];
+                 NSSortDescriptor *sortJokes = [[NSSortDescriptor alloc] initWithKey:JOKE_CREATED_SYSTEM ascending:NO];
                  jokeQuery.sortDescriptors = [NSArray arrayWithObjects:sortJokes, nil];
                  [jokePublicDatabase performQuery:jokeQuery inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * results, NSError * error)
                   {
