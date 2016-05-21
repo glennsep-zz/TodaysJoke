@@ -142,6 +142,9 @@
         default:
             NSLog(@"No options available");
     }
+    
+    // de-select the row
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

@@ -37,6 +37,7 @@ NSString *const JOKE_CATEGORY = @"jokeCategory";
 NSString *const JOKE_ID = @"jokeId";
 NSString *const JOKE_NAME_SUBMITTED = @"nameSubmitted";
 NSString *const JOKE_DATE = @"jokeCreated";
+NSString *const JOKE_CREATED_SYSTEM = @"creationDate";
 
 // generic parameters
 NSString *const PARAMETERS_RECORD_TYPE = @"Parameters";
@@ -69,3 +70,6 @@ NSString *const MAIN_VIEW_BACKGROUND = @"TodaysJokeBackground.png";
 NSString *const JOKE_CELL_BACKGROUND = @"jokeBackground.png";
 NSString *const RIGHT_ARROW = @"rightArrow";
 NSString *const LEFT_ARROW = @"leftArrow";
+
+// display constants
+CGFloat  const SCREEN_DIM = 0.2f;

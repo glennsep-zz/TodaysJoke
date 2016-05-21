@@ -100,8 +100,17 @@
 // start activity indicator
 -(void)startIndicator
 {
+    // declare variables
+    CGFloat screenDimmer = SCREEN_DIM;
+    
+    // check if screenDimmer is greater than the current screen brightness
+    if (screenDimmer < _currentBrightness)
+    {
+        screenDimmer = _currentBrightness / 2;
+    }
+    
     self.navigationItem.hidesBackButton = YES;
-    [[UIScreen mainScreen] setBrightness:0.2];
+    [[UIScreen mainScreen] setBrightness:screenDimmer];
     [self.activityIndicatorView startAnimating];
 }
 
@@ -147,15 +156,15 @@
          {
              // get the first record as there should only be one record per category
              CKRecord *categoryRecord = [results firstObject];
-             
-             // setup the table
-             //[self setupTableContents];
-             
+
+             // if the category is found load jokes for category
              if (categoryRecord)
              {
                  // now that we have the record id for the joke category get the jokes
                  NSPredicate *predicateJokes = [NSPredicate predicateWithFormat:@"CategoryName == %@ && jokeDisplayDate <= %@",categoryRecord, self.searchDate];
                  CKQuery *jokeQuery = [[CKQuery alloc] initWithRecordType:JOKE_RECORD_TYPE predicate:predicateJokes];
+                 NSSortDescriptor *sortJokes = [[NSSortDescriptor alloc] initWithKey:JOKE_CREATED_SYSTEM ascending:YES];
+                 jokeQuery.sortDescriptors = [NSArray arrayWithObjects:sortJokes, nil];
                  [jokePublicDatabase performQuery:jokeQuery inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * results, NSError * error)
                   {
                       if (!error)
@@ -172,6 +181,9 @@
                       else
                       {
                           // instantiate the alert object
+                          dispatch_async(dispatch_get_main_queue(), ^{
+                              [self stopIndicator];
+                          });
                           GHSAlerts *alerts = [[GHSAlerts alloc] initWithViewController:self];
                           [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the category."];
                           return;
@@ -182,6 +194,9 @@
          else
          {
              // instantiate the alert object
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [self stopIndicator];
+             });
              GHSAlerts *alerts = [[GHSAlerts alloc] initWithViewController:self];
              [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the category."];
              return;
@@ -192,6 +207,9 @@
 // get favorite jokes
 -(void)fetchFavoriteJokes
 {
+    // start indicator
+    [self startIndicator];
+    
     // remove any joke items
     [[TJKJokeItemStore sharedStore] removeAllItems];
     
@@ -215,6 +233,9 @@
 // get jokes for all categories
 -(void)fetchJokesForAllCategories
 {
+    // start indicator
+    [self startIndicator];
+    
     // retrieve the record information for the joke category
     CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
     NSPredicate *predicateCategories = [NSPredicate predicateWithFormat:@"CategoryName != %@", CATEGORY_ALL];
@@ -253,6 +274,9 @@
                           else
                           {
                               // instantiate the alert object
+                              dispatch_async(dispatch_get_main_queue(), ^{
+                                  [self stopIndicator];
+                              });
                               GHSAlerts *alerts = [[GHSAlerts alloc] initWithViewController:self];
                               [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the category."];
                               return;
@@ -264,6 +288,9 @@
          else
          {
              // instantiate the alert object
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [self stopIndicator];
+             });
              GHSAlerts *alerts = [[GHSAlerts alloc] initWithViewController:self];
              [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the category."];
              return;
@@ -340,6 +367,9 @@
     
     // display the contact us screen
     [self.navigationController pushViewController:jokeView animated:YES];
+    
+    // de-select the row
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

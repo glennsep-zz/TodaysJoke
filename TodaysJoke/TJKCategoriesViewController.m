@@ -20,9 +20,11 @@
 
 @property (nonatomic, weak) IBOutlet UITableView *categoriesTableView;
 @property (nonatomic, weak) IBOutlet UITableViewCell *cellCategories;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) NSMutableArray *jokeCategories;
 @property (strong, nonatomic) NSString * selectedCategoryName;
 @property (strong, nonatomic) UIColor *categoryColor;
+@property (nonatomic) CGFloat currentBrightness;
 @end
 
 @implementation TJKCategoriesViewController
@@ -46,6 +48,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // store current brightness
+    _currentBrightness = [UIScreen mainScreen].brightness;
+    
     // get all categories
     [self retrieveCategories];
 }
@@ -68,6 +73,31 @@
 
 #pragma Methods
 
+// start activity indicator
+-(void)startIndicator
+{
+    // declare variables
+    CGFloat screenDimmer = SCREEN_DIM;
+    
+    // check if screenDimmer is greater than the current screen brightness
+    if (screenDimmer < _currentBrightness)
+    {
+        screenDimmer = _currentBrightness / 2;
+    }
+    
+    self.navigationItem.hidesBackButton = YES;
+    [[UIScreen mainScreen] setBrightness:screenDimmer];
+    [self.activityIndicatorView startAnimating];
+}
+
+// stop activity indicator
+-(void)stopIndicator
+{
+    self.navigationItem.hidesBackButton = NO;
+    [[UIScreen mainScreen] setBrightness:_currentBrightness];
+    [self.activityIndicatorView stopAnimating];
+}
+
 // retrieve categories
 -(void)retrieveCategories
 {
@@ -79,6 +109,9 @@
     }
     else
     {
+        // start indicator
+        [self startIndicator];
+        
         // get all categories
         _jokeCategories = [[NSMutableArray alloc] init];
         CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
@@ -106,6 +139,10 @@
              else
              {
                  // display alert message and pop the view controller from the stack
+                 // instantiate the alert object
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     [self stopIndicator];
+                 });
                  GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
                  errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self closeCategories:self];};
                  [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke categories failed to load. This screen will close. Just try again!" errorAction:errorBlock];
@@ -120,6 +157,7 @@
     // store to property and reload the table contents
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.categoriesTableView reloadData];
+        [self stopIndicator];
     });
 }
 
@@ -192,6 +230,9 @@
     
     // push it onto the top of the navigation controller's stack
     [self.navigationController pushViewController:listJokesController animated:YES];
+    
+    // de-select the row
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

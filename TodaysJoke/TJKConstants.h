@@ -37,6 +37,7 @@ extern NSString *const JOKE_CATEGORY;
 extern NSString *const JOKE_ID;
 extern NSString *const JOKE_NAME_SUBMITTED;
 extern NSString *const JOKE_DATE;
+extern NSString *const JOKE_CREATED_SYSTEM;
 
 // generic parameters
 extern NSString *const PARAMETERS_RECORD_TYPE;
@@ -69,3 +70,6 @@ extern NSString *const MAIN_VIEW_BACKGROUND;
 extern NSString *const JOKE_CELL_BACKGROUND;
 extern NSString *const RIGHT_ARROW;
 extern NSString *const LEFT_ARROW;
+
+// display constants
+extern CGFloat  const SCREEN_DIM;
