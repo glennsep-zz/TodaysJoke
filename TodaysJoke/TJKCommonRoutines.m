@@ -92,9 +92,17 @@
     return titleColor;
 }
 
+// color for navigation bar
 -(UIColor *)NavigationBarColor
 {
     UIColor *titleColor = [[UIColor alloc] initWithRed:52/256.0 green:75/256.0 blue:105/256.0 alpha:1];
+    return titleColor;
+}
+
+// color for search bar place holder
+-(UIColor *)searchBarPlaceHolderColor
+{
+    UIColor *titleColor = [[UIColor alloc] initWithRed:180/256.0 green:251/256.0 blue:255/256.0 alpha:1];
     return titleColor;
 }
 

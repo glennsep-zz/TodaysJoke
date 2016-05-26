@@ -126,7 +126,11 @@
 -(void)fetchJokesForCategory
 {
     // determine if jokes are fetched for a single or all categories
-    if ([self.categoryName isEqualToString:CATEGORY_TO_REMOVE_RANDOM])
+    if (self.searchForJokes == YES)
+    {
+        [self fetchJokesBySearch];
+    }
+    else if ([self.categoryName isEqualToString:CATEGORY_TO_REMOVE_RANDOM])
     {
         [self fetchJokesForAllCategories];
     }
@@ -138,6 +142,51 @@
     {
         [self fetchJokesForSingleCategory];
     }
+}
+
+// get jokes by search keyword
+-(void)fetchJokesBySearch
+{
+    // start indicator
+    [self startIndicator];
+    
+    // retrieve the record information for the joke category
+    CKDatabase *jokePublicDatabase = [[CKContainer containerWithIdentifier:JOKE_CONTAINER] publicCloudDatabase];
+    NSPredicate *predicateSearch = [NSPredicate predicateWithFormat:@"(self CONTAINS %@) && (jokeDisplayDate <= %@)", self.searchText.lowercaseString, self.searchDate];
+    CKQuery *querySearch = [[CKQuery alloc] initWithRecordType:JOKE_RECORD_TYPE predicate:predicateSearch];
+    NSSortDescriptor *sortJokes = [[NSSortDescriptor alloc] initWithKey:JOKE_CREATED_SYSTEM ascending:NO];
+    querySearch.sortDescriptors = [NSArray arrayWithObjects:sortJokes, nil];
+    [jokePublicDatabase performQuery:querySearch inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * _Nullable results, NSError * _Nullable error)
+     {
+         if (!error)
+         {
+            // loop through all joke records
+            for (CKRecord *jokeRecord in results)
+            {
+                // get the category for the joke record
+                CKReference *referenceToCategory = jokeRecord[CATEGORY_FIELD_NAME];
+                CKRecordID *categoryRecordID = referenceToCategory.recordID;
+                [jokePublicDatabase fetchRecordWithID:categoryRecordID completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error)
+                 {
+                    // add the joke to the joke item store (array)
+                    [[TJKJokeItemStore sharedStore] createItem:[jokeRecord objectForKey:JOKE_DESCR] jokeCategory:[record objectForKey:CATEGORY_FIELD_NAME] nameSubmitted:[jokeRecord objectForKey:JOKE_SUBMITTED_BY] jokeTitle:[jokeRecord objectForKey:JOKE_TITLE] categoryRecordName:[jokeRecord valueForKey:CATEGORY_FIELD_NAME] jokeCreated:[jokeRecord valueForKey:JOKE_CREATED] jokeRecordName:jokeRecord.recordID.recordName];
+                     
+                     // setup the table
+                     [self setupTableContents];
+                 }];
+            }
+          }
+          else
+          {
+              // instantiate the alert object
+              dispatch_async(dispatch_get_main_queue(), ^{
+                  [self stopIndicator];
+              });
+              GHSAlerts *alerts = [[GHSAlerts alloc] initWithViewController:self];
+              [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the search criteria."];
+              return;
+          }
+      }];
 }
 
 // get jokes for a single category

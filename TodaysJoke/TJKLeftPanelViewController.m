@@ -9,6 +9,7 @@
 #import "TJKLeftPanelViewController.h"
 #import "TJKCategoriesViewController.h"
 #import "TJKContactUsViewController.h"
+#import "TJKSearchJokesViewController.h"
 #import "TJKCommonRoutines.h"
 #import "TJKConstants.h"
 
@@ -55,7 +56,7 @@
 -(void)setupTableContents
 {
     // define array with table contents
-    NSArray *tableContentsArray = @[@"Categories", @"Contact Us"];
+    NSArray *tableContentsArray = @[@"Categories", @"Search", @"Contact Us"];
     
     // store to propery and reload table contents
     self.tableContents = [NSMutableArray arrayWithArray:tableContentsArray];
@@ -84,6 +85,17 @@
     
     // display the contact us screen
     [self.navigationController pushViewController:contactUs animated:YES];
+}
+
+// display the contact us screen
+-(void)searchJokes
+{
+    // create instance of contact us view controller
+    TJKSearchJokesViewController *searchJokes = [[TJKSearchJokesViewController alloc] initWithNibName:nil bundle:nil];
+    
+    
+    // display the contact us screen
+    [self.navigationController pushViewController:searchJokes animated:YES];
 }
 
 #pragma Table View Methods
@@ -137,6 +149,9 @@
             [self callCategoriesTable];
             break;
         case 1:
+            [self searchJokes];
+            break;
+        case 2:
             [self displayContactUs];
             break;
         default:

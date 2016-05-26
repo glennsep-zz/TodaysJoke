@@ -14,5 +14,7 @@
 
 #pragma Properties
 @property (strong, nonatomic) NSString *categoryName;
+@property (nonatomic) BOOL searchForJokes;
+@property (strong, nonatomic) NSString *searchText;
 
 @end

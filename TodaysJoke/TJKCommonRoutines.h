@@ -23,6 +23,7 @@
 -(UIColor *)textColor;
 -(UIColor *)categoryColor;
 -(UIColor *)NavigationBarColor;
+-(UIColor *)searchBarPlaceHolderColor;
 -(void)setBorderForTextView:(UITextView *)textView;
 
 #pragma Date functions
