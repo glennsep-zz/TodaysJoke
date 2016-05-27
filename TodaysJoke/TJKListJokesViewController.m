@@ -147,6 +147,9 @@
 // get jokes by search keyword
 -(void)fetchJokesBySearch
 {
+    // declare variables
+    __block NSUInteger counter = 0;             // counts number of jokes found to determine when to load table
+    
     // start indicator
     [self startIndicator];
     
@@ -172,7 +175,10 @@
                     [[TJKJokeItemStore sharedStore] createItem:[jokeRecord objectForKey:JOKE_DESCR] jokeCategory:[record objectForKey:CATEGORY_FIELD_NAME] nameSubmitted:[jokeRecord objectForKey:JOKE_SUBMITTED_BY] jokeTitle:[jokeRecord objectForKey:JOKE_TITLE] categoryRecordName:[jokeRecord valueForKey:CATEGORY_FIELD_NAME] jokeCreated:[jokeRecord valueForKey:JOKE_CREATED] jokeRecordName:jokeRecord.recordID.recordName];
                      
                      // setup the table
-                     [self setupTableContents];
+                     if (++counter == results.count)
+                     {
+                         [self setupTableContents];
+                     }
                  }];
             }
           }
