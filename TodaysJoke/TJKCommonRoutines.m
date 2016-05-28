@@ -134,24 +134,13 @@
 }
 
 // returns the current date in the local time zone
--(NSDate *)getCurrentDate
+-(NSString *)getCurrentDate
 {
-    // get the current date
-    NSDate* sourceDate = [NSDate date];
-    
-    // get the GMT time zone and the destination (local) time zone
-    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
-    
-    // compute the offset from the source and destination time zone to get the interval to convert the date to local time
-    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
-    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
-    
-    NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate];
-    
-    // return the date
-    return destinationDate;
+    NSDate* now = [NSDate date];
+    NSDateFormatter* df = [[NSDateFormatter alloc] init];
+    [df setDateStyle:NSDateFormatterFullStyle];
+    NSString* dateString = [df stringFromDate:now];
+    return dateString;
 }
 
 #pragma Cache Methods

@@ -28,7 +28,7 @@
 
 #pragma Date functions
 -(NSDate *)searchDateForQuery;
--(NSDate *)getCurrentDate;
+-(NSString *)getCurrentDate;
 
 #pragma Cache Methods
 -(void)retrieveCategories:(NSCache *) cacheLists;
