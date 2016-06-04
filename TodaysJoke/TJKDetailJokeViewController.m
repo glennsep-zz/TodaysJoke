@@ -223,7 +223,7 @@
                  // display error message
                  GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
                  errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self cancelJoke:self];};
-                 [alert displayErrorMessage:@"Oops!" errorMessage:@"We had trouble reading in the joke categories. This screen will close. Just try again!" errorAction:errorBlock];
+                 [alert displayErrorMessage:@"Oops!" errorMessage:@"We had trouble reading in the joke categories. Check your network, wifi, and iCloud settings and try again." errorAction:errorBlock];
              }
          }];
     }
@@ -347,7 +347,7 @@
             // display error message
             dispatch_async(dispatch_get_main_queue(), ^{
                 GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
-                [alert displayErrorMessage:@"Problem" errorMessage:@"Could not obtain recipient e-mail address. Please try again later."];
+                [alert displayErrorMessage:@"Problem" errorMessage:@"Could not obtain recipient e-mail address. Check your network, wifi, and iCloud settings and try again."];
             });
         }
     }];

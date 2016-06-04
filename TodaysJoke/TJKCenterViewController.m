@@ -85,7 +85,7 @@
         {
             // display alert message and pop the view controller from the stack
             GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
-            [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke failed to load. Just try again!"];
+            [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke failed to load. Check your network, wifi, and iCloud settings and try again."];
         }
     };
     [jokePublicDatabase addOperation:queryJokesOp];
@@ -116,7 +116,7 @@
                      {
                          // display alert message and pop the view controller from the stack
                          GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
-                         [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke failed to load. Just try again!"];
+                         [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke failed to load. Check your network, wifi, and iCloud settings and try again."];
                      }
                  }
                  else
@@ -124,7 +124,7 @@
                      NSLog(@"%@",error);
                      // display alert message and pop the view controller from the stack
                      GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
-                     [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke failed to load. Just try again!"];
+                     [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke failed to load. Check your network, wifi, and iCloud settings and try again."];
                  }
              }];
         }

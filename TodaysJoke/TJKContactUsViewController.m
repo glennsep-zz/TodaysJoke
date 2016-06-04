@@ -173,7 +173,7 @@
             // display error message
             dispatch_async(dispatch_get_main_queue(), ^{
                 GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
-                [alert displayErrorMessage:@"Problem" errorMessage:@"Could not obtain recipient e-mail address. Please try again later."];
+                [alert displayErrorMessage:@"Problem" errorMessage:@"Could not obtain recipient e-mail address. Check your network, wifi, and iCloud settings and try again."];
             });
         }
     }];

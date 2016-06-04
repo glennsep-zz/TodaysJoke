@@ -189,7 +189,7 @@
                   [self stopIndicator];
               });
               GHSAlerts *alerts = [[GHSAlerts alloc] initWithViewController:self];
-              [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the search criteria."];
+              [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the search criteria. Check your network, wifi, and iCloud settings and try again."];
               return;
           }
       }];
@@ -240,7 +240,7 @@
                               [self stopIndicator];
                           });
                           GHSAlerts *alerts = [[GHSAlerts alloc] initWithViewController:self];
-                          [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the category."];
+                          [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the category. Check your network, wifi, and iCloud settings and try again."];
                           return;
                       }
                   }];
@@ -253,7 +253,7 @@
                  [self stopIndicator];
              });
              GHSAlerts *alerts = [[GHSAlerts alloc] initWithViewController:self];
-             [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the category."];
+             [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the category. Check your network, wifi, and iCloud settings and try again."];
              return;
          }
      }];
@@ -333,7 +333,7 @@
                                   [self stopIndicator];
                               });
                               GHSAlerts *alerts = [[GHSAlerts alloc] initWithViewController:self];
-                              [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the category."];
+                              [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the category. Check your network, wifi, and iCloud settings and try again."];
                               return;
                           }
                       }];
@@ -347,7 +347,7 @@
                  [self stopIndicator];
              });
              GHSAlerts *alerts = [[GHSAlerts alloc] initWithViewController:self];
-             [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the category."];
+             [alerts displayErrorMessage:@"Problem" errorMessage:@"Cannot retrieve the jokes for the category. Check your network, wifi, and iCloud settings and try again."];
              return;
          }
      }];

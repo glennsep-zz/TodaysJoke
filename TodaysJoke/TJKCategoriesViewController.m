@@ -145,7 +145,7 @@
                  });
                  GHSAlerts *alert = [[GHSAlerts alloc] initWithViewController:self];
                  errorActionBlock errorBlock = ^void(UIAlertAction *action) {[self closeCategories:self];};
-                 [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke categories failed to load. This screen will close. Just try again!" errorAction:errorBlock];
+                 [alert displayErrorMessage:@"Oops!" errorMessage:@"The joke categories failed to load. Check your network, wifi, and iCloud settings and try again." errorAction:errorBlock];
              }
          }];
     }
