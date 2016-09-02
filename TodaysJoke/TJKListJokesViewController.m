@@ -150,6 +150,8 @@
     // declare variables
     __block NSUInteger counter = 0;             // counts number of jokes found to determine when to load table
     
+    NSDate * todaysDate = [NSDate date];
+    
     // start indicator
     [self startIndicator];
     
@@ -163,23 +165,40 @@
      {
          if (!error)
          {
-            // loop through all joke records
-            for (CKRecord *jokeRecord in results)
+            // check if no results found
+            if (results.count == 0)
             {
-                // get the category for the joke record
-                CKReference *referenceToCategory = jokeRecord[CATEGORY_FIELD_NAME];
-                CKRecordID *categoryRecordID = referenceToCategory.recordID;
-                [jokePublicDatabase fetchRecordWithID:categoryRecordID completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error)
-                 {
-                    // add the joke to the joke item store (array)
-                    [[TJKJokeItemStore sharedStore] createItem:[jokeRecord objectForKey:JOKE_DESCR] jokeCategory:[record objectForKey:CATEGORY_FIELD_NAME] nameSubmitted:[jokeRecord objectForKey:JOKE_SUBMITTED_BY] jokeTitle:[jokeRecord objectForKey:JOKE_TITLE] categoryRecordName:[jokeRecord valueForKey:CATEGORY_FIELD_NAME] jokeCreated:[jokeRecord valueForKey:JOKE_CREATED] jokeRecordName:jokeRecord.recordID.recordName];
-                     
-                     // setup the table
-                     if (++counter == results.count)
+                // remvove indicator
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self stopIndicator];
+                });
+                
+                
+                // indicate that no joke was found
+                [[TJKJokeItemStore sharedStore] createItem:@"No Jokes Found" jokeCategory:@"None" nameSubmitted:@"" jokeTitle:@"No Jokes Found" categoryRecordName:@"" jokeCreated:todaysDate jokeRecordName:@""];
+                [self setupTableContents];
+                
+            }
+            else
+            {
+                // loop through all joke records
+                for (CKRecord *jokeRecord in results)
+                {
+                    // get the category for the joke record
+                    CKReference *referenceToCategory = jokeRecord[CATEGORY_FIELD_NAME];
+                    CKRecordID *categoryRecordID = referenceToCategory.recordID;
+                    [jokePublicDatabase fetchRecordWithID:categoryRecordID completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error)
                      {
-                         [self setupTableContents];
-                     }
-                 }];
+                        // add the joke to the joke item store (array)
+                        [[TJKJokeItemStore sharedStore] createItem:[jokeRecord objectForKey:JOKE_DESCR] jokeCategory:[record objectForKey:CATEGORY_FIELD_NAME] nameSubmitted:[jokeRecord objectForKey:JOKE_SUBMITTED_BY] jokeTitle:[jokeRecord objectForKey:JOKE_TITLE] categoryRecordName:[jokeRecord valueForKey:CATEGORY_FIELD_NAME] jokeCreated:[jokeRecord valueForKey:JOKE_CREATED] jokeRecordName:jokeRecord.recordID.recordName];
+                         
+                         // setup the table
+                         if (++counter == results.count)
+                         {
+                             [self setupTableContents];
+                         }
+                     }];
+                }
             }
           }
           else
