@@ -26,6 +26,7 @@ NSString *const CATEGORY_TO_REMOVE_RANDOM = @"Random";
 NSString *const CATEGORY_TO_REMOVE_FAVORITE = @"Favorites";
 NSString *const CATEGORY_RECORD_NAME = @"categoryRecordName";
 NSString *const CATEGORY_ALL = @"All";
+NSString *const CATEGORY_NONE = @"None";
 
 // joke record types and fields
 NSString *const JOKE_RECORD_TYPE = @"Jokes";
@@ -38,6 +39,7 @@ NSString *const JOKE_ID = @"jokeId";
 NSString *const JOKE_NAME_SUBMITTED = @"nameSubmitted";
 NSString *const JOKE_DATE = @"jokeCreated";
 NSString *const JOKE_CREATED_SYSTEM = @"creationDate";
+NSString *const NO_JOKES_FOUND = @"No Jokes Found";
 
 // generic parameters
 NSString *const PARAMETERS_RECORD_TYPE = @"Parameters";

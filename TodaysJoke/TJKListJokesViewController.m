@@ -175,7 +175,7 @@
                 
                 
                 // indicate that no joke was found
-                [[TJKJokeItemStore sharedStore] createItem:@"No Jokes Found" jokeCategory:@"None" nameSubmitted:@"" jokeTitle:@"No Jokes Found" categoryRecordName:@"" jokeCreated:todaysDate jokeRecordName:@""];
+                [[TJKJokeItemStore sharedStore] createItem:NO_JOKES_FOUND jokeCategory:CATEGORY_NONE nameSubmitted:@"" jokeTitle:NO_JOKES_FOUND categoryRecordName:@"" jokeCreated:todaysDate jokeRecordName:@""];
                 [self setupTableContents];
                 
             }
@@ -423,6 +423,13 @@
         jokeCategory.text = [NSString stringWithFormat:@"%@", jokeItem.jokeCategory];
         [jokeCategory setFont:[UIFont fontWithName:FONT_CATEGORY_TEXT size:FONT_CATEGORY_SIZE]];
         [jokeCategory setTextColor:self.jokeCategoryColor];
+        
+        // if the joke indicates no joke found then remove cell's accessory indicator
+        if (jokeItem.jokeTitle == NO_JOKES_FOUND)
+        {
+            _cellJokeList.accessoryType = UITableViewCellAccessoryNone;
+            _cellJokeList.accessoryView = UITableViewCellAccessoryNone;
+        }
     }
 
     return _cellJokeList;
@@ -431,16 +438,20 @@
 // show screen to list jokes when one is selected
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    // create instance of contact us view controller
-    TJKDisplayJokesController *jokeView = [[TJKDisplayJokesController alloc] initWithNibName:nil bundle:nil];
-    
-    // pass the array with the jokes to the display joke controller
-    jokeView.pageJokes = [NSMutableArray arrayWithArray:self.jokeList];
-    jokeView.jokeIndex = indexPath.row;
-    jokeView.areFavoriteJokes = ([self.categoryName isEqualToString:CATEGORY_FIELD_FAVORITE]) ? YES : NO;
-    
-    // display the contact us screen
-    [self.navigationController pushViewController:jokeView animated:YES];
+    // do not go into detail if joke list has no jokes found
+    if (self.jokeList[indexPath.row].jokeTitle != NO_JOKES_FOUND)
+    {
+        // create instance of contact us view controller
+        TJKDisplayJokesController *jokeView = [[TJKDisplayJokesController alloc] initWithNibName:nil bundle:nil];
+        
+        // pass the array with the jokes to the display joke controller
+        jokeView.pageJokes = [NSMutableArray arrayWithArray:self.jokeList];
+        jokeView.jokeIndex = indexPath.row;
+        jokeView.areFavoriteJokes = ([self.categoryName isEqualToString:CATEGORY_FIELD_FAVORITE]) ? YES : NO;
+        
+        // display the contact us screen
+        [self.navigationController pushViewController:jokeView animated:YES];
+    }
     
     // de-select the row
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
